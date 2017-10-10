@@ -1,13 +1,12 @@
-package com.dt.demo;
+package com.hpe.findlover;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class DemoApplication {
+public class StringBootMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(StringBootMain.class, args);
 	}
 }
