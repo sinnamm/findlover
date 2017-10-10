@@ -26,19 +26,19 @@ body a{
     margin-right: 3%;
     margin-top: 1px;
 }
-#colorNav > ul{
+.colorNav > ul{
 	padding: 0;
     margin: 0;
 }
-#colorNav > ul > li{ /* will style only the top level li */
+.colorNav > ul > li{ /* will style only the top level li */
 	list-style: none;
     position:relative;
 }
-#colorNav > ul > li > a{
+.colorNav > ul > li > a{
 	color:inherit;
 	text-decoration:none !important;
 }
-#colorNav li ul{
+.colorNav li ul{
 	position: absolute;
     list-style: none;
     text-align: center;
@@ -54,28 +54,28 @@ body a{
     transition: max-height 0.4s linear;
     z-index: 1;
 }
-#colorNav li ul li{
+.colorNav li ul li{
 	background-color:#313131;
 }
-#colorNav li ul li a{
+.colorNav li ul li a{
 	padding:8px;
 	color:#fff !important;
 	text-decoration:none !important;
 	display:block;
 	font-size: 13px;
 }
-#colorNav li ul li:nth-child(odd){ /* zebra stripes */
+.colorNav li ul li:nth-child(odd){ /* zebra stripes */
 	background-color:#363636;
 }
-#colorNav li ul li:hover{
+.colorNav li ul li:hover{
 	background-color:#444;
 }
-#colorNav li ul li:first-child{
+.colorNav li ul li:first-child{
 	border-radius:3px 3px 0 0;
 	margin-top:19px;
 	position:relative;
 }
-#colorNav li ul li:first-child:before{ /* the pointer tip */
+.colorNav li ul li:first-child:before{ /* the pointer tip */
 	content:'';
 	position:absolute;
 	width:1px;
@@ -86,14 +86,14 @@ body a{
 	top:-10px;
 	margin-left:-5px;
 }
-#colorNav li ul li:last-child{
+.colorNav li ul li:last-child{
 	border-bottom-left-radius:3px;
 	border-bottom-right-radius:3px;
 }
 
 /* This will trigger the CSS */
 /* transition animation on hover */
-#colorNav li:hover ul{
+.colorNav li:hover ul{
 	max-height:200px; /* Increase when adding more dropdown items */
 }
 
@@ -107,7 +107,7 @@ body a{
 /*----------------------------
 	Color Themes
 -----------------------------*/
-#colorNav li.green:after{
+.colorNav li.green:after{
 	text-shadow: none;
     -webkit-font-smoothing: antialiased;
     font-family: 'fontawesome';
@@ -121,12 +121,15 @@ body a{
     -webkit-transition: 0.4s;
     transition: 0.4s;
     color: #fff;
-    content: "\f0c9";
+    content: "\f003";
     display: inline-block;
     font-size: 20px;
     margin-left: 0;
     position: relative;
     top: 11px;
+}
+#user_info li.green:after{
+    content: '\f007';
 }
 .navbar-inverse-blue .navbar-inner {
   padding: 7px 0;
@@ -2545,10 +2548,10 @@ ul.feature_list.feature_list1 {
 @media (max-width:1366px){
 }
 @media (max-width:1280px){
-#colorNav li ul li a {
+.colorNav li ul li a {
     padding: 5px;
 }
-#colorNav li ul {
+.colorNav li ul {
     width: 150px;
     margin-left: -56px;    
 }
@@ -2595,7 +2598,7 @@ ul.nav_1 li {
 .thumb_bottom {
     margin:0;
 }
-#colorNav li ul {
+.colorNav li ul {
    width: 150px;
    margin-left:-40px;    
    top: 29px;
@@ -2765,10 +2768,10 @@ label.gender_1 {
 ul.nav_1 {
     margin: 7px 0 0 0;
 }
-#colorNav li ul li a {
+.colorNav li ul li a {
     font-size: 12px;
 }
-#colorNav li ul {
+.colorNav li ul {
     width: 110px;
     margin-left: -20px;
 }
@@ -2784,7 +2787,7 @@ i.icon_4 {
 }
 }
 @media (max-width: 736px){
-#colorNav li ul {
+.colorNav li ul {
     top: 13px;
 }
 .columns {
@@ -3352,7 +3355,7 @@ input#submit-btn {
 .wrap_1 {
     width: 330px;
 }	
-#colorNav li ul li a {
+.colorNav li ul li a {
     font-size: 11px;
 }
 a.brand img {
