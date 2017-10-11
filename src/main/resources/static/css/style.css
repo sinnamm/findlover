@@ -849,12 +849,6 @@ a.button.outline, span.button.outline, input[type=submit].outline {
     padding: 0px;
     position: relative;
     line-height: 0px;
-    margin-left:5px;
-    min-height: 220px;
-    min-width:171px;
-}
-.nbs-flexisel-item:first-child{
-	margin-left:0;
 }
 .nbs-flexisel-item > img {
 	cursor: pointer;
