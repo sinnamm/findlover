@@ -7,6 +7,155 @@ html, body{
 	font-size: 100%;
     background:#fff; 
 }
+/*----------------------------
+	gss
+-----------------------------*/
+.reg-form{
+    opacity: 0.65;
+}
+.banner-login{
+    background: url("../images/login_bg.jpg") no-repeat center;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+}
+/*-- featured profiles --*/
+/*--flexisel--*/
+.profile-image {
+    position: relative;
+    margin: 10px 0px;
+}
+.agile-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.93);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+
+}
+.agile-overlay ul {
+    padding:20px 15px 15px;
+}
+.agile-overlay h4 {
+    margin-top: 15px;
+    color: #00c4da;
+    text-align: left;
+    margin-left: 15px;
+    font-weight: normal;
+    font-size: 18px;
+}
+.biseller-column:hover .agile-overlay {
+    height: 100%;
+}
+.agile-overlay ul li span {
+    width: 115px;
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 400;
+    text-align: left;
+}
+.agile-overlay ul li {
+    list-style: none;
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 11px;
+    letter-spacing: 0px;
+    line-height: 23px;
+    font-weight:300;
+}
+.w3layouts_featured-profiles {
+    padding: 70px 0px;
+}
+.flex-slider{
+    background:#242a2c;
+    padding:100px 0;
+}
+
+#flexiselDemo1 {
+    display: none;
+}
+.nbs-flexisel-container {
+    position: relative;
+    max-width: 100%;
+}
+.nbs-flexisel-ul {
+    position: relative;
+    width: 9999px;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    text-align: center;
+}
+.nbs-flexisel-inner {
+    overflow: hidden;
+    margin: 0px auto;
+}
+.nbs-flexisel-item {
+    float: left;
+    margin: 0;
+    padding: 0px;
+    cursor: pointer;
+    position: relative;
+}
+.nbs-flexisel-item > img {
+    cursor: pointer;
+    position: relative;
+}
+/*---- Nav ---*/
+.nbs-flexisel-nav-left, .nbs-flexisel-nav-right {
+    width:20px;
+    height:40px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 100;
+}
+.nbs-flexisel-nav-left {
+    left: -45px;
+    top: 45% !important;
+    background: url(../images/themes1.png) no-repeat 1px 3px;
+}
+.nbs-flexisel-nav-right {
+    right: -45px;
+    top: 45% !important;
+    background: url(../images/themes1.png) no-repeat -23px 3px;
+}
+ul#flexiselDemo3.nbs-flexisel-nav-left, ul#flexiselDemo3.nbs-flexisel-nav-right {
+    width:26px;
+    height:44px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 100;
+    display:none;
+}
+.biseller-column img {
+    width: 100%;
+    position: relative;
+    border: 1px solid #d6d6d6;
+    box-shadow: 0 0 10px #F9F9F9;
+    -webkit-box-shadow: 0 0 10px #F9F9F9;
+    -moz-box-shadow: 0 0 10px #F9F9F9;
+    box-shadow: 0 0 10px #F9F9F9;
+    padding: 2px;
+}
+.agile_featured-profiles h2 {
+    font-size: 35px;
+    letter-spacing: 1px;
+    color: #000;
+    margin-bottom: 45px;
+    text-align: center;
+}
+/*--//flexisel--*/
+/*-- //featured profiles --*/
+/*-- //gss --*/
+
+
+
 body a{
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -529,7 +678,7 @@ input#submit-btn {
 	border:18px solid #FFF;
 }
 .col_1 img {
-	width:100%;
+	width:150px;
 }
 .col_1 .layer {
 	position: absolute; 
@@ -1131,7 +1280,6 @@ i.fa1:hover {
     margin-right: 10px;
     padding-right: 10px;
     display: inline-block;
-    color:#000;
     font-size:1em;
 }
 .breadcrumb1 li a {
@@ -2824,6 +2972,9 @@ i.icon_4 {
 }
 .banner_info {
     margin: 3em 0 0 0;
+}
+.reg_divider{
+    border: 1px solid darkgray;
 }
 .profile_search {
     margin: 3em 0 0 0;
