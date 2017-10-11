@@ -1,393 +1,479 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Search</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Marital Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../static/jquery/jquery.min.js"></script>
-<script src="../../static/js/bootstrap.min.js"></script>
-<!-- Custom Theme files -->
-<link href="../../static/css/style.css" rel='stylesheet' type='text/css' />
-<!----font-Awesome----->
-<link href="../../static/css/font-awesome.css" rel="stylesheet"> 
-<!----font-Awesome----->
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
-            $(this).toggleClass('open');       
-        }
-    );
-});
-</script>
+    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../static/jquery/jquery.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="../../static/js/front/search.js"></script>
+    <!-- Custom Theme files -->
+    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+    <!----font-Awesome----->
+    <link href="../../static/css/font-awesome.css" rel="stylesheet">
+    <!----font-Awesome----->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
 </head>
 <body>
-<!-- ============================  Navigation Start =========================== --><div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->    <div class="navbar-inner">        <div class="container">            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>            <div class="pull-right">                <nav class="navbar nav_bottom" role="navigation">                    <!-- Brand and toggle get grouped for better mobile display -->                    <div class="navbar-header nav_2">                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"                                data-target="#bs-megadropdown-tabs">Menu                            <span class="sr-only">Toggle navigation</span>                            <span class="icon-bar"></span>                            <span class="icon-bar"></span>                            <span class="icon-bar"></span>                        </button>                        <a class="navbar-brand" href="#"></a>                    </div>                    <!-- Collect the nav links, forms, and other content for toggling -->                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">                        <ul class="nav navbar-nav nav_1">                            <li><a href="index.html">首页</a></li>                            <li><a href="about.html">搜索</a></li>                            <li><a href="about.html">会员</a></li>                            <li><a href="about.html">成功故事</a></li>                            <li><a href="about.html">他她说</a></li>                            <li class="dropdown">                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-envelope-o"></i><span                                        class="caret"></span></a>                                <ul class="dropdown-menu" role="menu">                                    <li><a href="search.html">私信</a></li>                                    <li><a href="profile.html">关注</a></li>                                    <li><a href="search-id.html">访问记录</a></li>                                    <li><a href="faq.html">系统通知</a></li>                                </ul>                            </li>                            <li class="dropdown">                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-user"></i><span                                        class="caret"></span></a>                                <ul class="dropdown-menu" role="menu">                                    <li><a href="login.html">编辑资料</a></li>                                    <li><a href="register.html">身份认证</a></li>                                    <li><a href="index.html">修改密码</a></li>                                    <li><a href="index.html">退出</a></li>                                </ul>                            </li>                            <!--<li class="dropdown">-->                                <!--<div class="navigation">-->                                    <!--<nav class="colorNav" id="user_info">-->                                        <!--<ul>-->                                            <!--<li class="green">-->                                                <!--<a href="#" class="icon-home"></a>-->                                                <!--<ul>-->                                                    <!--<li><a href="login.html">编辑资料</a></li>-->                                                    <!--<li><a href="register.html">身份认证</a></li>-->                                                    <!--<li><a href="index.html">修改密码</a></li>-->                                                    <!--<li><a href="index.html">退出</a></li>-->                                                <!--</ul>-->                                            <!--</li>-->                                        <!--</ul>-->                                    <!--</nav>-->                                <!--</div>-->                            <!--</li>-->                        </ul>                    </div><!-- /.navbar-collapse -->                </nav>            </div> <!-- end pull-right -->            <div class="clearfix"></div>        </div> <!-- end container -->    </div> <!-- end navbar-inner --></div> <!-- end navbar-inverse-blue --> <!--============================  Navigation End ============================-->
+<!-- ============================  Navigation Start =========================== -->
+<div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
+                                                                       alt="logo"></a>
+            <div class="pull-right">
+                <nav class="navbar nav_bottom" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav nav_1">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">搜索</a></li>
+                            <li><a href="about.html">会员</a></li>
+                            <li><a href="about.html">成功故事</a></li>
+                            <li><a href="about.html">他她说</a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-lg fa-envelope-o"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="search.html">私信</a></li>
+                                    <li><a href="profile.html">关注</a></li>
+                                    <li><a href="search-id.html">访问记录</a></li>
+                                    <li><a href="faq.html">系统通知</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-lg fa-user"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="login.html">编辑资料</a></li>
+                                    <li><a href="register.html">身份认证</a></li>
+                                    <li><a href="index.html">修改密码</a></li>
+                                    <li><a href="index.html">退出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div> <!-- end pull-right -->
+            <div class="clearfix"></div>
+        </div> <!-- end container -->
+    </div> <!-- end navbar-inner -->
+</div> <!-- end navbar-inverse-blue -->
+<!--============================  Navigation End ============================-->
 <div class="grid_3">
-  <div class="container">
-   <div class="breadcrumb1">
-     <ul>
-        <a href="index.html"><i class="fa fa-home home_1"></i></a>
-        <span class="divider">&nbsp;|&nbsp;</span>
-        <li class="current-page">搜索对方：</li>
-     </ul>
-   </div>
-   <!--<script type="text/javascript">
-    $(function () {
-     $('#btnRadio').click(function () {
-          var checkedradio = $('[name="gr"]:radio:checked').val();
-          $("#sel").html("Selected Value: " + checkedradio);
-      });
-    });
-   </script>-->
-<div class="col-md-9 search_left">
-  <div class="search_info">
-	  <form>
-		  <div class="col-sm-2 form_but1">
-			  <div class="col-sm-15 form_radios">
-				  <div class="select-block1">
-					  <select class="form-control">
-						  <option value="">男士</option>
-						  <option value="">女士</option>
-					  </select>
-				  </div>
-			  </div>
-			  <div class="clearfix"> </div>
-		  </div>
-		  <div class="col-sm-3 form_but1">
-			  <div class=" form_radios">
-				  <div class="select-block1" style="float:left">
-					  <select  class="form-control">
-						  <option value="">山东</option>
-						  <option value="">北京</option>
-						  <option value="">河南</option>
-						  <option value="">河北</option>
-						  <option value="">湖南</option>
-						  <option value="">四川</option>
-						  <option value="">云南</option>
-					  </select>
-				  </div>
-				  <div class="select-block1" style="float:left">
-					  <select  class="form-control">
-						  <option value="">聊城</option>
-						  <option value="">烟台</option>
-						  <option value="">青岛</option>
-						  <option value="">淄博</option>
-						  <option value="">济南</option>
-						  <option value="">济宁</option>
-						  <option value="">泰安</option>
-					  </select>
-				  </div>
-			  </div>
-			  <div class="clearfix"> </div>
-		  </div>
-		  <div class="col-sm-2 form_but1">
-			  <div class="col-sm-22 form_radios">
-				  <div class="select-block1">
-					  <select  class="form-control">
-						  <option value="">未婚</option>
-						  <option value="">丧偶</option>
-						  <option value="">离异</option>
-						  <option value="">已婚</option>
-					  </select>
-				  </div>
-			  </div>
-			  <div class="clearfix"> </div>
-		  </div>
-		  <div class="col-sm-3 form_but1">
-			  <div class="col-sm-22 form_radios">
-				  <div class="select-block1" style="float:left">
-					  <select  class="form-control">
-						  <option value="">130</option>
-						  <option value="">131</option>
-						  <option value="">132</option>
-						  <option value="">133</option>
-						  <option value="">134</option>
-						  <option value="">135</option>
-					  </select>
-				  </div>
-				  <div class="select-block1" style="float:left">-</div>
-				  <div class="select-block1" style="float:left">
-					  <select  class="form-control">
-						  <option value="">130</option>
-						  <option value="">131</option>
-						  <option value="">132</option>
-						  <option value="">133</option>
-						  <option value="">134</option>
-						  <option value="">135</option>
-					  </select>
-				  </div>
-			  </div>
-			  <div class="clearfix"> </div>
-		  </div>
+    <div class="container">
+        <div class="breadcrumb1">
+            <ul>
+                <a href="index.html"><i class="fa fa-home home_1"></i></a>
+                <span class="divider">&nbsp;|&nbsp;</span>
+                <li class="current-page">搜索对方：</li>
+            </ul>
+        </div>
+        <div class="col-md-9 search_left">
+            <div class="">
+                <form>
+                    <div class="dropdown search-dropdown">
+                        <button id="dropdown-btn-1" class="btn btn-default dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="dropdown-value">男</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu search-dropdown-menu" aria-labelledby="dropdown-btn-1" role="menu">
+                            <p>请选择性别：</p>
+                            <select id="search-select-1">
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dropdown search-dropdown">
+                        <button id="dropdown-btn-3" class="btn btn-default dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="dropdown-value">年龄不限</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
+                            <p>请选择年龄：</p>
+                            <select id="age-select-low">
+                                <option value="-1">不限</option>
+                            </select>
+                            <span>—</span>
+                            <select id="age-select-high">
+                                <option value="-1">不限</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dropdown search-dropdown">
+                        <button id="dropdown-btn-2" class="btn btn-default dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="dropdown-value">山东菏泽</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu search-dropdown-menu" style="width: 200px">
+                            <p>请选择地区：</p>
+                            <select id="province-select">
+                                <option value="-1">不限</option>
+                                <option value="山东">山东</option>
+                                <option value="北京">北京</option>
+                                <option value="河南">河南</option>
+                                <option value="河北">河北</option>
+                                <option value="湖南">湖南</option>
+                                <option value="四川">四川</option>
+                                <option value="云南">云南</option>
+                            </select>
 
-	  </form>
-  </div>
-	<div class="search_logo">
-		<h4>热门标签:</h4>
-	</div>
+                            <select id="city-select">
+                                <option value="-1">不限</option>
+                                <option value="聊城">聊城</option>
+                                <option value="烟台">烟台</option>
+                                <option value="青岛">青岛</option>
+                                <option value="淄博">淄博</option>
+                                <option value="济南">济南</option>
+                                <option value="济宁">济宁</option>
+                                <option value="泰安">泰安</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--<div class="select-block1">-->
+                    <!--<select>-->
+                    <!--<option value="">男士</option>-->
+                    <!--<option value="">女士</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="select-block1">-->
+                    <!--<select>-->
+                    <!--<option value="">山东</option>-->
+                    <!--<option value="">北京</option>-->
+                    <!--<option value="">河南</option>-->
+                    <!--<option value="">河北</option>-->
+                    <!--<option value="">湖南</option>-->
+                    <!--<option value="">四川</option>-->
+                    <!--<option value="">云南</option>-->
+                    <!--</select>-->
 
- <div class="paid_people">
-   <div class="row_1">
-	   <div class="col-sm-6 paid_people-left">
-	 	<ul class="profile_item">
-		  <a href="view_profile.html">
-		   <li class="profile_item-img">
-		   	  <img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
-		   </li>
-		   <li class="profile_item-desc">
-			   <h1></h1>
-		   	  <h4>会员2458741</h4>
-		   	  <p>29岁，四川</p>
-		   	  <h5>查看对方详情</h5>
-		   </li>
-		   <div class="clearfix"> </div>
-		  </a>
-	     </ul>
-	   </div>
-	   <div class="col-sm-6">
-	 	<ul class="profile_item">
-		  <a href="view_profile.html">
-		   <li class="profile_item-img">
-		   	  <img src="../../static/images/a6.jpg" class="img-responsive" alt=""/>
-		   </li>
-		   <li class="profile_item-desc">
-			   <h1></h1>
-			   <h4>会员2458741</h4>
-			   <p>29岁，四川</p>
-			   <h5>查看对方详情</h5>
-		   </li>
-		   <div class="clearfix"> </div>
-		  </a>
-	     </ul>
-	   </div>
-	   <div class="clearfix"> </div>
-   </div>
-   <div class="row_1">
-	   <div class="col-sm-6 paid_people-left">
-	 	<ul class="profile_item">
-		  <a href="view_profile.html">
-		   <li class="profile_item-img">
-		   	  <img src="../../static/images/a7.jpg" class="img-responsive" alt=""/>
-		   </li>
-		   <li class="profile_item-desc">
-			   <h1></h1>
-			   <h4>会员2458741</h4>
-			   <p>29岁，四川</p>
-			   <h5>查看对方详情</h5>
-		   </li>
-		   <div class="clearfix"> </div>
-		  </a>
-	     </ul>
-	   </div>
-	   <div class="col-sm-6">
-	 	<ul class="profile_item">
-		  <a href="view_profile.html">
-		   <li class="profile_item-img">
-		   	  <img src="../../static/images/a8.jpg" class="img-responsive" alt=""/>
-		   </li>
-		   <li class="profile_item-desc">
-			   <h1></h1>
-			   <h4>会员2458741</h4>
-			   <p>29岁，四川</p>
-			   <h5>查看对方详情</h5>
-		   </li>
-		   <div class="clearfix"> </div>
-		  </a>
-	     </ul>
-	   </div>
-	   <div class="clearfix"> </div>
-   </div>
-   <div class="row_2">
-	   <div class="col-sm-6 paid_people-left">
-	 	<ul class="profile_item">
-		  <a href="view_profile.html">
-		   <li class="profile_item-img">
-		   	  <img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
-		   </li>
-		   <li class="profile_item-desc">
-			   <h1></h1>
-			   <h4>会员2458741</h4>
-			   <p>29岁，四川</p>
-			   <h5>查看对方详情</h5>
-		   </li>
-		   <div class="clearfix"> </div>
-		  </a>
-	     </ul>
-	   </div>
-	   <div class="col-sm-6">
-	 	<ul class="profile_item">
-		  <a href="view_profile.html">
-		   <li class="profile_item-img">
-		   	  <img src="../../static/images/a4.jpg" class="img-responsive" alt=""/>
-		   </li>
-		   <li class="profile_item-desc">
-			   <h1></h1>
-			   <h4>会员2458741</h4>
-			   <p>29岁，四川</p>
-			   <h5>查看对方详情</h5>
-		   </li>
-		   <div class="clearfix"> </div>
-		  </a>
-	     </ul>
-	   </div>
-	   <div class="clearfix"> </div>
+                    <!--<select>-->
+                    <!--<option value="">聊城</option>-->
+                    <!--<option value="">烟台</option>-->
+                    <!--<option value="">青岛</option>-->
+                    <!--<option value="">淄博</option>-->
+                    <!--<option value="">济南</option>-->
+                    <!--<option value="">济宁</option>-->
+                    <!--<option value="">泰安</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="select-block1">-->
+                    <!--<select>-->
+                    <!--<option value="">未婚</option>-->
+                    <!--<option value="">丧偶</option>-->
+                    <!--<option value="">离异</option>-->
+                    <!--<option value="">已婚</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="select-block1">-->
+                    <!--<select>-->
+                    <!--<option value="">130</option>-->
+                    <!--<option value="">131</option>-->
+                    <!--<option value="">132</option>-->
+                    <!--<option value="">133</option>-->
+                    <!--<option value="">134</option>-->
+                    <!--<option value="">135</option>-->
+                    <!--</select>-->
+                    <!--<span>—</span>-->
+                    <!--<select>-->
+                    <!--<option value="">130</option>-->
+                    <!--<option value="">131</option>-->
+                    <!--<option value="">132</option>-->
+                    <!--<option value="">133</option>-->
+                    <!--<option value="">134</option>-->
+                    <!--<option value="">135</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                </form>
+            </div>
+            <div class="search_logo">
+                <h4>热门标签:</h4>
+            </div>
+
+            <div class="paid_people">
+                <div class="row_1">
+                    <div class="col-sm-6 paid_people-left">
+                        <ul class="profile_item">
+                            <a href="view_profile.html">
+                                <li class="profile_item-img">
+                                    <img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
+                                </li>
+                                <li class="profile_item-desc">
+                                    <h1></h1>
+                                    <h4>会员2458741</h4>
+                                    <p>29岁，四川</p>
+                                    <h5>查看对方详情</h5>
+                                </li>
+                                <div class="clearfix"></div>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="profile_item">
+                            <a href="view_profile.html">
+                                <li class="profile_item-img">
+                                    <img src="../../static/images/a6.jpg" class="img-responsive" alt=""/>
+                                </li>
+                                <li class="profile_item-desc">
+                                    <h1></h1>
+                                    <h4>会员2458741</h4>
+                                    <p>29岁，四川</p>
+                                    <h5>查看对方详情</h5>
+                                </li>
+                                <div class="clearfix"></div>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row_1">
+                    <div class="col-sm-6 paid_people-left">
+                        <ul class="profile_item">
+                            <a href="view_profile.html">
+                                <li class="profile_item-img">
+                                    <img src="../../static/images/a7.jpg" class="img-responsive" alt=""/>
+                                </li>
+                                <li class="profile_item-desc">
+                                    <h1></h1>
+                                    <h4>会员2458741</h4>
+                                    <p>29岁，四川</p>
+                                    <h5>查看对方详情</h5>
+                                </li>
+                                <div class="clearfix"></div>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="profile_item">
+                            <a href="view_profile.html">
+                                <li class="profile_item-img">
+                                    <img src="../../static/images/a8.jpg" class="img-responsive" alt=""/>
+                                </li>
+                                <li class="profile_item-desc">
+                                    <h1></h1>
+                                    <h4>会员2458741</h4>
+                                    <p>29岁，四川</p>
+                                    <h5>查看对方详情</h5>
+                                </li>
+                                <div class="clearfix"></div>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row_2">
+                    <div class="col-sm-6 paid_people-left">
+                        <ul class="profile_item">
+                            <a href="view_profile.html">
+                                <li class="profile_item-img">
+                                    <img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
+                                </li>
+                                <li class="profile_item-desc">
+                                    <h1></h1>
+                                    <h4>会员2458741</h4>
+                                    <p>29岁，四川</p>
+                                    <h5>查看对方详情</h5>
+                                </li>
+                                <div class="clearfix"></div>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="profile_item">
+                            <a href="view_profile.html">
+                                <li class="profile_item-img">
+                                    <img src="../../static/images/a4.jpg" class="img-responsive" alt=""/>
+                                </li>
+                                <li class="profile_item-desc">
+                                    <h1></h1>
+                                    <h4>会员2458741</h4>
+                                    <p>29岁，四川</p>
+                                    <h5>查看对方详情</h5>
+                                </li>
+                                <div class="clearfix"></div>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 match_right">
+            <div class="profile_search1">
+                <form>
+                    <input type="text" class="m_1" name="ne" size="30" required="" placeholder="ID搜索">
+                    <input type="submit" value="搜索">
+                </form>
+            </div>
+            <section class="slider">
+                <h3>成功故事</h3>
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <img src="../../static/images/s2.jpg" alt=""/>
+                            <h4>Lorem & Ipsum</h4>
+                            <p>It is a long established fact that a reader will be distracted by the readable</p>
+                        </li>
+                        <li>
+                            <img src="../../static/images/s1.jpg" alt=""/>
+                            <h4>Lorem & Ipsum</h4>
+                            <p>It is a long established fact that a reader will be distracted by the readable</p>
+                        </li>
+                        <li>
+                            <img src="../../static/images/s3.jpg" alt=""/>
+                            <h4>Lorem & Ipsum</h4>
+                            <p>It is a long established fact that a reader will be distracted by the readable</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <div class="view_profile view_profile2">
+                <h3>相似结果</h3>
+                <ul class="profile_item">
+                    <a href="view_profile.html">
+                        <li class="profile_item-img">
+                            <img src="../../static/images/p5.jpg" class="img-responsive" alt=""/>
+                        </li>
+                        <li class="profile_item-desc">
+                            <h4>2458741</h4>
+                            <p>29 Yrs, 5Ft 5in Christian</p>
+                            <h5>View Full Profile</h5>
+                        </li>
+                        <div class="clearfix"></div>
+                    </a>
+                </ul>
+                <ul class="profile_item">
+                    <a href="view_profile.html">
+                        <li class="profile_item-img">
+                            <img src="../../static/images/p6.jpg" class="img-responsive" alt=""/>
+                        </li>
+                        <li class="profile_item-desc">
+                            <h4>2458741</h4>
+                            <p>29 Yrs, 5Ft 5in Christian</p>
+                            <h5>View Full Profile</h5>
+                        </li>
+                        <div class="clearfix"></div>
+                    </a>
+                </ul>
+                <ul class="profile_item">
+                    <a href="view_profile.html">
+                        <li class="profile_item-img">
+                            <img src="../../static/images/p7.jpg" class="img-responsive" alt=""/>
+                        </li>
+                        <li class="profile_item-desc">
+                            <h4>2458741</h4>
+                            <p>29 Yrs, 5Ft 5in Christian</p>
+                            <h5>View Full Profile</h5>
+                        </li>
+                        <div class="clearfix"></div>
+                    </a>
+                </ul>
+                <ul class="profile_item">
+                    <a href="view_profile.html">
+                        <li class="profile_item-img">
+                            <img src="../../static/images/p8.jpg" class="img-responsive" alt=""/>
+                        </li>
+                        <li class="profile_item-desc">
+                            <h4>2458741</h4>
+                            <p>29 Yrs, 5Ft 5in Christian</p>
+                            <h5>View Full Profile</h5>
+                        </li>
+                        <div class="clearfix"></div>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
-  </div>
-</div>
-<div class="col-md-3 match_right">
-	<div class="profile_search1">
-	   <form>
-		  <input type="text" class="m_1" name="ne" size="30" required="" placeholder="ID搜索">
-		  <input type="submit" value="搜索">
-	   </form>
-   </div>
-   <section class="slider">
-	 <h3>成功故事</h3>
-	 <div class="flexslider">
-		<ul class="slides">
-		  <li>
-			<img src="../../static/images/s2.jpg" alt=""/>
-			<h4>Lorem & Ipsum</h4>
-			<p>It is a long established fact that a reader will be distracted by the readable</p>
-		  </li>
-		  <li>
-			<img src="../../static/images/s1.jpg" alt=""/>
-			<h4>Lorem & Ipsum</h4>
-			<p>It is a long established fact that a reader will be distracted by the readable</p>
-		  </li>
-		  <li>
-			<img src="../../static/images/s3.jpg" alt=""/>
-			<h4>Lorem & Ipsum</h4>
-			<p>It is a long established fact that a reader will be distracted by the readable</p>
-		  </li>
-	    </ul>
-	  </div>
-   </section>
-   <div class="view_profile view_profile2">
-        	<h3>相似结果</h3>
-        	<ul class="profile_item">
-        	  <a href="view_profile.html">
-        	   <li class="profile_item-img">
-        	   	  <img src="../../static/images/p5.jpg" class="img-responsive" alt=""/>
-        	   </li>
-        	   <li class="profile_item-desc">
-        	   	  <h4>2458741</h4>
-        	   	  <p>29 Yrs, 5Ft 5in Christian</p>
-        	   	  <h5>View Full Profile</h5>
-        	   </li>
-        	   <div class="clearfix"> </div>
-        	  </a>
-           </ul>
-           <ul class="profile_item">
-        	  <a href="view_profile.html">
-        	   <li class="profile_item-img">
-        	   	  <img src="../../static/images/p6.jpg" class="img-responsive" alt=""/>
-        	   </li>
-        	   <li class="profile_item-desc">
-        	   	  <h4>2458741</h4>
-        	   	  <p>29 Yrs, 5Ft 5in Christian</p>
-        	   	  <h5>View Full Profile</h5>
-        	   </li>
-        	   <div class="clearfix"> </div>
-        	  </a>
-           </ul>
-           <ul class="profile_item">
-        	  <a href="view_profile.html">
-        	   <li class="profile_item-img">
-        	   	  <img src="../../static/images/p7.jpg" class="img-responsive" alt=""/>
-        	   </li>
-        	   <li class="profile_item-desc">
-        	   	  <h4>2458741</h4>
-        	   	  <p>29 Yrs, 5Ft 5in Christian</p>
-        	   	  <h5>View Full Profile</h5>
-        	   </li>
-        	   <div class="clearfix"> </div>
-        	  </a>
-           </ul>
-           <ul class="profile_item">
-        	  <a href="view_profile.html">
-        	   <li class="profile_item-img">
-        	   	  <img src="../../static/images/p8.jpg" class="img-responsive" alt=""/>
-        	   </li>
-        	   <li class="profile_item-desc">
-        	   	  <h4>2458741</h4>
-        	   	  <p>29 Yrs, 5Ft 5in Christian</p>
-        	   	  <h5>View Full Profile</h5>
-        	   </li>
-        	   <div class="clearfix"> </div>
-        	  </a>
-           </ul>
-       </div>
-     </div>
-     <div class="clearfix"> </div>
-  </div>
 </div>
 
 <div class="footer">
-    	<div class="container">
-    		<div class="col-md-4 col_2">
-    			<h4>About Us</h4>
-    			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Help & Support</h4>
-    			<ul class="footer_links">
-    				<li><a href="#">24x7 Live help</a></li>
-    				<li><a href="contact.html">Contact us</a></li>
-    				<li><a href="#">Feedback</a></li>
-    				<li><a href="faq.html">FAQs</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Quick Links</h4>
-    			<ul class="footer_links">
-    				<li><a href="privacy.html">Privacy Policy</a></li>
-    				<li><a href="terms.html">Terms and Conditions</a></li>
-    				<li><a href="services.html">Services</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Social</h4>
-    			<ul class="footer_social">
-				  <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-			    </ul>
-    		</div>
-    		<div class="clearfix"> </div>
-    		<div class="copy">
-		      <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-	        </div>
-    	</div>
+    <div class="container">
+        <div class="col-md-4 col_2">
+            <h4>About Us</h4>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Help & Support</h4>
+            <ul class="footer_links">
+                <li><a href="#">24x7 Live help</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Quick Links</h4>
+            <ul class="footer_links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms and Conditions</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Social</h4>
+            <ul class="footer_social">
+                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="copy">
+            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
+                                                                         href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+            </p>
+        </div>
+    </div>
 </div>
 <!-- FlexSlider -->
-<link href="../../static/css/flexslider.css" rel='stylesheet' type='text/css' />
-  <script defer src="../../static/jquery/jquery.flexslider.js"></script>
-  <script type="text/javascript">
-	$(function(){
-	  SyntaxHighlighter.all();
-	});
-	$(window).load(function(){
-	  $('.flexslider').flexslider({
-		animation: "slide",
-		start: function(slider){
-		  $('body').removeClass('loading');
-		}
-	  });
-	});
-  </script>
+<link href="../../static/css/flexslider.css" rel='stylesheet' type='text/css'/>
+<script defer src="../../static/jquery/jquery.flexslider.js"></script>
+<script type="text/javascript">
+    $(function () {
+        SyntaxHighlighter.all();
+    });
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+</script>
 <!-- FlexSlider -->
 </body>
 </html>	
