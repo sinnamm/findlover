@@ -1420,7 +1420,7 @@ ul.profile_item{
 	list-style:none;
 }
 ul.profile_item li.profile_item-img{
-	width:30%;
+	width:50%;
 	float:left;
     margin-right: 5%;
 }
@@ -1512,6 +1512,17 @@ ul.login_details li a{
 }
 .paid_people {
     margin: 3em 0 0 0;
+}
+.search_logo{
+    border-style:solid;
+    border-color: #FFFFFF;
+    border-width:thin medium thick;
+    background:#F0F0F0;
+    height:100px;
+}
+.search_info{
+    background:#F0F0F0;
+    height:100px;
 }
 .slider h3 {
     font-size: 1.3em;

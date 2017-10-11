@@ -39,7 +39,7 @@ $(document).ready(function(){
      <ul>
         <a href="index.html"><i class="fa fa-home home_1"></i></a>
         <span class="divider">&nbsp;|&nbsp;</span>
-        <li class="current-page">Regular Search</li>
+        <li class="current-page">搜索对方：</li>
      </ul>
    </div>
    <!--<script type="text/javascript">
@@ -51,214 +51,93 @@ $(document).ready(function(){
     });
    </script>-->
 <div class="col-md-9 search_left">
-  <form>	
-   <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Gender : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="radio" class="radio_1" /> Male &nbsp;&nbsp;
-		<input type="radio" class="radio_1" checked="checked" /> Female
-		
-		<!--<hr />
-		<p id="sel"></p><br />
-		<input id="btnRadio" type="button" value="Get Selected Value" />-->
+  <div class="search_info">
+	  <form>
+		  <div class="col-sm-2 form_but1">
+			  <div class="col-sm-15 form_radios">
+				  <div class="select-block1">
+					  <select class="form-control">
+						  <option value="">男士</option>
+						  <option value="">女士</option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="clearfix"> </div>
+		  </div>
+		  <div class="col-sm-3 form_but1">
+			  <div class=" form_radios">
+				  <div class="select-block1" style="float:left">
+					  <select  class="form-control">
+						  <option value="">山东</option>
+						  <option value="">北京</option>
+						  <option value="">河南</option>
+						  <option value="">河北</option>
+						  <option value="">湖南</option>
+						  <option value="">四川</option>
+						  <option value="">云南</option>
+					  </select>
+				  </div>
+				  <div class="select-block1" style="float:left">
+					  <select  class="form-control">
+						  <option value="">聊城</option>
+						  <option value="">烟台</option>
+						  <option value="">青岛</option>
+						  <option value="">淄博</option>
+						  <option value="">济南</option>
+						  <option value="">济宁</option>
+						  <option value="">泰安</option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="clearfix"> </div>
+		  </div>
+		  <div class="col-sm-2 form_but1">
+			  <div class="col-sm-22 form_radios">
+				  <div class="select-block1">
+					  <select  class="form-control">
+						  <option value="">未婚</option>
+						  <option value="">丧偶</option>
+						  <option value="">离异</option>
+						  <option value="">已婚</option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="clearfix"> </div>
+		  </div>
+		  <div class="col-sm-3 form_but1">
+			  <div class="col-sm-22 form_radios">
+				  <div class="select-block1" style="float:left">
+					  <select  class="form-control">
+						  <option value="">130</option>
+						  <option value="">131</option>
+						  <option value="">132</option>
+						  <option value="">133</option>
+						  <option value="">134</option>
+						  <option value="">135</option>
+					  </select>
+				  </div>
+				  <div class="select-block1" style="float:left">-</div>
+				  <div class="select-block1" style="float:left">
+					  <select  class="form-control">
+						  <option value="">130</option>
+						  <option value="">131</option>
+						  <option value="">132</option>
+						  <option value="">133</option>
+						  <option value="">134</option>
+						  <option value="">135</option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="clearfix"> </div>
+		  </div>
+
+	  </form>
+  </div>
+	<div class="search_logo">
+		<h4>热门标签:</h4>
 	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Marital Status : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="checkbox" class="radio_1" /> Single &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" checked="checked" /> Divorced &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" value="Cheese" /> Widowed &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" value="Cheese" /> Separated &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" value="Cheese" /> Any
-	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">Country : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">Country</option>
-            <option value="">Japan</option>
-            <option value="">Kenya</option>
-            <option value="">Dubai</option>
-            <option value="">Italy</option>
-            <option value="">Greece</option> 
-            <option value="">Iceland</option> 
-            <option value="">China</option> 
-            <option value="">Doha</option> 
-            <option value="">Irland</option> 
-            <option value="">Srilanka</option> 
-            <option value="">Russia</option> 
-            <option value="">Hong Kong</option> 
-            <option value="">Germany</option>
-            <option value="">Canada</option>  
-            <option value="">Mexico</option> 
-            <option value="">Nepal</option>
-            <option value="">Norway</option> 
-            <option value="">Oman</option>
-            <option value="">Pakistan</option>  
-            <option value="">Kuwait</option> 
-            <option value="">Indonesia</option>  
-            <option value="">Spain</option>
-            <option value="">Thailand</option>  
-            <option value="">Saudi Arabia</option> 
-            <option value="">Poland</option> 
-        </select>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">District / City : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">District / City</option>
-            <option value="">Japan</option>
-            <option value="">Kenya</option>
-            <option value="">Dubai</option>
-            <option value="">Italy</option>
-            <option value="">Greece</option> 
-            <option value="">Iceland</option> 
-            <option value="">China</option> 
-            <option value="">Doha</option> 
-            <option value="">Irland</option> 
-            <option value="">Srilanka</option> 
-            <option value="">Russia</option> 
-            <option value="">Hong Kong</option> 
-            <option value="">Germany</option>
-            <option value="">Canada</option>  
-            <option value="">Mexico</option> 
-            <option value="">Nepal</option>
-            <option value="">Norway</option> 
-            <option value="">Oman</option>
-            <option value="">Pakistan</option>  
-            <option value="">Kuwait</option> 
-            <option value="">Indonesia</option>  
-            <option value="">Spain</option>
-            <option value="">Thailand</option>  
-            <option value="">Saudi Arabia</option> 
-            <option value="">Poland</option> 
-        </select>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">State : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">State</option>
-            <option value="">Japan</option>
-            <option value="">Kenya</option>
-            <option value="">Dubai</option>
-            <option value="">Italy</option>
-            <option value="">Greece</option> 
-            <option value="">Iceland</option> 
-            <option value="">China</option> 
-            <option value="">Doha</option> 
-            <option value="">Irland</option> 
-            <option value="">Srilanka</option> 
-            <option value="">Russia</option> 
-            <option value="">Hong Kong</option> 
-            <option value="">Germany</option>
-            <option value="">Canada</option>  
-            <option value="">Mexico</option> 
-            <option value="">Nepal</option>
-            <option value="">Norway</option> 
-            <option value="">Oman</option>
-            <option value="">Pakistan</option>  
-            <option value="">Kuwait</option> 
-            <option value="">Indonesia</option>  
-            <option value="">Spain</option>
-            <option value="">Thailand</option>  
-            <option value="">Saudi Arabia</option> 
-            <option value="">Poland</option> 
-        </select>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">Religion : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">Hindu</option>
-            <option value="">Sikh</option>
-            <option value="">Jain-All</option>
-            <option value="">Jain-Digambar</option>
-            <option value="">Jain-Others</option>
-            <option value="">Muslim-All</option> 
-            <option value="">Muslim-Shia</option> 
-            <option value="">Muslim-Sunni</option> 
-            <option value="">Muslim-Others</option> 
-            <option value="">Christian-All</option> 
-            <option value="">Christian-Catholic</option> 
-            <option value="">Jewish</option> 
-            <option value="">Inter-Religion</option> 
-        </select>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">Mother Tongue : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">English</option>
-            <option value="">French</option>
-            <option value="">Telugu</option>
-            <option value="">Bengali</option>
-            <option value="">Bihari</option>
-            <option value="">Hindi</option> 
-            <option value="">Koshali</option> 
-            <option value="">Khasi</option> 
-            <option value="">Tamil</option> 
-            <option value="">Urdu</option> 
-            <option value="">Manipuri</option> 
-        </select>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Show Profile : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="checkbox" class="radio_1" /> with Photo &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" checked="checked" /> with Horoscope
-	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Don't Show : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="checkbox" class="radio_1" /> Ignored Profiles &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" checked="checked" /> Profiles already Contacted
-	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Age : </label>
-	<div class="col-sm-7 form_radios">
-	  <div class="col-sm-5 input-group1">
-        <input class="form-control has-dark-background" name="28" id="slider-name" placeholder="28" type="text" required="">
-      </div>
-      <div class="col-sm-5 input-group1">
-        <input class="form-control has-dark-background" name="40" id="slider-name" placeholder="40" type="text" required="">
-      </div>
-      <div class="clearfix"> </div>
-	</div>
-	<div class="clearfix"> </div>
-  </div>
- </form>
+
  <div class="paid_people">
-   <h1>Paid People</h1>
    <div class="row_1">
 	   <div class="col-sm-6 paid_people-left">
 	 	<ul class="profile_item">
@@ -267,9 +146,10 @@ $(document).ready(function(){
 		   	  <img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
 		   </li>
 		   <li class="profile_item-desc">
-		   	  <h4>2458741</h4>
-		   	  <p>29 Yrs, 5Ft 5in Christian</p>
-		   	  <h5>View Full Profile</h5>
+			   <h1></h1>
+		   	  <h4>会员2458741</h4>
+		   	  <p>29岁，四川</p>
+		   	  <h5>查看对方详情</h5>
 		   </li>
 		   <div class="clearfix"> </div>
 		  </a>
@@ -282,9 +162,10 @@ $(document).ready(function(){
 		   	  <img src="../../static/images/a6.jpg" class="img-responsive" alt=""/>
 		   </li>
 		   <li class="profile_item-desc">
-		   	  <h4>2458741</h4>
-		   	  <p>29 Yrs, 5Ft 5in Christian</p>
-		   	  <h5>View Full Profile</h5>
+			   <h1></h1>
+			   <h4>会员2458741</h4>
+			   <p>29岁，四川</p>
+			   <h5>查看对方详情</h5>
 		   </li>
 		   <div class="clearfix"> </div>
 		  </a>
@@ -300,9 +181,10 @@ $(document).ready(function(){
 		   	  <img src="../../static/images/a7.jpg" class="img-responsive" alt=""/>
 		   </li>
 		   <li class="profile_item-desc">
-		   	  <h4>2458741</h4>
-		   	  <p>29 Yrs, 5Ft 5in Christian</p>
-		   	  <h5>View Full Profile</h5>
+			   <h1></h1>
+			   <h4>会员2458741</h4>
+			   <p>29岁，四川</p>
+			   <h5>查看对方详情</h5>
 		   </li>
 		   <div class="clearfix"> </div>
 		  </a>
@@ -315,9 +197,10 @@ $(document).ready(function(){
 		   	  <img src="../../static/images/a8.jpg" class="img-responsive" alt=""/>
 		   </li>
 		   <li class="profile_item-desc">
-		   	  <h4>2458741</h4>
-		   	  <p>29 Yrs, 5Ft 5in Christian</p>
-		   	  <h5>View Full Profile</h5>
+			   <h1></h1>
+			   <h4>会员2458741</h4>
+			   <p>29岁，四川</p>
+			   <h5>查看对方详情</h5>
 		   </li>
 		   <div class="clearfix"> </div>
 		  </a>
@@ -333,9 +216,10 @@ $(document).ready(function(){
 		   	  <img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
 		   </li>
 		   <li class="profile_item-desc">
-		   	  <h4>2458741</h4>
-		   	  <p>29 Yrs, 5Ft 5in Christian</p>
-		   	  <h5>View Full Profile</h5>
+			   <h1></h1>
+			   <h4>会员2458741</h4>
+			   <p>29岁，四川</p>
+			   <h5>查看对方详情</h5>
 		   </li>
 		   <div class="clearfix"> </div>
 		  </a>
@@ -348,9 +232,10 @@ $(document).ready(function(){
 		   	  <img src="../../static/images/a4.jpg" class="img-responsive" alt=""/>
 		   </li>
 		   <li class="profile_item-desc">
-		   	  <h4>2458741</h4>
-		   	  <p>29 Yrs, 5Ft 5in Christian</p>
-		   	  <h5>View Full Profile</h5>
+			   <h1></h1>
+			   <h4>会员2458741</h4>
+			   <p>29岁，四川</p>
+			   <h5>查看对方详情</h5>
 		   </li>
 		   <div class="clearfix"> </div>
 		  </a>
@@ -363,12 +248,12 @@ $(document).ready(function(){
 <div class="col-md-3 match_right">
 	<div class="profile_search1">
 	   <form>
-		  <input type="text" class="m_1" name="ne" size="30" required="" placeholder="Enter Profile ID :">
-		  <input type="submit" value="Go">
+		  <input type="text" class="m_1" name="ne" size="30" required="" placeholder="ID搜索">
+		  <input type="submit" value="搜索">
 	   </form>
    </div>
    <section class="slider">
-	 <h3>Happy Marriage</h3>
+	 <h3>成功故事</h3>
 	 <div class="flexslider">
 		<ul class="slides">
 		  <li>
@@ -390,7 +275,7 @@ $(document).ready(function(){
 	  </div>
    </section>
    <div class="view_profile view_profile2">
-        	<h3>View Similar Profiles</h3>
+        	<h3>相似结果</h3>
         	<ul class="profile_item">
         	  <a href="view_profile.html">
         	   <li class="profile_item-img">
