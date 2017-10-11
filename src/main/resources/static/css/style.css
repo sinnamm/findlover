@@ -118,12 +118,12 @@ html, body{
 .nbs-flexisel-nav-left {
     left: -45px;
     top: 45% !important;
-    background: url(../images/themes1.png) no-repeat 1px 3px;
+    /*background: url(../images/themes1.png) no-repeat 1px 3px;*/
 }
 .nbs-flexisel-nav-right {
     right: -45px;
     top: 45% !important;
-    background: url(../images/themes1.png) no-repeat -23px 3px;
+    /*background: url(../images/themes1.png) no-repeat -23px 3px;*/
 }
 ul#flexiselDemo3.nbs-flexisel-nav-left, ul#flexiselDemo3.nbs-flexisel-nav-right {
     width:26px;
@@ -2101,7 +2101,6 @@ i.icon_3{
     -moz-border-radius: 10px;
     border-radius: 10px;
     -webkit-background-clip: padding-box;
-    -moz-background-clip: padding-box;
     background-clip: padding-box;
 }
 .testi_grid:nth-child(2n+1) .testi_grid_blockquote .featured-thumbnail {
@@ -2262,7 +2261,7 @@ small.testi-meta1{
 }
 .posts-grid.our-team > li .thumbnail .post_networks {
     position: absolute;
-    background: url(../images/black-40.png);
+    /*background: url(../images/black-40.png);*/
     top: 0;
     left: 0;
     width: 100%;
