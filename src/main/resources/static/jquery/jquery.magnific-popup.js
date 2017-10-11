@@ -1131,7 +1131,7 @@ $.magnificPopup.registerModule(AJAX_NS, {
 
 /*>>ajax*/
 
-/*>>image*/
+/*>>images*/
 var _imgInterval,
 	_getTitle = function(item) {
 		if(item.data && item.data.title !== undefined) 
@@ -1167,7 +1167,7 @@ $.magnificPopup.registerModule('image', {
 		cursor: 'mfp-zoom-out-cur',
 		titleSrc: 'title', 
 		verticalFit: true,
-		tError: '<a href="%url%">The image</a> could not be loaded.'
+		tError: '<a href="%url%">The images</a> could not be loaded.'
 	},
 
 	proto: {
@@ -1232,7 +1232,7 @@ $.magnificPopup.registerModule('image', {
 		},
 
 		/**
-		 * Function that loops until the image has size to display elements that rely on it asap
+		 * Function that loops until the images has size to display elements that rely on it asap
 		 */
 		findImageSize: function(item) {
 
@@ -1243,7 +1243,7 @@ $.magnificPopup.registerModule('image', {
 					if(_imgInterval) {
 						clearInterval(_imgInterval);
 					}
-					// decelerating interval that checks for size of an image
+					// decelerating interval that checks for size of an images
 					_imgInterval = setInterval(function() {
 						if(img.naturalWidth > 0) {
 							mfp._onImageHasSize(item);
@@ -1272,7 +1272,7 @@ $.magnificPopup.registerModule('image', {
 
 			var guard = 0,
 
-				// image load complete handler
+				// images load complete handler
 				onLoadComplete = function() {
 					if(item) {
 						if (item.img[0].complete) {
@@ -1291,7 +1291,7 @@ $.magnificPopup.registerModule('image', {
 							
 						}
 						else {
-							// if image complete check fails 200 times (20 sec), we assume that there was an error.
+							// if images complete check fails 200 times (20 sec), we assume that there was an error.
 							guard++;
 							if(guard < 200) {
 								setTimeout(onLoadComplete,100);
@@ -1302,7 +1302,7 @@ $.magnificPopup.registerModule('image', {
 					}
 				},
 
-				// image error handler
+				// images error handler
 				onLoadError = function() {
 					if(item) {
 						item.img.off('.mfploader');
@@ -1372,7 +1372,7 @@ $.magnificPopup.registerModule('image', {
 
 
 
-/*>>image*/
+/*>>images*/
 
 /*>>zoom*/
 var hasMozTransform,
@@ -1407,7 +1407,7 @@ $.magnificPopup.registerModule('zoom', {
 
 			var duration = zoomSt.duration,
 				getElToAnimate = function(image) {
-					var newImg = image.clone().removeAttr('style').removeAttr('class').addClass('mfp-animated-image'),
+					var newImg = image.clone().removeAttr('style').removeAttr('class').addClass('mfp-animated-images'),
 						transition = 'all '+(zoomSt.duration/1000)+'s ' + zoomSt.easing,
 						cssObj = {
 							position: 'fixed',
@@ -1435,7 +1435,7 @@ $.magnificPopup.registerModule('zoom', {
 					clearTimeout(openTimeout);
 					mfp.content.css('visibility', 'hidden');
 
-					// Basically, all code below does is clones existing image, puts in on top of the current one and animated it
+					// Basically, all code below does is clones existing images, puts in on top of the current one and animated it
 					
 					image = mfp._getItemToZoom();
 
