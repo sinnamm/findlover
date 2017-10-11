@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>文章</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../static/jquery/jquery.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+    <!----font-Awesome----->
+    <link href="../../static/css/font-awesome.css" rel="stylesheet">
+    <!----font-Awesome----->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+</head>
+<body style="background-color: #f2f2f2">
+<!-- ============================  Navigation Start =========================== -->
+<div class="navbar navbar-inverse-blue navbar">
+    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container">
+
+            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>
+            <div class="pull-right">
+                <nav class="navbar nav_bottom" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                data-target="#bs-megadropdown-tabs">Menu
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav nav_1">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="search.html">搜索</a></li>
+                            <li><a href="about.html">会员</a></li>
+                            <li><a href="s.html">成功故事</a></li>
+                            <li><a href="about.html">他她说</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-envelope-o"></i><span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="search.html">私信</a></li>
+                                    <li><a href="profile.html">关注</a></li>
+                                    <li><a href="search-id.html">访问记录</a></li>
+                                    <li><a href="faq.html">系统通知</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-user"></i><span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="login.html">编辑资料</a></li>
+                                    <li><a href="register.html">身份认证</a></li>
+                                    <li><a href="index.html">修改密码</a></li>
+                                    <li><a href="index.html">退出</a></li>
+                                </ul>
+                            </li>
+                            <!--<li class="dropdown">-->
+                            <!--<div class="navigation">-->
+                            <!--<nav class="colorNav" id="user_info">-->
+                            <!--<ul>-->
+                            <!--<li class="green">-->
+                            <!--<a href="#" class="icon-home"></a>-->
+                            <!--<ul>-->
+                            <!--<li><a href="login.html">编辑资料</a></li>-->
+                            <!--<li><a href="register.html">身份认证</a></li>-->
+                            <!--<li><a href="index.html">修改密码</a></li>-->
+                            <!--<li><a href="index.html">退出</a></li>-->
+                            <!--</ul>-->
+                            <!--</li>-->
+                            <!--</ul>-->
+                            <!--</nav>-->
+                            <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div> <!-- end pull-right -->
+            <div class="clearfix"></div>
+        </div> <!-- end container -->
+    </div> <!-- end navbar-inner -->
+</div> <!-- end navbar-inverse-blue -->
+<!--============================  Navigation End ============================-->
+
+<div class="grid_2">
+    <div class="container">
+        <!--轮播图片-->
+        <div id="myCarousel" class="carousel slide">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="../../static/images/o3.jpg" width="100%" alt="...">
+                    </div>
+                    <div class="item">
+                        <img src="../../static/images/o1.jpg" width="100%"  alt="...">
+                    </div>
+                    <div class="item">
+                        <img src="../../static/images/o2.jpg" width="100%"  alt="...">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic"  data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">上一篇</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">下一篇</span>
+                </a>
+            </div>
+        </div>
+
+        <!--左边帖子部分-->
+        <div class="col-md-9 members_box2" style="margin-top: 10px">
+            <div class="col_4">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <!-- 解析的文章页面-->
+                    <div id="myTabContent" class="tab-content" style="background-color: white; padding: 10px">
+                        </p>
+                        <h2>MaHua是什么?</h2>
+                        <p>一个在线编辑markdown文档的编辑器
+
+                        </p>
+                        <p>向Mac下优秀的markdown编辑器mou致敬
+
+                        </p>
+                        <h2>MaHua有哪些功能？</h2>
+                        <ul>
+                            <li>方便的<code>导入导出</code>功能<ul>
+                                <li>直接把一个markdown的文本文件拖放到当前这个页面就可以了</li>
+                                <li>导出为一个html格式的文件，样式一点也不会丢失</li>
+                            </ul>
+                            </li>
+                            <li>编辑和预览<code>同步滚动</code>，所见即所得（右上角设置）</li>
+                            <li><code>VIM快捷键</code>支持，方便vim党们快速的操作 （右上角设置）</li>
+                            <li>强大的<code>自定义CSS</code>功能，方便定制自己的展示</li>
+                            <li>有数量也有质量的<code>主题</code>,编辑器和预览区域</li>
+                            <li>完美兼容<code>Github</code>的markdown语法</li>
+                            <li>预览区域<code>代码高亮</code></li>
+                            <li>所有选项自动记忆</li>
+                        </ul>
+                        <h2>有问题反馈</h2>
+                        <p>在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
+
+                        </p>
+                        <ul>
+                            <li>邮件(dev.hubo#gmail.com, 把#换成@)</li>
+                            <li>QQ: 287759234</li>
+                            <li>weibo: <a href="http://weibo.com/ihubo">@草依山</a></li>
+                            <li>twitter: <a href="http://twitter.com/ihubo">@ihubo</a></li>
+                        </ul>
+                        <h2>捐助开发者</h2>
+                        <p>在兴趣的驱动下,写一个<code>免费</code>的东西，有欣喜，也还有汗水，希望你喜欢我的作品，同时也能支持一下。
+                            当然，有钱捧个钱场（右上角的爱心标志，支持支付宝和PayPal捐助），没钱捧个人场，谢谢各位。
+
+                        </p>
+                        <h2>感激</h2>
+                        <p>感谢以下的项目,排名不分先后
+
+                        </p>
+                        <ul>
+                            <li><a href="http://mouapp.com/">mou</a> </li>
+                            <li><a href="http://ace.ajax.org/">ace</a></li>
+                            <li><a href="http://jquery.com">jquery</a></li>
+                        </ul>
+                        <h2>关于作者</h2>
+                        <pre><code class="lang-javascript">  var ihubo = {
+    nickName  : "草依山",
+    site : "http://jser.me"
+  }</code></pre>
+                        <p>Edit By <a href="http://mahua.jser.me">MaHua</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--右边广告部分-->
+        <div class="col-md-3 col_5" style="margin-top: 10px">
+
+            <ul class="match_box" style="background-color: white; padding: 10px">
+                <li><h4>推荐好文</h4></li><hr/>
+                <li>
+                    <div onclick="window.open('otherSaysDetail.html')" style="cursor:pointer;" class="jobs-item with-thumb">
+                    <div class="thumb_top">
+                        <div class="thumb">
+                            <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive" alt=""/></a>
+                        </div>
+                        <div class="jobs_right">
+                            <h5>老实人就适合当男朋友？</a></h5>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div><hr/>
+                </li>
+                <li>
+                    <div onclick="window.open('otherSaysDetail.html')" style="cursor:pointer;" class="jobs-item with-thumb">
+                        <div class="thumb_top">
+                            <div class="thumb">
+                                <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive" alt=""/></a>
+                            </div>
+                            <div class="jobs_right">
+                                <h5>【焦点话题】无性婚姻你能接受吗？</a></h5>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div><hr/>
+                </li>
+                <li>
+                    <div onclick="window.open('otherSaysDetail.html')" style="cursor:pointer;" class="jobs-item with-thumb">
+                        <div class="thumb_top">
+                            <div class="thumb">
+                                <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive" alt=""/></a>
+                            </div>
+                            <div class="jobs_right">
+                                <h5>男人为什么更偏爱狐狸精样的女人？</a></h5>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div><hr/>
+                </li>
+                <li>
+                    <div onclick="window.open('otherSaysDetail.html')" style="cursor:pointer;" class="jobs-item with-thumb">
+                        <div class="thumb_top">
+                            <div class="thumb">
+                                <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive" alt=""/></a>
+                            </div>
+                            <div class="jobs_right">
+                                <h5>【情感心语】如何知道一个姑娘...</a></h5>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div><hr/>
+                </li>
+            </ul>
+            <img src="../../static/images/v1.jpg" class="img-responsive" alt=""/>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <div class="col-md-4 col_2">
+            <h4>About Us</h4>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Help & Support</h4>
+            <ul class="footer_links">
+                <li><a href="#">24x7 Live help</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Quick Links</h4>
+            <ul class="footer_links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms and Conditions</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Social</h4>
+            <ul class="footer_social">
+                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="copy">
+            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
+                                                                         href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

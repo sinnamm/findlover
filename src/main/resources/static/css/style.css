@@ -1143,7 +1143,7 @@ a.religion_1 {
     color: #555;
 }
 .grid_2 {
-    margin-bottom: 5em;
+    margin-bottom: 2em;
 }
 .bg{
 	background:url(../images/bg.jpg)no-repeat center top;
@@ -1575,9 +1575,10 @@ ul.login_details li a{
 	height:300px;
 }
 ul.login_details1{
-   padding:0;
-   margin:0;
-   list-style:none;
+    padding:0;
+    margin:0;
+    margin-top: 10px;
+    list-style:none;
 }
 ul.login_details1 li{
 	color:#999;
@@ -1750,19 +1751,20 @@ ul.pagination_1>li >a {
 }
 .jobs-item {
     position: relative;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 .jobs-item .thumb {
     float: left;
     margin-right: 20px;
 }
 .jobs-item .thumb img {
-    width: 120px;
+    width: 240px;
     height: auto;
 }
 p.description {
     margin:0;
-    font-size: 0.85em;
+    margin-top: 10px;
+    font-size: 16px;
     color: #555;
     line-height: 2em;
 }
@@ -1788,13 +1790,14 @@ ul.top-btns li {
     color:#555;
 }
 span.m_1 {
-    font-weight: 800;
+    font-weight: 600;
+    font-size: 11px;
 }
 .jobs_right {
     overflow: hidden;
 }
 h6.title {
-    font-size:1em;
+    font-size:1.5em;
 }
 h6.title a{
    color:#000;
@@ -1855,6 +1858,8 @@ ul.match_box{
 ul.match_box li{
 	font-size:0.85em;
     line-height:1.8em;
+    margin-bottom: 15px;
+    font-weight: 800;
 }
 ul.match_box li a{
 	color:#555;
@@ -2783,7 +2788,7 @@ ul.nav_1 {
     margin: 2em 0;
 }
 .grid_2 {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 .bg_left h4 {
     font-size: 1.3em;
@@ -3186,7 +3191,7 @@ input#submit-btn {
     font-size: 13px;
 }
 p.description {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.5em;
 }
 .tab_box h1 {
@@ -3199,7 +3204,7 @@ p.description {
    line-height: 2em;
 }
 .jobs-item {
-   margin-bottom: 2em;
+   margin-bottom: 1em;
 }
 i.icon_1 {
     font-size: 30px;
