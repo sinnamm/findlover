@@ -1665,6 +1665,9 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
 .agile_featured-profiles li div{
     padding: 0 10px 0 0;
 }
+.grid_3x {
+    padding: 1em 0;
+}
 
 .tab_box {
     margin-bottom: 2em;
@@ -2651,6 +2654,19 @@ i.icon_3 {
     margin-bottom: 1em;
 }
 
+.about_middle1 {
+    background: #f8ab00;
+    padding: 5em 0;
+}
+
+.about_middle1 h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 2.5em;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 1em;
+}
+
 .testi_grid:nth-child(2n+1) {
     margin-left: 0;
 }
@@ -2714,7 +2730,7 @@ i.icon_3 {
 }
 
 .testi_grid .testi_grid_blockquote > div {
-    background: #323232;
+    background: #c32143;
     padding: 20px 30px;
     overflow: hidden;
     border-radius: 4px;
@@ -2988,6 +3004,7 @@ small.testi-meta1 {
 .page_header {
     text-align: center;
     margin-bottom: 2em;
+    margin-top: 1em;
 }
 
 .page_header h1 {
@@ -3006,6 +3023,8 @@ small.testi-meta1 {
 }
 
 .page_header p {
+    margin-left: 10em;
+    text-align: left;
     font-size: 0.85em;
     color: #555;
     line-height: 1.8em;
