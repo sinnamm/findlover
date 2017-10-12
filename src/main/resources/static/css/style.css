@@ -1010,6 +1010,7 @@ span.m_3{
 	font-size:1.2em;
 }
 .suceess_story-content-info h4 a{
+    padding: 2px;
 	color:#000;
 }
 .suceess_story-content-info h4 a:hover{
@@ -1023,6 +1024,7 @@ span.m_3{
 }
 .suceess_story-content-info p a{
 	color:#c32143;
+    padding:10px;
 }
 .suceess_story-content-info p a:hover{
 	color:#000;
@@ -1448,6 +1450,7 @@ ul.profile_item li.profile_item-desc p{
 	font-size:0.85em;
 	line-height:1.5em;
 	margin-bottom: 3px;
+    padding: 5px;
 }
 ul.profile_item a:hover li.profile_item-desc p{
 	text-decoration:underline;
@@ -1594,6 +1597,9 @@ ul.login_details1 li p a{
 }
 .profile_left-top{
 	padding-left:0;
+}
+.profile_left-top img{
+    padding:5px;
 }
 .profile_left1 {
     padding-left: 0;
@@ -2063,7 +2069,7 @@ i.icon_3{
     background: #FFFFFF;
 }
 .about_middle{
-	background: #c32143;
+	background: #f0f0f0;
     padding:5em 0;
 }
 .about_middle h2{
@@ -3683,4 +3689,9 @@ a.order-btn {
 ul.feature_list.feature_list1 {
     margin-bottom: 1em;
 }
+
+.contact-form{
+    margin-left: 10px;
+}
+
 }

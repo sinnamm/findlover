@@ -134,27 +134,26 @@ $(document).ready(function(){
    <div class="col-md-12 profile_left">
      <div class="col_4">
 		    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-			   <ul id="myTab" class="nav nav-tabs nav-tabs1" role="tablist">
-				  <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">用户回复详情</a></li>
-			   </ul>
 			   <div id="myTabContent" class="tab-content">
 				  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 				    <div class="tab_box tab_box1">
 				        <h1>我也要给这对新人送上我真挚的祝福</h1>
-				        <p >一个长期的事实是，当读者看到它的布局时，会被一页可读的内容所分心。使用Lorem Ipsum的要点是它有一个或多或少的正态分布</p>
 
 				    </div>
 	                <div class="clearfix"> </div>
 
                   <div class="about_middle" style="padding:1em 0 ">
                       <div class="container">
-                          <h2>祝福内容</h2>
-                          <form id="contact-form" class="contact-form">
-                              <fieldset>
-                                  <textarea value="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入祝福内容';}">请输入祝福内容</textarea>
-                                  <input name="submit" type="submit" id="submit" value="祝福他们">
-                              </fieldset>
+                          <form class="contact-form">
+                          <div class="row text-center">
+                              <textarea class="col-md-9 col-sm-offset-1" rows="5" value="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入祝福内容';}">请输入祝福内容</textarea>
+                          </div>
+                           <div class="row" style="margin-top: 10px">
+                               <div class="col-md-9" ></div>
+                               <input class="col-md-1 btn btn-info text-right" name="submit" type="submit" id="submit" value="祝福他们">
+                           </div>
                           </form>
+
                       </div>
                   </div>
 
@@ -184,6 +183,7 @@ $(document).ready(function(){
 					    <div class="jobs_right">
 							<h6 class="title"><a href="#">Lorem (2547189)</a></h6>
 							<ul class="top-btns login_details1">
+                                <!-- 点赞 -->
                                 <li>28&nbsp;&nbsp;<a href="#" class="fa fa-2x fa-thumbs-up"></a></li>
 							</ul>
 							<ul class="login_details1">
