@@ -1863,6 +1863,10 @@ ul.login_details li a {
     margin-top: 15px;
     padding: 15px 5px;
 }
+.search-info a.button {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 #common-cond {
     margin-bottom: 20px;
     display: inline-block;

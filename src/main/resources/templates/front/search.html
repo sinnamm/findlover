@@ -23,10 +23,12 @@
     <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
     <script src="../../static/js/front/findlover.js" th:src="@{/js/front/findlover.js}"></script>
     <script src="../../static/js/front/search.js" th:src="@{/js/front/search.js}"></script>
+    <script src="../../static/js/buttons.js" th:src="@{/js/buttons.js}"></script>
     <!-- Custom Theme files -->
     <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel='stylesheet' type='text/css'/>
     <!--font-Awesome-->
     <link href="../../static/css/font-awesome.css" th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+    <link href="../../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet"/>
     <!--font-Awesome-->
     <script>
         $(document).ready(function () {
@@ -376,11 +378,14 @@
                     </form>
                 </div>
                 <hr/>
-                <div class="search-label">
-                    <div class="col-md-2">
-                        <span class="search-title">热门标签：</span>
-                    </div>
+                <div class="col-md-2">
+                    <span class="search-title">热门标签：</span>
                 </div>
+                <a href="javascript:void(0)" class="button button-small button-glow button-rounded button-highlight">高学历</a>
+                <a href="javascript:void(0)" class="button button-small button-glow button-rounded button-caution">高收入</a>
+                <a href="javascript:void(0)" class="button button-small button-glow button-rounded button-royal">有车一族</a>
+                <a href="javascript:void(0)" class="button button-small button-glow button-rounded button-primary">有房一族</a>
+                <a href="javascript:void(0)" class="button button-small button-glow button-rounded button-inverse">程序员</a>
             </div>
 
             <div class="paid_people">
