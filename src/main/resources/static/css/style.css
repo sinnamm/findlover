@@ -24,6 +24,23 @@ html, body{
 .reg-form{
     opacity: 0.65;
 }
+img.zoom-img {
+    -webkit-transform: scale(1, 1);
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 250ms;
+    -moz-transform: scale(1, 1);
+    -moz-transition-timing-function: ease-out;
+    -moz-transition-duration: 250ms;
+}
+img.zoom-img:hover {
+    -webkit-transform: scale(1.1);
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 750ms;
+    -moz-transform: scale(1.1);
+    -moz-transition-timing-function: ease-out;
+    -moz-transition-duration: 750ms;
+    overflow: hidden;
+}
 
 .banner-login {
     background: url("../images/login_bg.jpg") no-repeat center;
@@ -481,6 +498,9 @@ body a {
     display: inline;
     width: auto;
     min-width: 80px;
+}
+.search-dropdown-menu p{
+    margin-bottom: 3px;
 }
 
 .dropdown-toggle {
@@ -1726,9 +1746,11 @@ ul.profile_item {
 }
 
 ul.profile_item li.profile_item-img {
-    width: 50%;
-    float: left;
+    width: 265px;
+    height: 190px;
+    /*float: left;*/
     margin-right: 5%;
+    margin-bottom: 10px;
 }
 
 .view_profile h3 {
@@ -1738,26 +1760,27 @@ ul.profile_item li.profile_item-img {
     font-family: 'Oswald', sans-serif;
 }
 
-ul.profile_item li.profile_item-desc h4, ul.profile_item li.profile_item-desc h5 {
+ul.profile_item a {
     color: #c32143;
-    font-size: 0.85em;
+    font-size: 18px;
 }
 
-ul.profile_item li.profile_item-desc {
-    overflow: hidden;
-}
-
-ul.profile_item li.profile_item-desc p {
+ul.profile_item p {
     color: #555;
     font-size: 0.85em;
     line-height: 1.5em;
     margin-bottom: 3px;
-    padding: 5px;
+    padding-top: 5px ;
+}
+.flag{
+    width: 22px;
+    height: 22px;
+    margin-bottom: 5px;
 }
 
-ul.profile_item a:hover li.profile_item-desc p {
-    text-decoration: underline;
-}
+/*ul.profile_item a:hover li.profile_item-desc p {*/
+    /*text-decoration: underline;*/
+/*}*/
 
 ul.profile_item a:hover {
     text-decoration: none;
@@ -1842,6 +1865,7 @@ ul.login_details li a {
 
 .paid_people-left {
     padding-left: 0;
+    margin-bottom: 15px;
 }
 
 .paid_people h1 {
