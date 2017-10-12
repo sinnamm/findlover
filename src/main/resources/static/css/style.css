@@ -10,13 +10,13 @@ p {
 html, body {
     font-family: 'Ubuntu', sans-serif;
     font-size: 100%;
-    background: #fff;
+    background-color: #f2f2f2;
 }
 hr{color: #1A1822}
 html, body{
 	font-family: 'Ubuntu', sans-serif;
 	font-size: 100%;
-    background:#fff;
+    background-color: #f2f2f2;
 }
 /*----------------------------
 	gss
@@ -1473,7 +1473,7 @@ a.religion_1 {
 
 /*-- footer --*/
 .footer {
-    background: #fff;
+    background-color: #f2f2f2;
     padding: 5em 0;
 }
 
@@ -2199,6 +2199,9 @@ ul.pagination_1 > li > a {
     float: left;
     margin-right: 10px;
 }
+.jobs-item  .thumb_top{
+    margin-right: 10px;
+}
 
 .jobs-item .thumb img {
     width: 240px;
@@ -2244,7 +2247,9 @@ span.m_1 {
     font-weight: 600;
     font-size: 11px;
 }
-
+.careMessage{
+    background-color: white;margin: 0;height: 900px; padding: 5px 0 0 20px
+}
 .jobs_right {
     margin-top: 10px;
     overflow: hidden;
@@ -3993,6 +3998,7 @@ ul.feature_list.feature_list1 {
 
     .jobs-item {
         margin-bottom: 1em;
+        margin-right: 10px;
     }
 
     i.icon_1 {
@@ -4556,8 +4562,3 @@ margin-top: 30px;
     padding: 30px;
 }
 
-    /* wm  文章详情页面*/
-.tab-content {
-    background-color: white;
-    padding: 10px
-}
