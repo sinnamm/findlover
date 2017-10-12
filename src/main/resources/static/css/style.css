@@ -4590,6 +4590,24 @@ ul.feature_list.feature_list1 {
     margin-top: 16px;
 }
 
+.jobs-item .thumb1 {
+    float: left;
+    margin-right: 20px;
+}
+
+.jobs-item .thumb1 img {
+    border-radius: 60px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    width: 60px;
+    height: 60px;
+}
+
+.message_content{
+    padding: 30px;
+}
+
+
 /* wm  文章详情页面*/
 .tab-content {
     background-color: white;
