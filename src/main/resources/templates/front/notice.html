@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>系统消息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+	<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../../static/jquery/jquery.min.js"></script>
+	<script src="../../static/js/bootstrap.min.js"></script>
+	<!-- Custom Theme files -->
+	<link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+
+	<!----font-Awesome----->
+	<link href="../../static/css/font-awesome.css" rel="stylesheet"/>
+	<!----font-Awesome----->
+	<script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+	</script>
+</head>
+
+<body style="background-color: #f2f2f2">
+<!-- ============================  Navigation Start =========================== -->
+<div class="navbar navbar-inverse-blue navbar">
+	<!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+	<div class="navbar-inner">
+		<div class="container">
+
+			<a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>
+			<div class="pull-right">
+				<nav class="navbar nav_bottom" role="navigation">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header nav_2">
+						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+								data-target="#bs-megadropdown-tabs">Menu
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+						<ul class="nav navbar-nav nav_1">
+							<li><a href="index.html">首页</a></li>
+							<li><a href="search.html">搜索</a></li>
+							<li><a href="about.html">会员</a></li>
+							<li><a href="success_story.html">成功故事</a></li>
+							<li><a href="otherSays.html">他她说</a></li>
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+										class="fa fa-lg fa-envelope-o"></i><span
+										class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="search.html">私信</a></li>
+									<li><a href="profile.html">关注</a></li>
+									<li><a href="search-id.html">访问记录</a></li>
+									<li><a href="faq.html">系统通知</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+										class="fa fa-lg fa-user"></i><span
+										class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="login.html">编辑资料</a></li>
+									<li><a href="register.html">身份认证</a></li>
+									<li><a href="index.html">修改密码</a></li>
+									<li><a href="index.html">退出</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</nav>
+			</div> <!-- end pull-right -->
+			<div class="clearfix"></div>
+		</div> <!-- end container -->
+	</div> <!-- end navbar-inner -->
+</div> <!-- end navbar-inverse-blue -->
+<!--============================  Navigation End ============================-->
+
+
+<div class="grid_3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>系统通知</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<!--左侧消息列表-->
+			<div class="col-md-9">
+				<div  style="background-color: white;margin: 0;height: 900px; padding: 5px 0 0 20px">
+					<div class="row">
+						<ul class="nav nav-pills">
+							<li role="presentation" class="active"><a href="#">已读（8）</a></li>
+							<li role="presentation"><a href="#">未读</a></li>
+						</ul>
+					</div>
+					<hr/>
+					<div class="row">
+						<div class="list-group" style="margin: 0 20px 0 0">
+							<a href="#" class="list-group-item list-group-item-info"><span class="fa fa-bell-o"></span>  Cras justo odio</a>
+							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Dapibus ac facilisis in</a>
+							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Morbi leo risus</a>
+							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Porta ac consectetur ac</a>
+							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Vestibulum at eros</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!--右侧导航栏-->
+			<div class="col-md-3 col_5">
+				<div class="breadcrumb1">
+					<ul>
+						<a href="index.html"><i class="fa fa-home home_1"></i></a>
+						<span class="divider">&nbsp;|&nbsp;</span>
+						<li class="current-page">消息中心</li>
+					</ul>
+				</div>
+
+				<div class="center-middle" style="background-color: white">
+					<img src="../../static/images/13.jpg">
+					<p>会员107627885</p>
+				</div>
+				<!--消息菜单栏-->
+				<ul class="match_box message">
+					<li><i class="fa fa-comments-o"></i><a href="#"> 私信</a><span>(0)</span></li>
+					<li><i class="fa fa-heart"></i><a href="#"> 关注</a><span>(0)</span></li>
+					<li><i class="fa fa-eye"></i><a href="#"> 访问记录</a><span>(0)</span></li>
+					<li><i class="fa fa-envelope-o"></i><a href="#"> 系统通知</a><span>(0)</span></li>
+				</ul>
+				<!--广告栏-->
+				<ul class="match_box">
+					<li><h4>新人抢先看</h4></li>
+					<hr/>
+					<li>
+						<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
+							 class="jobs-item with-thumb">
+							<div class="thumb_top">
+								<div class="thumb">
+									<img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
+										 alt=""/></a>
+								</div>
+								<div class="jobs_right">
+									<h5>之夏</h5>
+									<p>18岁 高中及以下</p>
+									<span>3天前注册</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr/>
+					<li>
+						<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
+							 class="jobs-item with-thumb">
+							<div class="thumb_top">
+								<div class="thumb">
+									<img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
+										 alt=""/></a>
+								</div>
+								<div class="jobs_right">
+									<h5>之夏</h5>
+									<p>18岁 高中及以下</p>
+									<span>3天前注册</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr/>
+					<li>
+						<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
+							 class="jobs-item with-thumb">
+							<div class="thumb_top">
+								<div class="thumb">
+									<img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
+										 alt=""/></a>
+								</div>
+								<div class="jobs_right">
+									<h5>之夏</h5>
+									<p>18岁 高中及以下</p>
+									<span>3天前注册</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr/>
+					<li><a href="view_profile.html" class="photo_view center-block "
+						   style="color: white;text-align: center">想查看更多吗</a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="clearfix"></div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="footer">
+	<div class="container">
+		<div class="col-md-4 col_2">
+			<h4>About Us</h4>
+			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
+		</div>
+		<div class="col-md-2 col_2">
+			<h4>Help & Support</h4>
+			<ul class="footer_links">
+				<li><a href="#">24x7 Live help</a></li>
+				<li><a href="contact.html">Contact us</a></li>
+				<li><a href="#">Feedback</a></li>
+				<li><a href="faq.html">FAQs</a></li>
+			</ul>
+		</div>
+		<div class="col-md-2 col_2">
+			<h4>Quick Links</h4>
+			<ul class="footer_links">
+				<li><a href="privacy.html">Privacy Policy</a></li>
+				<li><a href="terms.html">Terms and Conditions</a></li>
+				<li><a href="services.html">Services</a></li>
+			</ul>
+		</div>
+		<div class="col-md-2 col_2">
+			<h4>Social</h4>
+			<ul class="footer_social">
+				<li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
+				<li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
+				<li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+		<div class="copy">
+			<p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>	

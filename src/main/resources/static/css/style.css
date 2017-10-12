@@ -2,6 +2,7 @@ h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
+hr{color: #1A1822}
 html, body{
 	font-family: 'Ubuntu', sans-serif;
 	font-size: 100%;
@@ -835,7 +836,17 @@ input#submit-btn {
 .center-middle {
     vertical-align: middle;
     text-align: center;
-    margin: 70px 0 0 0;
+    margin: 10px 0 0 0;
+    padding: 5px;
+}
+.center-middle img{
+    border-radius: 50px;
+}
+/*  wm  */
+.center-middle p{
+    color: #5e5e5e;
+    font-family: 华文仿宋;
+    margin-bottom: 5px;
 }
 /* 09.3.5 on Hover Fade Out				 		 */
 /* ----------------------------------------------*/
@@ -1286,7 +1297,7 @@ i.fa1:hover {
 }
 /* --view_profile --*/
 .breadcrumb1 {
-    margin-bottom:2em;
+    margin-bottom:1em;
 }
 .breadcrumb1 ul{
 	padding:0;
@@ -1375,7 +1386,11 @@ a#profile-tab, a#home-tab, a#profile-tab1{
     color: #fff;
 } 
 .grid_3{
-	padding:5em 0;
+	padding:1em 0;
+}
+.agile_featured-profiles li div{
+    padding: 0 10px 0 0;
+
 }
 .tab_box {
     margin-bottom: 2em;
@@ -1805,11 +1820,13 @@ ul.pagination_1>li >a {
 }
 .jobs-item .thumb {
     float: left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
+
 .jobs-item .thumb img {
     width: 240px;
     height: auto;
+
 }
 p.description {
     margin:0;
@@ -1846,6 +1863,15 @@ span.m_1 {
 .jobs_right {
     overflow: hidden;
 }
+/* wm */
+.jobs_right p{
+    font-weight: 500;
+    color: #5e5e5e;
+}
+.jobs_right span{
+    font-weight: 500;
+    font-size: 10px;
+}
 h6.title {
     font-size:1.5em;
 }
@@ -1869,6 +1895,7 @@ a.photo_view:hover{
 }
 .thumb_but{
 	float: right;
+    margin:15px 25px 0 0;
 }
 .tab_box1{
 	margin:0;
@@ -1898,7 +1925,7 @@ ol.terms_list li{
     padding-left: 0;
 }
 .col_5 img{
-	margin-bottom:2em;
+	margin-bottom:1em;
 }
 ul.match_box{
     background-color: white;
@@ -1906,6 +1933,11 @@ ul.match_box{
 	margin:0 0 2em 0;
 	list-style:none;
 }
+/*  wm  */
+.message span{
+    float: right;
+}
+
 ul.match_box li{
 	font-size:0.85em;
     line-height:1.8em;
@@ -2962,7 +2994,7 @@ label.gender_1 {
 	width:720px;
 }
 .center-middle {
-    margin: 85px 0 0 0;
+    margin: 15px 0 0 0;
 }
 .navbar-nav > li > a {
     padding: 4px 8px;
@@ -2979,7 +3011,7 @@ ul.nav_1 {
     margin-left: -20px;
 }
 .grid_3, .about_middle{
-    padding: 3em 0;
+    padding: 1em 0;
 }
 .about_bottom {
     padding: 3em 0 2em;
@@ -3326,7 +3358,7 @@ ul.phone li.phone_right p {
     font-size: 1.5em;
 }
 .grid_3, .about_middle {
-    padding: 2em 0;
+    padding: 1em 0;
 }
 .about_bottom h3 {
     font-size: 1.8em;
@@ -3366,6 +3398,7 @@ i.icon_4 {
 ul.match_box {
     margin: 0 0 1em 0;
 }
+
 .members_box h1, .terms h2 {
     font-size: 1.2em;
 }
@@ -3739,9 +3772,7 @@ ul.feature_list.feature_list1 {
     margin-left: 10px;
 }
 
-/* wm  文章详情页面*/
-    .tab-content{
-        background-color: white;
-        padding: 10px
-    }
+
+
+
 }
