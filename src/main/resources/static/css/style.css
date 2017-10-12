@@ -392,7 +392,29 @@ body a{
 .dropdown-menu {
     right: 0 !important;
     left:inherit;
-}    
+    margin-top: 0;
+}
+.search-dropdown{
+    display: inline-block;
+}
+.search-dropdown-menu{
+    right: auto !important;
+    left: auto;
+    padding: 10px;
+    width: auto;
+    max-width: 250px;
+}
+/*.search-dropdown-menu p{*/
+    /*display: inline-block;*/
+/*}*/
+.search-dropdown-menu select{
+    border: inherit;
+    display: inline;
+    width: 80px;
+}
+.dropdown-toggle {
+    min-width: 65px;
+}
 .nav_bottom{
 	background:none;
 }
@@ -849,12 +871,6 @@ a.button.outline, span.button.outline, input[type=submit].outline {
     padding: 0px;
     position: relative;
     line-height: 0px;
-    margin-left:5px;
-    min-height: 220px;
-    min-width:171px;
-}
-.nbs-flexisel-item:first-child{
-	margin-left:0;
 }
 .nbs-flexisel-item > img {
 	cursor: pointer;
@@ -1428,7 +1444,7 @@ ul.profile_item{
 	list-style:none;
 }
 ul.profile_item li.profile_item-img{
-	width:30%;
+	width:50%;
 	float:left;
     margin-right: 5%;
 }
@@ -1491,18 +1507,30 @@ ul.login_details li a{
 .search_left{
 	padding-left:0;
 }
+.select-block1{
+    display: inline-block;
+    margin-right: 20px;
+}
 .select-block1 select, .input-group1 input[type="text"]{
+    display: inline-block ;
     box-shadow: none;
-    border: 1px solid #ccc;
+    border: 1px solid #c32143;
     border-radius: 0;
     outline: 0;
-    background: #ffffff;
-    height: 35px;
-    line-height: 25px;
-    padding: 5px 15px;
-    width: 100%;
-    color:#999;
+    background: #c32143;
+    height: 30px;
+    width: 85px;
+    line-height: 20px;
+    padding: 3px 15px;
+    color:white;
 }
+.select-block1 span{
+    line-height: 20px;
+    display: inline-block;
+}
+/*.select-block1 option{*/
+    /*background: gainsboro;*/
+/*}*/
 .input-group1 input[type="text"]{
     border: 1px solid #e2e2e3;
     font-size: 0.85em;
@@ -1522,6 +1550,22 @@ ul.login_details li a{
 .paid_people {
     margin: 3em 0 0 0;
 }
+/*yyf*/
+.search_logo{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background:#F0F0F0;
+    height:100px;
+}
+.search_info{
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    /*background:#f2f2f2;*/
+    padding: 20px;
+    margin-bottom: 10px;
+    height:100px;
+}
+/*yyf*/
 .slider h3 {
     font-size: 1.3em;
     color: #000;
