@@ -6,8 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="application/x-javascript">
         addEventListener("load", function () {
-         setTimeout(hideURLbar, 0);
+            setTimeout(hideURLbar, 0);
         }, false);
+
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
@@ -15,7 +16,8 @@
     <script th:inline="javascript">
         var contextPath = /*[[@{/}]]*/'';
     </script>
-    <link href="../../static/css/bootstrap-3.1.1.min.css" th:href="@{/css/bootstrap-3.1.1.min.css}" rel='stylesheet' type='text/css'/>
+    <link href="../../static/css/bootstrap-3.1.1.min.css" th:href="@{/css/bootstrap-3.1.1.min.css}" rel='stylesheet'
+          type='text/css'/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../../static/jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>
     <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
@@ -45,7 +47,8 @@
 <!-- ============================  Navigation Start =========================== -->
 <div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
     <div class="navbar-inner">
-        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png" th:src="@{/images/logo.png}"/></a>
+        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
+                                                                       th:src="@{/images/logo.png}"/></a>
             <div class="pull-right">
                 <nav class="navbar nav_bottom" role="navigation">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -102,152 +105,282 @@
         <div class="col-md-9 search_left">
             <div class="search-info">
                 <div class="search-condition">
-                    <h5>选择条件：</h5>
+                    <div class="col-md-2">
+                        <span class="search-title">选择条件：</span>
+                    </div>
                     <form>
-                        <div class="dropdown search-dropdown">
-                            <button id="dropdown-btn-1" class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="dropdown-value">男</span>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu search-dropdown-menu">
-                                <p>请选择性别：</p>
-                                <select id="search-select-1">
-                                    <option value="男">男</option>
-                                    <option value="女">女</option>
-                                </select>
+                        <div id="common-cond">
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-1" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">男</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择性别：</p>
+                                    <select id="search-select-1">
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown search-dropdown">
-                            <button id="dropdown-btn-2" class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="dropdown-value">年龄不限</span>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
-                                <p>请选择年龄：</p>
-                                <select id="age-select-low">
-                                    <option value="-1">不限</option>
-                                </select>
-                                <span>—</span>
-                                <select id="age-select-high">
-                                    <option value="-1">不限</option>
-                                </select>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-2" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">年龄不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
+                                    <p>请选择年龄：</p>
+                                    <select id="age-select-low">
+                                        <option value="-1">不限</option>
+                                    </select>
+                                    <span>-</span>
+                                    <select id="age-select-high">
+                                        <option value="-1">不限</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dropdown search-dropdown">
-                            <button id="dropdown-btn-3" class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span id="workplace-span" class="dropdown-value">地区不限</span>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu search-dropdown-menu" style="width: 200px">
-                                <p>请选择地区：</p>
-                                <select id="province-select" th:remove="all-but-first">
-                                    <option value="-1">不限</option>
-                                    <option value="山东">山东</option>
-                                    <option value="北京">北京</option>
-                                    <option value="河南">河南</option>
-                                    <option value="河北">河北</option>
-                                    <option value="湖南">湖南</option>
-                                    <option value="四川">四川</option>
-                                </select>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-3" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span id="workplace-span" class="dropdown-value">地区不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu" style="width: 230px">
+                                    <p>请选择地区：</p>
+                                    <select id="province-select" th:remove="all-but-first">
+                                        <option value="-1">不限</option>
+                                        <option value="山东">山东</option>
+                                        <option value="北京">北京</option>
+                                        <option value="河南">河南</option>
+                                        <option value="河北">河北</option>
+                                        <option value="湖南">湖南</option>
+                                        <option value="四川">四川</option>
+                                    </select>
 
-                                <select id="city-select" th:remove="all-but-first">
-                                    <option value="-1">不限</option>
-                                    <option value="聊城">聊城</option>
-                                    <option value="烟台">烟台</option>
-                                    <option value="青岛">青岛</option>
-                                    <option value="淄博">淄博</option>
-                                    <option value="济南">济南</option>
-                                    <option value="济宁">济宁</option>
-                                </select>
+                                    <select id="city-select" th:remove="all-but-first">
+                                        <option value="-1">不限</option>
+                                        <option value="聊城">聊城</option>
+                                        <option value="烟台">烟台</option>
+                                        <option value="青岛">青岛</option>
+                                        <option value="淄博">淄博</option>
+                                        <option value="济南">济南</option>
+                                        <option value="济宁">济宁</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-4" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">身高不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
+                                    <p>请选择身高：</p>
+                                    <select id="height-select-low">
+                                        <option value="-1">不限</option>
+                                    </select>
+                                    <span>-</span>
+                                    <select id="height-select-high">
+                                        <option value="-1">不限</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-5" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">职业不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择职业：</p>
+                                    <select id="search-select-5">
+                                        <option value="-1" content="职业不限">不限</option>
+                                        <option value="销售">销售</option>
+                                        <option value="客户服务">客户服务</option>
+                                        <option value="计算机/互联网">计算机/互联网</option>
+                                        <option value="广告/市场">广告/市场</option>
+                                        <option value="教育/科研">教育/科研</option>
+                                        <option value="医疗/护理">医疗/护理</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-6" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">婚史不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择婚姻状况：</p>
+                                    <select id="search-select-6">
+                                        <option value="-1" content="婚史不限">不限</option>
+                                        <option value="未婚">未婚</option>
+                                        <option value="丧偶">丧偶</option>
+                                        <option value="离异">离异</option>
+                                        <option value="已婚">已婚</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-7" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">月收入不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
+                                    <p>请选择月收入：</p>
+                                    <select id="salary-select-low">
+                                        <option value="-1">不限</option>
+                                    </select>
+                                    <span>-</span>
+                                    <select id="salary-select-high">
+                                        <option value="-1">不限</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="dropdown search-dropdown">
-                            <button id="dropdown-btn-4" class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="dropdown-value">身高不限</span>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
-                                <p>请选择身高：</p>
-                                <select id="height-select-low">
-                                    <option value="-1">不限</option>
-                                </select>
-                                <span>—</span>
-                                <select id="height-select-high">
-                                    <option value="-1">不限</option>
-                                </select>
+                        <!--<br>-->
+                        <div id="vip-cond" class="col-md-offset-2">
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-8" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">学历不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择学历：</p>
+                                    <select id="search-select-7">
+                                        <option value="-1" content="学历不限">不限</option>
+                                        <option value="大专">大专</option>
+                                        <option value="本科">本科</option>
+                                        <option value="硕士">硕士</option>
+                                        <option value="博士">博士</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-9" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">住房条件不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择住房条件：</p>
+                                    <select id="search-select-9">
+                                        <option value="-1" content="住房条件不限">不限</option>
+                                        <option value="和家人同住">和家人同住</option>
+                                        <option value="已购房">已购房</option>
+                                        <option value="租房">租房</option>
+                                        <option value="打算婚后购房">打算婚后购房</option>
+                                        <option value="单位宿舍">单位宿舍</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-10" class="btn btn-sm btn-default dropdown-toggle"
+                                        type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span id="birthplace-span" class="dropdown-value">籍贯不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu" style="width: 230px">
+                                    <p>请选择籍贯：</p>
+                                    <select id="province-select-bp" th:remove="all-but-first">
+                                        <option value="-1">不限</option>
+                                        <option value="山东">山东</option>
+                                        <option value="北京">北京</option>
+                                        <option value="河南">河南</option>
+                                        <option value="河北">河北</option>
+                                        <option value="湖南">湖南</option>
+                                        <option value="四川">四川</option>
+                                    </select>
+
+                                    <select id="city-select-bp" th:remove="all-but-first">
+                                        <option value="-1">不限</option>
+                                        <option value="聊城">聊城</option>
+                                        <option value="烟台">烟台</option>
+                                        <option value="青岛">青岛</option>
+                                        <option value="淄博">淄博</option>
+                                        <option value="济南">济南</option>
+                                        <option value="济宁">济宁</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-11" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">星座不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择星座：</p>
+                                    <select id="search-select-11">
+                                        <option value="-1" content="星座不限">不限</option>
+                                        <option value="天秤座">天秤座</option>
+                                        <option value="处女座">处女座</option>
+                                        <option value="狮子座">狮子座</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-12" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">生肖不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择生肖：</p>
+                                    <select id="search-select-12">
+                                        <option value="-1" content="生肖不限">不限</option>
+                                        <option value="鼠">鼠</option>
+                                        <option value="牛">牛</option>
+                                        <option value="虎">虎</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-13" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">民族不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择民族：</p>
+                                    <select id="search-select-13">
+                                        <option value="-1" content="民族不限">不限</option>
+                                        <option value="汉族">汉族</option>
+                                        <option value="回族">回族</option>
+                                        <option value="壮族">壮族</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="dropdown search-dropdown">
+                                <button id="dropdown-btn-14" class="btn btn-sm btn-default dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="dropdown-value">信仰不限</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu search-dropdown-menu">
+                                    <p>请选择信仰：</p>
+                                    <select id="search-select-14">
+                                        <option value="-1" content="信仰不限">不限</option>
+                                        <option value="佛教">佛教</option>
+                                        <option value="伊斯兰教">伊斯兰教</option>
+                                        <option value="基督教">基督教</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="dropdown search-dropdown">
-                            <button id="dropdown-btn-5" class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="dropdown-value">职业不限</span>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu search-dropdown-menu">
-                                <p>请选择职业：</p>
-                                <select id="search-select-5">
-                                    <option value="-1" content="职业不限">不限</option>
-                                    <option value="销售">销售</option>
-                                    <option value="客户服务">客户服务</option>
-                                    <option value="计算机/互联网">计算机/互联网</option>
-                                    <option value="广告/市场">广告/市场</option>
-                                    <option value="教育/科研">教育/科研</option>
-                                    <option value="医疗/护理">医疗/护理</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="dropdown search-dropdown">
-                            <button id="dropdown-btn-6" class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="dropdown-value">婚姻状况不限</span>
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu search-dropdown-menu" >
-                                <p>请选择婚姻状况：</p>
-                                <select id="search-select-6">
-                                    <option value="-1" content="婚姻状况不限">不限</option>
-                                    <option value="未婚">未婚</option>
-                                    <option value="丧偶">丧偶</option>
-                                    <option value="离异">离异</option>
-                                    <option value="已婚">已婚</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--<div class="select-block1">-->
-                        <!--<select>-->
-                        <!--<option value="">未婚</option>-->
-                        <!--<option value="">丧偶</option>-->
-                        <!--<option value="">离异</option>-->
-                        <!--<option value="">已婚</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
-                        <!--<div class="select-block1">-->
-                        <!--<select>-->
-                        <!--<option value="">130</option>-->
-                        <!--<option value="">131</option>-->
-                        <!--<option value="">132</option>-->
-                        <!--<option value="">133</option>-->
-                        <!--<option value="">134</option>-->
-                        <!--<option value="">135</option>-->
-                        <!--</select>-->
-                        <!--<span>—</span>-->
-                        <!--<select>-->
-                        <!--<option value="">130</option>-->
-                        <!--<option value="">131</option>-->
-                        <!--<option value="">132</option>-->
-                        <!--<option value="">133</option>-->
-                        <!--<option value="">134</option>-->
-                        <!--<option value="">135</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
                     </form>
                 </div>
                 <hr/>
-                <h5>热门标签：</h5>
+                <div class="search-label">
+                    <div class="col-md-2">
+                        <span class="search-title">热门标签：</span>
+                    </div>
+                </div>
             </div>
 
             <div class="paid_people">
@@ -256,7 +389,8 @@
                         <ul class="profile_item">
                             <a href="view_profile.html">
                                 <li class="profile_item-img">
-                                    <img src="../../static/images/a5.jpg" th:src="@{/images/a5.jpg}" class="img-responsive" alt=""/>
+                                    <img src="../../static/images/a5.jpg" th:src="@{/images/a5.jpg}"
+                                         class="img-responsive" alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <h1></h1>
@@ -272,7 +406,8 @@
                         <ul class="profile_item">
                             <a href="view_profile.html">
                                 <li class="profile_item-img">
-                                    <img src="../../static/images/a6.jpg" th:src="@{/images/a6.jpg}" class="img-responsive" alt=""/>
+                                    <img src="../../static/images/a6.jpg" th:src="@{/images/a6.jpg}"
+                                         class="img-responsive" alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <h1></h1>
@@ -291,7 +426,8 @@
                         <ul class="profile_item">
                             <a href="view_profile.html">
                                 <li class="profile_item-img">
-                                    <img src="../../static/images/a7.jpg" th:src="@{/images/a7.jpg}" class="img-responsive" alt=""/>
+                                    <img src="../../static/images/a7.jpg" th:src="@{/images/a7.jpg}"
+                                         class="img-responsive" alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <h1></h1>
@@ -307,7 +443,8 @@
                         <ul class="profile_item">
                             <a href="view_profile.html">
                                 <li class="profile_item-img">
-                                    <img src="../../static/images/a8.jpg" th:src="@{/images/a8.jpg}" class="img-responsive" alt=""/>
+                                    <img src="../../static/images/a8.jpg" th:src="@{/images/a8.jpg}"
+                                         class="img-responsive" alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <h1></h1>
@@ -326,7 +463,8 @@
                         <ul class="profile_item">
                             <a href="view_profile.html">
                                 <li class="profile_item-img">
-                                    <img src="../../static/images/a5.jpg" th:src="@{/images/a5.jpg}" class="img-responsive" alt=""/>
+                                    <img src="../../static/images/a5.jpg" th:src="@{/images/a5.jpg}"
+                                         class="img-responsive" alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <h1></h1>
@@ -342,7 +480,8 @@
                         <ul class="profile_item">
                             <a href="view_profile.html">
                                 <li class="profile_item-img">
-                                    <img src="../../static/images/a4.jpg" th:src="@{/images/a4.jpg}" class="img-responsive" alt=""/>
+                                    <img src="../../static/images/a4.jpg" th:src="@{/images/a4.jpg}"
+                                         class="img-responsive" alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <h1></h1>
@@ -392,7 +531,8 @@
                 <ul class="profile_item">
                     <a href="view_profile.html">
                         <li class="profile_item-img">
-                            <img src="../../static/images/p5.jpg" th:src="@{/images/p5.jpg}" class="img-responsive" alt=""/>
+                            <img src="../../static/images/p5.jpg" th:src="@{/images/p5.jpg}" class="img-responsive"
+                                 alt=""/>
                         </li>
                         <li class="profile_item-desc">
                             <h4>2458741</h4>
@@ -405,7 +545,8 @@
                 <ul class="profile_item">
                     <a href="view_profile.html">
                         <li class="profile_item-img">
-                            <img src="../../static/images/p6.jpg" th:src="@{/images/p6.jpg}" class="img-responsive" alt=""/>
+                            <img src="../../static/images/p6.jpg" th:src="@{/images/p6.jpg}" class="img-responsive"
+                                 alt=""/>
                         </li>
                         <li class="profile_item-desc">
                             <h4>2458741</h4>
@@ -418,7 +559,8 @@
                 <ul class="profile_item">
                     <a href="view_profile.html">
                         <li class="profile_item-img">
-                            <img src="../../static/images/p7.jpg" th:src="@{/images/p7.jpg}" class="img-responsive" alt=""/>
+                            <img src="../../static/images/p7.jpg" th:src="@{/images/p7.jpg}" class="img-responsive"
+                                 alt=""/>
                         </li>
                         <li class="profile_item-desc">
                             <h4>2458741</h4>
@@ -431,7 +573,8 @@
                 <ul class="profile_item">
                     <a href="view_profile.html">
                         <li class="profile_item-img">
-                            <img src="../../static/images/p8.jpg" th:src="@{/images/p8.jpg}" class="img-responsive" alt=""/>
+                            <img src="../../static/images/p8.jpg" th:src="@{/images/p8.jpg}" class="img-responsive"
+                                 alt=""/>
                         </li>
                         <li class="profile_item-desc">
                             <h4>2458741</h4>

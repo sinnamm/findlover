@@ -2,6 +2,7 @@ var age_low_limit = 18;
 var age_high_limit = 66;
 var height_low_limit = 145;
 var height_high_limit = 210;
+var salary_array = ['3000','5000','8000','12000','15000','20000'];
 $(function () {
     $("select[id*='search-select-']").each(function () {
         $(this).change(function () {
@@ -11,6 +12,8 @@ $(function () {
     initAgeDropdown("dropdown-btn-2");
     initWorkplaceDropdown("workplace-span", "province-select", "city-select");
     initHeightDropdown("dropdown-btn-4");
+    initSalaryDropdown("dropdown-btn-7");
+    initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp");
 });
 
 //初始化年龄下拉列表
@@ -57,7 +60,7 @@ function updateAgeDropdown(dropdownBtnId) {
         else if (low_age == high_age)
             result = low_age + "岁";
         else
-            result = low_age + "—" + high_age + "岁";
+            result = low_age + "-" + high_age + "岁";
     }
     $("#" + dropdownBtnId).find(".dropdown-value").html(result);
 }
@@ -106,8 +109,58 @@ function updateHeightDropdown(dropdownBtnId) {
         else if (low_age == high_age)
             result = low_age + "cm";
         else
-            result = low_age + "—" + high_age + "cm";
+            result = low_age + "-" + high_age + "cm";
     }
     $("#" + dropdownBtnId).find(".dropdown-value").html(result);
 }
+
+//初始化月收入的下拉列表
+function initSalaryDropdown(dropdownBtnId) {
+    for (var x = 0; x < salary_array.length; x++) {
+        $("select[id*=salary-select-]").append($("<option value='" + salary_array[x] + "'>" + salary_array[x] + "</option>"));
+    }
+    // 月收入条件控制
+    $("#salary-select-low").change(function () {
+        var low_index = salary_array.indexOf(this.value);
+        var pre_selected_index = salary_array.indexOf($("#salary-select-high").val());
+        $("#salary-select-high").find("option:gt('0')").remove();
+        for (var x = low_index == "-1" ? 0 : low_index; x < salary_array.length; x++) {
+            $("#salary-select-high").append($("<option value='" + salary_array[x] + "' " + (x == pre_selected_index ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        }
+        updateSalaryDropdown(dropdownBtnId);
+    });
+    $("#salary-select-high").change(function () {
+        var high_index = salary_array.indexOf(this.value);
+        var pre_selected_index = salary_array.indexOf($("#salary-select-low").val());
+        $("#salary-select-low").find("option:gt('0')").remove();
+        for (var x = 0; x < (high_index == '-1' ? salary_array.length : high_index); x++) {
+            $("#salary-select-low").append($("<option value='" + salary_array[x] + "' " + (x == pre_selected_index ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        }
+        updateSalaryDropdown(dropdownBtnId);
+    });
+}
+
+// 更新月收入的下拉列表option
+function updateSalaryDropdown(dropdownBtnId) {
+    var low_index = salary_array.indexOf($("#salary-select-low").val());
+    var high_index = salary_array.indexOf($("#salary-select-high").val());
+    var result;
+    if (low_index == "-1") {
+        if (high_index == "-1")
+            result = "月收入不限";
+        else
+            result = salary_array[high_index] + "元以下";
+    } else {
+        if (high_index == "-1")
+            result = salary_array[low_index] + "元以上";
+        else if (low_index == high_index)
+            result = salary_array[low_index] + "元";
+        else
+            result = salary_array[low_index] + "-" + salary_array[high_index] + "元";
+    }
+    $("#" + dropdownBtnId).find(".dropdown-value").html(result);
+}
+
+
+
 

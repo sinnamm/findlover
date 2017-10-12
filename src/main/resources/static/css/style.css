@@ -1850,17 +1850,24 @@ ul.login_details li a {
 .search-info {
     border: 1px solid gainsboro;
     border-radius: 5px;
-    height: 150px;
+    height:190px;
     margin-top: 15px;
-    padding: 15px;
+    padding: 15px 5px;
+}
+#common-cond {
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
-.search-info h5, .search-info form {
+.search-info .search-title {
+    line-height: 30px;
+    display: inline-block;
+}.search-info h5,.search-info form{
     display: inline;
 }
 
 .search-condition {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 /* search */
@@ -4331,243 +4338,187 @@ ul.feature_list.feature_list1 {
         line-height: 16px;
     }
 }
-
-@media (max-width: 320px) {
-    .wrap_1 {
-        width: 330px;
-    }
-
-    .colorNav li ul li a {
-        font-size: 11px;
-    }
-
-    a.brand img {
-        width: 135px;
-    }
-
-    .navigation {
-        margin-right: 20%;
-    }
-
-    .heart-divider {
-        margin: 10px auto 15px;
-    }
-
-    .row_1-right h3 {
-        margin-bottom: 1em;
-        font-size: 1.3em;
-    }
-
-    h4.post-title {
-        font-size: 0.85em;
-    }
-
-    .nbs-flexisel-nav-right:after, .nbs-flexisel-nav-left:after {
-        top: -15px;
-    }
-
-    a.religion_1 {
-        font-size: 12px;
-    }
-
-    .suceess_story, .col-md-4.row_1-right {
-        padding: 0;
-    }
-
-    .suceess_story:before, .suceess_story:after {
-        left: -8px;
-    }
-
-    .team-socials li {
-        padding: 0 5px;
-    }
-
-    .bg {
-        min-height: 660px;
-    }
-
-    .bg_left {
-        margin-bottom: 5px;
-    }
-
-    .col_2 h4 {
-        font-size: 1.1em;
-    }
-
-    .copy p {
-        font-size: 0.8125em;
-    }
-
-    .jb-accordion-title {
-        padding: 5px 10px 7px;
-        font-size: 15px;
-    }
-
-    .about_grid1 {
-        padding: 0 5px;
-    }
-
-    .nav > li > a {
-        padding: 3px 5px;
-    }
-
-    .nav > li > a {
-        font-size: 12px;
-    }
-
-    .tab_box h1 {
-        font-size: 0.95em;
-    }
-
-    .tab_box p {
-        font-size: 0.8125em;
-    }
-
-    .basic_1 h3 {
-        font-size: 1em;
-    }
-
-    .basic_1, .tab_box {
-        margin-bottom: 1em;
-    }
-
-    .profile_right {
-        margin: 2em 0 0 0;
-    }
-
-    .newsletter input[type="text"] {
-        padding: 8px 2%;
-        max-width: 74%;
-    }
-
-    .newsletter input[type="submit"] {
-        padding: 6px 14px;
-    }
-
-    .newsletter {
-        margin-bottom: 2em;
-    }
-
-    .view_profile h3 {
-        font-size: 1.1em;
-    }
-
-    .view_profile1 {
-        margin: 2em 0 0 0;
-    }
-
-    ul.profile_item li.profile_item-desc h4, ul.profile_item li.profile_item-desc h5, ul.profile_item li.profile_item-desc p, ul.footer_links li {
-        font-size: 12px;
-    }
-
-    .col-md-6.about_right {
-        margin: 1em 0 0 0;
-    }
-
-    .profile_top h2 {
-        font-size: 0.85em;
-    }
-
-    .breadcrumb1 {
-        margin-bottom: 1em;
-    }
-
-    .pagination > li > a {
-        padding: 4px 10px;
-        font-size: 12px;
-    }
-
-    .jobs-item .thumb img {
-        width: 70px;
-    }
-
-    h6.title {
-        font-size: 0.85em;
-    }
-
-    .jobs-item .top-btns li a {
-        font-size: 12px;
-    }
-
-    ul.login_details1 li {
-        font-size: 12px;
-    }
-
-    .breadcrumb1 li {
-        margin-right: 0;
-        padding-right: 0;
-        font-size: 0.85em;
-    }
-
-    ul.match_box li {
-        font-size: 12px;
-    }
-
-    .terms h4 {
-        font-size: 1em;
-    }
-
-    ol.terms_list {
-        margin-bottom: 1em;
-    }
-
-    .terms p {
-        margin-bottom: 1em;
-    }
-
-    p.m_4 {
-        font-size: 0.8125em;
-    }
-
-    .list_1 h3 {
-        font-size: 1.1em;
-    }
-
-    a.photo_view {
-        padding: 5px 8px;
-    }
-
-    .pricing-table-grid ul li span {
-        padding: 7px;
-        font-size: 13px;
-    }
-
-    .pricing-table-grid h3 {
-        padding: 10px 0 10px;
-        font-size: 1.2em;
-    }
-
-    span.month1 {
-        font-size: 12px;
-        line-height: 2em;
-    }
-
-    .pricing-table-grid ul li a, .pricing-table-grid ul li span {
-        padding: 8px 0;
-        font-size: 0.8125em;
-    }
-
-    a.order-btn {
-        width: 50%;
-        padding: 6px 10px;
-    }
-
-    .page_header {
-        margin-bottom: 1em;
-    }
-
-    .grid_5 p, .terms_1 p, .feature_list li {
-        font-size: 0.8125em;
-    }
-
-    ul.feature_list.feature_list1 {
-        margin-bottom: 1em;
-    }
+@media (max-width:320px){
+.wrap_1 {
+    width: 330px;
+}	
+.colorNav li ul li a {
+    font-size: 11px;
 }
+a.brand img {
+    width: 135px;
+}
+.navigation {
+    margin-right: 20%;
+}
+.heart-divider {
+    margin: 10px auto 15px;
+}
+.row_1-right h3 {
+    margin-bottom: 1em;
+    font-size: 1.3em;
+}
+h4.post-title {
+    font-size: 0.85em;
+}
+.nbs-flexisel-nav-right:after, .nbs-flexisel-nav-left:after {
+    top: -15px;
+}
+a.religion_1 {
+    font-size: 12px;
+}
+.suceess_story,.col-md-4.row_1-right{
+   padding: 0;
+}
+.suceess_story:before, .suceess_story:after {
+    left: -8px;
+}
+.team-socials li {
+    padding: 0 5px;
+}
+.bg {
+    min-height: 660px;
+}
+.bg_left {
+    margin-bottom: 5px;
+}
+.col_2 h4 {
+    font-size: 1.1em;
+}    
+.copy p {
+    font-size: 0.8125em;
+}
+.jb-accordion-title {
+    padding: 5px 10px 7px;
+    font-size: 15px;
+}
+.about_grid1{
+	padding:0 5px;
+}
+.nav>li>a {
+    padding: 3px 5px;
+}
+.nav>li>a {
+    font-size: 12px;
+}
+.tab_box h1 {
+    font-size: 0.95em;
+}
+.tab_box p {
+   font-size: 0.8125em;
+}
+.basic_1 h3 {
+   font-size: 1em;
+}
+.basic_1, .tab_box{
+    margin-bottom: 1em;
+}
+.profile_right {
+    margin: 2em 0 0 0;
+}
+.newsletter input[type="text"] {
+    padding: 8px 2%;
+    max-width: 74%;
+}
+.newsletter input[type="submit"] {
+    padding: 6px 14px;
+}
+.newsletter {
+    margin-bottom: 2em;
+}
+.view_profile h3 {
+    font-size: 1.1em;
+}    
+.view_profile1 {
+    margin: 2em 0 0 0;
+}
+ul.profile_item li.profile_item-desc h4, ul.profile_item li.profile_item-desc h5, ul.profile_item li.profile_item-desc p, ul.footer_links li {
+   font-size: 12px;
+}
+.col-md-6.about_right {
+    margin: 1em 0 0 0;
+}
+.profile_top h2 {
+    font-size: 0.85em;
+}  
+.breadcrumb1 {
+    margin-bottom: 1em;
+}  
+.pagination>li >a {
+    padding: 4px 10px;
+    font-size: 12px;
+}
+.jobs-item .thumb img {
+    width: 70px;
+}
+h6.title {
+    font-size: 0.85em;
+}
+.jobs-item .top-btns li a {
+    font-size: 12px;
+}
+ul.login_details1 li {
+    font-size: 12px;
+}
+.breadcrumb1 li {
+    margin-right: 0;
+    padding-right: 0;
+    font-size: 0.85em;
+}
+ul.match_box li {
+    font-size: 12px;
+}
+.terms h4 {
+    font-size: 1em;
+}
+ol.terms_list {
+    margin-bottom: 1em;
+}
+.terms p {
+    margin-bottom: 1em;
+}
+p.m_4{
+	font-size:0.8125em;
+}
+.list_1 h3 {
+    font-size: 1.1em;
+}
+a.photo_view {
+    padding: 5px 8px;
+}    
+.pricing-table-grid ul li span {
+    padding:7px;
+    font-size: 13px;
+}
+.pricing-table-grid h3 {
+    padding: 10px 0 10px;
+    font-size: 1.2em;
+}
+span.month1 {
+    font-size: 12px;
+    line-height: 2em;
+}
+.pricing-table-grid ul li a, .pricing-table-grid ul li span {
+    padding: 8px 0;
+    font-size: 0.8125em;
+}
+a.order-btn {
+    width: 50%;
+    padding: 6px 10px;
+}
+.page_header {
+    margin-bottom: 1em;
+}
+.grid_5 p, .terms_1 p, .feature_list li{
+    font-size: 0.8125em;}
 
-.contact-form {
+ul.feature_list.feature_list1 {
+    margin-bottom: 1em;
+}}
+
+.contact-form{
     margin-left: 10px;
-    margin-top: 30px;
+margin-top: 30px;
 }
 
 .contact-form input {
@@ -4607,8 +4558,7 @@ ul.feature_list.feature_list1 {
     padding: 30px;
 }
 
-
-/* wm  文章详情页面*/
+    /* wm  文章详情页面*/
 .tab-content {
     background-color: white;
     padding: 10px
