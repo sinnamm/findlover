@@ -1895,7 +1895,8 @@ ol.terms_list li{
 	margin-bottom:2em;
 }
 ul.match_box{
-	padding:0;
+    background-color: white;
+    padding: 10px;
 	margin:0 0 2em 0;
 	list-style:none;
 }
@@ -3727,4 +3728,9 @@ a.order-btn {
 ul.feature_list.feature_list1 {
     margin-bottom: 1em;
 }
+/* wm  文章详情页面*/
+    .tab-content{
+        background-color: white;
+        padding: 10px
+    }
 }
