@@ -1906,8 +1906,59 @@ ul.login_details li a {
 .search-condition {
     margin-bottom: 15px;
 }
+.message_header{
+    border-radius: 5px;
+    height:50px;
+}
+.left-pane{
+    height: 50px;
+    line-height: 30px;
+}
+.search_info{
+     border: 1px solid darkgrey;
+     border-radius: 5px;
+     /*background:#f2f2f2;*/
+     padding: 20px;
+     margin-bottom: 10px;
+     height:100px;
+ }
+.fixed_Message{
+     border: 1px solid darkgrey;
+     border-radius: 5px;
+     margin: 10px;
+     padding: 20px;
+     height:100px;
+ }
+.message_main_input{
+     width: auto;
+ }
+.tab-big{
+    border-radius: 7px;
+    border: 1px solid darkgrey;
+}
 
 /* search */
+.message_main{
+    height:auto;
+}
+.message_group{
+    height: 33.98px;
+}
+.message_group1{
+    height: 60px;
+}
+.message-lable{
+    line-height: 38px;
+    margin-bottom: 0.5em;
+}
+.message-lable1{
+    line-height: 60px;
+    margin-bottom: 0.5em;
+}
+.select-control{
+    padding: 0px;
+}
+/*yyf*/
 .slider h3 {
     font-size: 1.3em;
     color: #000;

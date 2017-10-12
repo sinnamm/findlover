@@ -1,394 +1,732 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Members</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Marital Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../static/jquery/jquery.min.js"></script>
-<script src="../../static/js/bootstrap.min.js"></script>
-<!-- Custom Theme files -->
-<link href="../../static/css/style.css" rel='stylesheet' type='text/css' />
-<!----font-Awesome----->
-<link href="../../static/css/font-awesome.css" rel="stylesheet"> 
-<!----font-Awesome----->
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown(100);
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp(100);
-            $(this).toggleClass('open');       
-        }
-    );
-});
-</script>
+    <title>Members</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Marital Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../static/jquery/jquery.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+    <!----font-Awesome----->
+    <link href="../../static/css/font-awesome.css" rel="stylesheet">
+    <!----font-Awesome----->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
 </head>
 <body>
-<!-- ============================  Navigation Start =========================== --><div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->    <div class="navbar-inner">        <div class="container">            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>            <div class="pull-right">                <nav class="navbar nav_bottom" role="navigation">                    <!-- Brand and toggle get grouped for better mobile display -->                    <div class="navbar-header nav_2">                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"                                data-target="#bs-megadropdown-tabs">Menu                            <span class="sr-only">Toggle navigation</span>                            <span class="icon-bar"></span>                            <span class="icon-bar"></span>                            <span class="icon-bar"></span>                        </button>                        <a class="navbar-brand" href="#"></a>                    </div>                    <!-- Collect the nav links, forms, and other content for toggling -->                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">                        <ul class="nav navbar-nav nav_1">                            <li><a href="index.html">首页</a></li>                            <li><a href="about.html">搜索</a></li>                            <li><a href="about.html">会员</a></li>                            <li><a href="about.html">成功故事</a></li>                            <li><a href="about.html">他她说</a></li>                            <li class="dropdown">                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-envelope-o"></i><span                                        class="caret"></span></a>                                <ul class="dropdown-menu" role="menu">                                    <li><a href="search.html">私信</a></li>                                    <li><a href="profile.html">关注</a></li>                                    <li><a href="search-id.html">访问记录</a></li>                                    <li><a href="faq.html">系统通知</a></li>                                </ul>                            </li>                            <li class="dropdown">                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-user"></i><span                                        class="caret"></span></a>                                <ul class="dropdown-menu" role="menu">                                    <li><a href="login.html">编辑资料</a></li>                                    <li><a href="register.html">身份认证</a></li>                                    <li><a href="index.html">修改密码</a></li>                                    <li><a href="index.html">退出</a></li>                                </ul>                            </li>                            <!--<li class="dropdown">-->                                <!--<div class="navigation">-->                                    <!--<nav class="colorNav" id="user_info">-->                                        <!--<ul>-->                                            <!--<li class="green">-->                                                <!--<a href="#" class="icon-home"></a>-->                                                <!--<ul>-->                                                    <!--<li><a href="login.html">编辑资料</a></li>-->                                                    <!--<li><a href="register.html">身份认证</a></li>-->                                                    <!--<li><a href="index.html">修改密码</a></li>-->                                                    <!--<li><a href="index.html">退出</a></li>-->                                                <!--</ul>-->                                            <!--</li>-->                                        <!--</ul>-->                                    <!--</nav>-->                                <!--</div>-->                            <!--</li>-->                        </ul>                    </div><!-- /.navbar-collapse -->                </nav>            </div> <!-- end pull-right -->            <div class="clearfix"></div>        </div> <!-- end container -->    </div> <!-- end navbar-inner --></div> <!-- end navbar-inverse-blue --> <!--============================  Navigation End ============================-->
+<!-- ============================  Navigation Start =========================== -->
+<div class="navbar navbar-inverse-blue navbar">
+    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
+                                                                       alt="logo"></a>
+            <div class="pull-right">
+                <nav class="navbar nav_bottom" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav nav_1">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">搜索</a></li>
+                            <li><a href="about.html">会员</a></li>
+                            <li><a href="about.html">成功故事</a></li>
+                            <li><a href="about.html">他她说</a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-lg fa-envelope-o"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="search.html">私信</a></li>
+                                    <li><a href="profile.html">关注</a></li>
+                                    <li><a href="search-id.html">访问记录</a></li>
+                                    <li><a href="faq.html">系统通知</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-lg fa-user"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="login.html">编辑资料</a></li>
+                                    <li><a href="register.html">身份认证</a></li>
+                                    <li><a href="index.html">修改密码</a></li>
+                                    <li><a href="index.html">退出</a></li>
+                                </ul>
+                            </li>                            <!--<li class="dropdown">-->
+                            <!--<div class="navigation">-->
+                            <!--<nav class="colorNav" id="user_info">-->
+                            <!--<ul>-->                                            <!--<li class="green">-->
+                            <!--<a href="#" class="icon-home"></a>-->
+                            <!--<ul>-->
+                            <!--<li><a href="login.html">编辑资料</a></li>-->
+                            <!--<li><a href="register.html">身份认证</a></li>-->
+                            <!--<li><a href="index.html">修改密码</a></li>-->
+                            <!--<li><a href="index.html">退出</a></li>-->
+                            <!--</ul>-->                                            <!--</li>-->
+                            <!--</ul>-->                                    <!--</nav>-->
+                            <!--</div>-->                            <!--</li>-->                        </ul>
+                    </div><!-- /.navbar-collapse -->                </nav>
+            </div> <!-- end pull-right -->
+            <div class="clearfix"></div>
+        </div> <!-- end container -->    </div> <!-- end navbar-inner --></div> <!-- end navbar-inverse-blue -->
+<!--============================  Navigation End ============================-->
 <div class="grid_3">
-  <div class="container">
-   <div class="breadcrumb1">
-     <ul>
-        <a href="index.html"><i class="fa fa-home home_1"></i></a>
-        <span class="divider">&nbsp;|&nbsp;</span>
-        <li class="current-page">Premium Members</li>
-     </ul>
-   </div>
-   <div class="col-md-3 col_5">
-   	 <ul class="match_box">
-   	 	<h4>Matches</h4>
-   	 	<li><a href="#">Mutual Matches</a></li>
-   	 	<li><a href="#">Profiles yet to be viewed</a></li>
-   	 	<li><a href="#">Mutual Matches</a></li>
-   	 </ul>
-     <ul class="menu">
-		<li class="item1"><h3 class="m_2">Show Profiles Created</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">within a week (2) </a></li>
-			<li class="subitem2"><a href="#">within a month (4)</a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Profile type</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">with Photo (3) </a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Marital Status</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Unmarried (2) </a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Mother Tongue</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">English </a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Education</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Bachelors-Engineering </a></li>
-			<li class="subitem1"><a href="#">Masters-Engineering </a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Occupation</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Engineer-Non IT (2) </a></li>
-			<li class="subitem1"><a href="#">Software Professional (3)</a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Physical Status</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Normal (2) </a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Eating Habits</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Non Vegetarian (3)</a></li>
-			<li class="subitem1"><a href="#">Vegetarian (2)</a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Smoking</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Not Specified (3)</a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Drinking</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Not Specified (3)</a></li>
-			<li class="subitem1"><a href="#">Never Drinks (3)</a></li>
-		  </ul>
-		</li>
-		<li class="item1"><h3 class="m_2">Profile Created by</h3>
-		  <ul class="cute">
-			<li class="subitem1"><a href="#">Self (1)</a></li>
-		  </ul>
-		</li>
-	  </ul>
-   </div>
-   <div class="col-md-9 members_box">
-     <h1>Suitable Matches</h1>
-     <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested..</p>
-       <div class="members_box1">
-	     <div class="col_1_of_3 span_1_of_3  phone_1">
-	      <ul class="phone">
-	     	<li class="phone_left"><i class="fa fa-mobile icon_1"></i></li>
-	     	<li class="phone_right"><p>Access Verified Mobile Numbers</p></li>
-	     	<div class="clearfix"> </div>
-	      </ul>
-	     </div>
-	     <div class="col_1_of_3 span_1_of_3 phone_1">
-	      <ul class="phone">
-	     	<li class="phone_left"><i class="fa fa-heart-o icon_2"></i></li>
-	     	<li class="phone_right"><p>Access Verified Mobile Numbers</p></li>
-	     	<div class="clearfix"> </div>
-	      </ul>
-	     </div>
-	     <div class="col_1_of_3 span_1_of_3">
-	      <ul class="phone">
-	     	<li class="phone_left"><i class="fa fa-envelope-o icon_2"></i></li>
-	     	<li class="phone_right"><p>Access Verified Mobile Numbers</p></li>
-	     	<div class="clearfix"> </div>
-	      </ul>
-	     </div>
-	     <div class="clearfix"> </div>
-	   </div>
-	   <div class="profile_top"><a href="view_profile.html">
-      <h2>254879</h2>
-	    <div class="col-sm-3 profile_left-top">
-	    	<img src="../../static/images/a6.jpg" class="img-responsive" alt=""/>
-	    </div>
-	    <div class="col-sm-3">
-	      <ul class="login_details1">
-			 <li>Last Login : 5 days ago</li>
-			 <li><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." More....</p></li>
-		  </ul>
-	    </div>
-	    <div class="col-sm-6">
-	    	<table class="table_working_hours">
-	        	<tbody>
-	        		<tr class="opened_1">
-						<td class="day_label1">Age / Height :</td>
-						<td class="day_value">28, 5ft 5in / 163cm</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Last Login :</td>
-						<td class="day_value">4 hours ago</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Religion :</td>
-						<td class="day_value">Sikh</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Marital Status :</td>
-						<td class="day_value">Single</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Location :</td>
-						<td class="day_value">India</td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Profile Created by :</td>
-						<td class="day_value closed"><span>Self</span></td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Education :</td>
-						<td class="day_value closed"><span>Engineering</span></td>
-					</tr>
-			    </tbody>
-		   </table>
-		   <div class="buttons">
-			   <div class="vertical">Send Mail</div>
-			   <div class="vertical">Shortlisted</div>
-			   <div class="vertical">Send Interest</div>
-		   </div>
-	    </div>
-	    <div class="clearfix"> </div>
-    </a></div>
-    <div class="profile_top"><a href="view_profile.html">
-      <h2>254879</h2>
-	    <div class="col-sm-3 profile_left-top">
-	    	<img src="../../static/images/a4.jpg" class="img-responsive" alt=""/>
-	    </div>
-	    <div class="col-sm-3">
-	      <ul class="login_details1">
-			 <li>Last Login : 5 days ago</li>
-			 <li><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." More....</p></li>
-		  </ul>
-	    </div>
-	    <div class="col-sm-6">
-	    	<table class="table_working_hours">
-	        	<tbody>
-	        		<tr class="opened_1">
-						<td class="day_label1">Age / Height :</td>
-						<td class="day_value">28, 5ft 5in / 163cm</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Last Login :</td>
-						<td class="day_value">4 hours ago</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Religion :</td>
-						<td class="day_value">Sikh</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Marital Status :</td>
-						<td class="day_value">Single</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Location :</td>
-						<td class="day_value">India</td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Profile Created by :</td>
-						<td class="day_value closed"><span>Self</span></td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Education :</td>
-						<td class="day_value closed"><span>Engineering</span></td>
-					</tr>
-			    </tbody>
-		   </table>
-		   <div class="buttons">
-			   <div class="vertical">Send Mail</div>
-			   <div class="vertical">Shortlisted</div>
-			   <div class="vertical">Send Interest</div>
-		   </div>
-	    </div>
-	    <div class="clearfix"> </div>
-    </a></div>
-    <div class="profile_top"><a href="view_profile.html">
-      <h2>254879</h2>
-	    <div class="col-sm-3 profile_left-top">
-	    	<img src="../../static/images/a5.jpg" class="img-responsive" alt=""/>
-	    </div>
-	    <div class="col-sm-3">
-	      <ul class="login_details1">
-			 <li>Last Login : 5 days ago</li>
-			 <li><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." More....</p></li>
-		  </ul>
-	    </div>
-	    <div class="col-sm-6">
-	    	<table class="table_working_hours">
-	        	<tbody>
-	        		<tr class="opened_1">
-						<td class="day_label1">Age / Height :</td>
-						<td class="day_value">28, 5ft 5in / 163cm</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Last Login :</td>
-						<td class="day_value">4 hours ago</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Religion :</td>
-						<td class="day_value">Sikh</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Marital Status :</td>
-						<td class="day_value">Single</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Location :</td>
-						<td class="day_value">India</td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Profile Created by :</td>
-						<td class="day_value closed"><span>Self</span></td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Education :</td>
-						<td class="day_value closed"><span>Engineering</span></td>
-					</tr>
-			    </tbody>
-		   </table>
-		   <div class="buttons">
-			   <div class="vertical">Send Mail</div>
-			   <div class="vertical">Shortlisted</div>
-			   <div class="vertical">Send Interest</div>
-		   </div>
-	    </div>
-	    <div class="clearfix"> </div>
-    </a></div>
-    <div class="profile_top profile_top1"><a href="view_profile.html">
-      <h2>254879</h2>
-	    <div class="col-sm-3 profile_left-top">
-	    	<img src="../../static/images/a7.jpg" class="img-responsive" alt=""/>
-	    </div>
-	    <div class="col-sm-3">
-	      <ul class="login_details1">
-			 <li>Last Login : 5 days ago</li>
-			 <li><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." More....</p></li>
-		  </ul>
-	    </div>
-	    <div class="col-sm-6">
-	    	<table class="table_working_hours">
-	        	<tbody>
-	        		<tr class="opened_1">
-						<td class="day_label1">Age / Height :</td>
-						<td class="day_value">28, 5ft 5in / 163cm</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Last Login :</td>
-						<td class="day_value">4 hours ago</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Religion :</td>
-						<td class="day_value">Sikh</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Marital Status :</td>
-						<td class="day_value">Single</td>
-					</tr>
-				    <tr class="opened">
-						<td class="day_label1">Location :</td>
-						<td class="day_value">India</td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Profile Created by :</td>
-						<td class="day_value closed"><span>Self</span></td>
-					</tr>
-				    <tr class="closed">
-						<td class="day_label1">Education :</td>
-						<td class="day_value closed"><span>Engineering</span></td>
-					</tr>
-			    </tbody>
-		   </table>
-		   <div class="buttons">
-			   <div class="vertical">Send Mail</div>
-			   <div class="vertical">Shortlisted</div>
-			   <div class="vertical">Send Interest</div>
-		   </div>
-	    </div>
-	    <div class="clearfix"> </div>
-    </a></div>
-   </div>
-   <div class="clearfix"> </div>
-  </div>
-</div>
+    <div class="container">
+        <div class="breadcrumb1">
+            <ul>
+                <a href="index.html"><i class="fa fa-home home_1"></i></a>
+                <span class="divider">&nbsp;|&nbsp;</span>
+                <li class="current-page">个人资料设置</li>
+            </ul>
+        </div>
+        <div class="col-md-3 col_5">
+            <ul class="menu">
+                <div class="list-group panel-message">
+                    <a role="tab" class="list-group-item left-pane active" id="topic-tab">个人资料设置</a>
+                    <a role="tab" class="list-group-item left-pane" href="#basicPanel" id="basic-tab" data-toggle="tab"
+                       aria-controls="basicPanel">基本资料</a>
+                    <a role="tab" class="list-group-item left-pane" href="#morePanel" id="more-tab" data-toggle="tab"
+                       aria-controls="morePanel">详细资料</a>
+                    <a role="tab" class="list-group-item left-pane" href="#workPanel" id="work-tab" data-toggle="tab"
+                       aria-controls="workPanel">工作生活</a>
+                    <a role="tab" class="list-group-item left-pane" href="#marryPanel" id="marry-tab" data-toggle="tab"
+                       aria-controls="marryPanel">婚姻观</a>
+                    <a role="tab" class="list-group-item left-pane" href="#photoPanel" id="photo-tab" data-toggle="tab"
+                       aria-controls="photoPanel">我的相册</a>
+                    <a role="tab" class="list-group-item left-pane" href="#identityPanel" id="identity-tab" data-toggle="tab"
+                       aria-controls="identityPanel">身份认证</a>
+                    <a role="tab" class="list-group-item left-pane" href="#otherPanel" id="other-tab" data-toggle="tab"
+                       aria-controls="otherPanel">择偶条件</a>
+                    <a role="tab" class="list-group-item left-pane" href="#settingPanel" id="setting-tab" data-toggle="tab"
+                       aria-controls="otherPanel">系统设置</a>
+                </div>
+            </ul>
+        </div>
+        <div id="mytab" class="col-md-9 tab-content tab-big">
+            <div id="basicPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>个人基本信息</h3>
+                </div>
+                <div class="fixed_Message">
+                    <span><strong>您的固定信息：</strong></span><br>
+                    <span>您是一位男士，您的出生日期为1997-11-11，未婚，178CM</span><br>
+                    <a href="#">申请修改信息</a>
+                </div>
+                <div class="message_main" style="height: auto;">
+                    <form class="basic_message_form">
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">昵称:</label>
+                            <input class="col-md-4 form-control message_main_input" value="看云水漂流">
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">手机号:</label>
+                            <input class="col-md-4 form-control message_main_input" value="12321312">
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">邮箱:</label>
+                            <input class="col-md-4 form-control message_main_input" value="jackiegss@163.com">
+                        </div>
 
-<div class="footer">
-    	<div class="container">
-    		<div class="col-md-4 col_2">
-    			<h4>About Us</h4>
-    			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Help & Support</h4>
-    			<ul class="footer_links">
-    				<li><a href="#">24x7 Live help</a></li>
-    				<li><a href="contact.html">Contact us</a></li>
-    				<li><a href="#">Feedback</a></li>
-    				<li><a href="faq.html">FAQs</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Quick Links</h4>
-    			<ul class="footer_links">
-    				<li><a href="privacy.html">Privacy Policy</a></li>
-    				<li><a href="terms.html">Terms and Conditions</a></li>
-    				<li><a href="services.html">Services</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Social</h4>
-    			<ul class="footer_social">
-				  <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-			    </ul>
-    		</div>
-    		<div class="clearfix"> </div>
-    		<div class="copy">
-		       <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-	        </div>
-      </div>
-</div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">月收入：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="salary" id="salary" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="3000以下">3000以下</option>
+                                    <option value="3000-4000">3000-4000</option>
+                                    <option value="4000-5000">4000-5000</option>
+                                    <option value="5000-6000">5000-6000</option>
+                                    <option value="6000-7000">6000-7000</option>
+                                    <option value="7000-8000">7000-8000</option>
+                                    <option value="8000-9000">8000-9000</option>
+                                    <option value="9000-10000">9000-10000</option>
+                                    <option value="10000-11000">10000-11000</option>
+                                    <option value="11000以上">11000以上</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">身高：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="height" id="height" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="130以下">130以下</option>
+                                    <option value="131">131</option>
+                                    <option value="132">132</option>
+                                    <option value="133">133</option>
+                                    <option value="134">134</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">性取向：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="sexual" id="sexual" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="同性">同性</option>
+                                    <option value="异性">异性</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">学历：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="education" id="education" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="小学及以下">小学及以下</option>
+                                    <option value="初中毕业">初中毕业</option>
+                                    <option value="高中毕业">高中毕业</option>
+                                    <option value="本科毕业">本科毕业</option>
+                                    <option value="大专毕业">大专毕业</option>
+                                    <option value="研究生">研究生</option>
+                                    <option value="博士生及以上">博士生及以上</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">工作地区：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="work_province" id="work_province" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="北京">北京</option>
+                                    <option value="上海">上海</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="work_city" id="work_city" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="朝阳区">朝阳区</option>
+                                    <option value="海淀区">海淀区</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">所在地区：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="province" id="province" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="北京">北京</option>
+                                    <option value="上海">上海</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="city" id="city" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="朝阳区">朝阳区</option>
+                                    <option value="海淀区">海淀区</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">住房条件：</label>
+                            <div class="col-md-4" style="padding: 0px">
+                                <select name="house" id="house" class="form-control select-control">
+                                    <option value="请选择">请选择</option>
+                                    <option value="与家人同住">与家人同住</option>
+                                    <option value="已购房">已购房</option>
+                                    <option value="租房">租房</option>
+                                    <option value="打算婚后购房">打算婚后购房</option>
+                                    <option value="单位宿舍">单位宿舍</option>
+                                </select>
+                            </div>
+                        </div>
+						<div class="form-group message_group ">
+							<div class="col-md-12 text-center">
+								<input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+								<a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
+								>跳过</a>
+							</div>
+						</div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="morePanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>详细资料</h3>
+                </div>
+                <div class="message_main">
+                    <div class="form-group message_group">
+                        <label class="col-md-3 control-label message-lable text-right">真实姓名：</label>
+                        <input class="col-md-4 form-control message_main_input" value="高少帅">
+                    </div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">体重：</label>
+						<input class="col-md-4 form-control message_main_input" value="50kg">
+					</div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">民族：</label>
+						<input class="col-md-4 form-control message_main_input" value="汉">
+					</div>
+
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">星座：</label>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="constellation" id="constellation" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="水瓶座(01.20-02.19)">水瓶座(01.20-02.19)</option>
+								<option value="双鱼座(02.20-03.20)">双鱼座(02.20-03.20)</option>
+								<option value="白羊座(03.21-04.20)">白羊座(03.21-04.20)</option>
+								<option value="金牛座(04.21-05.20)">金牛座(04.21-05.20)</option>
+								<option value="双子座(05.21-06.21)">双子座(05.21-06.21)</option>
+								<option value="巨蟹座(06.22-07.22)">巨蟹座(06.22-07.22)</option>
+								<option value="狮子座(07.23-08.22)">狮子座(07.23-08.22)</option>
+								<option value="处女座(08.23-09.22)">处女座(08.23-09.22)</option>
+								<option value="天秤座(09.23-10.22)">天秤座(09.23-10.22)</option>
+								<option value="天蝎座(10.23-11.21)">天蝎座(10.23-11.21)</option>
+								<option value="射手座(11.22-12.21)">射手座(11.22-12.21)</option>
+								<option value="魔羯座(12.22-01.19)">魔羯座(12.22-01.19)</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">民族：</label>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="national" id="national" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="汉族">汉族</option>
+								<option value="蒙古族">蒙古族</option>
+								<option value="满族">满族</option>
+								<option value="彝族">彝族</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">生肖：</label>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="animal" id="animal" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="鼠">鼠</option>
+								<option value="牛">牛</option>
+								<option value="虎">虎</option>
+								<option value="兔">兔</option>
+								<option value="龙">龙</option>
+								<option value="蛇">蛇</option>
+								<option value="马">马</option>
+								<option value="羊">羊</option>
+								<option value="猴">猴</option>
+								<option value="鸡">鸡</option>
+								<option value="狗">狗</option>
+								<option value="猪">猪</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">生肖：</label>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="belif" id="belif" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="不信教">不信教</option>
+								<option value="佛教">佛教</option>
+								<option value="道教">道教</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">毕业院校：</label>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="graduation0" id="graduation0" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="北京">北京</option>
+								<option value="青岛">青岛</option>
+								<option value="上海">上海</option>
+							</select>
+						</div>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="graduation1" id="graduation1" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="北京大学">北京大学</option>
+								<option value="青岛大学">青岛大学</option>
+								<option value="上海海事">上海海事</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group message_group">
+						<label class="col-md-3 control-label message-lable text-right">籍贯：</label>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="religion0" id="religion0" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="北京">北京</option>
+								<option value="上海">上海</option>
+							</select>
+						</div>
+						<div class="col-md-4" style="padding: 0px">
+							<select name="religion1" id="religion1" class="form-control select-control">
+								<option value="请选择">请选择</option>
+								<option value="朝阳区">朝阳区</option>
+								<option value="海淀区">海淀区</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group message_group1">
+						<label class="col-md-3 control-label message1-lable text-right">爱好简述：</label>
+						<textarea  cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+					</div>
+					<div class="form-group message_group ">
+						<div class="col-md-12 text-center">
+							<input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+							<a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
+							>跳过</a>
+						</div>
+					</div>
+                </div>
+            </div>
+            <div id="workPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>工作生活</h3>
+                </div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">是否抽烟：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="smoke" id="smoke" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">是否喝酒：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="drink" id="drink" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">是否有车：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="car" id="car" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">职业类别：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="job_type0" id="job_type0" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="计算机/互联网">计算机/互联网</option>
+							<option value="生产/制造">生产/制造</option>
+						</select>
+					</div>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="job_type1" id="job_type1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="程序员">程序员</option>
+							<option value="软件工程师">软件工程师</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">工作繁忙度：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="job_time" id="job_time" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="很忙">很忙</option>
+							<option value="特别忙">特别忙</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group1">
+					<label class="col-md-3 control-label message1-lable text-right">个人性格简述：</label>
+					<textarea  cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+				</div>
+				<div class="form-group message_group1">
+					<label class="col-md-3 control-label message1-lable text-right">工作情况简述：</label>
+					<textarea  cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+				</div>
+				<div class="form-group message_group ">
+					<div class="col-md-12 text-center">
+						<input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+						<a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
+						>跳过</a>
+					</div>
+				</div>
+            </div>
+            <div id="marryPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>婚姻观</h3>
+                </div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">婚恋史：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="love_history" id="love_history" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="未谈过恋爱">未谈过恋爱</option>
+							<option value="谈过三次以内恋爱">谈过三次以内恋爱</option>
+							<option value="恋爱次数很多">恋爱次数很多</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">想何时结婚：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="marry_time" id="marry_time" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="认同闪婚">认同闪婚</option>
+							<option value="一年内">一年内</option>
+							<option value="两年内">两年内</option>
+							<option value="三年内">三年内</option>
+							<option value="认为时机成熟以后">认为时机成熟以后</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">是否认同异地恋：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="ldr" id="ldr" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">父母状况：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="parent_status" id="parent_status" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="父母均健在">父母均健在</option>
+							<option value="只有父亲健在">只有父亲健在</option>
+							<option value="只有母亲健在">只有母亲健在</option>
+							<option value="父母均已经离世">父母均已经离世</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">兄弟姐妹：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="bro_and_sis" id="bro_and_sis" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="独生子女">独生子女</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group1">
+					<label class="col-md-3 control-label message1-lable text-right">家庭情况简述：</label>
+					<textarea  cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+				</div>
+				<div class="form-group message_group ">
+					<div class="col-md-12 text-center">
+						<input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+						<a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
+						>跳过</a>
+					</div>
+				</div>
+            </div>
+            <div id="photoPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>我的相册</h3>
+                </div>
+            </div>
+            <div id="identityPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>身份认证</h3>
+                </div>
+            </div>
+            <div id="otherPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>择偶条件</h3>
+                </div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">性别：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="sex" id="sex" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">年龄：</label>
+					<h1>按照search方法写</h1>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">月收入：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="salary1" id="salary1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="3000以下">3000以下</option>
+							<option value="3000-4000">3000-4000</option>
+							<option value="4000-5000">4000-5000</option>
+							<option value="5000-6000">5000-6000</option>
+							<option value="6000-7000">6000-7000</option>
+							<option value="7000-8000">7000-8000</option>
+							<option value="8000-9000">8000-9000</option>
+							<option value="9000-10000">9000-10000</option>
+							<option value="10000-11000">10000-11000</option>
+							<option value="11000以上">11000以上</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">身高：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="height1" id="heigh1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="130以下">130以下</option>
+							<option value="131">131</option>
+							<option value="132">132</option>
+							<option value="133">133</option>
+							<option value="134">134</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">学历：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="education1" id="education1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="小学及以下">小学及以下</option>
+							<option value="初中毕业">初中毕业</option>
+							<option value="高中毕业">高中毕业</option>
+							<option value="本科毕业">本科毕业</option>
+							<option value="大专毕业">大专毕业</option>
+							<option value="研究生">研究生</option>
+							<option value="博士生及以上">博士生及以上</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">工作地区：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="work_province1" id="work_province1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="北京">北京</option>
+							<option value="上海">上海</option>
+						</select>
+					</div>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="work_city1" id="work_city1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="朝阳区">朝阳区</option>
+							<option value="海淀区">海淀区</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">所在地区：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="province1" id="province1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="北京">北京</option>
+							<option value="上海">上海</option>
+						</select>
+					</div>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="city1" id="city1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="朝阳区">朝阳区</option>
+							<option value="海淀区">海淀区</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group">
+					<label class="col-md-3 control-label message-lable text-right">住房条件：</label>
+					<div class="col-md-4" style="padding: 0px">
+						<select name="house1" id="house1" class="form-control select-control">
+							<option value="请选择">请选择</option>
+							<option value="与家人同住">与家人同住</option>
+							<option value="已购房">已购房</option>
+							<option value="租房">租房</option>
+							<option value="打算婚后购房">打算婚后购房</option>
+							<option value="单位宿舍">单位宿舍</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group message_group ">
+					<div class="col-md-12 text-center">
+						<input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+						<a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
+						>跳过</a>
+					</div>
+				</div>
+            </div>
+            <div id="settingPanel" class="tab-pane">
+                <div class="message_header">
+                    <h3>系统设置</h3>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-4 col_2">
+                <h4>About Us</h4>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
+            </div>
+            <div class="col-md-2 col_2">
+                <h4>Help & Support</h4>
+                <ul class="footer_links">
+                    <li><a href="#">24x7 Live help</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col_2">
+                <h4>Quick Links</h4>
+                <ul class="footer_links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms and Conditions</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col_2">
+                <h4>Social</h4>
+                <ul class="footer_social">
+                    <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div class="copy">
+                <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
+                                                                             href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>	
