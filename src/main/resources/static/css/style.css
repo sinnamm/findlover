@@ -1938,8 +1938,31 @@ ul.login_details li a {
 .tab-big{
     border-radius: 7px;
     border: 1px solid darkgrey;
+    background: #FFFFFF;
 }
-
+.photo-message{
+    height: 120px;
+    margin-top: 40px;
+    background: #FFFFFF;
+}
+.img-div{
+    height: 90px;
+    width: 90px;
+    border-radius: 45px;
+    border: 1px solid darkgrey;
+    text-align: center;
+    margin:0 auto;
+    position:relative;
+    top:-45px;
+}
+.short-message{
+    position:relative;
+    left:0px;
+    top:-35px;
+    width: 100% ;
+    height: auto;
+    text-align: center
+}
 /* search */
 .message_main{
     height:auto;
@@ -1960,6 +1983,10 @@ ul.login_details li a {
 }
 .select-control{
     padding: 0px;
+}
+.double-control{
+    width: 45%;
+    display: inline-block;
 }
 /*yyf*/
 .slider h3 {
