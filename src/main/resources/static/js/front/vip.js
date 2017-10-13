@@ -7,15 +7,15 @@ $(function () {
     //点击三个月的立即开通VIP会员
     $("#modal2").click(function () {
         $("#VIPBuyDay").val("3")
-        $("#VIPBuyMoney").val("￥52.10");
+        $("#VIPBuyMoney").val("￥138.52");
     });
     //点击一年的立即开通VIP会员
     $("#modal3").click(function () {
         $("#VIPBuyDay").val("12")
-        $("#VIPBuyMoney").val("￥52.10");
+        $("#VIPBuyMoney").val("￥521.14");
     });
 
-    //给星级按天选择的下拉框添加30一个选项天数
+    //给星级按天选择的下拉框添加30个选项天数
     for(var i =1;i<31;i++) {
         $("#starBuyDay").append($("<option value='" + i + "'>" + i + "</option>"));
     }

@@ -1950,27 +1950,40 @@ ul.login_details li a {
     background: #FFFFFF;
 }
 .photo-message{
-    height: 120px;
+    height: 140px;
     margin-top: 40px;
     background: #FFFFFF;
 }
 .img-div{
-    height: 90px;
-    width: 90px;
-    border-radius: 45px;
+    height: 120px;
+    width: 120px;
+    border-radius: 60px;
+    background: white;
     border: 1px solid darkgrey;
     text-align: center;
     margin:0 auto;
     position:relative;
-    top:-45px;
+    top:-60px;
 }
+.img-div img{
+    margin: 4px;
+    height: 110px;
+    width: 110px;
+    border-radius: 55px;
+    text-align: center;
+}
+
 .short-message{
     position:relative;
     left:0px;
-    top:-35px;
+    top:-55px;
     width: 100% ;
+    margin-top: 6px;
     height: auto;
     text-align: center
+}
+.short-message img{
+    margin: 3px;
 }
 /* search */
 .message_main{

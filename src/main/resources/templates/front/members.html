@@ -20,7 +20,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
     <!----font-Awesome----->
     <link href="../../static/css/font-awesome.css" rel="stylesheet">
-    <!----font-Awesome----->
+    <!-- 动态泡泡 -->
+    <link href="../../static/css/jquery.toolbar.css" rel="stylesheet" />
+    <script src="../../static/jquery/jquery.toolbar.js"></script>
+    <script src="../../static/js/front/index.js"></script>
     <script>
         $(document).ready(function () {
             $(".dropdown").hover(
@@ -33,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $(this).toggleClass('open');
                 }
             );
+
         });
     </script>
 </head>
@@ -108,10 +112,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="menu">
                 <div class="photo-message">
                     <div class="img-div">
-                        <img src="../../static/images/1.jpg" style="height: 90px;width: 90px; border-radius: 45px;text-align: center">
+                        <img src="../../static/images/1.jpg" >
                     </div>
                     <div class="short-message" >
                         <a href="view_profile.html" >看云水漂流</a>
+                    </div>
+                    <div class="short-message" >
+
+                        <img src="../../static/images/vip.png" data-toolbar="vip-toolbar" data-toolbar-animation="grow"
+                             class="flag" data-toolbar-style="warning">
+                        <img src="../../static/images/star-0.png" data-toolbar="star-toolbar" data-toolbar-animation="grow"
+                             class="flag" data-toolbar-style="warning">
+
+
+                        <!--<img data-toolbar="transport-options" data-toolbar-animation="grow"
+                             id="vipimg" src="../../static/images/vip.png" class="flag">
+                        <img src="../../static/images/star-1.png" class="flag">-->
+
+                        <!-- 光标放到上面两个img控件后显示的内容 -->
+                        <div id="vip-deadline" class="hidden">
+                            <a href="" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                        </div>
+                        <div id="star-deadline" class="hidden">
+                            <a href="" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group panel-message" id="left_list">
