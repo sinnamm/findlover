@@ -1,14 +1,14 @@
-@import 'http://fonts.googleapis.com/css?family=Noto+Sans';
 
+/*滚动条整体部分*/
 ::-webkit-scrollbar {
   width: 10px;
 }
-
+/*滚动条的轨道*/
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: rgba(25, 147, 147, 0.1);
 }
-
+/*滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）*/
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: rgba(25, 147, 147, 0.2);
@@ -52,19 +52,19 @@
   height: 0;
   border-top: 15px solid rgba(25, 147, 147, 0.2);
 }
-
+/*右边*/
 .chat-thread li:nth-child(odd) {
   animation: show-chat-odd 0.15s 1 ease-in;
   -moz-animation: show-chat-odd 0.15s 1 ease-in;
   -webkit-animation: show-chat-odd 0.15s 1 ease-in;
   float: right;
-  margin-right: 80px;
+  margin-right: 90px;
   color: black;
 }
 
 .chat-thread li:nth-child(odd):before {
   right: -80px;
-  background-image: url("../../static/images/a1.jpg");
+  background-image: url("../../static/images/14.jpg");
 }
 
 .chat-thread li:nth-child(odd):after {
@@ -72,6 +72,7 @@
   right: -15px;
 }
 
+/*左边*/
 .chat-thread li:nth-child(even) {
   animation: show-chat-even 0.15s 1 ease-in;
   -moz-animation: show-chat-even 0.15s 1 ease-in;
@@ -103,18 +104,8 @@
   background-color: white;
   padding: 10px;
 }
-.chat-window-message {
-  width: 100%;
-  height: 48px;
-  font: 32px/48px 'Noto Sans', sans-serif;
-  background: none;
-  color: #c32143;
-  border: 0;
-  border-bottom: 1px solid rgba(25, 147, 147, 0.2);
-  outline: none;
-}
 
-/* Small screens */
+/* 最小高度*/
 @media all and (max-width: 767px) {
   .chat-thread {
     width: 90%;
@@ -122,74 +113,11 @@
   }
 
 }
-/* Medium and large screens */
+/* 聊天框最大高度 */
 @media all and (min-width: 768px) {
   .chat-thread {
-    height: 450px;
+    height: 500px;
   }
 
 }
-@keyframes show-chat-even {
-  0% {
-    margin-left: -480px;
-  }
 
-  100% {
-    margin-left: 0;
-  }
-}
-@-moz-keyframes show-chat-even {
-  0% {
-    margin-left: -480px;
-  }
-
-  100% {
-    margin-left: 0;
-  }
-}
-@-webkit-keyframes show-chat-even {
-  0% {
-    margin-left: -480px;
-  }
-
-  100% {
-    margin-left: 0;
-  }
-}
-@keyframes show-chat-odd {
-  0% {
-    margin-right: -480px;
-  }
-
-  100% {
-    margin-right: 0;
-  }
-}
-@-moz-keyframes show-chat-odd {
-  0% {
-    margin-right: -480px;
-  }
-
-  100% {
-    margin-right: 0;
-  }
-}
-@-webkit-keyframes show-chat-odd {
-  0% {
-    margin-right: -480px;
-  }
-
-  100% {
-    margin-right: 0;
-  }
-}
-.credits{
-  text-align:center;
-  margin-top:35px;
-  color: rgba(255, 255, 255, 0.35);
-  font-family: 'Noto Sans', sans-serif;
-}
-.credits a{
-  text-decoration:none;
-  color: rgba(255, 255, 255, 0.35);
-}

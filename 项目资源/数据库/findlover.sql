@@ -283,6 +283,7 @@ create table user_basic
    live_condition       int not null,
    authority            int not null default 1 comment '个人资料可见性（0：所有用户不可见，1：所有用户可见，2：仅我关注的人可见）',
    status               int not null comment '账户状态（0：锁定，1：激活，2：未激活）',
+   code                 VARCHAR(255) COMMENT '用户激活码',
    reg_time             datetime,
    primary key (id)
 );

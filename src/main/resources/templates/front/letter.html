@@ -23,6 +23,9 @@
 	<link href="../../static/css/font-awesome.css" rel="stylesheet"/>
 	<!----font-Awesome----->
 	<script>
+        var div = document.getElementById("convo");
+        div.scrollTop = div.scrollHeight;
+
         $(document).ready(function () {
             $(".dropdown").hover(
                 function () {
@@ -104,7 +107,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3>私信</h3>
+				<div class="breadcrumb1">
+					<ul>
+						<a href="index.html"><i class="fa fa-comment-o home_1"></i></a>
+						<span class="divider">&nbsp;|&nbsp;</span>
+						<li class="current-page">私信：</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
