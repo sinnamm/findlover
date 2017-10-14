@@ -9,6 +9,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
+
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
@@ -21,9 +22,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!----font-Awesome----->
     <link href="../../static/css/font-awesome.css" rel="stylesheet">
     <!-- 动态泡泡 -->
-    <link href="../../static/css/jquery.toolbar.css" rel="stylesheet" />
+    <link href="../../static/css/jquery.toolbar.css" rel="stylesheet"/>
+    <link href="../../static/css/documentation.css" th:href="@{/css/documentation.css}" rel="stylesheet"/>
     <script src="../../static/jquery/jquery.toolbar.js"></script>
-    <script src="../../static/js/front/index.js"></script>
+    <script src="../../static/js/front/findlover.js"></script>
+    <script src="../../static/js/front/user_center.js"></script>
     <script>
         $(document).ready(function () {
             $(".dropdown").hover(
@@ -81,23 +84,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <li><a href="index.html">修改密码</a></li>
                                     <li><a href="index.html">退出</a></li>
                                 </ul>
-                            </li>                            <!--<li class="dropdown">-->
-                            <!--<div class="navigation">-->
-                            <!--<nav class="colorNav" id="user_info">-->
-                            <!--<ul>-->                                            <!--<li class="green">-->
-                            <!--<a href="#" class="icon-home"></a>-->
-                            <!--<ul>-->
-                            <!--<li><a href="login.html">编辑资料</a></li>-->
-                            <!--<li><a href="register.html">身份认证</a></li>-->
-                            <!--<li><a href="index.html">修改密码</a></li>-->
-                            <!--<li><a href="index.html">退出</a></li>-->
-                            <!--</ul>-->                                            <!--</li>-->
-                            <!--</ul>-->                                    <!--</nav>-->
-                            <!--</div>-->                            <!--</li>-->                        </ul>
-                    </div><!-- /.navbar-collapse -->                </nav>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
             </div> <!-- end pull-right -->
             <div class="clearfix"></div>
-        </div> <!-- end container -->    </div> <!-- end navbar-inner --></div> <!-- end navbar-inverse-blue -->
+        </div> <!-- end container -->
+    </div> <!-- end navbar-inner -->
+</div> <!-- end navbar-inverse-blue -->
 <!--============================  Navigation End ============================-->
 <div class="grid_3">
     <div class="container">
@@ -109,36 +104,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
         </div>
         <div class="col-md-3 col_5">
-            <ul class="menu">
+            <div class="menu">
                 <div class="photo-message">
                     <div class="img-div">
-                        <img src="../../static/images/1.jpg" >
+                        <img src="../../static/images/1.jpg">
                     </div>
-                    <div class="short-message" >
-                        <a href="view_profile.html" >看云水漂流</a>
-                    </div>
-                    <div class="short-message" >
-
+                    <div class="short-message">
+                        <a href="view_profile.html">看云水漂流</a>
                         <img src="../../static/images/vip.png" data-toolbar="vip-toolbar" data-toolbar-animation="grow"
-                             class="flag" data-toolbar-style="warning">
-                        <img src="../../static/images/star-0.png" data-toolbar="star-toolbar" data-toolbar-animation="grow"
-                             class="flag" data-toolbar-style="warning">
+                             class="message-flag" data-toolbar-style="warning">
+                        <img src="../../static/images/star-0.png" data-toolbar="star-toolbar"
+                             data-toolbar-animation="grow"
+                             class="message-flag" data-toolbar-style="warning">
+                        <!--光标放到上面两个img控件后显示的内容-->
+                        <div id="vip-deadline" class="hidden">
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                        </div>
+                        <div id="star-deadline" class="hidden">
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                        </div>
+                    </div>
+                    <div class="short-message">
+                        <p>ID：10000001</p>
+                    </div>
+                    <div class="short-message">
 
 
                         <!--<img data-toolbar="transport-options" data-toolbar-animation="grow"
                              id="vipimg" src="../../static/images/vip.png" class="flag">
                         <img src="../../static/images/star-1.png" class="flag">-->
 
-                        <!-- 光标放到上面两个img控件后显示的内容 -->
-                        <div id="vip-deadline" class="hidden">
-                            <a href="" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
-                        </div>
-                        <div id="star-deadline" class="hidden">
-                            <a href="" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
-                        </div>
+                    </div>
+                    <div class="short-message">
+                        <p>牵手币余额：<span style="color: #ff8e42">50</span></p>
                     </div>
                 </div>
                 <div class="list-group panel-message" id="left_list">
+                    <a role="tab" class="list-group-item left-pane" href="#assetPanel" id="asset-tab" data-toggle="tab"
+                       aria-controls="basicPanel">牵手币充值</a>
                     <a role="tab" class="list-group-item left-pane" href="#basicPanel" id="basic-tab" data-toggle="tab"
                        aria-controls="basicPanel">基本资料</a>
                     <a role="tab" class="list-group-item left-pane" href="#morePanel" id="more-tab" data-toggle="tab"
@@ -158,15 +161,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                        data-toggle="tab"
                        aria-controls="otherPanel">系统设置</a>
                 </div>
-            </ul>
+            </div>
         </div>
         <div id="mytab" class="col-md-9 tab-content tab-big">
+            <div id="assetPanel" class="tab-pane">
+                <br>
+                <div class="message_header">
+                    <h3>珍爱币充值</h3>
+                </div>
+                <div class="message_main" style="height: auto;">
+                    <form class="basic_message_form">
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">选择支付方式：</label>
+                            <div class="col-md-2" style="padding: 0">
+                                <select class="form-control select-control">
+                                    <option value="支付宝">支付宝</option>
+                                    <option value="微信支付">微信支付</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">充值数量：</label>
+                            <div class="col-md-4" style="padding: 0">
+                            <input class="form-control message_main_input" value="100">
+                            </div>
+                        </div>
+                        <div class="form-group message_group">
+                            <label class="col-md-3 control-label message-lable text-right">支付金额:</label>
+                            <div class="col-md-4" style="padding: 0">
+                                <span style="color: #eb833d;font-size: 18px;line-height: 38px">￥&nbsp;50</span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group message_group ">
+                            <div class="col-md-12 text-center">
+                                <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+                                
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div id="basicPanel" class="tab-pane active">
                 <br>
                 <div class="message_header">
                     <h3>个人基本信息</h3>
                 </div>
-                <div class="fixed_Message">
+                <div class="fixed_message">
                     <span><strong>您的固定信息：</strong></span><br>
                     <span>您是一位男士，您的出生日期为1997-11-11，未婚，178CM</span><br>
                     <a href="#">申请修改信息</a>
@@ -245,12 +288,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">工作地区：</label>
                             <div class="col-md-4" style="padding: 0px">
-                                <select name="work_province" id="work_province" class="form-control select-control double-control">
+                                <select name="work_province" id="work_province"
+                                        class="form-control select-control double-control">
                                     <option value="请选择">请选择</option>
                                     <option value="北京">北京</option>
                                     <option value="上海">上海</option>
                                 </select>
-                                <select name="work_city" id="work_city" class="form-control select-control double-control" style="float: right">
+                                <select name="work_city" id="work_city"
+                                        class="form-control select-control double-control" style="float: right">
                                     <option value="请选择">请选择</option>
                                     <option value="朝阳区">朝阳区</option>
                                     <option value="海淀区">海淀区</option>
@@ -260,12 +305,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">所在地区：</label>
                             <div class="col-md-4" style="padding: 0px">
-                                <select name="province" id="province" class="form-control select-control double-control">
+                                <select name="province" id="province"
+                                        class="form-control select-control double-control">
                                     <option value="请选择">请选择</option>
                                     <option value="北京">北京</option>
                                     <option value="上海">上海</option>
                                 </select>
-                                <select name="city" id="city" class="form-control select-control double-control" style="float: right">
+                                <select name="city" id="city" class="form-control select-control double-control"
+                                        style="float: right">
                                     <option value="请选择">请选择</option>
                                     <option value="朝阳区">朝阳区</option>
                                     <option value="海淀区">海淀区</option>
@@ -288,8 +335,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="form-group message_group ">
                             <div class="col-md-12 text-center">
                                 <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
-                                <a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
-                                >跳过</a>
+                                
+                                
                             </div>
                         </div>
                     </form>
@@ -381,13 +428,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="form-group message_group">
                         <label class="col-md-3 control-label message-lable text-right">毕业院校：</label>
                         <div class="col-md-4" style="padding: 0px">
-                            <select name="graduation0" id="graduation0" class="form-control select-control double-control">
+                            <select name="graduation0" id="graduation0"
+                                    class="form-control select-control double-control">
                                 <option value="请选择">请选择</option>
                                 <option value="北京">北京</option>
                                 <option value="青岛">青岛</option>
                                 <option value="上海">上海</option>
                             </select>
-                            <select name="graduation1" id="graduation1" class="form-control select-control double-control" style="float: right">
+                            <select name="graduation1" id="graduation1"
+                                    class="form-control select-control double-control" style="float: right">
                                 <option value="请选择">请选择</option>
                                 <option value="北京大学">北京大学</option>
                                 <option value="青岛大学">青岛大学</option>
@@ -403,7 +452,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <option value="北京">北京</option>
                                 <option value="上海">上海</option>
                             </select>
-                            <select name="religion1" id="religion1" class="form-control select-control double-control" style="float: right">
+                            <select name="religion1" id="religion1" class="form-control select-control double-control"
+                                    style="float: right">
                                 <option value="请选择">请选择</option>
                                 <option value="朝阳区">朝阳区</option>
                                 <option value="海淀区">海淀区</option>
@@ -417,8 +467,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="form-group message_group ">
                         <div class="col-md-12 text-center">
                             <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
-                            <a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
-                            >跳过</a>
                         </div>
                     </div>
                 </div>
@@ -466,7 +514,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <option value="计算机/互联网">计算机/互联网</option>
                             <option value="生产/制造">生产/制造</option>
                         </select>
-                        <select name="job_type1" id="job_type1" class="form-control select-control double-control" style="float: right">
+                        <select name="job_type1" id="job_type1" class="form-control select-control double-control"
+                                style="float: right">
                             <option value="请选择">请选择</option>
                             <option value="程序员">程序员</option>
                             <option value="软件工程师">软件工程师</option>
@@ -495,8 +544,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="form-group message_group ">
                     <div class="col-md-12 text-center">
                         <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
-                        <a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
-                        >跳过</a>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -570,8 +619,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="form-group message_group ">
                     <div class="col-md-12 text-center">
                         <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
-                        <a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
-                        >跳过</a>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -616,7 +665,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <option value="24">24</option>
                         </select>
                         <span>—</span>
-                        <select name="agehigh" id="agehigh" class="form-control select-control double-control" style="float: right">
+                        <select name="agehigh" id="agehigh" class="form-control select-control double-control"
+                                style="float: right">
                             <option value="请选择">请选择</option>
                             <option value="18">18</option>
                             <option value="19">19</option>
@@ -677,12 +727,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="form-group message_group">
                     <label class="col-md-3 control-label message-lable text-right">工作地区：</label>
                     <div class="col-md-4" style="padding: 0px">
-                        <select name="work_province1" id="work_province1" class="form-control select-control double-control">
+                        <select name="work_province1" id="work_province1"
+                                class="form-control select-control double-control">
                             <option value="请选择">请选择</option>
                             <option value="北京">北京</option>
                             <option value="上海">上海</option>
                         </select>
-                        <select name="work_city1" id="work_city1" class="form-control select-control double-control" style="float: right">
+                        <select name="work_city1" id="work_city1" class="form-control select-control double-control"
+                                style="float: right">
                             <option value="请选择">请选择</option>
                             <option value="朝阳区">朝阳区</option>
                             <option value="海淀区">海淀区</option>
@@ -697,7 +749,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <option value="北京">北京</option>
                             <option value="上海">上海</option>
                         </select>
-                        <select name="city1" id="city1" class="form-control select-control double-control" style="float: right">
+                        <select name="city1" id="city1" class="form-control select-control double-control"
+                                style="float: right">
                             <option value="请选择">请选择</option>
                             <option value="朝阳区">朝阳区</option>
                             <option value="海淀区">海淀区</option>
@@ -720,8 +773,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="form-group message_group ">
                     <div class="col-md-12 text-center">
                         <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
-                        <a href="#workPanel" data-toggle="tab" class="btn btn-default" style="margin: 10px"/
-                        >跳过</a>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -771,9 +824,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"></div>
             <div class="copy">
-                <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
-                                                                             href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-                </p>
+                <p>Copyright &copy; 2015.Company name All rights reserved.</p>
             </div>
         </div>
     </div>

@@ -39,19 +39,6 @@ function flexisel() {
         }
     });
 }
-// 会员和星级用户logo toolbar
-function initToolBar(){
-    $('img[data-toolbar="vip-toolbar"]').toolbar({
-        content: '#vip-deadline',
-        position: 'top',
-        adjustment: 25
-    });
-    $('img[data-toolbar="star-toolbar"]').toolbar({
-        content: '#star-deadline',
-        position: 'top',
-        adjustment: 25
-    });
-}
 function gridRotator(){
     $('#ri-grid').gridrotator({
         rows: 2,

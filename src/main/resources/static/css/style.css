@@ -30,7 +30,11 @@ html, body {
 	gss
 -----------------------------*/
 .reg-form {
-    opacity: 0.65;
+    opacity: 0.7;
+}
+.reg-form label {
+    font-family: "微软雅黑", serif;
+    font-weight: normal;
 }
 
 img.zoom-img {
@@ -54,6 +58,7 @@ img.zoom-img:hover {
 
 .banner-login {
     background: url("../images/login_bg.jpg") no-repeat center;
+    height: 450px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1681,7 +1686,7 @@ i.fa1:hover {
 
 /* --view_profile --*/
 .breadcrumb1 {
-    margin-bottom: 1em;
+    margin: 3.5em 0;
 }
 
 .breadcrumb1 ul {
@@ -2067,8 +2072,8 @@ ul.login_details li a {
     height: 100px;
 }
 
-.fixed_Message {
-    border: 1px solid darkgrey;
+.fixed_message {
+    border: 1px solid #eb833d;
     border-radius: 5px;
     margin: 10px;
     padding: 20px;
@@ -2081,14 +2086,20 @@ ul.login_details li a {
 
 .tab-big {
     border-radius: 7px;
-    border: 1px solid darkgrey;
+    border: 1px solid gainsboro;
     background: #FFFFFF;
 }
 
+.tab-big {
+    margin-top: 40px;
+}
+
 .photo-message {
-    height: 140px;
+    height: 160px;
     margin-top: 40px;
     background: #FFFFFF;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
 }
 
 .img-div {
@@ -2108,20 +2119,37 @@ ul.login_details li a {
     height: 110px;
     width: 110px;
     border-radius: 55px;
-    text-align: center;
 }
 
 .short-message {
     position: relative;
-    left: 0px;
     top: -55px;
     width: 100%;
-    margin-top: 6px;
+    margin: 0 0;
     height: auto;
     text-align: center
 }
+.short-message a{
+    color: #09b9da;
+}
+.short-message a:hover{
+    color: #ff8e42;
+}
 .short-message img{
-    margin: 3px;
+    margin-bottom: 5px !important;
+}
+.short-message p{
+    font-size: 14px;
+    color: grey;
+    display: block;
+    margin: 2px;
+}
+.message-flag{
+    width: 20px;
+    height: 20px;
+}
+.panel-message a{
+    text-align: center;
 }
 
 /* search */
@@ -2329,6 +2357,7 @@ a:hover, a:focus {
     padding: 0;
     list-style: none;
     margin: 0;
+    border-radius: 5px;
 }
 
 ul {

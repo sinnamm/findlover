@@ -150,7 +150,7 @@
                             </select>
                         </div>
                         <div class="age_box1">
-                            <select id="city-select">
+                            <select id="city-select" th:remove="all-but-first">
                                 <option value="-1">不限</option>
                                 <option value="山东">山东</option>
                                 <option value="北京">北京</option>
@@ -740,10 +740,10 @@
                              data-toolbar="star-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
                         <div id="vip-deadline" class="hidden">
-                            <a href="" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
                         </div>
                         <div id="star-deadline" class="hidden">
-                            <a href="" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
                         </div>
                         <p>ID:10000001</p>
                         <p>20岁&nbsp;&nbsp;&nbsp;山东&nbsp;青岛&nbsp;&nbsp;&nbsp;处女座</p>

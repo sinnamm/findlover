@@ -1,3 +1,18 @@
+
+// 会员和星级用户logo toolbar
+function initToolBar(){
+    $('img[data-toolbar="vip-toolbar"]').toolbar({
+        content: '#vip-deadline',
+        position: 'top',
+        adjustment: 25
+    });
+    $('img[data-toolbar="star-toolbar"]').toolbar({
+        content: '#star-deadline',
+        position: 'top',
+        adjustment: 25
+    });
+}
+
 //初始化年龄下拉列表
 function initAgeDropdown(dropdownBtnId) {
     for (var x = age_low_limit; x <= age_high_limit; x++) {
