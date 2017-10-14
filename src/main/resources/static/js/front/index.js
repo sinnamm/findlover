@@ -1,9 +1,44 @@
+var age_low_limit = 18;
+var age_high_limit = 66;
+var height_low_limit = 145;
+var height_high_limit = 210;
 $(function () {
+    initAgeDropdown();
+    initHeightDropdown();
+    initWorkplaceDropdown(undefined,"province-select", "city-select");
+
+    flexisel();
     initToolBar();
     // Animations
     gridRotator();
     contentWayPoint();
 });
+
+// 每日情缘
+function flexisel() {
+    $("#flexiselDemo3").flexisel({
+        visibleItems: 1,
+        animationSpeed: 1000,
+        autoPlay: true,
+        autoPlaySpeed: 8000,
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: {
+            portrait: {
+                changePoint: 480,
+                visibleItems: 1
+            },
+            landscape: {
+                changePoint: 640,
+                visibleItems: 1
+            },
+            tablet: {
+                changePoint: 768,
+                visibleItems: 1
+            }
+        }
+    });
+}
 // 会员和星级用户logo toolbar
 function initToolBar(){
     $('img[data-toolbar="vip-toolbar"]').toolbar({

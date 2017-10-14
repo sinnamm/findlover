@@ -9,4 +9,8 @@ public class TestController {
 	public String search(){
 		return "front/search";
 	}
+	@GetMapping("index")
+	public String index(){
+		return "front/index";
+	}
 }
