@@ -1,72 +1,48 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
+    <title>FindLover</title>
+    <!--公共css与js文件-->
+    <th:block th:include="/front/common/common_resource::resources"/>
+    <!--在使用模板解析时会自动删除-->
+    <th:block th:remove="all">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script th:inline="javascript">
+            var contextPath = /*[[@{/}]]*/'';
+        </script>
+        <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+        <script src="../../static/jquery/jquery.min.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
+        <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+        <link href="../../static/css/font-awesome.css" rel="stylesheet"/>
+        <link href="../../static/css/buttons.css" rel="stylesheet"/>
+        <script src="../../static/js/buttons.js"></script>
+        <script src="../../static/js/front/findlover.js"></script>
+    </th:block>
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <script th:inline="javascript">
-        var contextPath = /*[[@{/}]]*/'';
-    </script>
-    <link href="../../static/css/bootstrap-3.1.1.min.css" th:href="@{/css/bootstrap-3.1.1.min.css}" rel='stylesheet'
-          type='text/css'/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../static/jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>
-    <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-    <!-- Custom Theme files -->
-    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel='stylesheet' type='text/css'/>
-    <!--font-Awesome-->
-    <link href="../../static/css/font-awesome.css" th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
-    <!--font-Awesom-->
-    <link href="../../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet"/>
-    <script src="../../static/js/buttons.js" th:src="@{/js/buttons.js}"></script>
-    <link href="../../static/css/documentation.css" th:href="@{/css/documentation.css}" rel="stylesheet"/>
-
+    <!--VIP和星级用户标识-->
     <link href="../../static/css/jquery.toolbar.css" th:href="@{/css/jquery.toolbar.css}" rel="stylesheet"/>
+    <link href="../../static/css/documentation.css" th:href="@{/css/documentation.css}" rel="stylesheet"/>
     <script src="../../static/jquery/jquery.toolbar.js" th:src="@{/jquery/jquery.toolbar.js}"></script>
-
+    <!--光荣脱单榜动画-->
     <link rel="stylesheet" href="../../static/css/animate.css" th:href="@{/css/animate.css}"/>
     <script src="../../static/js/modernizr-2.6.2.min.js" th:src="@{/js/modernizr-2.6.2.min.js}"></script>
     <script src="../../static/jquery/jquery.waypoints.min.js" th:src="@{/jquery/jquery.waypoints.min.js}"></script>
-    <script type="text/javascript" src="../../static/jquery/jquery.gridrotator.js"
-            th:src="@{/jquery/jquery.gridrotator.js}"></script>
-    <script type="text/javascript" src="../../static/jquery/jquery.flexisel.js"
-            th:src="@{/jquery/jquery.flexisel.js}"></script><!-- flexisel-js -->
-    <script src="../../static/js/front/findlover.js" th:src="@{/js/front/findlover.js}"></script>
+    <script src="../../static/jquery/jquery.gridrotator.js" th:src="@{/jquery/jquery.gridrotator.js}"></script>
+    <!--index.js-->
     <script src="../../static/js/front/index.js" th:src="@{/js/front/index.js}"></script>
-    <script>
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
-                    $(this).toggleClass('open');
-                }
-            );
-        });
-    </script>
-    <link rel="stylesheet" href="../../static/css/chat-style.css" th:href="@{/css/chat-style.css}"/>
 </head>
 <body>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar">
+<!-- 导航栏 -->
+<th:block th:include="/front/common/header::nav"/>
+<!--导航栏（th:remove)-->
+<div class="navbar navbar-inverse-blue navbar" th:remove="all">
     <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
     <div class="navbar-inner">
         <div class="container">
-
-            <a class="brand" href="index.html"><img th:src="@{/images/logo.png}"
-                                                    src="../../static/images/logo.png"/></a>
+            <a class="brand" th:href="@{/front/index.html}" href="../index.html"><img th:src="@{/images/logo.png}"
+                                                                                      src="../../static/images/logo.png"
+                                                                                      alt="logo"/></a>
             <div class="pull-right">
                 <nav class="navbar nav_bottom" role="navigation">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -83,43 +59,45 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="search.html">搜索</a></li>
-                            <li><a href="vip.html">会员</a></li>
-                            <li><a href="success_story.html">成功故事</a></li>
-                            <li><a href="otherSays.html">他她说</a></li>
+                            <li><a th:href="@{/front/index.html}" href="../index.html">首页</a></li>
+                            <li><a th:href="@{/front/search.html}" href="../search.html">搜索</a></li>
+                            <li><a th:href="@{/front/vip.html}" href="../vip.html">会员</a></li>
+                            <li><a th:href="@{/front/success_story.html}" href="../success_story.html">成功故事</a></li>
+                            <li><a th:href="@{/front/otherSays.html}" href="../otherSays.html">他她说</a></li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-lg fa-envelope-o"></i><span
-                                        class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-lg fa-envelope-o"></i>
+                                    <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="letter.html">私信</a></li>
-                                    <li><a href="care.html">关注</a></li>
-                                    <li><a href="visiteTrace.html">访问记录</a></li>
-                                    <li><a href="notice.html">系统通知</a></li>
+                                    <li><a th:href="@{/front/letter.html}" href="../letter.html">私信</a></li>
+                                    <li><a th:href="@{/front/care.html}" href="../care.html">关注</a></li>
+                                    <li><a th:href="@{/front/visiteTrace.html}" href="../visiteTrace.html">访问记录</a>
+                                    </li>
+                                    <li><a th:href="@{/front/notice.html}" href="../notice.html">系统通知</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-lg fa-user"></i><span
-                                        class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-lg fa-user"></i>
+                                    <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="login.html">编辑资料</a></li>
-                                    <li><a href="register.html">身份认证</a></li>
-                                    <li><a href="index.html">修改密码</a></li>
-                                    <li><a href="index.html">退出</a></li>
+                                    <li><a th:href="@{/front/login.html}" href="../login.html">编辑资料</a></li>
+                                    <li><a th:href="@{/front/register.html}" href="../register.html">身份认证</a></li>
+                                    <li><a th:href="@{/front/index.html}" href="../index.html">修改密码</a></li>
+                                    <li><a th:href="@{/front/index.html}" href="../index.html">退出</a></li>
                                 </ul>
                             </li>
                         </ul>
-                    </div><!-- /.navbar-collapse -->
+                    </div>
                 </nav>
-            </div> <!-- end pull-right -->
+            </div>
             <div class="clearfix"></div>
-        </div> <!-- end container -->
-    </div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
-<!--============================  Navigation End ============================-->
+        </div>
+    </div>
+</div>
+
 <div class="banner">
     <div class="container">
         <div class="banner_info">
@@ -723,7 +701,7 @@
     <div class="col-md-4" style="padding: 0">
         <!--个人资料-->
         <div class="index-right" style="padding-top: 0">
-            <div class="snap">
+            <div class="snap container-fluid">
                 <div class="snap-1">
                     <div>
                         <a href="#"><img th:src="@{/images/p1.jpg}" src="../../static/images/p1.jpg"
@@ -750,7 +728,7 @@
                         <a href="" class="button button-highlight button-rounded button-small">完善资料</a>
                     </div>
                 </div>
-                <div class="snap-2">
+                <div class="row snap-2">
                     <div class="button-group">
                         <a class="button button-rounded">上传照片</a>
                         <a class="button button-rounded">查看私信</a>
@@ -1024,44 +1002,7 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<div class="footer">
-    <div class="container">
-        <div class="col-md-4 col_2">
-            <h4>About Us</h4>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Help &amp; Support</h4>
-            <ul class="footer_links">
-                <li><a href="#">24x7 Live help</a></li>
-                <li><a href="contact.html">Contact us</a></li>
-                <li><a href="#">Feedback</a></li>
-                <li><a href="faq.html">FAQs</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Quick Links</h4>
-            <ul class="footer_links">
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms and Conditions</a></li>
-                <li><a href="services.html">Services</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Social</h4>
-            <ul class="footer_social">
-                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-            </ul>
-        </div>
-        <div class="clearfix"></div>
-        <div class="copy">
-            <p>Copyright &copy; 2015.Company name All rights reserved.</p>
-        </div>
-    </div>
-</div>
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
 </body>
 </html>	

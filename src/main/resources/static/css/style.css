@@ -5126,11 +5126,12 @@ ul.feature_list.feature_list1 {
 }
 
 .snap-2 .button-group {
-
+    width: 100%;
 }
 
 .snap-2 .button {
-    padding: 0 27px;
+    width: auto;
+    padding: 0 7%;
     background: #ff8e42;
     color: white;
 }

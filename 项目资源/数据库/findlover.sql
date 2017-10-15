@@ -289,6 +289,18 @@ create table user_basic
 );
 
 /*==============================================================*/
+/* Table: user_login_log                                        */
+/*==============================================================*/
+create table user_login_log
+(
+   id                   int not null,
+   user_id              int,
+   login_time           datetime,
+   login_ip             varchar(50),
+   primary key (id)
+);
+
+/*==============================================================*/
 /* Table: user_detail                                           */
 /*==============================================================*/
 create table user_detail
@@ -520,6 +532,9 @@ alter table user_photo add constraint FK_fk_ufid foreign key (user_id)
       references user_basic (id) on delete restrict on update restrict;
 
 alter table user_pick add constraint FK_fk_upid foreign key (id)
+      references user_basic (id) on delete restrict on update restrict;
+
+alter table user_login_log add constraint FK_fk_uluuid foreign key (user_id)
       references user_basic (id) on delete restrict on update restrict;
 
 alter table user_status add constraint FK_fk_usid foreign key (id)

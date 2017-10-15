@@ -1,0 +1,28 @@
+<!--公共资源文件-->
+<!--引入方式：
+    <th:block th:include="/front/common/common_resource :: resources"/>
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="resources">
+    <!--meta-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- css -->
+    <link th:href="@{/css/bootstrap-3.1.1.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/buttons.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/flexslider.css}" rel='stylesheet' type='text/css'/>
+
+    <!-- js -->
+    <script th:inline="javascript">
+        var contextPath = /*[[@{/}]]*/'';
+    </script>
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/buttons.js}"></script>
+    <script th:src="@{/jquery/jquery.flexisel.js}"></script>
+    <script th:src="@{/js/front/findlover.js}"></script>
+</th:block>
+</html>

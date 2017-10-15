@@ -3,6 +3,14 @@ var age_high_limit = 66;
 var height_low_limit = 145;
 var height_high_limit = 210;
 var salary_array = ['3000','5000','8000','12000','15000','20000'];
+window.onload = function () {
+    $('.flexslider').flexslider({
+        animation: "slide",
+        start: function (slider) {
+            $('body').removeClass('loading');
+        }
+    });
+}
 $(function () {
     $("select[id*='search-select-']").each(function () {
         $(this).change(function () {

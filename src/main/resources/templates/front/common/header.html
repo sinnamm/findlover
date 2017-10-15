@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 公共导航栏，引入方式：<th:block th:include="/front/common/header::nav"/> -->
+<th:block th:fragment="nav">
+    <script>
+        $(function () {
+            alert("initDropdown");
+            initDropdown();
+        })
+    </script>
+    <div class="navbar navbar-inverse-blue navbar" th:fragment="header">
+        <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" th:href="@{/front/index.html}" href="../index.html">
+                    <img th:src="@{/images/logo.png}" src="../../../static/images/logo.png"/></a>
+                <div class="pull-right">
+                    <nav class="navbar nav_bottom" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header nav_2">
+                            <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                    data-target="#bs-megadropdown-tabs">Menu
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"></a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                            <ul class="nav navbar-nav nav_1">
+                                <li><a th:href="@{/front/index.html}" href="../index.html">首页</a></li>
+                                <li><a th:href="@{/search}" href="../search.html">搜索</a></li>
+                                <li><a th:href="@{/front/vip.html}" href="../vip.html">会员</a></li>
+                                <li><a th:href="@{/front/success_story.html}" href="../success_story.html">成功故事</a></li>
+                                <li><a th:href="@{/front/otherSays.html}" href="../otherSays.html">他她说</a></li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-lg fa-envelope-o"></i>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a th:href="@{/front/letter.html}" href="../letter.html">私信</a></li>
+                                        <li><a th:href="@{/front/care.html}" href="../care.html">关注</a></li>
+                                        <li><a th:href="@{/front/visiteTrace.html}" href="../visiteTrace.html">访问记录</a>
+                                        </li>
+                                        <li><a th:href="@{/front/notice.html}" href="../notice.html">系统通知</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-lg fa-user"></i>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a th:href="@{/front/login.html}" href="../login.html">编辑资料</a></li>
+                                        <li><a th:href="@{/front/register.html}" href="../register.html">身份认证</a></li>
+                                        <li><a th:href="@{/front/index.html}" href="../index.html">修改密码</a></li>
+                                        <li><a th:href="@{/front/index.html}" href="../index.html">退出</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

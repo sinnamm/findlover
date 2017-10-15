@@ -12,6 +12,19 @@ function initToolBar(){
         adjustment: 25
     });
 }
+//初始化Dropdown为hover事件
+function initDropdown(){
+    $(".dropdown").hover(
+        function () {
+            $('.dropdown-menu', this).stop(true, true).slideDown(100);
+            $(this).toggleClass('open');
+        },
+        function () {
+            $('.dropdown-menu', this).stop(true, true).slideUp(100);
+            $(this).toggleClass('open');
+        }
+    );
+}
 
 //初始化年龄下拉列表
 function initAgeDropdown(dropdownBtnId) {
