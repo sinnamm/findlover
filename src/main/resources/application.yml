@@ -1,12 +1,14 @@
 server:
   port: 80
+
 spring:
   thymeleaf:
     cache: false
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.17.46.180:3306/findlover?useSSL=false
+      url: jdbc:mysql://localhost:3306/findlover?useSSL=false
       username: root
       password: gss991
       initial-size: 1
@@ -14,4 +16,24 @@ spring:
       max-idle: 2
       max-total: 2
       max-wait-millis: 6000
-    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  type-aliases-package: com.hpe.findlover.model
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+mapper:
+    mappers:
+        - com.hpe.util.BaseTkMapper
+    not-empty: false
+    identity: MYSQL
+

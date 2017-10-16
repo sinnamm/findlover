@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hpe.findlover.mapper.UserAssetMapper" >
+  <resultMap id="BaseResultMap" type="com.hpe.findlover.model.UserAsset" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="vip_deadline" property="vipDeadline" jdbcType="TIMESTAMP" />
+    <result column="star_dealline" property="starDealline" jdbcType="TIMESTAMP" />
+    <result column="asset" property="asset" jdbcType="INTEGER" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, vip_deadline, star_dealline, asset, cost
+  </sql>
+</mapper>

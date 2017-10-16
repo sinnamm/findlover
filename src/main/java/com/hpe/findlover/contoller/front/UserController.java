@@ -1,7 +1,19 @@
 package com.hpe.findlover.contoller.front;
 
+import com.hpe.findlover.model.UserBasic;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author sinnamm
@@ -9,16 +21,46 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Description:
  */
 @Controller
-public class UserController
-{
-    @GetMapping("index")
-    public String index(){
-        return "front/index";
-    }
-    @GetMapping("search")
-    public String search(){
-        return "front/search";
-    }
+public class UserController {
+	private Logger logger = LogManager.getLogger(UserController.class);
+
+	@GetMapping("index")
+	public String index() {
+		return "front/index";
+	}
+
+	@GetMapping("login")
+	public String login() {
+		return "front/login";
+	}
+
+	@PostMapping("login")
+	public String login(UserBasic user, RedirectAttributes redirectAttributes) {
+		if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {
+			redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
+			return "redirect:login";
+		}
+		UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), user.getPassword());
+		try {
+			SecurityUtils.getSubject().login(token);
+		} catch (UnknownAccountException uae) {
+			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,未知账户");
+			redirectAttributes.addAttribute("message", "用户名不存在");
+		} catch (IncorrectCredentialsException ice) {
+			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,错误的凭证");
+			redirectAttributes.addAttribute("message", "密码不正确");
+		}
+		if (SecurityUtils.getSubject().isAuthenticated())
+			return "redirect:index";
+		else
+			return "redirect:login";
+	}
+
+	@GetMapping("search")
+	public String search() {
+		return "front/search";
+	}
+
     @GetMapping("vip")
     public String vip(){
         return "front/vip";

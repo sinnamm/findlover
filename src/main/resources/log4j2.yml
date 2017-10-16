@@ -10,7 +10,7 @@ Configuration:
     # 输出到文件，超过128MB归档
     RollingFile:
       - name: ROLLING_FILE_INFO
-        fileName: ${sys:user.home}/logs/info.log
+        fileName: /FindLover/logs/info.log
         filePattern: "${sys:user.home}/logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log"
         PatternLayout:
           pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
@@ -27,7 +27,7 @@ Configuration:
 
     RollingFile:
       - name: ROLLING_FILE_WARN
-        fileName: ${sys:user.home}/logs/warn.log
+        fileName: /FindLover/logs/warn.log
         filePattern: "${sys:user.home}/logs/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log"
         PatternLayout:
           pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
@@ -43,7 +43,7 @@ Configuration:
             onMismatch: NEUTRAL
     RollingFile:
       - name: ROLLING_FILE_ERROR
-        fileName: ${sys:user.home}/logs/error.log
+        fileName: /FindLover/logs/error.log
         filePattern: "${sys:user.home}/logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log"
         PatternLayout:
           pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
@@ -63,7 +63,7 @@ Configuration:
         - ref: ROLLING_FILE_WARN
         - ref: ROLLING_FILE_ERROR
     Logger:
-      - name: cn.gss.dao
+      - name: com.hpe.findlover.mapper
         level: TRACE
     # 过滤掉Spring和MyBatis的一些无用的DEBUG信息
     Logger: 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hpe.findlover.mapper.UserPickMapper" >
+  <resultMap id="BaseResultMap" type="com.hpe.findlover.model.UserPick" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="age_low" property="ageLow" jdbcType="INTEGER" />
+    <result column="age_high" property="ageHigh" jdbcType="INTEGER" />
+    <result column="workplace" property="workplace" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="marry_status" property="marryStatus" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="salary_low" property="salaryLow" jdbcType="DOUBLE" />
+    <result column="salary_high" property="salaryHigh" jdbcType="DOUBLE" />
+    <result column="height_low" property="heightLow" jdbcType="INTEGER" />
+    <result column="height_high" property="heightHigh" jdbcType="INTEGER" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="drink" property="drink" jdbcType="INTEGER" />
+    <result column="smoke" property="smoke" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, sex, age_low, age_high, workplace, birthday, marry_status, education, salary_low, 
+    salary_high, height_low, height_high, job, drink, smoke
+  </sql>
+</mapper>

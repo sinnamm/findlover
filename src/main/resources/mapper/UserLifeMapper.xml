@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hpe.findlover.mapper.UserLifeMapper" >
+  <resultMap id="BaseResultMap" type="com.hpe.findlover.model.UserLife" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="smoke" property="smoke" jdbcType="INTEGER" />
+    <result column="drink" property="drink" jdbcType="INTEGER" />
+    <result column="car" property="car" jdbcType="INTEGER" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="job_time" property="jobTime" jdbcType="VARCHAR" />
+    <result column="character" property="character" jdbcType="VARCHAR" />
+    <result column="job_brief" property="jobBrief" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, smoke, drink, car, job, job_time, character, job_brief
+  </sql>
+</mapper>
