@@ -13,4 +13,8 @@ public class TestController {
 	public String index(){
 		return "front/index";
 	}
+	@GetMapping("vip")
+	public String vip(){
+		return "front/vip";
+	}
 }
