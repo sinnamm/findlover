@@ -3,3 +3,15 @@ server:
 spring:
   thymeleaf:
     cache: false
+  datasource:
+    dbcp2:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://172.17.46.180:3306/findlover?useSSL=false
+      username: root
+      password: gss991
+      initial-size: 1
+      min-idle: 1
+      max-idle: 2
+      max-total: 2
+      max-wait-millis: 6000
+    type: com.alibaba.druid.pool.DruidDataSource
