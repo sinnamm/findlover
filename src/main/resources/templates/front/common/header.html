@@ -5,13 +5,13 @@
     <script>
         $(function () {
             initDropdown();
-        })
+        });
     </script>
     <div class="navbar navbar-inverse-blue navbar" th:fragment="header">
         <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" th:href="@{/front/index.html}" href="../index.html">
+                <a class="brand" th:href="@{/index}" href="../index.html">
                     <img th:src="@{/images/logo.png}" src="../../../static/images/logo.png"/></a>
                 <div class="pull-right">
                     <nav class="navbar nav_bottom" role="navigation">
@@ -29,22 +29,22 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                             <ul class="nav navbar-nav nav_1">
-                                <li><a th:href="@{/front/index.html}" href="../index.html">首页</a></li>
+                                <li><a th:href="@{/index}" href="../index.html">首页</a></li>
                                 <li><a th:href="@{/search}" href="../search.html">搜索</a></li>
-                                <li><a th:href="@{/front/vip.html}" href="../vip.html">会员</a></li>
-                                <li><a th:href="@{/front/success_story.html}" href="../success_story.html">成功故事</a></li>
-                                <li><a th:href="@{/front/otherSays.html}" href="../otherSays.html">他她说</a></li>
+                                <li><a th:href="@{/vip}" href="../vip.html">会员</a></li>
+                                <li><a th:href="@{/success_story}" href="../success_story.html">成功故事</a></li>
+                                <li><a th:href="@{/otherSays}" href="../other_says.html">他她说</a></li>
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-lg fa-envelope-o"></i>
                                         <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a th:href="@{/front/letter.html}" href="../letter.html">私信</a></li>
-                                        <li><a th:href="@{/front/care.html}" href="../care.html">关注</a></li>
-                                        <li><a th:href="@{/front/visiteTrace.html}" href="../visiteTrace.html">访问记录</a>
+                                        <li><a th:href="@{/letter}" href="../letter.html">私信</a></li>
+                                        <li><a th:href="@{/care}" href="../care.html">关注</a></li>
+                                        <li><a th:href="@{/visiteTrace}" href="../visite_trace.html">访问记录</a>
                                         </li>
-                                        <li><a th:href="@{/front/notice.html}" href="../notice.html">系统通知</a></li>
+                                        <li><a th:href="@{/notice}" href="../notice.html">系统通知</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -53,10 +53,10 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a th:href="@{/front/login.html}" href="../login.html">编辑资料</a></li>
-                                        <li><a th:href="@{/front/register.html}" href="../register.html">身份认证</a></li>
-                                        <li><a th:href="@{/front/index.html}" href="../index.html">修改密码</a></li>
-                                        <li><a th:href="@{/front/index.html}" href="../index.html">退出</a></li>
+                                        <li><a th:href="@{/user_center}" href="../login.html">编辑资料</a></li>
+                                        <li><a th:href="@{/user_center}" href="../register.html">身份认证</a></li>
+                                        <li><a th:href="@{/user_center}" href="../index.html">修改密码</a></li>
+                                        <li><a th:href="@{/loginout}" href="../index.html">退出</a></li>
                                     </ul>
                                 </li>
                             </ul>

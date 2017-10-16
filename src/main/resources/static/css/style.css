@@ -1686,7 +1686,7 @@ i.fa1:hover {
 
 /* --view_profile --*/
 .breadcrumb1 {
-    margin: 3.5em 0;
+    margin: 1em 0;
 }
 
 .breadcrumb1 ul {
@@ -5237,4 +5237,10 @@ ul.feature_list.feature_list1 {
     -o-transform: scale(1);
     transform: scale(1);
     border: 1px solid red;
+}
+.visitTrace img{
+    width: 180px;
+}
+.visitTrace .agile-overlay{
+    width: 180px;
 }

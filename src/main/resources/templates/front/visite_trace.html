@@ -2,6 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>访问记录</title>
+	<!--公共css与js文件-->
+	<th:block th:include="/front/common/common_resource::resources"/>
+	<!--在使用模板解析时会自动删除-->
+	<th:block th:remove="all">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<script type="application/x-javascript">
@@ -36,11 +40,13 @@
             );
         });
 	</script>
+	</th:block>
 </head>
 
-<body style="background-color: #f2f2f2">
+<body>
+<th:block th:include="/front/common/header::nav"/>
 <!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar">
+<div class="navbar navbar-inverse-blue navbar" th:remove="all">
 	<!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
 	<div class="navbar-inner">
 		<div class="container">
@@ -64,9 +70,9 @@
 						<ul class="nav navbar-nav nav_1">
 							<li><a href="index.html">首页</a></li>
 							<li><a href="search.html">搜索</a></li>
-							<li><a href="about.html">会员</a></li>
+							<li><a href="reserve/about.html">会员</a></li>
 							<li><a href="success_story.html">成功故事</a></li>
-							<li><a href="otherSays.html">他她说</a></li>
+							<li><a href="other_says.html">他她说</a></li>
 
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -75,7 +81,7 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="letter.html">私信</a></li>
 									<li><a href="care.html">关注</a></li>
-									<li><a href="visiteTrace.html">访问记录</a></li>
+									<li><a href="visite_trace.html">访问记录</a></li>
 									<li><a href="notice.html">系统通知</a></li>
 								</ul>
 							</li>
@@ -128,7 +134,7 @@
 					<hr/>
 					<div class="row">
 						<!-- slider -->
-						<div class="agile_featured-profiles">
+						<div class="visitTrace">
 							<ul id="flexiselDemo3">
 								<li>
 									<div class="col-md-3 biseller-column">
@@ -136,13 +142,11 @@
 											<div class="profile-image">
 												<img src="../../static/images/p1.jpg" class="img-responsive" alt="profile image">
 												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
+													<h4>ID: 458645</h4>
 													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
+														<li><span>21岁</span>山东青岛</li>
+														<li><span>173cm</span>公务员</li>
+														<li>Profile Created By</li>
 													</ul>
 												</div>
 											</div>
@@ -151,15 +155,13 @@
 									<div class="col-md-3 biseller-column">
 										<a href="view_profile.html">
 											<div class="profile-image">
-												<img src="../../static/images/p2.jpg" class="img-responsive" alt="profile image">
+												<img src="../../static/images/p1.jpg" class="img-responsive" alt="profile image">
 												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
+													<h4>ID: 458645</h4>
 													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
+														<li><span>21岁</span>山东青岛</li>
+														<li><span>173cm</span>公务员</li>
+														<li>Profile Created By</li>
 													</ul>
 												</div>
 											</div>
@@ -168,15 +170,13 @@
 									<div class="col-md-3 biseller-column">
 										<a href="view_profile.html">
 											<div class="profile-image">
-												<img src="../../static/images/p3.jpg" class="img-responsive" alt="profile image">
+												<img src="../../static/images/p1.jpg" class="img-responsive" alt="profile image">
 												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
+													<h4>ID: 458645</h4>
 													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
+														<li><span>21岁</span>山东青岛</li>
+														<li><span>173cm</span>公务员</li>
+														<li>Profile Created By</li>
 													</ul>
 												</div>
 											</div>
@@ -185,15 +185,13 @@
 									<div class="col-md-3 biseller-column">
 										<a href="view_profile.html">
 											<div class="profile-image">
-												<img src="../../static/images/p4.jpg" class="img-responsive" alt="profile image">
+												<img src="../../static/images/p1.jpg" class="img-responsive" alt="profile image">
 												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
+													<h4>ID: 458645</h4>
 													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
+														<li><span>21岁</span>山东青岛</li>
+														<li><span>173cm</span>公务员</li>
+														<li>Profile Created By</li>
 													</ul>
 												</div>
 											</div>
@@ -202,15 +200,13 @@
 									<div class="col-md-3 biseller-column">
 										<a href="view_profile.html">
 											<div class="profile-image">
-												<img src="../../static/images/p5.jpg" class="img-responsive" alt="profile image">
+												<img src="../../static/images/p1.jpg" class="img-responsive" alt="profile image">
 												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
+													<h4>ID: 458645</h4>
 													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
+														<li><span>21岁</span>山东青岛</li>
+														<li><span>173cm</span>公务员</li>
+														<li>Profile Created By</li>
 													</ul>
 												</div>
 											</div>
@@ -219,49 +215,13 @@
 									<div class="col-md-3 biseller-column">
 										<a href="view_profile.html">
 											<div class="profile-image">
-												<img src="../../static/images/p6.jpg" class="img-responsive" alt="profile image">
+												<img src="../../static/images/p1.jpg" class="img-responsive" alt="profile image">
 												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
+													<h4>ID: 458645</h4>
 													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
-													</ul>
-												</div>
-											</div>
-										</a>
-									</div>
-									<div class="col-md-3 biseller-column">
-										<a href="view_profile.html">
-											<div class="profile-image">
-												<img src="../../static/images/p7.jpg" class="img-responsive" alt="profile image">
-												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
-													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
-													</ul>
-												</div>
-											</div>
-										</a>
-									</div>
-									<div class="col-md-3 biseller-column">
-										<a href="view_profile.html">
-											<div class="profile-image">
-												<img src="../../static/images/p8.jpg" class="img-responsive" alt="profile image">
-												<div class="agile-overlay">
-													<h4>Profile ID: 458645</h4>
-													<ul>
-														<li><span>Age / Height</span>: 26 / 5'0''</li>
-														<li><span>Caste</span>: Ipsum</li>
-														<li><span>Religion</span>: Lorem</li>
-														<li><span>Profession</span>: IT Software</li>
-														<li><span>Profile Created By</span>: Self</li>
+														<li><span>21岁</span>山东青岛</li>
+														<li><span>173cm</span>公务员</li>
+														<li>Profile Created By</li>
 													</ul>
 												</div>
 											</div>
@@ -293,7 +253,7 @@
 				<ul class="match_box message">
 					<li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span>(0)</span></li>
 					<li><i class="fa fa-heart"></i><a href="care.html"> 关注</a><span>(0)</span></li>
-					<li><i class="fa fa-eye"></i><a href="visiteTrace.html"> 访问记录</a><span>(0)</span></li>
+					<li><i class="fa fa-eye"></i><a href="visite_trace.html"> 访问记录</a><span>(0)</span></li>
 					<li><i class="fa fa-envelope-o"></i><a href="notice.html"> 系统通知</a><span>(0)</span></li>
 				</ul>
 				<!--广告栏-->
@@ -364,44 +324,9 @@
 </div>
 
 
-<div class="footer">
-	<div class="container">
-		<div class="col-md-4 col_2">
-			<h4>About Us</h4>
-			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-		</div>
-		<div class="col-md-2 col_2">
-			<h4>Help & Support</h4>
-			<ul class="footer_links">
-				<li><a href="#">24x7 Live help</a></li>
-				<li><a href="contact.html">Contact us</a></li>
-				<li><a href="#">Feedback</a></li>
-				<li><a href="faq.html">FAQs</a></li>
-			</ul>
-		</div>
-		<div class="col-md-2 col_2">
-			<h4>Quick Links</h4>
-			<ul class="footer_links">
-				<li><a href="privacy.html">Privacy Policy</a></li>
-				<li><a href="terms.html">Terms and Conditions</a></li>
-				<li><a href="services.html">Services</a></li>
-			</ul>
-		</div>
-		<div class="col-md-2 col_2">
-			<h4>Social</h4>
-			<ul class="footer_social">
-				<li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-				<li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-				<li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-				<li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-			</ul>
-		</div>
-		<div class="clearfix"> </div>
-		<div class="copy">
-			<p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-		</div>
-	</div>
-</div>
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
+
 
 </body>
 </html>
