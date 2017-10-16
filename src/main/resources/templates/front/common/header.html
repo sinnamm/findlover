@@ -2,12 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- 公共导航栏，引入方式：<th:block th:include="/front/common/header::nav"/> -->
 <th:block th:fragment="nav">
-    <script>
-        $(function () {
-            alert("initDropdown");
-            initDropdown();
-        })
-    </script>
     <div class="navbar navbar-inverse-blue navbar" th:fragment="header">
         <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
         <div class="navbar-inner">
@@ -54,7 +48,7 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a th:href="@{/front/login.html}" href="../login.html">编辑资料</a></li>
+                                        <li><a th:href="@{/front/user_center.html}" href="../user_center.html">编辑资料</a></li>
                                         <li><a th:href="@{/front/register.html}" href="../register.html">身份认证</a></li>
                                         <li><a th:href="@{/front/index.html}" href="../index.html">修改密码</a></li>
                                         <li><a th:href="@{/front/index.html}" href="../index.html">退出</a></li>
