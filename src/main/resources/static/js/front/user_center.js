@@ -12,7 +12,7 @@ $(function () {
 //获取Education列表对象
 function selectEducationDict() {
     $.ajax({
-        url:contextPath+"get_dict/education",
+        url:contextPath+"dicts/education",
         type:"GET",
         dataType:"JSON",
         success:function (data,a,b) {
