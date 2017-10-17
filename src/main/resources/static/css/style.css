@@ -65,6 +65,27 @@ img.zoom-img:hover {
     -o-background-size: cover;
 }
 
+.banner-register {
+    background: url("../images/register.png") no-repeat center;
+    height: auto;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.dim_background{
+    background: #f0f0f0;
+    padding: 20px 20px 20px;
+    border-radius: 20px;
+    opacity: 0.6
+}
+
+.dim_background form{
+    color: #000000;
+    opacity: 1
+}
+
 /*-- featured profiles --*/
 /*--flexisel--*/
 .profile-image {

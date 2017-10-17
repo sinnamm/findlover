@@ -1,11 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Members</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Marital Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <title>用户中心</title>
+    <th:block th:include="/front/common/common_resource :: resources"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -13,20 +10,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../static/jquery/jquery.min.js"></script>
-    <script src="../../static/js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-    <!----font-Awesome----->
-    <link href="../../static/css/font-awesome.css" rel="stylesheet">
+    <th:block th:remove="all">
+        <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+        <!----font-Awesome----->
+        <link href="../../static/css/font-awesome.css" rel="stylesheet">
+        <!-- Custom Theme files -->
+        <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../../static/jquery/jquery.min.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
+        <script src="../../static/js/front/findlover.js"></script>
+    </th:block>
+
+
     <!-- 动态泡泡 -->
-    <link href="../../static/css/jquery.toolbar.css" rel="stylesheet"/>
-    <link href="../../static/css/documentation.css" th:href="@{/css/documentation.css}" rel="stylesheet"/>
-    <script src="../../static/jquery/jquery.toolbar.js"></script>
-    <script src="../../static/js/front/findlover.js"></script>
-    <script src="../../static/js/front/user_center.js"></script>
+    <link th:href="@{/css/jquery.toolbar.css}" href="../../static/css/jquery.toolbar.css" rel="stylesheet"/>
+    <link th:href="@{/css/documentation.css}" href="../../static/css/documentation.css"  rel="stylesheet"/>
+    <script th:src="@{/jquery/jquery.toolbar.js}" src="../../static/jquery/jquery.toolbar.js"></script>
+    <script th:src="@{/js/front/user_center.js}" src="../../static/js/front/user_center.js"></script>
     <script>
         $(document).ready(function () {
             $(".dropdown").hover(
@@ -45,7 +46,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar">
+<th:block th:include="/front/common/header::nav"/>
+<div class="navbar navbar-inverse-blue navbar" th:remove="all">
     <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
     <div class="navbar-inner">
         <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
@@ -107,13 +109,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="menu">
                 <div class="photo-message">
                     <div class="img-div">
-                        <img src="../../static/images/1.jpg">
+                        <img th:src="@{/images/1.jpg}" src="../../static/images/1.jpg">
                     </div>
                     <div class="short-message">
                         <a href="view_profile.html">看云水漂流</a>
-                        <img src="../../static/images/vip.png" data-toolbar="vip-toolbar" data-toolbar-animation="grow"
+                        <img th:src="@{/images/vip.png}" src="../../static/images/vip.png" data-toolbar="vip-toolbar" data-toolbar-animation="grow"
                              class="message-flag" data-toolbar-style="warning">
-                        <img src="../../static/images/star-0.png" data-toolbar="star-toolbar"
+                        <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png" data-toolbar="star-toolbar"
                              data-toolbar-animation="grow"
                              class="message-flag" data-toolbar-style="warning">
                         <!--光标放到上面两个img控件后显示的内容-->
@@ -209,40 +211,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="fixed_message">
                     <span><strong>您的固定信息：</strong></span><br>
-                    <span>您是一位男士，您的出生日期为1997-11-11，未婚，178CM</span><br>
+                    <span id="userfixed">您是一位男士，您的出生日期为1997-11-11，未婚，178CM</span><br>
                     <a href="#">申请修改信息</a>
                 </div>
                 <div class="message_main" style="height: auto;">
                     <form class="basic_message_form">
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">昵称:</label>
-                            <input class="col-md-4 form-control message_main_input" value="看云水漂流">
+                            <input id="nickname" name="nickname" class="col-md-4 form-control message_main_input" value="看云水漂流">
                         </div>
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">手机号:</label>
-                            <input class="col-md-4 form-control message_main_input" value="12321312">
+                            <input id="tel" name="tel" class="col-md-4 form-control message_main_input" value="12321312">
                         </div>
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">邮箱:</label>
-                            <input class="col-md-4 form-control message_main_input" value="jackiegss@163.com">
+                            <input id="email" name="email" class="col-md-4 form-control message_main_input" value="jackiegss@163.com">
                         </div>
 
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">月收入：</label>
                             <div class="col-md-4" style="padding: 0px">
-                                <select name="salary" id="salary" class="form-control select-control">
-                                    <option value="请选择">请选择</option>
-                                    <option value="3000以下">3000以下</option>
-                                    <option value="3000-4000">3000-4000</option>
-                                    <option value="4000-5000">4000-5000</option>
-                                    <option value="5000-6000">5000-6000</option>
-                                    <option value="6000-7000">6000-7000</option>
-                                    <option value="7000-8000">7000-8000</option>
-                                    <option value="8000-9000">8000-9000</option>
-                                    <option value="9000-10000">9000-10000</option>
-                                    <option value="10000-11000">10000-11000</option>
-                                    <option value="11000以上">11000以上</option>
-                                </select>
+                                <input id="salary" name="salary" class="col-md-4 form-control message_main_input" value="5000">
                             </div>
                         </div>
                         <div class="form-group message_group">
@@ -250,11 +240,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="height" id="height" class="form-control select-control">
                                     <option value="请选择">请选择</option>
-                                    <option value="130以下">130以下</option>
-                                    <option value="131">131</option>
-                                    <option value="132">132</option>
-                                    <option value="133">133</option>
-                                    <option value="134">134</option>
+                                    <option value="高中及以下">高中及以下</option>
+                                    <option value="初中毕业">初中毕业</option>
+                                    <option value="高中毕业">高中毕业</option>
+                                    <option value="本科毕业">本科毕业</option>
+                                    <option value="大专毕业">大专毕业</option>
+                                    <option value="研究生">研究生</option>
+                                    <option value="博士生及以上">博士生及以上</option>
                                 </select>
                             </div>
                         </div>
@@ -263,8 +255,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="sexual" id="sexual" class="form-control select-control">
                                     <option value="请选择">请选择</option>
-                                    <option value="同性">同性</option>
-                                    <option value="异性">异性</option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
                                 </select>
                             </div>
                         </div>
@@ -273,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="education" id="education" class="form-control select-control">
                                     <option value="请选择">请选择</option>
-                                    <option value="小学及以下">小学及以下</option>
+                                    <option value="高中及以下">高中及以下</option>
                                     <option value="初中毕业">初中毕业</option>
                                     <option value="高中毕业">高中毕业</option>
                                     <option value="本科毕业">本科毕业</option>
@@ -295,8 +287,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <select name="work_city" id="work_city"
                                         class="form-control select-control double-control" style="float: right">
                                     <option value="请选择">请选择</option>
-                                    <option value="朝阳区">朝阳区</option>
-                                    <option value="海淀区">海淀区</option>
                                 </select>
                             </div>
                         </div>
@@ -312,8 +302,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <select name="city" id="city" class="form-control select-control double-control"
                                         style="float: right">
                                     <option value="请选择">请选择</option>
-                                    <option value="朝阳区">朝阳区</option>
-                                    <option value="海淀区">海淀区</option>
                                 </select>
                             </div>
                         </div>

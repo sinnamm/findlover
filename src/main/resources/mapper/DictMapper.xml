@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hpe.findlover.mapper.DictMapper" >
-  <resultMap id="BaseResultMap" type="com.hpe.findlover.model.Dict" >
+  <resultMap id="dictResultMap" type="com.hpe.findlover.model.Dict"  >
     <!--
       WARNING - @mbg.generated
     -->
@@ -15,4 +15,10 @@
     -->
     id, type, value
   </sql>
+  
+  <select id="selectByType" parameterType="string" resultMap="dictResultMap">
+    SELECT 
+    <include refid="Base_Column_List"></include>
+    FROM dict WHERE TYPE =#{type}
+  </select>
 </mapper>
