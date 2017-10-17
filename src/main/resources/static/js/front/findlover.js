@@ -125,3 +125,12 @@ function updateWorkplaceDropdown(spanId, provinceId, cityId) {
     }
     $("#" + spanId).html(result);
 }
+
+//初始化单个身高下拉列表
+function initSingleHeightDropdown(heightId) {
+    $("#"+heightId).empty();
+    $("#"+heightId).append($("<option value=\"请选择\">请选择</option>"));
+    for(var i = 100; i<250;i++){
+        $("#"+heightId).append($("<option value=\""+i+"\">"+i+"</option>"));
+    }
+}
