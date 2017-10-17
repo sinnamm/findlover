@@ -21,6 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
@@ -36,10 +39,7 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	@GetMapping("index")
-	public String index() {
-		return "front/index";
-	}
+
 
 	@GetMapping("login")
 	public String login() {
@@ -115,23 +115,16 @@ public class UserController {
 			}
 			return "redirect:index";
 		}
-		else
+		else{
 			return "redirect:login";
-	}
-
-	@GetMapping("search")
-	public String search() {
-		return "front/search";
+		}
 	}
 
     @GetMapping("vip")
     public String vip(){
         return "front/vip";
     }
-    @GetMapping("success_story")
-    public String success_story(){
-        return "front/success_story";
-    }
+
     @GetMapping("otherSays")
     public String otherSays(){
         return "front/otherSays";

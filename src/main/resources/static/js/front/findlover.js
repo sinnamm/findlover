@@ -1,5 +1,5 @@
 
-// 会员和星级用户logo toolbar
+// 会员、星级用户和牵手币logo toolbar
 function initToolBar(){
     $('img[data-toolbar="vip-toolbar"]').toolbar({
         content: '#vip-deadline',
@@ -8,6 +8,11 @@ function initToolBar(){
     });
     $('img[data-toolbar="star-toolbar"]').toolbar({
         content: '#star-deadline',
+        position: 'top',
+        adjustment: 25
+    });
+    $('img[data-toolbar="asset-toolbar"]').toolbar({
+        content: '#user-asset',
         position: 'top',
         adjustment: 25
     });
@@ -29,6 +34,7 @@ function initDropdown(){
 //初始化年龄下拉列表
 function initAgeDropdown(dropdownBtnId) {
     for (var x = age_low_limit; x <= age_high_limit; x++) {
+        //[attr*=val]	匹配attr属性值含有val的元素
         $("select[id*=age-select-]").append($("<option value='" + x + "'>" + x + "</option>"));
     }
     // 年龄条件控制
@@ -63,6 +69,7 @@ function initHeightDropdown(dropdownBtnId) {
     $("#height-select-low").change(function () {
         var low_age = this.value;
         var pre_selected = parseInt($("#height-select-high").val());
+        //:gt(0) 选出 index 大于 0 的元素，移除
         $("#height-select-high").find("option:gt('0')").remove();
         for (var x = low_age == '-1' ? height_low_limit : low_age; x <= height_high_limit; x++) {
             $("#height-select-high").append($("<option value='" + x + "' " + (x == pre_selected ? "selected" : "") + ">" + x + "</option>"));

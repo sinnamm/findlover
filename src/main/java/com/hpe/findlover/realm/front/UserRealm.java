@@ -43,10 +43,12 @@ public class UserRealm extends AuthorizingRealm {
 		// 通过username从数据库中查找 User对象，如果找到，没找到.
 		// 这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
 		UserBasic userBasic;
-		if ((userBasic = userService.selectByEmail(email)) == null)
+		if ((userBasic = userService.selectByEmail(email)) == null){
 			throw new UnknownAccountException("用户名不存在！");
-		if (!userBasic.getPassword().equals(new String((char[])token.getCredentials())))
+		}
+		if (!userBasic.getPassword().equals(new String((char[])token.getCredentials()))) {
 			throw new IncorrectCredentialsException("用户名或密码错误");
+		}
 		if (userBasic.getStatus()==2){
 			throw  new LockedAccountException("用户被锁定");
 		}

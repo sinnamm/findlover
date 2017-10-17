@@ -30,7 +30,7 @@ public class UserCenterController {
     /**
      * 跳转到用户中心界面
      */
-    @GetMapping("index")
+    @GetMapping
     public String userCenter(){
         return "front/user_center";
     }
