@@ -5,6 +5,7 @@ import com.hpe.findlover.service.front.UserService;
 import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -46,7 +47,8 @@ public class UserRealm extends AuthorizingRealm {
 			throw new UnknownAccountException("用户名不存在！");
 		if (!userBasic.getPassword().equals(new String((char[])token.getCredentials())))
 			throw new IncorrectCredentialsException("用户名或密码错误");
-
+		logger.info("用户验证通过，把数据存入Session");
+		SecurityUtils.getSubject().getSession().setAttribute("user",userBasic);
 		// userInfo.setPermissions(userService.findPermissions(user));
 		// 加密交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
 		return new SimpleAuthenticationInfo(email, token.getCredentials(),null, "userRealm");

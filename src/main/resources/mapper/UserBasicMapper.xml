@@ -32,8 +32,7 @@
   
   <select id="selectByEmail" resultType="UserBasic">
     SELECT
-    <!--<include refid="Base_Column_List"/>-->
-    id,email,password
+    <include refid="Base_Column_List"/>
     FROM user_basic
     WHERE email=#{email}
   </select>

@@ -5244,3 +5244,14 @@ ul.feature_list.feature_list1 {
 .visitTrace .agile-overlay{
     width: 180px;
 }
+
+#pubMsgBtn{
+    display: block;
+    margin:40px 0 15px 0;
+    width:100%;
+}
+.pub-msg-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}

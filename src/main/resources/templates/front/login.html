@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-8 login_left">
                 <form class="form-horizontal" th:action="@{/login}" method="post">
-                    <span th:text="${message}"></span>
+                    <span th:text="${#httpServletRequest.getParameter('message')}"></span>
                     <div class="form-group">
                         <label for="email" class="col-md-1 control-label">邮箱</label>
                         <div class="col-md-6">

@@ -34,7 +34,7 @@ create table admin_role
 /*==============================================================*/
 create table complain
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    user_id              int not null,
    com_obj              int not null,
    reason               varchar(50) not null,
@@ -61,7 +61,7 @@ create table dict
 /*==============================================================*/
 create table essay
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    writer_id            int,
    title                varchar(50),
    filename             varchar(50),
@@ -114,7 +114,7 @@ create table letter
 /*==============================================================*/
 create table message
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    user_id              int,
    content              varchar(255),
    pub_time             datetime,
@@ -128,7 +128,7 @@ create table message
 /*==============================================================*/
 create table message_like
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    message_id           int,
    user_id              int,
    like_time            datetime,
@@ -140,7 +140,7 @@ create table message_like
 /*==============================================================*/
 create table message_reply
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    message_id           int,
    user_id              int,
    content              varchar(255),
@@ -153,7 +153,7 @@ create table message_reply
 /*==============================================================*/
 create table notice
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    admin_id             int,
    title                varchar(100),
    content              varchar(255),
@@ -209,7 +209,7 @@ create table role_permission
 /*==============================================================*/
 create table success_story
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    left_user            int,
    right_user           int,
    title                varchar(100),
@@ -228,7 +228,7 @@ create table success_story
 /*==============================================================*/
 create table success_story_like
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    success_story_id     int,
    user_id              int,
    like_time            datetime,
@@ -240,7 +240,7 @@ create table success_story_like
 /*==============================================================*/
 create table success_story_reply
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    ss_id                int,
    user_id              int,
    content              varchar(255),
@@ -293,7 +293,7 @@ create table user_basic
 /*==============================================================*/
 create table user_login_log
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    user_id              int,
    login_time           datetime,
    login_ip             varchar(50),
@@ -422,7 +422,7 @@ create table writer
 /*==============================================================*/
 create table writer_essay_like
 (
-   id                   int not null,
+   id                   int not null AUTO_INCREMENT,
    user_id              int,
    essay_id             int,
    like_time            datetime,
@@ -694,5 +694,23 @@ INSERT INTO dict(type,value) VALUES('bro_and_sis','更多');
 INSERT INTO dict(type,value) VALUES('com_reason','违法信息');
 INSERT INTO dict(type,value) VALUES('com_reason','有害信息');
 INSERT INTO dict(type,value) VALUES('com_reason','人身攻击我');
+-- user_basic表
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('a@a.com', '123', 'Tom', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
+-- success_story表
+INSERT INTO findlover.success_story (id, left_user, right_user, title, content, success_time, photo, like_count, reply_count, status, admin_id) VALUES (1, 1, 2, '我们的恋爱历程', '
+          <h3 style="margin: 30px">我们的恋爱历程</h3>
+
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还是不错的方式，试试也不错，就去珍爱网深圳地王店线下服务中心加入了会员，想多给自己一些机会。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我还是有挺多顾虑的，害怕碰到熟人，多少有点尴尬，也怕遇到渣男，被欺骗感情。不过事实证明是我多虑了，他还挺好的，第一次见面就觉得无论是着装还是谈吐都很吸引人，相处了快一年，日久见人心，他是个品质优秀也对我很好的人。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从认识到现在，每次节日，不论东方的西方的，成文的不成文的，除了礼物每次都会送一束玫瑰花，不知道别的女孩子是什么样的，我是很爱花的，觉得谈恋爱一定要有玫瑰的香味氤氲才称得上浪漫。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他送过我很多小礼物，都是生活中用得上的，很贴心也很用心的一个人，会送手机啊，还有一些保健品，其他的还有太多都想不起来了。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在一起不久我们就出国去旅游了一次，当时刚好碰上都有假期，就来了一场说走就走的旅行，感情里充满了惊喜。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在感情很稳定，每周都会见个两三次，每天晚上回家了还都会视频聊天，也都很走心，虽然年纪不大，但是奔着结婚去的，都见过了家长。偶尔也会拌拌嘴，不过一般都是我在闹，他在笑。从来没有什么原则性的事情会争吵，都是女生的小情绪，发点小脾气，哄一哄就好了。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了跟男朋友要磨合，跟红娘之间其实也是有一段时间的磨合期的，真正信任了红娘老师，会对自己的征婚有很大的帮助。我前前后后也见过了几个会员，综合了解之后，发现很多条件并不是像自己制定的那么苛刻，而且红娘老师可能不是在某一个人身上教给了你一些东西，而是在你觉得不满意的时候，帮忙分析原因，这对以后的感情生活也很有帮助，因为两个人不合适往往不是一个人的事情。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们俩年纪都不大，想要再谈几年，双方家庭都比较传统，结了婚就会被催着要小孩，会有各种约束，现在的恋爱状态彼此都很自由很享受，还暂时不想改变。等时间到了，也就会结婚了。</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很感恩珍爱网，愿意分享自己的故事也是基于对珍爱网的信任和感谢，人海茫茫遇到一个合适的人不容易，很多人蹉跎中错过了很多，我庆幸自己迈出了这一步。同时也很感谢红娘朱老师，教给了我很多东西，甚至拿自己跟先生的一些事例来告诉我爱情里和婚姻里的处事之道，真的很贴心。</p>
+      ', '2017-10-17 15:15:53', 'wed.jpg', 1, 1, 1, null);
 
 commit;

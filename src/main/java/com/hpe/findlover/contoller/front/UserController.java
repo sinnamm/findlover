@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
+
 /**
  * @author sinnamm
  * @Date 2017-10-16
@@ -35,7 +39,7 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public String login(UserBasic user, RedirectAttributes redirectAttributes) {
+	public String login(HttpServletRequest request,UserBasic user, RedirectAttributes redirectAttributes) {
 		if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {
 			redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
 			return "redirect:login";
@@ -50,8 +54,15 @@ public class UserController {
 			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,错误的凭证");
 			redirectAttributes.addAttribute("message", "密码不正确");
 		}
-		if (SecurityUtils.getSubject().isAuthenticated())
+		if (SecurityUtils.getSubject().isAuthenticated()) {
+			HttpSession session = request.getSession();
+			Enumeration<String> attributeNames = session.getAttributeNames();
+			while(attributeNames.hasMoreElements()){
+				String name = attributeNames.nextElement();
+				logger.info(name+"="+session.getAttribute(name));
+			}
 			return "redirect:index";
+		}
 		else
 			return "redirect:login";
 	}

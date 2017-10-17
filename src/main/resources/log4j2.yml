@@ -6,11 +6,11 @@ Configuration:
       name: CONSOLE
       target: SYSTEM_OUT
       PatternLayout:
-        pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
+        pattern: "[%d{HH:mm:ss:SSS}] %-5level %C - %msg%n"
     # 输出到文件，超过128MB归档
     RollingFile:
       - name: ROLLING_FILE_INFO
-        fileName: /FindLover/logs/info.log
+        fileName: "${sys:user.home}/logs/info.log"
         filePattern: "${sys:user.home}/logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log"
         PatternLayout:
           pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
@@ -27,7 +27,7 @@ Configuration:
 
     RollingFile:
       - name: ROLLING_FILE_WARN
-        fileName: /FindLover/logs/warn.log
+        fileName: "${sys:user.home}/logs/warn.log"
         filePattern: "${sys:user.home}/logs/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log"
         PatternLayout:
           pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
@@ -43,7 +43,7 @@ Configuration:
             onMismatch: NEUTRAL
     RollingFile:
       - name: ROLLING_FILE_ERROR
-        fileName: /FindLover/logs/error.log
+        fileName: "${sys:user.home}/logs/error.log"
         filePattern: "${sys:user.home}/logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log"
         PatternLayout:
           pattern: "[%d{HH:mm:ss:SSS}] %-5level %logger{36} - %msg%n"
