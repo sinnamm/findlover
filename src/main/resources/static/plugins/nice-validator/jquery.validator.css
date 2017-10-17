@@ -94,7 +94,7 @@
   background-position: -32px 0;
 }
 .n-loading .n-icon {
-  background: url("images/loading.gif") 0 center no-repeat !important;
+  background: url("static/plugins/nice-validator/images/loading.gif") 0 center no-repeat !important;
 }
 .n-top,
 .n-right,
@@ -192,7 +192,7 @@
   z-index: 1;
 }
 .n-default .msg-wrap .n-icon {
-  background-image: url("images/validator_default.png");
+  background-image: url("static/plugins/nice-validator/images/validator_default.png");
 }
 .n-default .n-tip .n-icon {
   display: none;
@@ -202,7 +202,7 @@
   z-index: 1;
 }
 .n-simple .msg-wrap .n-icon {
-  background-image: url("images/validator_simple.png");
+  background-image: url("static/plugins/nice-validator/images/validator_simple.png");
 }
 .n-simple .n-top .msg-wrap {
   bottom: 100%;
@@ -240,7 +240,7 @@
   color: #fffcef;
 }
 .n-yellow .msg-wrap .n-icon {
-  background-image: url("images/validator_simple.png");
+  background-image: url("static/plugins/nice-validator/images/validator_simple.png");
 }
 .n-yellow .n-top .msg-wrap {
   bottom: 100%;

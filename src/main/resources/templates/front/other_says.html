@@ -515,12 +515,12 @@
                         <img th:src="@{'/upload/user/photo/'+${session.user.photo}}" class="pub-msg-img" src="">
                     </div>
                     <div class="col-md-8">
-                        <textarea name="content" rows="10" cols="50" id="content"></textarea>
+                        <textarea rows="10" cols="50" id="content"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-offset-3 col-md-8">
-                        <input type="submit" class="btn btn-primary" value="发布">
+                        <button id="msgSubBtn" class="btn btn-primary">发布</button>
                     </div>
                 </div>
             </div>

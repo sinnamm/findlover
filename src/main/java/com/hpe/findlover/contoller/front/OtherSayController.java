@@ -25,13 +25,17 @@ public class OtherSayController {
 	}
 
 	@GetMapping
-	public String otherSays(){
+	public String otherSays() {
 		return "front/other_says";
 	}
+
 	@PostMapping("message")
 	@ResponseBody
 	public boolean insert(Message message, HttpServletRequest request) throws Exception {
-		message.setUserId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());
+		UserBasic user = SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+		if (user == null)
+			throw new Exception("Session中User数据为空！");
+		message.setUserId(user.getId());
 		message.setLikeCount(0);
 		message.setReplyCount(0);
 		message.setPubTime(new Date());
