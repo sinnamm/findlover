@@ -16,12 +16,10 @@ import java.util.List;
 public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserService {
 
 	private final UserBasicMapper userBasicMapper;
-	private final DictMapper dictMapper;
 
 	@Autowired
-	public UserServiceImpl(UserBasicMapper userBasicMapper,DictMapper dictMapper) {
+	public UserServiceImpl(UserBasicMapper userBasicMapper) {
 		this.userBasicMapper = userBasicMapper;
-		this.dictMapper = dictMapper;
 	}
 
 	@Override
@@ -34,8 +32,4 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 		return userBasicMapper.selectByEmail(email);
 	}
 
-    @Override
-    public List<Dict> selectEducationDict() {
-        return dictMapper.selectByType("education");
-    }
 }

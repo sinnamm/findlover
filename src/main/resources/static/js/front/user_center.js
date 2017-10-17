@@ -6,12 +6,13 @@ $(function () {
     initWorkplaceDropdown();
     initTabClick();
     initWorkplaceDropdown(undefined,"work_province","work_city");
+    initWorkplaceDropdown(undefined,"province","city");
 });
 
 //获取Education列表对象
 function selectEducationDict() {
     $.ajax({
-        url:contextPath+"usercenter/selectEducationDict",
+        url:contextPath+"get_dict/education",
         type:"GET",
         dataType:"JSON",
         success:function (data,a,b) {
