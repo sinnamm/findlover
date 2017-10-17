@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>regitercopy</title>
+    <title>regiter</title>
+    <th:block th:include="/front/common/common_resource :: resources"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Marital Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -15,16 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
-    <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../static/jquery/jquery.min.js"></script>
-    <script src="../../static/js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-    <!--font-Awesome--->
-    <link href="../../static/css/font-awesome.css" rel="stylesheet">
-    <!--引入nice validator-->
-    <script th:src="@{/jquery/nice-validator/jquery.validator.js(local=zh-CN)}" src="../../static/plugins/nice-validator/jquery.validator.js?local=zh-CN"></script>
+    <script th:src="@{/jquery/nice-validator/jquery.validator.js(local=zh-CN)}" src="../../static/jquery/nice-validator/jquery.validator.js?local=zh-CN"></script>
     <script th:src="@{/js/front/register.js}" src="../../static/js/front/register.js"></script>
     <script>
         $(document).ready(function () {
@@ -43,11 +35,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- ============================  Navigation Start =========================== -->
-
-<div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+<div class="navbar navbar-inverse-blue navbar">
+    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
     <div class="navbar-inner">
-        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
-                                                                       alt="logo"></a>
+        <div class="container"><a class="brand" href="index.html">
+            <img th:src="@{/images/logo.png}" src="../../static/images/logo.png" alt="logo"></a>
             <div class="pull-right">
                 <nav class="navbar nav_bottom" role="navigation">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -60,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
-                            <li><a href="register.html">还没有账号？现在注册一个！</a></li>
+                            <li><a href="login.html">已经有账号了，现在去登陆！</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -77,11 +69,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul>
                     <a href="index.html"><i class="fa fa-heart home_1"></i></a>
                     <span class="divider">&nbsp;|&nbsp;</span>
-                    <li>填写您的信息，开启寻爱之旅~</li>
+                    <li style="color: white">填写您的信息，开启寻爱之旅~</li>
                 </ul>
             </div>
             <div class="col-md-6 dim_background">
-                <form id="reform" class="form-horizontal reg-form">
+                <form id="reform" class="form-horizontal reg-form" th:action="@{/register}" method="post">
                     <div class="form-group">
                         <label for="nickname" class="col-md-3 control-label">昵称</label>
                         <div class="col-md-9">
@@ -114,25 +106,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <input type="date" class="form-control" id="birthday" name="birthday">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="area">
                         <label class="col-md-3 control-label">所在地区</label>
                         <div class="col-md-4">
                             <select name="province" id="province" class="form-control">
-                                <option value="北京">北京</option>
-                                <option value="上海">上海</option>
+                                <option value="-1">请选择</option>
                             </select>
                         </div>
                         <div class="col-md-offset-1 col-md-4">
                             <select name="city" id="city" class="form-control">
-                                <option value="朝阳区">朝阳区</option>
-                                <option value="海淀区">海淀区</option>
+                                <option value="-1">请选择</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">婚姻状态</label>
                         <div class="col-md-9">
-                            <select name="marry_status" id="marry_status" class="form-control">
+                            <select name="marryStatus" id="marryStatus" class="form-control">
                                 <option value="未婚">未婚</option>
                                 <option value="离异">离异</option>
                                 <option value="丧偶">丧偶</option>
@@ -142,16 +132,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="form-group">
                         <label for="height" class="col-md-3 control-label">身高</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" id="height" name="height" placeholder="身高（cm）">
+                            <select name="height" id="height" class="form-control">
+                                <option value="-1">请选择</option>
+                            </select>
                         </div>
+
                     </div>
                     <div class="form-group">
                         <label for="education" class="col-md-3 control-label">学历</label>
                         <div class="col-md-9">
                             <select name="education" id="education" class="form-control">
-                                <option value="中专">中专</option>
-                                <option value="本科">本科</option>
-                                <option value="硕士">硕士</option>
+
                             </select>
                         </div>
                     </div>
@@ -167,7 +158,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <input type="text" class="form-control" id="tel" name="tel" placeholder="手机号">
                         </div>
                     </div>
-                    <hr class="col-md-offset-1 reg_divider1"/>
                     <div class="form-group">
                         <label for="email" class="col-md-3 control-label">邮箱</label>
                         <div class="col-md-9">
@@ -188,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                    placeholder="确认密码">
                         </div>
                     </div>
-                    <div class="col-md-offset-3">
+                    <div class="col-md-offset-3 text-center">
                         <input type="submit" value="开启寻爱之旅" class="btn_1 submit">
                     </div>
                 </form>
@@ -233,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"></div>
         <div class="copy">
             <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
-                                                                         href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                                    href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
             </p>
         </div>
     </div>

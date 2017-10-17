@@ -47,6 +47,12 @@ public class UserRealm extends AuthorizingRealm {
 			throw new UnknownAccountException("用户名不存在！");
 		if (!userBasic.getPassword().equals(new String((char[])token.getCredentials())))
 			throw new IncorrectCredentialsException("用户名或密码错误");
+		if (userBasic.getStatus()==2){
+			throw  new LockedAccountException("用户被锁定");
+		}
+		if(userBasic.getStatus()==0){
+			throw  new DisabledAccountException("用户未激活");
+		}
 		logger.info("用户验证通过，把数据存入Session");
 		SecurityUtils.getSubject().getSession().setAttribute("user",userBasic);
 		// userInfo.setPermissions(userService.findPermissions(user));

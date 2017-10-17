@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface UserService extends BaseService<UserBasic> {
 	UserBasic selectByEmail(String email);
-
+	Boolean addUSer(UserBasic user);
 }

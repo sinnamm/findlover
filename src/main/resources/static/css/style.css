@@ -67,8 +67,8 @@ img.zoom-img:hover {
 
 .banner-register {
     background: url("../images/register.png") no-repeat center;
-    height: auto;
     background-size: cover;
+    height: 900px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -78,7 +78,7 @@ img.zoom-img:hover {
     background: #f0f0f0;
     padding: 20px 20px 20px;
     border-radius: 20px;
-    opacity: 0.6
+    opacity: 0.8
 }
 
 .dim_background form{

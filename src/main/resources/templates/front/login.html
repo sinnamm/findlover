@@ -3,9 +3,35 @@
 <head>
     <title>FindLover-Login</title>
     <th:block th:include="/front/common/common_resource :: resources"/>
+    <script th:src="@{/jquery/nice-validator/jquery.validator.js(local=zh-CN)}" src="../../static/jquery/nice-validator/jquery.validator.js?local=zh-CN"></script>
+    <script th:src="@{/js/front/login.js}" src="../../static/js/front/login.js"></script>
 </head>
 <body>
-<th:block th:include="/front/common/header::nav"/>
+<div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container"><a class="brand" href="index.html">
+            <img th:src="@{/images/logo.png}" src="../../static/images/logo.png" alt="logo"></a>
+            <div class="pull-right">
+                <nav class="navbar nav_bottom" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav nav_1">
+                            <li><a href="register.html">还没有账号，去注册一个！</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div> <!-- end pull-right -->
+            <div class="clearfix"></div>
+        </div> <!-- end container -->
+    </div> <!-- end navbar-inner -->
+</div> <!-- end navbar-inverse-blue -->
 <div class="banner-login">
     <div class="grid_3">
         <div class="container">
@@ -22,13 +48,13 @@
                     <div class="form-group">
                         <label for="email" class="col-md-1 control-label">邮箱</label>
                         <div class="col-md-6">
-                            <input type="email" class="form-text" id="email" name="email" placeholder="登录邮箱">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="登录邮箱">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-1 control-label">密码</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-text" id="password" name="password" placeholder="密码">
+                            <input type="text" class="form-control" id="password" name="password" placeholder="密码">
                         </div>
                     </div>
                     <!--<div>-->
