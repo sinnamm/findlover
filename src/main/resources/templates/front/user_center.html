@@ -281,26 +281,9 @@
                                 <select name="work_province" id="work_province"
                                         class="form-control select-control double-control">
                                     <option value="请选择">请选择</option>
-                                    <option value="北京">北京</option>
-                                    <option value="上海">上海</option>
                                 </select>
                                 <select name="work_city" id="work_city"
                                         class="form-control select-control double-control" style="float: right">
-                                    <option value="请选择">请选择</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group message_group">
-                            <label class="col-md-3 control-label message-lable text-right">所在地区：</label>
-                            <div class="col-md-4" style="padding: 0px">
-                                <select name="province" id="province"
-                                        class="form-control select-control double-control">
-                                    <option value="请选择">请选择</option>
-                                    <option value="北京">北京</option>
-                                    <option value="上海">上海</option>
-                                </select>
-                                <select name="city" id="city" class="form-control select-control double-control"
-                                        style="float: right">
                                     <option value="请选择">请选择</option>
                                 </select>
                             </div>
@@ -310,11 +293,8 @@
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="house" id="house" class="form-control select-control">
                                     <option value="请选择">请选择</option>
-                                    <option value="与家人同住">与家人同住</option>
-                                    <option value="已购房">已购房</option>
-                                    <option value="租房">租房</option>
-                                    <option value="打算婚后购房">打算婚后购房</option>
-                                    <option value="单位宿舍">单位宿舍</option>
+                                    <option value="1">有房</option>
+                                    <option value="0">无房</option>
                                 </select>
                             </div>
                         </div>
@@ -336,41 +316,41 @@
                    <form class="more_message">
                        <div class="form-group message_group">
                            <label class="col-md-3 control-label message-lable text-right">真实姓名：</label>
-                           <input class="col-md-4 form-control message_main_input" value="高少帅">
+                           <input id="realname" name="realname" class="col-md-4 form-control message_main_input" value="高少帅">
                        </div>
                        <div class="form-group message_group">
                            <label class="col-md-3 control-label message-lable text-right">体重：</label>
-                           <input class="col-md-4 form-control message_main_input" value="50kg">
+                           <input id="weight" name="weight" class="col-md-4 form-control message_main_input" value="50kg">
                        </div>
                        <div class="form-group message_group">
-                           <label class="col-md-3 control-label message-lable text-right">民族：</label>
-                           <input class="col-md-4 form-control message_main_input" value="汉">
+                           <label class="col-md-3 control-label message-lable text-right">身份证号：</label>
+                           <input id="cardnumber" name="cardnumber"  class="col-md-4 form-control message_main_input" value="37251616166">
                        </div>
 
                        <div class="form-group message_group">
                            <label class="col-md-3 control-label message-lable text-right">星座：</label>
                            <div class="col-md-4" style="padding: 0px">
-                               <select name="constellation" id="constellation" class="form-control select-control">
+                               <select name="zodiac" id="zodiac" class="form-control select-control">
                                    <option value="请选择">请选择</option>
-                                   <option value="水瓶座(01.20-02.19)">水瓶座(01.20-02.19)</option>
-                                   <option value="双鱼座(02.20-03.20)">双鱼座(02.20-03.20)</option>
-                                   <option value="白羊座(03.21-04.20)">白羊座(03.21-04.20)</option>
-                                   <option value="金牛座(04.21-05.20)">金牛座(04.21-05.20)</option>
-                                   <option value="双子座(05.21-06.21)">双子座(05.21-06.21)</option>
-                                   <option value="巨蟹座(06.22-07.22)">巨蟹座(06.22-07.22)</option>
-                                   <option value="狮子座(07.23-08.22)">狮子座(07.23-08.22)</option>
-                                   <option value="处女座(08.23-09.22)">处女座(08.23-09.22)</option>
-                                   <option value="天秤座(09.23-10.22)">天秤座(09.23-10.22)</option>
-                                   <option value="天蝎座(10.23-11.21)">天蝎座(10.23-11.21)</option>
-                                   <option value="射手座(11.22-12.21)">射手座(11.22-12.21)</option>
-                                   <option value="魔羯座(12.22-01.19)">魔羯座(12.22-01.19)</option>
+                                   <option value="水瓶座">水瓶座</option>
+                                   <option value="双鱼座">双鱼座</option>
+                                   <option value="白羊座">白羊座</option>
+                                   <option value="金牛座">金牛座</option>
+                                   <option value="双子座">双子座</option>
+                                   <option value="巨蟹座">巨蟹座</option>
+                                   <option value="狮子座">狮子座</option>
+                                   <option value="处女座">处女座</option>
+                                   <option value="天秤座">天秤座</option>
+                                   <option value="天蝎座">天蝎座</option>
+                                   <option value="射手座">射手座</option>
+                                   <option value="魔羯座">魔羯座</option>
                                </select>
                            </div>
                        </div>
                        <div class="form-group message_group">
                            <label class="col-md-3 control-label message-lable text-right">民族：</label>
                            <div class="col-md-4" style="padding: 0px">
-                               <select name="national" id="national" class="form-control select-control">
+                               <select name="nation" id="nation" class="form-control select-control">
                                    <option value="请选择">请选择</option>
                                    <option value="汉族">汉族</option>
                                    <option value="蒙古族">蒙古族</option>
@@ -400,9 +380,9 @@
                            </div>
                        </div>
                        <div class="form-group message_group">
-                           <label class="col-md-3 control-label message-lable text-right">生肖：</label>
+                           <label class="col-md-3 control-label message-lable text-right">信仰：</label>
                            <div class="col-md-4" style="padding: 0px">
-                               <select name="belif" id="belif" class="form-control select-control">
+                               <select name="religion" id="religion" class="form-control select-control">
                                    <option value="请选择">请选择</option>
                                    <option value="不信教">不信教</option>
                                    <option value="佛教">佛教</option>
@@ -447,7 +427,11 @@
                        </div>
                        <div class="form-group message_group1">
                            <label class="col-md-3 control-label message1-lable text-right">爱好简述：</label>
-                           <textarea cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+                           <textarea id="hobby" name="hobby"  cols="50" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+                       </div>
+                       <div class="form-group message_group1">
+                           <label class="col-md-3 control-label message1-lable text-right">内心独白：</label>
+                           <textarea id="signature" name="signature"  cols="50" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
                        </div>
                        <div class="form-group message_group ">
                            <div class="col-md-12 text-center">
@@ -468,7 +452,7 @@
                             <label class="col-md-3 control-label message-lable text-right">是否抽烟：</label>
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="smoke" id="smoke" class="form-control select-control">
-                                    <option value="请选择">请选择</option>
+                                    <option value="-1">请选择</option>
                                     <option value="1">是</option>
                                     <option value="0">否</option>
                                 </select>
@@ -478,7 +462,7 @@
                             <label class="col-md-3 control-label message-lable text-right">是否喝酒：</label>
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="drink" id="drink" class="form-control select-control">
-                                    <option value="请选择">请选择</option>
+                                    <option value="-1">请选择</option>
                                     <option value="1">是</option>
                                     <option value="0">否</option>
                                 </select>
@@ -488,7 +472,7 @@
                             <label class="col-md-3 control-label message-lable text-right">是否有车：</label>
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="car" id="car" class="form-control select-control">
-                                    <option value="请选择">请选择</option>
+                                    <option value="-1">请选择</option>
                                     <option value="1">是</option>
                                     <option value="0">否</option>
                                 </select>
@@ -497,25 +481,18 @@
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">职业类别：</label>
                             <div class="col-md-4" style="padding: 0px">
-                                <select name="job_type0" id="job_type0" class="form-control select-control double-control">
-                                    <option value="请选择">请选择</option>
+                                <select name="job" id="job" class="form-control select-control">
+                                    <option value="-1">请选择</option>
                                     <option value="计算机/互联网">计算机/互联网</option>
                                     <option value="生产/制造">生产/制造</option>
                                 </select>
-                                <select name="job_type1" id="job_type1" class="form-control select-control double-control"
-                                        style="float: right">
-                                    <option value="请选择">请选择</option>
-                                    <option value="程序员">程序员</option>
-                                    <option value="软件工程师">软件工程师</option>
-                                </select>
                             </div>
-
                         </div>
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">工作繁忙度：</label>
                             <div class="col-md-4" style="padding: 0px">
-                                <select name="job_time" id="job_time" class="form-control select-control">
-                                    <option value="请选择">请选择</option>
+                                <select name="jobTime" id="jobTime" class="form-control select-control">
+                                    <option value="-1">请选择</option>
                                     <option value="很忙">很忙</option>
                                     <option value="特别忙">特别忙</option>
                                 </select>
@@ -523,7 +500,7 @@
                         </div>
                         <div class="form-group message_group1">
                             <label class="col-md-3 control-label message1-lable text-right">个人性格简述：</label>
-                            <textarea cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
+                            <textarea name="character" id="character" cols="70" rows="2" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"></textarea>
                         </div>
                         <div class="form-group message_group1">
                             <label class="col-md-3 control-label message1-lable text-right">工作情况简述：</label>
@@ -531,7 +508,7 @@
                         </div>
                         <div class="form-group message_group ">
                             <div class="col-md-12 text-center">
-                                <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
+                                <input name="jobBrief" id="jobBrief" class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
                             </div>
                         </div>
                     </form>

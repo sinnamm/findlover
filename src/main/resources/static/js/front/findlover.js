@@ -110,6 +110,15 @@ function initWorkplaceDropdown(spanId, provinceId, cityId) {
     });
 }
 
+//初始化民族下拉列表
+function initNationalDropdown(nationalId) {
+    $.getJSON(contextPath + "json/nations.json", function (data) {
+        for (var x = 0; x < data.length; x++) {
+            $("#" + nationalId).append($("<option value='" + data[x].name + "'>" + data[x].name + "</option>"));
+        }
+    });
+}
+
 // 动态更新地区下拉列表
 function updateWorkplaceDropdown(spanId, provinceId, cityId) {
     var provinceSel = $("#" + provinceId);

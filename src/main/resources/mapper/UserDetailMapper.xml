@@ -16,12 +16,13 @@
     <result column="religion" property="religion" jdbcType="VARCHAR" />
     <result column="graduation" property="graduation" jdbcType="VARCHAR" />
     <result column="hobby" property="hobby" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbg.generated
     -->
     id, realname, cardnumber, birthplace, weight, animal, zodiac, nation, religion, graduation, 
-    hobby
+    hobby,signature
   </sql>
 </mapper>
