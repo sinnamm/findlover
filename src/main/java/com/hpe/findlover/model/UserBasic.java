@@ -1,9 +1,7 @@
 package com.hpe.findlover.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 @Table(name = "user_basic")
 public class UserBasic {
 

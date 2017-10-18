@@ -10,7 +10,7 @@
     <result column="age_low" property="ageLow" jdbcType="INTEGER" />
     <result column="age_high" property="ageHigh" jdbcType="INTEGER" />
     <result column="workplace" property="workplace" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="birthplace" property="birthplace" jdbcType="VARCHAR" />
     <result column="marry_status" property="marryStatus" jdbcType="VARCHAR" />
     <result column="education" property="education" jdbcType="VARCHAR" />
     <result column="salary_low" property="salaryLow" jdbcType="DOUBLE" />
@@ -25,7 +25,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, sex, age_low, age_high, workplace, birthday, marry_status, education, salary_low, 
+    id, sex, age_low, age_high, workplace, birthday, marry_status, education, salary_low,
     salary_high, height_low, height_high, job, drink, smoke
   </sql>
 </mapper>

@@ -21,7 +21,7 @@ public class UserPick {
 
     private String workplace;
 
-    private String birthday;
+    private String birthplace;
 
     @Column(name = "marry_status")
     private String marryStatus;
@@ -120,18 +120,12 @@ public class UserPick {
         this.workplace = workplace;
     }
 
-    /**
-     * @return birthday
-     */
-    public String getBirthday() {
-        return birthday;
+    public String getBirthplace() {
+        return birthplace;
     }
 
-    /**
-     * @param birthday
-     */
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
     }
 
     /**

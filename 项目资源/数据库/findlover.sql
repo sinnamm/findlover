@@ -366,7 +366,7 @@ create table user_pick
    age_low              int not null,
    age_high             int not null,
    workplace            varchar(50),
-   birthday             varchar(50),
+   birthplace           varchar(50),
    marry_status         varchar(50),
    education            varchar(50),
    salary_low           double,
