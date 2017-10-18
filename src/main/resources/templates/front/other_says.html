@@ -4,6 +4,7 @@
     <title>他他说</title>
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
+    <script th:src="@{/js/front/other_says.js}"></script>
 </head>
 <body>
 <th:block th:include="/front/common/header::nav"/>
@@ -52,17 +53,11 @@
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <!--菜单-->
                     <ul class="nav nav-tabs">
-                        <li role="presentation" class="active" data-toggle="tab"><a href="#home"
-                                                                                    data-toggle="tab">情感专栏</a></li>
+                        <li role="presentation" class="active" data-toggle="tab">
+                            <a id="essay-btn" href="#home" data-toggle="tab">情感专栏</a>
+                        </li>
                         <li role="presentation" class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#news" role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                新鲜事儿 <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#news" data-toggle="tab">按热度排序</a></li>
-                                <li><a href="#news" data-toggle="tab">按时间排序</a></li>
-                            </ul>
+                            <a id="news-btn" href="#news" data-toggle="tab">新鲜事儿</a>
                         </li>
                         <li role="presentation"><a href="#message" data-toggle="tab">关注的ta们</a></li>
                     </ul>
@@ -179,9 +174,19 @@
 
                         <!-- 新鲜事儿 -->
                         <div role="tabpanel" class="tab-pane fade" id="news" aria-labelledby="news-tab">
+                            <span class="button-dropdown button-dropdown-primary" data-buttons="dropdown">
+                                <button class="button button-primary button-large">
+                                  <i class="fa fa-bars"></i> Select Me
+                                </button>
 
-                            <ul class="pagination pagination_1"></ul>
-                            <div class="clearfix"></div>
+                                <ul class="button-dropdown-list is-below">
+                                  <li><a><i class="fa fa-heart-o"></i> Option Link 1</a></li>
+                                  <li><a>Option Link 2</a></li>
+                                  <li class="button-dropdown-divider">
+                                    <a href="#">Option Link 3</a>
+                                  </li>
+                                </ul>
+                              </span>
                             <div class="jobs-item with-thumb">
 
                                 <!-- 发送信息者资料 -->

@@ -26,7 +26,7 @@ public class ValidatorUtils {
 	 * @return 所有的验证错误信息保存在Map集合中返回，如果没有错误，则Map集合的长度为0
 	 */
 	public static Map<String, String> validate(HttpServletRequest request, HandlerMethod handlerMethod) {
-		// 通过给定的Action名称以及要调用的业务方法“rules”一起拼凑出要取出的验证规则，在Validations.properties中定义
+		// 通过给定的Controller名称以及要调用的业务方法“rule”一起拼凑出要取出的验证规则，在validation.properties中定义
 		String beanName = handlerMethod.getBean().getClass().getSimpleName() ;
 		try {
 			beanName = beanName.substring(0,beanName.indexOf("$$")) ;

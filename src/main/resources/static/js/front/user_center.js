@@ -1,7 +1,7 @@
 $(function () {
     initToolBar();
     initTabClick();
-    initWorkplaceDropdown(undefined, "work_province", "work_city");
+    // initWorkplaceDropdown(undefined, "work_province", "work_city");
     selectDict("education", "education");
     selectDict("zodiac", "zodiac");
     selectDict("animal", "animal");
@@ -11,7 +11,6 @@ $(function () {
     initNationalDropdown("nation");
     selectUserBasic();
     initSingleHeightDropdown("height");
-    initWorkplaceDropdown();
 });
 
 
@@ -76,7 +75,7 @@ function selectUserBasic() {
         dataType: "JSON",
         success: function (data, a, b) {
             var userfixed = "您是一位" + data.sex + "士，您的出生日期为"
-                + getMyDate(data.birthday) + "，"
+                + new Date(data.birthday).format("yyyy-MM-dd") + "，"
                 + data.marryStatus
                 + "，" + data.height + "M";
             $("#userfixed").text(userfixed);
@@ -87,11 +86,12 @@ function selectUserBasic() {
             $("#height").val(data.height);
             $("#sexual").val(data.sexual == data.sex ? "男" : "女");
             $("#education").val(data.education);
-            var wpArray = data.workplace.split("-");
-            //alert(wpArray[0]);
-            //alert(wpArray[1]);
-            $("#work_province").val($.trim(wpArray[0]));
-            $("#work_city").val($.trim(wpArray[1]));
+            if (data.workplace == "null") {
+                initWorkplaceDropdown(undefined, "work_province", "work_city", -1, -1);
+            } else {
+                var arr = data.workplace.split("-");
+                initWorkplaceDropdown(undefined, "work_province", "work_city", arr[0], arr.length > 0 ? arr[1] : -1);
+            }
             $("#house").val(data.liveCondition);
         }
     });
@@ -108,17 +108,23 @@ function selectUserDetail() {
             $("#realname").val(data.realname);
             $("#weight").val(data.weight);
             $("#cardnumber").val(data.cardnumber);
-            if (data.zodiac != '') {
+            if (data.zodiac != "null") {
                 $("#zodiac").val(data.zodiac);
             }
-            if (data.zodiac != '') {
+            if (data.zodiac != 'null') {
                 $("#nation").val(data.nation);
             }
-            if (data.animal != '') {
+            if (data.animal != 'null') {
                 $("#animal").val(data.animal);
             }
-            if (data.religion != '') {
+            if (data.religion != 'null') {
                 $("#religion").val(data.religion);
+            }
+            if (data.birthplace == "null") {
+                initWorkplaceDropdown(undefined, "birthplace_province", "birthplace_city", -1, -1);
+            } else {
+                var arr = data.birthplace.split("-");
+                initWorkplaceDropdown(undefined, "birthplace_province", "birthplace_city", arr[0], arr.length > 0 ? arr[1] : -1);
             }
             // $("#work_province").val($.trim(wpArray[0]));
             // $("#work_city").val($.trim(wpArray[1]));
@@ -135,45 +141,23 @@ function selectUserLife() {
         type: "GET",
         dataType: "JSON",
         success: function (data, a, b) {
-            if ($.type(data.smoke) !='null') {
+            if (data.smoke != 'null') {
                 $("#smoke").val(data.smoke);
             }
-            if ($.type(data.drink) !='null') {
+            if (data.drink != 'null') {
                 $("#drink").val(data.drink);
             }
-            if ($.type(data.car) !='null') {
+            if (data.car != 'null') {
                 $("#car").val(data.car);
             }
-            if (data.job != '') {
+            if (data.job != 'null') {
                 $("#job").val(data.job);
             }
-            if (data.jobTime != '') {
+            if (data.jobTime != 'null') {
                 $("#jobTime").val(data.jobTime);
             }
             $("#character").val(data.character);
             $("#jobBrief").val(data.jobBrief);
         }
     });
-}
-
-
-//获得年月日
-function getMyDate(str) {
-    var oDate = new Date(str),
-        oYear = oDate.getFullYear(),
-        oMonth = oDate.getMonth() + 1,
-        oDay = oDate.getDate(),
-        // oHour = oDate.getHours(),
-        // oMin = oDate.getMinutes(),
-        // oSen = oDate.getSeconds(),
-        oTime = oYear + '-' + getzf(oMonth) + '-' + getzf(oDay);//最后拼接时间
-    return oTime;
-};
-
-//补0操作
-function getzf(num) {
-    if (parseInt(num) < 10) {
-        num = '0' + num;
-    }
-    return num;
 }

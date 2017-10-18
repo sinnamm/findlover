@@ -6,9 +6,9 @@
       WARNING - @mbg.generated
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="message_id" property="messageId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="like_time" property="likeTime" jdbcType="TIMESTAMP" />
+    <!--<result column="message_id" property="messageId" jdbcType="INTEGER" />-->
+    <!--<result column="user_id" property="userId" jdbcType="INTEGER" />-->
+    <!--<result column="like_time" property="likeTime" jdbcType="TIMESTAMP" />-->
   </resultMap>
   <sql id="Base_Column_List" >
     <!--

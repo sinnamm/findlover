@@ -17,7 +17,6 @@ public class MessageLike {
 
     @Column(name = "like_time")
     private Date likeTime;
-
     /**
      * @return id
      */

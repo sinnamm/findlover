@@ -8,6 +8,8 @@ import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MessageServiceImpl extends BaseServiceImpl<Message> implements MessageService {
 	private final MessageMapper messageMapper;
@@ -20,5 +22,10 @@ public class MessageServiceImpl extends BaseServiceImpl<Message> implements Mess
 	@Override
 	public BaseTkMapper<Message> getMapper() {
 		return messageMapper;
+	}
+
+	@Override
+	public List<Message> selectList() {
+		return messageMapper.selectList();
 	}
 }

@@ -3,24 +3,6 @@
 <head>
     <title>用户中心</title>
     <th:block th:include="/front/common/common_resource :: resources"/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
-    <th:block th:remove="all">
-        <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-        <!----font-Awesome----->
-        <link href="../../static/css/font-awesome.css" rel="stylesheet">
-        <!-- Custom Theme files -->
-        <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../../static/jquery/jquery.min.js"></script>
-        <script src="../../static/js/bootstrap.min.js"></script>
-        <script src="../../static/js/front/findlover.js"></script>
-    </th:block>
 
 
     <!-- 动态泡泡 -->
@@ -28,74 +10,9 @@
     <link th:href="@{/css/documentation.css}" href="../../static/css/documentation.css"  rel="stylesheet"/>
     <script th:src="@{/jquery/jquery.toolbar.js}" src="../../static/jquery/jquery.toolbar.js"></script>
     <script th:src="@{/js/front/user_center.js}" src="../../static/js/front/user_center.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
-                    $(this).toggleClass('open');
-                }
-            );
-
-        });
-    </script>
 </head>
 <body>
-<!-- ============================  Navigation Start =========================== -->
 <th:block th:include="/front/common/header::nav"/>
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-    <div class="navbar-inner">
-        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
-                                                                       alt="logo"></a>
-            <div class="pull-right">
-                <nav class="navbar nav_bottom" role="navigation">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"></a></div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav nav_1">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="reserve/about.html">搜索</a></li>
-                            <li><a href="reserve/about.html">会员</a></li>
-                            <li><a href="reserve/about.html">成功故事</a></li>
-                            <li><a href="reserve/about.html">他她说</a></li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                    class="fa fa-lg fa-envelope-o"></i><span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="search.html">私信</a></li>
-                                    <li><a href="reserve/profile.html">关注</a></li>
-                                    <li><a href="reserve/search-id.html">访问记录</a></li>
-                                    <li><a href="reserve/faq.html">系统通知</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                    class="fa fa-lg fa-user"></i><span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="login.html">编辑资料</a></li>
-                                    <li><a href="register.html">身份认证</a></li>
-                                    <li><a href="index.html">修改密码</a></li>
-                                    <li><a href="index.html">退出</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
-            </div> <!-- end pull-right -->
-            <div class="clearfix"></div>
-        </div> <!-- end container -->
-    </div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
-<!--============================  Navigation End ============================-->
 <div class="grid_3">
     <div class="container">
         <div class="breadcrumb1">
@@ -412,12 +329,12 @@
                        <div class="form-group message_group">
                            <label class="col-md-3 control-label message-lable text-right">籍贯：</label>
                            <div class="col-md-4" style="padding: 0px">
-                               <select name="religion0" id="religion0" class="form-control select-control double-control">
+                               <select name="birthplace_province" id="birthplace_province" class="form-control select-control double-control">
                                    <option value="请选择">请选择</option>
                                    <option value="北京">北京</option>
                                    <option value="上海">上海</option>
                                </select>
-                               <select name="religion1" id="religion1" class="form-control select-control double-control"
+                               <select name="birthplace_city" id="birthplace_city" class="form-control select-control double-control"
                                        style="float: right">
                                    <option value="请选择">请选择</option>
                                    <option value="朝阳区">朝阳区</option>

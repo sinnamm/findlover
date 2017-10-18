@@ -1,6 +1,7 @@
 package com.hpe.findlover.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 public class Message {
@@ -21,6 +22,28 @@ public class Message {
 
     @Column(name = "reply_count")
     private Integer replyCount;
+
+    @Transient
+    private List<MessageLike> likes;
+
+    @Transient
+    private List<MessageReply> replies;
+
+    public List<MessageLike> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<MessageLike> likes) {
+        this.likes = likes;
+    }
+
+    public List<MessageReply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<MessageReply> replies) {
+        this.replies = replies;
+    }
 
     /**
      * @return id
@@ -104,5 +127,17 @@ public class Message {
      */
     public void setReplyCount(Integer replyCount) {
         this.replyCount = replyCount;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", content='" + content + '\'' +
+                ", pubTime=" + pubTime +
+                ", likeCount=" + likeCount +
+                ", replyCount=" + replyCount +
+                '}';
     }
 }

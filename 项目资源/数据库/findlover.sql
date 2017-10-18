@@ -316,6 +316,7 @@ create table user_detail
    religion             varchar(20),
    graduation           varchar(50),
    hobby                varchar(255),
+   signature            varchar(255),
    primary key (id)
 );
 
@@ -696,6 +697,7 @@ INSERT INTO dict(type,value) VALUES('com_reason','有害信息');
 INSERT INTO dict(type,value) VALUES('com_reason','人身攻击我');
 -- user_basic表
 INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('a@a.com', '123', 'Tom', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('gss@gss.com', '123', 'Gss', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
 INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
 INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
 -- success_story表

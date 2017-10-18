@@ -17,6 +17,7 @@ spring:
       max-total: 2
       max-wait-millis: 6000
 
+
 mybatis:
   type-aliases-package: com.hpe.findlover.model
   mapper-locations: classpath:mapper/*.xml

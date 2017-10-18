@@ -1,8 +1,9 @@
 package com.hpe.findlover.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 import javax.persistence.*;
-
 @Table(name = "user_basic")
 public class UserBasic {
     @Id
