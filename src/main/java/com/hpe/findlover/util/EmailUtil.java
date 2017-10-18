@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
+ * @author wmm
  * Created by wmm on 2017/10/11.
  * 邮件发送的工具类
  */
@@ -18,7 +19,7 @@ public class EmailUtil {
      * 对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
      **/
     public static String myEmailAccount = "iyuanyunfeng@163.com";
-    public static String myEmailPassword = "yuan.12345";
+    public static String myEmailPassword = "yuan12345";
     /**
      * 发件人邮箱的 SMTP 服务器地址必须准确, 不同邮件服务器地址不同,
      * 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
@@ -28,11 +29,10 @@ public class EmailUtil {
 
     /**
      * 使用别人家的邮箱服务器，例如163邮箱，qq邮箱等
-     *
      * @param to   给谁发邮件，也就是发送邮件的地址
-     * @param code 激活码
+     * @param url 激活码链接
      */
-    public static void sendEmailByWeb(String to, String code) throws Exception {
+    public static void sendEmailByWeb(String to, String url) throws Exception {
 
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
         Properties props = new Properties();
@@ -45,7 +45,7 @@ public class EmailUtil {
         session.setDebug(true);//这里是为了出错的时候在控制台可以看到相信的信息
 
         //3.创建邮件对象
-        Message message = createMimeMessage(session, myEmailAccount, to, code);
+        Message message = createMimeMessage(session, myEmailAccount, to, url);
 
         // 4. 根据 Session 获取邮件传输对象
         Transport transport = session.getTransport();
@@ -58,32 +58,6 @@ public class EmailUtil {
 
     }
 
-
-    /**
-     * 使用自己本地的邮箱服务器，这里我用的是易邮邮箱服务器
-     *
-     * @param to
-     * @param code
-     * @throws Exception
-     */
-    public static void sendEmailByLocal(String to, String code) throws Exception {
-
-        //1、连接配置，本地不用配置
-        Properties props = new Properties();
-        //2、创建连接对象
-        Session session = Session.getDefaultInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                //这里是本地的邮箱账户和密码，域名可以在邮箱服务器自己设定
-                return new PasswordAuthentication("server@sinnamm.con", "server");
-            }
-        });
-        //获取邮件对象
-        Message message = createMimeMessage(session, "server@sinnamm.com", to, code);
-        //发送邮件
-        Transport.send(message);
-    }
-
     /**
      * 创建一封只包含文本的简单邮件
      *
@@ -93,7 +67,7 @@ public class EmailUtil {
      * @return
      * @throws Exception
      */
-    public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail, String code) throws Exception {
+    public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail, String url) throws Exception {
         // 1. 创建一封邮件
         MimeMessage message = new MimeMessage(session);
 
@@ -108,7 +82,7 @@ public class EmailUtil {
 
         // 5. Content: 邮件正文（可以使用html标签）
         message.setContent("<h1>请点击以下链接激活你的账号</h1>" +
-                "<h3><a href='http://localhost:8080/ActiveServlet?code=" + code + "'>http://localhost:8080/ActiveServlet?code=" + code + "</a></h3>", "text/html;charset=UTF-8");
+                "<h3><a href='"+url+"'>" + url + "</a></h3>", "text/html;charset=UTF-8");
         // 6. 设置发件时间
         message.setSentDate(new Date());
 

@@ -2,7 +2,9 @@ var age_low_limit = 18;
 var age_high_limit = 66;
 var height_low_limit = 145;
 var height_high_limit = 210;
-// 会员和星级用户logo toolbar
+
+
+// 会员、星级用户和牵手币logo toolbar
 function initToolBar(){
     $('img[data-toolbar="vip-toolbar"]').toolbar({
         content: '#vip-deadline',

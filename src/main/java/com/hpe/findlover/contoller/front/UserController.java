@@ -2,7 +2,7 @@ package com.hpe.findlover.contoller.front;
 
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.front.UserService;
-import com.hpe.findlover.util.BasePath;
+import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.EmailUtil;
 import com.hpe.findlover.util.MD5Code;
 import org.apache.logging.log4j.LogManager;
@@ -25,8 +25,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
 
 /**
  * @author sinnamm
@@ -74,10 +72,11 @@ public class UserController {
 		user.setPhoto("p6.jpg");
 		user.setRegTime(new Date());
 //		发送邮件
-		String url= BasePath.getBasePath(request)+"/"+"active?email="+user.getEmail()+"&code="+uuid;
+		String url= LoverUtil.getBasePath(request)+"/"+"active?email="+user.getEmail()+"&code="+uuid;
 		EmailUtil.sendEmailByWeb(user.getEmail(),url);
 
-		if (userService.addUSer(user)){
+		//将用户存放在数据库中
+		if (userService.insert(user)){
 			return "redirect:login";
 		}else{
 			return "redirect:register";

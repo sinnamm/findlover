@@ -738,9 +738,10 @@
                             <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
                                th:text="${'您所剩的牵手币：'+ userAsset.asset + '个'}"></a>
                         </div>
-                        <p th:text="${'ID:'+user.id}">ID:10000001</p>
-                        <p><span>20岁</span>&nbsp;&nbsp;&nbsp;<span>山东</span>&nbsp;
-                            <span>青岛</span>&nbsp;&nbsp;&nbsp;<span>处女座</span></p>
+                        <p th:text="${'ID:'+session.user.id}">ID:10000001</p>
+                        <p><span th:text="${session.user.age+'岁'}">20岁</span>&nbsp;&nbsp;&nbsp;
+                            <span th:text="${session.user.workplace}">山东</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span th:text="${session.user.height+'cm'}">177cm</span></p>
                         <a href="" class="button button-highlight button-rounded button-small">完善资料</a>
                     </div>
                 </div>

@@ -32,9 +32,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 		return userBasicMapper.selectByEmail(email);
 	}
 
-	@Override
-	public Boolean addUSer(UserBasic user) {
-		return userBasicMapper.insert(user)>0;
-	}
+
 
 }
