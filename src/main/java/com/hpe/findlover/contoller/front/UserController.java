@@ -75,7 +75,7 @@ public class UserController {
 		user.setRegTime(new Date());
 //		发送邮件
 		String url= BasePath.getBasePath(request)+"/"+"active?email="+user.getEmail()+"&code="+uuid;
-		EmailUtil.sendEmailByLocal(user.getEmail(),url);
+		EmailUtil.sendEmailByWeb(user.getEmail(),url);
 
 		if (userService.addUSer(user)){
 			return "redirect:login";

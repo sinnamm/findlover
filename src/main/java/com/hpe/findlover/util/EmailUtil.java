@@ -17,8 +17,8 @@ public class EmailUtil {
      * PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
      * 对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
      **/
-    public static String myEmailAccount = "sinnamm@163.com";
-    public static String myEmailPassword = "1472610316wang";
+    public static String myEmailAccount = "iyuanyunfeng@163.com";
+    public static String myEmailPassword = "yuan.12345";
     /**
      * 发件人邮箱的 SMTP 服务器地址必须准确, 不同邮件服务器地址不同,
      * 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
@@ -51,7 +51,6 @@ public class EmailUtil {
         Transport transport = session.getTransport();
         //使用邮箱账号和密码连接邮件服务器, 这里认证的邮箱必须与 message 中的发件人邮箱一致, 否则报错
         transport.connect(myEmailAccount, myEmailPassword);
-
         // 6. 发送邮件, 发到所有的收件地址, message.getAllRecipients() 获取到的是在创建邮件对象时添加的所有收件人, 抄送人, 密送人
         transport.sendMessage(message, message.getAllRecipients());
         // 7. 关闭连接

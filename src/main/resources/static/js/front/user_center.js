@@ -45,28 +45,6 @@ function selectEducationDict() {
 }*/
 
 
-/**
- * 获取字典列表对象
- * @param dictType 字典数据库中type字段类型
- * @param selectId 需要加载的select控件
- */
-function selectDict(dictType, selectId) {
-    $.ajax({
-        url: contextPath + "dicts/" + dictType,
-        type: "GET",
-        dataType: "JSON",
-        async: false,
-        success: function (data, a, b) {
-            $("#" + selectId).empty();
-            $("#" + selectId).append($("<option value=\"请选择\">请选择</option>"));
-            $(data).each(function (index, element) {
-                $("#" + selectId).append($("<option value=\"" + element.value + "\">" + element.value + "</option>"));
-            });
-        }
-    });
-}
-
-
 //页面加载完成时第一次获取用户基本信息
 function selectUserBasic() {
     $.ajax({

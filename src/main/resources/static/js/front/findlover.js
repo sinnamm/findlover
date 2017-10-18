@@ -1,7 +1,8 @@
+var age_low_limit = 18;
+var age_high_limit = 66;
+var height_low_limit = 145;
+var height_high_limit = 210;
 // 会员和星级用户logo toolbar
-function initToolBar() {
-
-// 会员、星级用户和牵手币logo toolbar
 function initToolBar(){
     $('img[data-toolbar="vip-toolbar"]').toolbar({
         content: '#vip-deadline',
@@ -97,7 +98,6 @@ function initWorkplaceDropdown(spanId, provinceId, cityId, provinceValue, cityVa
     var $provinceSel = $("#" + provinceId);
     var $citySel = $("#" + cityId);
     $provinceSel.find("option:gt('0')").remove();
-    $provinceSel.find("option:gt('0')").remove();
     $.getJSON(contextPath + "json/cities.json", function (data) {
         for (var x = 0; x < data.length; x++) {
             if (data[x].name == provinceValue)
@@ -171,8 +171,8 @@ function initNationalDropdown(nationalId) {
 function initSingleHeightDropdown(heightId) {
     $("#" + heightId).empty();
     $("#" + heightId).append($("<option value=\"请选择\">请选择</option>"));
-    for (var i = 100; i < 250; i++) {
-        $("#" + heightId).append($("<option value=\"" + i + "\">" + i + "</option>"));
+    for (var i = height_low_limit; i < height_high_limit+1; i++) {
+        $("#" + heightId).append($("<option value='" + i + "'>" + i + "</option>"));
     }
 }
 
@@ -190,4 +190,24 @@ Date.prototype.format = function (fmt) { //author: meizz
     for (var k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+/**
+ * 获取字典列表对象
+ * @param dictType 字典数据库中type字段类型
+ * @param selectId 需要加载的select控件
+ */
+function selectDict(dictType, selectId) {
+    $.ajax({
+        url: contextPath + "dicts/" + dictType,
+        type: "GET",
+        dataType: "JSON",
+        async: false,
+        success: function (data, a, b) {
+            $("#" + selectId).find("option:gt(0)").remove();
+            $(data).each(function (index, element) {
+                $("#" + selectId).append($("<option value='" + element.value + "'>" + element.value + "</option>"));
+            });
+        }
+    });
 }

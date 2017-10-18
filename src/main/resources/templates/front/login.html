@@ -3,7 +3,6 @@
 <head>
     <title>FindLover-Login</title>
     <th:block th:include="/front/common/common_resource :: resources"/>
-    <script th:src="@{/jquery/nice-validator/jquery.validator.js(local=zh-CN)}" src="../../static/jquery/nice-validator/jquery.validator.js?local=zh-CN"></script>
     <script th:src="@{/js/front/login.js}" src="../../static/js/front/login.js"></script>
 </head>
 <body>
@@ -63,6 +62,12 @@
                     <!--<img src="" alt="">-->
                     <!--</div>-->
                     <!--</div>-->
+                    <div class="form-group" style="height: auto">
+                        <div class="col-md-1" style="height: 3px">
+                            <input type="checkbox"  style=" text-align:right" id="remenberMe" name="remenberMe" >
+                        </div>
+                        <label for="password" class="col-md-3">记住密码</label>
+                    </div>
                     <div class="col-md-offset-1">
                         <input type="submit" value="登录" class="btn_1 submit">
                     </div>

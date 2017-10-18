@@ -19,7 +19,7 @@ public class UserLife {
     @Column(name = "job_time")
     private String jobTime;
 
-    @Column(name = "character")
+    @Column(name = "`character`")
     private String character;
 
     @Column(name = "job_brief")

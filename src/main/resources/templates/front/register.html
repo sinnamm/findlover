@@ -16,7 +16,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
-    <script th:src="@{/jquery/nice-validator/jquery.validator.js(local=zh-CN)}" src="../../static/jquery/nice-validator/jquery.validator.js?local=zh-CN"></script>
     <script th:src="@{/js/front/register.js}" src="../../static/js/front/register.js"></script>
     <script>
         $(document).ready(function () {
@@ -123,6 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <label class="col-md-3 control-label">婚姻状态</label>
                         <div class="col-md-9">
                             <select name="marryStatus" id="marryStatus" class="form-control">
+                                <option value="-1">请选择</option>
                                 <option value="未婚">未婚</option>
                                 <option value="离异">离异</option>
                                 <option value="丧偶">丧偶</option>
@@ -142,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <label for="education" class="col-md-3 control-label">学历</label>
                         <div class="col-md-9">
                             <select name="education" id="education" class="form-control">
-
+                                <option value="-1">请选择</option>
                             </select>
                         </div>
                     </div>
