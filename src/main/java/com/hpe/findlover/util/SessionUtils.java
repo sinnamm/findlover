@@ -15,8 +15,9 @@ public class SessionUtils {
 			logger.error("Session中" + attrName + "属性为null");
 			return null;
 		}
-		if (!clazz.isInstance(attrValue))
+		if(!clazz.isInstance(attrValue)) {
 			throw new ClassCastException("session属性类型与指定类型不符！");
+		}
 		return clazz.cast(attrValue);
 	}
 }

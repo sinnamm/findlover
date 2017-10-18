@@ -6,6 +6,10 @@ import java.util.Date;
 import javax.persistence.*;
 @Table(name = "user_basic")
 public class UserBasic {
+
+    @Transient
+    private int age;
+    //----------------以上为自己添加的属性，数据库中不存在--------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -336,10 +340,19 @@ public class UserBasic {
         this.regTime = regTime;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "UserBasic{" +
-                "id=" + id +
+                "age=" + age +
+                ", id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +

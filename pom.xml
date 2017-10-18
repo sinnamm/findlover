@@ -37,6 +37,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<!--排除Springboot起步依赖中的logging，使用log4j-->
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -56,10 +57,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
-		<dependency>  <!-- 支持识别yml配置 -->
+		<!-- 支持识别yml配置 -->
+		<dependency>
 		<groupId>com.fasterxml.jackson.dataformat</groupId>
 		<artifactId>jackson-dataformat-yaml</artifactId>
 	</dependency>
+		<!--热部署插件，还需要在plugin里面再配置一下才能生效-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -78,7 +81,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!--Shiro-->
+		<!--Shiro  begin-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -144,7 +147,8 @@
 			<artifactId>thymeleaf-extras-shiro</artifactId>
 			<version>${thymeleaf.extras.shiro.version}</version>
 		</dependency>
-		<!--mybatis-->
+		<!--Shiro  end-->
+		<!--mybatis begin-->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -162,6 +166,7 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+		<!--mybatis end-->
 		<!--Druid-->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -186,7 +191,6 @@
 			<version>1.2.38</version>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>
@@ -198,6 +202,7 @@
 					<fork>true</fork>
 				</configuration>
 			</plugin>
+			<!--mybatis 逆向工程插件-->
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>

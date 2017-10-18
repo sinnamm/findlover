@@ -102,12 +102,13 @@
     <div class="container">
         <div class="banner_info">
             <h3 style="font-family: '华文行楷', sans-serif">春暖花开，不要错过你的爱！</h3>
-            <a href="search.html" class="hvr-shutter-out-horizontal">Find your Lover</a>
+            <a th:href="@{/search}" class="hvr-shutter-out-horizontal">Find your Lover</a>
         </div>
     </div>
     <div class="profile_search">
         <div class="container wrap_1">
-            <form action="">
+            <!--有待商讨是跳转到search页面显示搜索信息，还是其他-->
+            <form action="" th:action="@{/search}">
                 <div class="search_top">
                     <div class="inline-block">
                         <label class="gender_1">我想找：</label>
@@ -589,13 +590,13 @@
                         </li>
                     </ul>
                     <div>
-                        <a href="">想查看更多符合你条件的用户？尝试一下搜索吧！</a>
+                        <a href="" th:href="@{/search}">想查看更多符合你条件的用户？尝试一下搜索吧！</a>
                     </div>
                 </div>
             </div>
             <!--成功故事-->
             <div class="grid_1">
-                <a href=""><h1>成功故事</h1></a>
+                <a href="" th:href="@{/success_story}"><h1>成功故事</h1></a>
                 <div class="heart-divider">
                     <span class="grey-line"></span>
                     <i class="fa fa-heart pink-heart"></i>
@@ -709,22 +710,37 @@
                     </div>
                     <div>
                         <a href="#">
-                            <h3>奔跑的小猪</h3>
+                            <h3 th:text="${session.user.nickname}">奔跑的蜗牛</h3>
                         </a>
-                        <img th:src="@{/images/vip.png}" src="../../static/images/vip.png" data-toolbar="vip-toolbar"
-                             data-toolbar-animation="grow"
-                             class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
+                        <img th:if="${vipDate>0}" th:src="@{/images/vip.png}" src="../../static/images/vip.png"
+                             data-toolbar="vip-toolbar"
+                             data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
+                        <img th:if="${vipDate==0}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+
+                        <img th:if="${starDate>0}" th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
                              data-toolbar="star-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
+                        <img th:if="${starDate==0}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
+
+                        <img th:if="${userAsset.asset>0}" th:src="@{/images/coin.jpg}" src="../../static/images/coin.jpg"
+                             data-toolbar="asset-toolbar"
+                             data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
+                        <img th:if="${userAsset.asset==0}" th:src="@{/images/coin-grey.png}" class="snap-flag" />
                         <div id="vip-deadline" class="hidden">
-                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
+                            th:text="${'vip剩余时间：'+ vipDate + '天'}"></a>
                         </div>
                         <div id="star-deadline" class="hidden">
-                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white">剩余时间：29天11小时</a>
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
+                               th:text="${'星级用户剩余时间：'+ starDate + '天'}"></a>
                         </div>
-                        <p>ID:10000001</p>
-                        <p>20岁&nbsp;&nbsp;&nbsp;山东&nbsp;青岛&nbsp;&nbsp;&nbsp;处女座</p>
+                        <div id="user-asset" class="hidden">
+                            <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
+                               th:text="${'您所剩的牵手币：'+ userAsset.asset + '个'}"></a>
+                        </div>
+                        <p th:text="${'ID:'+user.id}">ID:10000001</p>
+                        <p><span>20岁</span>&nbsp;&nbsp;&nbsp;<span>山东</span>&nbsp;
+                            <span>青岛</span>&nbsp;&nbsp;&nbsp;<span>处女座</span></p>
                         <a href="" class="button button-highlight button-rounded button-small">完善资料</a>
                     </div>
                 </div>

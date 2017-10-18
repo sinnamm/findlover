@@ -715,4 +715,8 @@ INSERT INTO findlover.success_story (id, left_user, right_user, title, content, 
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很感恩珍爱网，愿意分享自己的故事也是基于对珍爱网的信任和感谢，人海茫茫遇到一个合适的人不容易，很多人蹉跎中错过了很多，我庆幸自己迈出了这一步。同时也很感谢红娘朱老师，教给了我很多东西，甚至拿自己跟先生的一些事例来告诉我爱情里和婚姻里的处事之道，真的很贴心。</p>
       ', '2017-10-17 15:15:53', 'wed.jpg', 1, 1, 1, null);
 
+INSERT INTO `findlover`.`user_basic`
+(`id`, `email`, `password`, `nickname`, `tel`, `sex`, `birthday`, `photo`, `marry_status`, `height`, `sexual`, `education`, `workplace`, `salary`, `live_condition`, `authority`, `status`, `code`, `reg_time`)
+VALUES ('3', 'sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', '168', '女', '大学本科', '北京', '7000.00', '1', '1', '1', NULL, '2017-10-17 15:12:09');
+
 commit;

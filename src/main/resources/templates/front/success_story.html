@@ -2,6 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
+    <!--公共css与js文件-->
+    <th:block th:include="/front/common/common_resource::resources"/>
+    <!--在使用模板解析时会自动删除-->
+    <th:block th:remove="all">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
@@ -34,10 +38,12 @@
             );
         });
     </script>
+    </th:block>
 </head>
 <body>
+<th:block th:include="/front/common/header::nav"/>
 <!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar">
+<div class="navbar navbar-inverse-blue navbar" th:remove="all">
     <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
     <div class="navbar-inner">
         <div class="container">
@@ -140,7 +146,7 @@
                                             <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...
                                             </p>
                                         </div>
-                                        <div class="text-right"><a href="success_story_info.html" class="fa fa-heart grey-heart btn btn-default" style="font-size: 15px">围观幸福</a></div>
+                                        <div class="text-right"><a th:href="@{/success_story_info}" href="success_story_info.html" class="fa fa-heart grey-heart btn btn-default" style="font-size: 15px">围观幸福</a></div>
                                     </li>
                                     <div class="clearfix"> </div>
                                 </a>
@@ -405,47 +411,11 @@
             <div class="clearfix"></div>
         </div>
     </div>
-</div>
-<div class="footer">
-    <div class="container">
-        <div class="col-md-4 col_2">
-            <h4>About Us</h4>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Help & Support</h4>
-            <ul class="footer_links">
-                <li><a href="#">24x7 Live help</a></li>
-                <li><a href="reserve/contact.html">Contact us</a></li>
-                <li><a href="#">Feedback</a></li>
-                <li><a href="reserve/faq.html">FAQs</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Quick Links</h4>
-            <ul class="footer_links">
-                <li><a href="reserve/privacy.html">Privacy Policy</a></li>
-                <li><a href="reserve/terms.html">Terms and Conditions</a></li>
-                <li><a href="reserve/services.html">Services</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Social</h4>
-            <ul class="footer_social">
-                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-            </ul>
-        </div>
-        <div class="clearfix"></div>
-        <div class="copy">
-            <p>Copyright &copy; 2015.Company name All rights reserved.
-                <a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-            </p>
-        </div>
-    </div>
-</div>
+
+
+
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
+
 </body>
 </html>	

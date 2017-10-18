@@ -2,37 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Viewed-not_contacted</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../static/jquery/jquery.min.js"></script>
-<script src="../../static/js/bootstrap.min.js"></script>
-<!-- Custom Theme files -->
-<link href="../../static/css/style.css" rel='stylesheet' type='text/css' />
+    <th:block th:include="/front/common/common_resource::resources"/>
+    <!--在使用模板解析时会自动删除-->
+    <th:block th:remove="all">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="application/x-javascript"> addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-<!----font-Awesome----->
-<link href="../../static/css/font-awesome.css" rel="stylesheet"/>
-<!----font-Awesome----->
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown(100);
-            $(this).toggleClass('open');
-        },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp(100);
-            $(this).toggleClass('open');
-        }
-    );
-});
-</script>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+        <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../../static/jquery/jquery.min.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
+        <!-- Custom Theme files -->
+        <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+
+        <!----font-Awesome----->
+        <link href="../../static/css/font-awesome.css" rel="stylesheet"/>
+        <!----font-Awesome----->
+
+        <script>
+            $(document).ready(function () {
+                $(".dropdown").hover(
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).slideDown(100);
+                        $(this).toggleClass('open');
+                    },
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).slideUp(100);
+                        $(this).toggleClass('open');
+                    }
+                );
+            });
+        </script>
+    </th:block>
 </head>
 <body>
+<th:block th:include="/front/common/header::nav"/>
 <!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+<div class="navbar navbar-inverse-blue navbar" th:remove="all">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
     <div class="navbar-inner">
         <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
                                                                        alt="logo"></a>
@@ -100,7 +112,7 @@ $(document).ready(function(){
       <div class="container">
           <div class="panel-success">
               <h3>Lorem & Ipsum</h3>
-              <img width="98%" src="../../static/images/wed.jpg"/>
+              <img width="98%" src="../../static/images/wed.jpg" th:src="@{/images/wed.jpg}"/>
           </div>
       </div>
 
@@ -255,43 +267,7 @@ $(document).ready(function(){
   </div>
 </div>
 
-<div class="footer">
-    	<div class="container">
-    		<div class="col-md-4 col_2">
-    			<h4>About Us</h4>
-    			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Help & Support</h4>
-    			<ul class="footer_links">
-    				<li><a href="#">24x7 Live help</a></li>
-    				<li><a href="reserve/contact.html">Contact us</a></li>
-    				<li><a href="#">Feedback</a></li>
-    				<li><a href="reserve/faq.html">FAQs</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Quick Links</h4>
-    			<ul class="footer_links">
-    				<li><a href="reserve/privacy.html">Privacy Policy</a></li>
-    				<li><a href="reserve/terms.html">Terms and Conditions</a></li>
-    				<li><a href="reserve/services.html">Services</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Social</h4>
-    			<ul class="footer_social">
-				  <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-			    </ul>
-    		</div>
-    		<div class="clearfix"> </div>
-    		<div class="copy">
-		       <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-	        </div>
-      </div>
-</div>
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
 </body>
 </html>	
