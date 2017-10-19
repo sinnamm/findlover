@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author hgh
+ */
 @Controller
 @RequestMapping("/usercenter")
 public class UserCenterController {

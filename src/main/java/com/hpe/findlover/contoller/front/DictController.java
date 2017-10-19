@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author hgh
+ */
 @RestController
 @RequestMapping("/dicts")
 public class DictController {

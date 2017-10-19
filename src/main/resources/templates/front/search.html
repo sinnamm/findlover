@@ -9,6 +9,7 @@
 <body>
 <!-- 导航栏 -->
 <th:block th:include="/front/common/header::nav"/>
+
 <div class="grid_3" style="padding: 30px 0">
     <div class="container">
         <div class="breadcrumb1">
@@ -68,10 +69,6 @@
                                     <select id="province-select" th:remove="all-but-first">
                                         <option value="-1">不限</option>
                                         <option value="山东">山东</option>
-                                        <option value="北京">北京</option>
-                                        <option value="河南">河南</option>
-                                        <option value="河北">河北</option>
-                                        <option value="湖南">湖南</option>
                                         <option value="四川">四川</option>
                                     </select>
 
@@ -115,10 +112,6 @@
                                         <option value="-1" content="职业不限">不限</option>
                                         <option value="销售">销售</option>
                                         <option value="客户服务">客户服务</option>
-                                        <option value="计算机/互联网">计算机/互联网</option>
-                                        <option value="广告/市场">广告/市场</option>
-                                        <option value="教育/科研">教育/科研</option>
-                                        <option value="医疗/护理">医疗/护理</option>
                                     </select>
                                 </div>
                             </div>
@@ -133,8 +126,6 @@
                                     <select id="search-select-6">
                                         <option value="-1" content="婚史不限">不限</option>
                                         <option value="未婚">未婚</option>
-                                        <option value="丧偶">丧偶</option>
-                                        <option value="离异">离异</option>
                                         <option value="已婚">已婚</option>
                                     </select>
                                 </div>
@@ -171,8 +162,7 @@
                                         <option value="-1" content="学历不限">不限</option>
                                         <option value="大专">大专</option>
                                         <option value="本科">本科</option>
-                                        <option value="硕士">硕士</option>
-                                        <option value="博士">博士</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -188,9 +178,6 @@
                                         <option value="-1" content="住房条件不限">不限</option>
                                         <option value="和家人同住">和家人同住</option>
                                         <option value="已购房">已购房</option>
-                                        <option value="租房">租房</option>
-                                        <option value="打算婚后购房">打算婚后购房</option>
-                                        <option value="单位宿舍">单位宿舍</option>
                                     </select>
                                 </div>
                             </div>
@@ -207,19 +194,12 @@
                                         <option value="-1">不限</option>
                                         <option value="山东">山东</option>
                                         <option value="北京">北京</option>
-                                        <option value="河南">河南</option>
-                                        <option value="河北">河北</option>
-                                        <option value="湖南">湖南</option>
                                         <option value="四川">四川</option>
                                     </select>
 
                                     <select id="city-select-bp" th:remove="all-but-first">
                                         <option value="-1">不限</option>
                                         <option value="聊城">聊城</option>
-                                        <option value="烟台">烟台</option>
-                                        <option value="青岛">青岛</option>
-                                        <option value="淄博">淄博</option>
-                                        <option value="济南">济南</option>
                                         <option value="济宁">济宁</option>
                                     </select>
                                 </div>
@@ -288,6 +268,11 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="search-submit"  class="col-sm-offset-6 col-sm-10">
+                            <input type="submit" value="搜索"  style=" margin: 10px 0 23px 0"
+                                   class="button button-3d button-caution button-pill"/>
                         </div>
                     </form>
                 </div>
@@ -450,35 +435,17 @@
                     <div class="clearfix"></div>
             </div>
         </div>
+
+
         <div class="col-md-3 match_right">
+            <!--id搜索框-->
             <div class="profile_search1">
                 <form>
                     <input type="text" class="m_1" name="ne" size="30" required="" placeholder="ID搜索"/>
                     <input type="submit" value="搜索"/>
                 </form>
             </div>
-            <section class="slider">
-                <h3>成功故事</h3>
-                <div class="flexslider">
-                    <ul class="slides">
-                        <li>
-                            <img src="../../static/images/s2.jpg" th:src="@{/images/s2.jpg}" alt=""/>
-                            <h4>Lorem &amp; Ipsum</h4>
-                            <p>It is a long established fact that a reader will be distracted by the readable</p>
-                        </li>
-                        <li>
-                            <img src="../../static/images/s1.jpg" th:src="@{/images/s1.jpg}" alt=""/>
-                            <h4>Lorem &amp; Ipsum</h4>
-                            <p>It is a long established fact that a reader will be distracted by the readable</p>
-                        </li>
-                        <li>
-                            <img src="../../static/images/s3.jpg" th:src="@{/images/s3.jpg}" alt=""/>
-                            <h4>Lorem &amp; Ipsum</h4>
-                            <p>It is a long established fact that a reader will be distracted by the readable</p>
-                        </li>
-                    </ul>
-                </div>
-            </section>
+            <!--相似结果-->
             <div class="view_profile view_profile2">
                 <h3>相似结果</h3>
                 <ul class="profile_item">

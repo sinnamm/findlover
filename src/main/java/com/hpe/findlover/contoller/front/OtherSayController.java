@@ -24,6 +24,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/***
+ * @author  gss
+ */
 @Controller
 @RequestMapping("other_says")
 public class OtherSayController {

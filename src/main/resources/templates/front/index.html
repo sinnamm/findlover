@@ -742,13 +742,13 @@
                         <p><span th:text="${session.user.age+'岁'}">20岁</span>&nbsp;&nbsp;&nbsp;
                             <span th:text="${session.user.workplace}">山东</span>&nbsp;&nbsp;&nbsp;&nbsp;
                             <span th:text="${session.user.height+'cm'}">177cm</span></p>
-                        <a href="" class="button button-highlight button-rounded button-small">完善资料</a>
+                        <a th:href="@{/usercenter}" class="button button-highlight button-rounded button-small">完善资料</a>
                     </div>
                 </div>
                 <div class="row snap-2">
                     <div class="button-group">
                         <a class="button button-rounded">上传照片</a>
-                        <a class="button button-rounded">查看私信</a>
+                        <a th:href="@{/letter}" class="button button-rounded">查看私信</a>
                         <a class="button button-rounded">牵手币充值</a>
                     </div>
                 </div>
