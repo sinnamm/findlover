@@ -18,7 +18,15 @@ $(function () {
     initHeightDropdown("dropdown-btn-4");
     initSalaryDropdown("dropdown-btn-7");
     initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp");
+    initNationalDropdown("search-select-13");
+    selectUserBasic();
+    getSearchUser();
+
 });
+/*function initDropdownSpan() {
+    //模拟操作，模拟select改变
+    $("select[id*='select']").trigger("change");
+}*/
 
 // 更新年龄的下拉列表option
 function updateAgeDropdown(dropdownBtnId) {
@@ -113,6 +121,85 @@ function updateSalaryDropdown(dropdownBtnId) {
     $("#" + dropdownBtnId).find(".dropdown-value").html(result);
 }
 
+//页面加载完成时第一次获取用户择偶条件的基本信息
+function selectUserBasic() {
+    $.ajax({
+        url: contextPath + "search/initUserPick",
+        type: "GET",
+        dataType: "JSON",
+        success: function (data) {
+            $("#sex-span").html(data.sex);
+            $("#search-select-1")
+            $("#age-span").html(data.ageLow + "-" + data.ageHigh);
 
+            if (data.workplace == "null") {
+                $("#workplace-span").html("地区不限");html
+            } else {
+                $("#workplace-span").html(data.workplace);
+            }
 
+            if(data.heightLow=="null"&&data.heightHigh!="null"){
+                $("#height-span").html(data.heightHigh+"cm以下");
+            }else if (data.heightHigh=="null"&&data.heightLow!="null"){
+                $("#height-span").html(data.heightLow+"cm以上");
+            }else if(data.heightLow!="null"&&data.heightHigh!="null"){
+                $("#height-span").html(data.heightLow+"-"+data.heightHigh);
+            }else {
+                $("#height-span").html("身高不限");
+            }
+
+            if(data.job!="null"){
+                $("#job-span").html(data.job);
+            }else {
+                $("#job-span").html("职业不限");
+            }
+
+            if (data.marryStatus !="null"){
+                $("#marry-tatus-span").html(data.marryStatus);
+            }else {
+                $("#marry-tatus-span").html("婚史不限");
+            }
+
+            if(data.salaryLow=="null"&&data.salaryHigh!="null"){
+                $("#salary-span").html(data.salaryHigh+"元以下");
+            }else if (data.salaryHigh=="null"&&data.salaryLow!="null"){
+                $("#salary-span").html(data.salaryLow+"元以上");
+            }else if(data.salaryLow!="null"&&data.salaryHigh!="null"){
+                $("#salary-span").html(data.salaryLow+"-"+data.salaryHigh);
+            }else {
+                $("#salary-span").html("月收入不限");
+            }
+
+            if (data.education !="null"){
+                $("#education-span").html(data.education);
+            }else {
+                $("#education-span").html("学历不限");
+            }
+
+            if (data.birthplace !="null"){
+                $("#birthplace-span").html(data.birthplace);
+            }else {
+                $("#birthplace-span").html("籍贯不限");
+            }
+
+        }
+    });
+}
+
+//异步获取搜索条件对应的用户
+function getSearchUser() {
+    $("#search-form-submit").click(function () {
+        alert($("#search-select-6 option:selected").val());
+        alert("form"+$("#search-form").serialize());
+        $.ajax({
+            url:contextPath+"search/getSearchUser",
+            type:"POST",
+           // data:$("#search-form").serialize(),
+            dataType:"JSON",
+            success:function (data) {
+                alert(data)
+            }
+        })
+    })
+}
 

@@ -11,6 +11,15 @@ public class Dict {
 
     private String value;
 
+
+    public Dict() {
+    }
+
+    public Dict(String type, String value) {
+        this.type = type;
+        this.value = value;
+    }
+
     /**
      * @return id
      */
@@ -51,5 +60,14 @@ public class Dict {
      */
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Dict{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }
