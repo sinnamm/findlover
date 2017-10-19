@@ -16,6 +16,18 @@ spring:
       max-idle: 2
       max-total: 2
       max-wait-millis: 6000
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 383196019@qq.com
+    password: djjfuajqwdvbbghb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 30000
+          connectiontimeout: 30000
+
 
 # Mybatis config
 mybatis:

@@ -2,6 +2,7 @@ package com.hpe.findlover.service;
 
 import com.github.pagehelper.PageInfo;
 import com.hpe.util.BaseTkMapper;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -16,70 +17,65 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	public abstract BaseTkMapper<T> getMapper();
 
 	@Override
-	public boolean insert(T pojo) throws Exception {
+	public boolean insert(T pojo) {
 		return getMapper().insert(pojo) > 0;
 	}
 
 	@Override
-	public boolean insertSelective(T pojo) throws Exception {
+	public boolean insertSelective(T pojo) {
 		return getMapper().insertSelective(pojo) > 0;
 	}
 
 	@Override
-	public boolean updateByPrimaryKey(T pojo) throws Exception {
+	public boolean updateByPrimaryKey(T pojo) {
 		return getMapper().updateByPrimaryKey(pojo) > 0;
 	}
 
 	@Override
-	public boolean updateByPrimaryKeySelective(T pojo) throws Exception {
+	public boolean updateByPrimaryKeySelective(T pojo) {
 		return getMapper().updateByPrimaryKeySelective(pojo) > 0;
 	}
 
 	@Override
-	public int delete(T key) throws Exception {
+	public int delete(T key) {
 		return getMapper().delete(key);
 	}
 
 	@Override
-	public int deleteByPrimaryKey(Object key) throws Exception {
+	public int deleteByPrimaryKey(Object key) {
 		return getMapper().deleteByPrimaryKey(key);
 	}
 
 	@Override
 	public boolean deleteByPrimaryKeyList(List<String> keys) throws Exception {
-//		if (CollectionUtils.isEmpty(keys))
-//			return false;
-//		try {
-//			keys.forEach(getMapper()::deleteByPrimaryKey);
-//			return true;
-//		} catch (Exception e) {
-//			throw e;
-//		}
+		if (CollectionUtils.isEmpty(keys))
+			return false;
+		keys.forEach(getMapper()::deleteByPrimaryKey);
 		return true;
 	}
 
 	@Override
-	public List<T> select(T pojo) throws Exception {
+	public List<T> select(T pojo) {
 		return getMapper().select(pojo);
 	}
 
 	@Override
-	public int selectCount(T record) throws Exception {
+	public int selectCount(T record) {
 		return getMapper().selectCount(record);
 	}
 
 	@Override
-	public T selectByPrimaryKey(Object key) throws Exception {
+	public T selectByPrimaryKey(Object key) {
 		return getMapper().selectByPrimaryKey(key);
 	}
 
 	@Override
-	public List<T> selectAll() throws Exception {
+	public List<T> selectAll() {
 		return getMapper().selectAll();
 	}
 
 	@Override
-	public PageInfo<T> findPageList(T pojo) throws Exception {
+	public PageInfo<T> findPageList(T pojo) {
 		return new PageInfo<>(getMapper().select(pojo));
 	}
 }

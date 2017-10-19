@@ -11,10 +11,13 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
+import javax.mail.internet.MimeMessage;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,6 +31,12 @@ public class ShiroConfig {
 	public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
 	}
+
+//	@Bean
+//	@ConfigurationProperties(prefix = "spring.mail")
+//	public MimeMessageHelper getMessageHelper(){
+//		return new MimeMessageHelper(new MimeMessage(), true);
+//	}
 
 	/**
 	 * ShiroFilterFactoryBean 处理拦截资源文件问题。

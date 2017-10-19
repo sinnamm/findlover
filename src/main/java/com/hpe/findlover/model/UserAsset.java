@@ -12,8 +12,8 @@ public class UserAsset {
     @Column(name = "vip_deadline")
     private Date vipDeadline;
 
-    @Column(name = "star_dealline")
-    private Date starDealline;
+    @Column(name = "star_deadline")
+    private Date starDeadline;
 
     private Integer asset;
 
@@ -48,17 +48,17 @@ public class UserAsset {
     }
 
     /**
-     * @return star_dealline
+     * @return star_deadline
      */
-    public Date getStarDealline() {
-        return starDealline;
+    public Date getStarDeadline() {
+        return starDeadline;
     }
 
     /**
-     * @param starDealline
+     * @param starDeadline
      */
-    public void setStarDealline(Date starDealline) {
-        this.starDealline = starDealline;
+    public void setStarDeadline(Date starDeadline) {
+        this.starDeadline = starDeadline;
     }
 
     /**

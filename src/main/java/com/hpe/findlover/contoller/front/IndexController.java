@@ -58,8 +58,8 @@ public class IndexController {
             if (userAsset.getVipDeadline()!=null){
                 vipDate = LoverUtil.getTime(userAsset.getVipDeadline());
             }
-            if (userAsset.getStarDealline()!=null){
-                starDate = LoverUtil.getTime(userAsset.getStarDealline());
+            if (userAsset.getStarDeadline()!=null){
+                starDate = LoverUtil.getTime(userAsset.getStarDeadline());
             }
             if (userAsset.getAsset()==null){
                 userAsset.setAsset(asset);

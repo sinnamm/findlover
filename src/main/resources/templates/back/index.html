@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:include="/back/common/common_resource :: resources"/>
     <title>Title</title>
 </head>
-<body>
-
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <th:block th:include="/back/common/top :: top"/>
+    <th:block th:include="/back/common/left :: left"/>
+    <div class="content-wrapper">
+        <iframe th:src="@{/admin/users/basic}" name="content" frameborder="0" style="min-height: 550px" width="100%"></iframe>
+    </div>
+</div>
 </body>
 </html>

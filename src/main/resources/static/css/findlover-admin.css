@@ -1,0 +1,25 @@
+td{
+    line-height: 50px !important;
+    vertical-align: middle;
+    padding: 5px 5px 5px 10px !important;
+}
+.search-user{
+    float: right;
+}
+.search-user>div{
+    display: inline-block;
+    max-width: 260px;
+}
+.f-inline{
+    display: inline-block;
+}
+.photo{
+    width:50px;
+    height: 50px;
+    border-radius: 2px;
+}
+.flag{
+    width:20px;
+    height: 20px;
+    margin-bottom: 5px;
+}

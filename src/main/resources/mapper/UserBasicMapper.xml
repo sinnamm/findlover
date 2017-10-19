@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hpe.findlover.mapper.UserBasicMapper" >
-  <!--<resultMap id="BaseResultMap" type="UserBasic" >-->
+<mapper namespace="com.hpe.findlover.mapper.UserBasicMapper">
+    <!--<resultMap id="BaseResultMap" type="UserBasic" >-->
     <!--&lt;!&ndash;-->
-      <!--WARNING - @mbg.generated-->
+    <!--WARNING - @mbg.generated-->
     <!--&ndash;&gt;-->
     <!--<id column="id" property="id" jdbcType="INTEGER" />-->
     <!--<result column="email" property="email" jdbcType="VARCHAR" />-->
@@ -24,19 +24,30 @@
     <!--<result column="status" property="status" jdbcType="INTEGER" />-->
     <!--<result column="code" property="code" jdbcType="VARCHAR" />-->
     <!--<result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />-->
-  <!--</resultMap>-->
-  <sql id="Base_Column_List" >
-    id, email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual,
-    education, workplace, salary, live_condition, authority, status, code, reg_time
-  </sql>
-  
-  <select id="selectByEmail" resultType="UserBasic">
-    SELECT
-    <!--<include refid="Base_Column_List"/>-->
-    id,email,password,status
-    <include refid="Base_Column_List"/>
-    FROM user_basic
-    WHERE email=#{email}
-  </select>
+    <!--</resultMap>-->
+    <sql id="Base_Column_List">
+        id, email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual,
+        education, workplace, salary, live_condition, authority, status, code, reg_time
+    </sql>
+
+    <select id="selectByEmail" resultType="UserBasic">
+        SELECT
+        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List"/>
+        FROM user_basic
+        WHERE email=#{email}
+    </select>
+
+    <select id="selectAllByIdentity" resultType="UserBasic">
+        SELECT ub.id,ub.email,ub.nickname,ub.tel,ub.photo,ub.status
+        FROM user_basic AS ub LEFT OUTER JOIN user_asset AS ua
+        ON ub.id=ua.id
+        <if test="identity == 'vip'">
+            WHERE ua.vip_deadline>=now()
+        </if>
+        <if test="identity == 'star'">
+            WHERE ua.star_deadline>=now()
+        </if>
+    </select>
 
 </mapper>

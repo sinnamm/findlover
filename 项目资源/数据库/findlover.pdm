@@ -6701,7 +6701,7 @@ end</a:Text>
 <o:Column Id="o218">
 <a:ObjectID>BFA0395F-693E-4DAD-8F35-7B3287542B4F</a:ObjectID>
 <a:Name>星级身份到期时间</a:Name>
-<a:Code>star_dealline</a:Code>
+<a:Code>star_deadline</a:Code>
 <a:CreationDate>1507533447</a:CreationDate>
 <a:Creator>Gss</a:Creator>
 <a:ModificationDate>1507533576</a:ModificationDate>

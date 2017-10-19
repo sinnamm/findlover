@@ -5,7 +5,7 @@ var height_high_limit = 210;
 
 
 // 会员、星级用户和牵手币logo toolbar
-function initToolBar(){
+function initToolBar() {
     $('img[data-toolbar="vip-toolbar"]').toolbar({
         content: '#vip-deadline',
         position: 'top',
@@ -38,10 +38,11 @@ function initDropdown() {
 }
 
 //初始化年龄下拉列表
-function initAgeDropdown(dropdownBtnId) {
+function initAgeDropdown(dropdownBtnId, age_low_value, age_high_value) {
     for (var x = age_low_limit; x <= age_high_limit; x++) {
         //[attr*=val]	匹配attr属性值含有val的元素
-        $("select[id*=age-select-]").append($("<option value='" + x + "'>" + x + "</option>"));
+        $("select[id=age-select-low]").append($("<option value='" + x + "' " + (x == age_low_value ? "selected" : "") + ">" + x + "</option>"));
+        $("select[id=age-select-high]").append($("<option value='" + x + "' " + (x == age_high_value ? "selected" : "") + ">" + x + "</option>"));
     }
     // 年龄条件控制
     $("#age-select-low").change(function () {
@@ -67,9 +68,10 @@ function initAgeDropdown(dropdownBtnId) {
 }
 
 //初始化身高的下拉列表
-function initHeightDropdown(dropdownBtnId) {
+function initHeightDropdown(dropdownBtnId, height_low_value, height_high_value) {
     for (var x = height_low_limit; x <= height_high_limit; x++) {
-        $("select[id*=height-select-]").append($("<option value='" + x + "'>" + x + "</option>"));
+        $("select[id=height-select-low]").append($("<option value='" + x + "' " + (x == height_low_value ? "selected" : "") + ">" + x + "</option>"));
+        $("select[id=height-select-high]").append($("<option value='" + x + "' " + (x == height_high_value ? "selected" : "") + ">" + x + "</option>"));
     }
     // 身高条件控制
     $("#height-select-low").change(function () {
@@ -173,7 +175,7 @@ function initNationalDropdown(nationalId) {
 function initSingleHeightDropdown(heightId) {
     $("#" + heightId).empty();
     $("#" + heightId).append($("<option value=\"请选择\">请选择</option>"));
-    for (var i = height_low_limit; i < height_high_limit+1; i++) {
+    for (var i = height_low_limit; i < height_high_limit + 1; i++) {
         $("#" + heightId).append($("<option value='" + i + "'>" + i + "</option>"));
     }
 }

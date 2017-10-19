@@ -254,10 +254,10 @@ create table success_story_reply
 create table user_asset
 (
    id                   int not null,
-   vip_deadline         datetime,
-   star_dealline        datetime,
-   asset                int,
-   cost                 double,
+   vip_deadline         datetime DEFAULT '1970-01-01 11:11:11',
+   star_deadline        datetime DEFAULT '1970-01-01 11:11:11',
+   asset                int DEFAULT 0,
+   cost                 double DEFAULT 0,
    primary key (id)
 );
 
@@ -431,127 +431,127 @@ create table writer_essay_like
 );
 
 alter table admin_role add constraint FK_fk_araid foreign key (admin_id)
-      references admin (id) on delete restrict on update restrict;
+      references admin (id) on delete CASCADE on update CASCADE ;
 
 alter table admin_role add constraint FK_fk_arrid foreign key (role_id)
-      references role (id) on delete restrict on update restrict;
+      references role (id) on delete CASCADE on update CASCADE;
 
 alter table complain add constraint FK_fk_comadminid foreign key (admin_id)
-      references admin (id) on delete restrict on update restrict;
+      references admin (id) on delete CASCADE on update CASCADE;
 
 alter table complain add constraint FK_fk_comobjid foreign key (com_obj)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table complain add constraint FK_fk_comuserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table essay add constraint FK_fk_essayadminid foreign key (admin_id)
-      references admin (id) on delete restrict on update restrict;
+      references admin (id) on delete CASCADE on update CASCADE;
 
 alter table essay add constraint FK_fk_wewid foreign key (writer_id)
-      references writer (id) on delete restrict on update restrict;
+      references writer (id) on delete CASCADE on update CASCADE;
 
 alter table follow add constraint FK_fk_uffollowid foreign key (follow_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table follow add constraint FK_fk_ufuserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table letter add constraint FK_fk_letterrecieveid foreign key (recieve_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table letter add constraint FK_fk_lettersendid foreign key (send_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table message add constraint FK_fk_msguserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table message_like add constraint FK_fk_msgrlikemid foreign key (message_id)
-      references message (id) on delete restrict on update restrict;
+      references message (id) on delete CASCADE on update CASCADE;
 
 alter table message_like add constraint FK_fk_msgruid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table message_reply add constraint FK_fk_mrmsgid foreign key (message_id)
-      references message (id) on delete restrict on update restrict;
+      references message (id) on delete CASCADE on update CASCADE;
 
 alter table message_reply add constraint FK_fk_msgruserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table notice add constraint FK_fk_noticeaaid foreign key (admin_id)
-      references admin (id) on delete restrict on update restrict;
+      references admin (id) on delete CASCADE on update CASCADE;
 
 alter table notice_user add constraint FK_fk_unnid foreign key (notice_id)
-      references notice (id) on delete restrict on update restrict;
+      references notice (id) on delete CASCADE on update CASCADE;
 
 alter table notice_user add constraint FK_fk_unuid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table role_permission add constraint FK_fk_rmmid foreign key (permission_id)
-      references permission (id) on delete restrict on update restrict;
+      references permission (id) on delete CASCADE on update CASCADE;
 
 alter table role_permission add constraint FK_fk_rmrid foreign key (role_id)
-      references role (id) on delete restrict on update restrict;
+      references role (id) on delete CASCADE on update CASCADE;
 
 alter table success_story add constraint FK_fk_ssadminid foreign key (admin_id)
-      references admin (id) on delete restrict on update restrict;
+      references admin (id) on delete CASCADE on update CASCADE;
 
 alter table success_story add constraint FK_fk_ucleftid foreign key (left_user)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table success_story add constraint FK_fk_ucrightid foreign key (right_user)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table success_story_like add constraint FK_fk_sslikesid foreign key (success_story_id)
-      references success_story (id) on delete restrict on update restrict;
+      references success_story (id) on delete CASCADE on update CASCADE;
 
 alter table success_story_like add constraint FK_fk_sslikeuid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table success_story_reply add constraint FK_fk_ssrssid foreign key (ss_id)
-      references success_story (id) on delete restrict on update restrict;
+      references success_story (id) on delete CASCADE on update CASCADE;
 
 alter table success_story_reply add constraint FK_fk_ssruserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_asset add constraint FK_fk_uaid foreign key (id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_detail add constraint FK_fk_udid foreign key (id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_label add constraint FK_fk_ullabelid foreign key (label_id)
-      references label (id) on delete restrict on update restrict;
+      references label (id) on delete CASCADE on update CASCADE;
 
 alter table user_label add constraint FK_fk_uluserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_life add constraint FK_fk_ulid foreign key (id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_photo add constraint FK_fk_ufid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_pick add constraint FK_fk_upid foreign key (id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_login_log add constraint FK_fk_uluuid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table user_status add constraint FK_fk_usid foreign key (id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table visit_trace add constraint FK_fk_uvuserid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table visit_trace add constraint FK_fk_uvvid foreign key (interviewee_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table writer_essay_like add constraint FK_fk_essay_like_userid foreign key (user_id)
-      references user_basic (id) on delete restrict on update restrict;
+      references user_basic (id) on delete CASCADE on update CASCADE;
 
 alter table writer_essay_like add constraint FK_fk_welikeeid foreign key (essay_id)
-      references essay (id) on delete restrict on update restrict;
+      references essay (id) on delete CASCADE on update CASCADE;
 
 
 create trigger Trigger_writer_essay after insert

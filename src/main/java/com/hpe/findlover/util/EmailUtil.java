@@ -39,9 +39,17 @@ public class EmailUtil {
         props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
         props.setProperty("mail.smtp.host", myEmailSMTPHost);   // 发件人的邮箱的 SMTP 服务器地址
         props.setProperty("mail.smtp.auth", "true");            // 需要请求认证
-
+        props.setProperty("mail.smtp.port", "25");            // 需要请求认证
+        props.setProperty("mail.smtp.timeout", "50000");            // 需要请求认证
+        props.setProperty("mail.smtp.connectiontimeout", "30000");            // 需要请求认证
+        Authenticator auth = new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myEmailAccount, myEmailPassword);
+            }
+        };
         //2.创建链接对象，链接到邮箱服务器
-        Session session = Session.getDefaultInstance(props);
+        Session session = Session.getDefaultInstance(props,auth);
         session.setDebug(true);//这里是为了出错的时候在控制台可以看到相信的信息
 
         //3.创建邮件对象

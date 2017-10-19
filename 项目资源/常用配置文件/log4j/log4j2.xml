@@ -50,7 +50,8 @@
         <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
         <logger name="org.springframework" level="INFO"/>
         <logger name="org.mybatis" level="INFO"/>
-        <logger name="cn.gss.dao" level="TRACE"/>
+        <logger name="com.hpe.findlover.mapper" level="TRACE"/>
+        <logger name="org.apache.ibatis" level="TRACE"/>
         <root level="all">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>

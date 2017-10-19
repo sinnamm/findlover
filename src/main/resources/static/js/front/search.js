@@ -75,9 +75,10 @@ function updateHeightDropdown(dropdownBtnId) {
 }
 
 //初始化月收入的下拉列表
-function initSalaryDropdown(dropdownBtnId) {
+function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) {
     for (var x = 0; x < salary_array.length; x++) {
-        $("select[id*=salary-select-]").append($("<option value='" + salary_array[x] + "'>" + salary_array[x] + "</option>"));
+        $("select[id=salary-select-low]").append($("<option value='" + x + "' " + (x == salary_low_value ? "selected" : "") + ">" + x + "</option>"));
+        $("select[id=salary-select-high]").append($("<option value='" + x + "' " + (x == salary_high_value ? "selected" : "") + ">" + x + "</option>"));
     }
     // 月收入条件控制
     $("#salary-select-low").change(function () {

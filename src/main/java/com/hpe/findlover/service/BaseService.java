@@ -23,7 +23,7 @@ public interface BaseService<T>{
      * @param pojo
      * @return 返回实体类
      */
-    public boolean insert(T pojo) throws Exception;
+    public boolean insert(T pojo);
 
     /**
      *
@@ -31,28 +31,28 @@ public interface BaseService<T>{
      * @param pojo
      * @return 返回实体类
      */
-    public boolean insertSelective(T pojo)throws Exception;
+    public boolean insertSelective(T pojo);
 
     /**
      * 根据主键进行更新一个实体类,更新所有字段
      * @param pojo
      * @return 修改成功状态
      */
-    public boolean updateByPrimaryKey(T pojo)throws Exception;
+    public boolean updateByPrimaryKey(T pojo);
 
     /**
      * 根据主键进行更新一个实体类,只会更新不是null的字段
      * @param pojo
      * @return
      */
-    public boolean updateByPrimaryKeySelective(T pojo)throws Exception;
+    public boolean updateByPrimaryKeySelective(T pojo);
 
     /**
      * 根据实体类中字段不为null的条件进行删除,条件全部使用=号and条件
      * @param key
      * @return
      */
-    public int delete(T key)throws Exception;
+    public int delete(T key);
 
     /**
      * 通过主键进行删除,这里最多只会删除一条数据
@@ -61,28 +61,28 @@ public interface BaseService<T>{
      * @param key
      * @return
      */
-    public int deleteByPrimaryKey(Object key)throws Exception;
+    public int deleteByPrimaryKey(Object key);
 
     /**
      * 根据主键的集合批量删除数据
      * @param keys
      * @return 是否删除成功
      */
-    public boolean deleteByPrimaryKeyList(List<String> keys)throws Exception;
+    public boolean deleteByPrimaryKeyList(List<String> keys) throws Exception;
 
     /**
      * 根据实体类不为null的字段进行查询集合,条件全部使用=号and条件
      * @param pojo
      * @return
      */
-    public List<T> select(T pojo)throws Exception;
+    public List<T> select(T pojo);
 
     /**
      * 根据实体类不为null的字段查询总数,条件全部使用=号and条件
      * @param pojo
      * @return
      */
-    public int selectCount(T pojo)throws Exception;
+    public int selectCount(T pojo);
 
     /**
      * 根据主键进行查询,必须保证结果唯一
@@ -91,19 +91,19 @@ public interface BaseService<T>{
      * @param key
      * @return
      */
-    public T selectByPrimaryKey(Object key)throws Exception;
+    public T selectByPrimaryKey(Object key);
 
     /**
      * 查询所有实体集合
      * @return
      */
-    public List<T> selectAll()throws Exception;
+    public List<T> selectAll();
 
     /**
      * 查询分页
      * @param pojo
      * @return
      */
-    public PageInfo<T> findPageList(T pojo)throws Exception;
+    public PageInfo<T> findPageList(T pojo);
 
 }

@@ -27,23 +27,25 @@ function initTabClick() {
     });
 }
 
-/*//获取Education列表对象
-function selectEducationDict() {
-    $.ajax({
-        url:contextPath+"dicts/education",
-        type:"GET",
-        dataType:"JSON",
-        async:false,
-        success:function (data,a,b) {
-            $("#education").empty();
-            $("#education").append($("<option value=\"请选择\">请选择</option>"));
-            $(data).each(function (index, element) {
-                $("#education").append($("<option value=\""+element.value+"\">"+element.value+"</option>"));
-            });
+// 获取学校信息并回填用户数据
+function initCampus(provinceSelId, campusSelId, province_value, campus_value) {
+    var $provinceSel = $("#" + provinceSelId);
+    var $campusSel = $("#" + campusSelId);
+    $provinceSel.find("option:gt(0)").remove();
+    $campusSel.find("option:gt(0)").remove();
+    $.getJSON(contextPath + "json/campus.json", function (data) {
+        for (var x = 0; x < data.length; x++) {
+            for (var province in data[x]) {
+                $provinceSel.append($('<option value="' + province + '" ' + (province === province_value ? 'selected' : '') + '>' + province + '</option>'));
+                if (province === province_value) {
+                    for (var y = 0; y < data[x].province.length; y++) {
+                        $campusSel.append($('<option value="' + data[x].province[y] + '" ' + (data[x].province[y] === campus_value ? 'selected' : '') + '>' + data[x].province[y] + '</option>'));
+                    }
+                }
+            }
         }
-    });
-}*/
-
+    })
+}
 
 //页面加载完成时第一次获取用户基本信息
 function selectUserBasic() {

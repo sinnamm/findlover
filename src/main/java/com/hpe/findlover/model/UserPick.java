@@ -2,6 +2,9 @@ package com.hpe.findlover.model;
 
 import javax.persistence.*;
 
+/**
+ * @author Gss
+ */
 @Table(name = "user_pick")
 public class UserPick {
     @Id
