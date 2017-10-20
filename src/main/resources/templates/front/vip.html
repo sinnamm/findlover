@@ -147,11 +147,15 @@
                         <div class="clearfix"></div>
                     </div>
                 </blockquote>
-                <small class="testi-meta">
-                    <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal"
-                            style="color: orangered">立即开通星级会员
-                    </button>
-                </small>
+
+                    <small class="testi-meta">
+                        <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal"
+                                style="color: orangered" >
+                            <th:block th:if="${session.user.star  == true}">续费星级会员</th:block>
+                            <th:block th:if="${session.user.star  == false}">开通星级会员</th:block>
+                        </button>
+                    </small>
+
             </div>
             <div class="col-sm-6 testi_grid list-item-1">
                 <blockquote class="testi_grid_blockquote">
@@ -162,17 +166,14 @@
                         <div class="clearfix"></div>
                     </div>
                 </blockquote>
-                <small class="testi-meta">
-                    <th:block th:if="${vip  == 'false'}">
+                <small class="testi-meta1">
+
                         <button id="modal1" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
-                                style="color: orangered">开通VIP会员
+                                style="color: orangered">
+                            <th:block th:if="${session.user.vip == false}">开通VIP会员</th:block>
+                            <th:block th:if="${session.user.vip == true}">续费VIP会员</th:block>
                         </button>
-                    </th:block>
-                    <th:block th:if="${vip  == 'true'}">
-                        <button id="modal2" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
-                                style="color: orangered">续费VIP会员
-                        </button>
-                    </th:block>
+
                 </small>
             </div>
             <div class="clearfix"></div>
@@ -188,16 +189,11 @@
                     </div>
                 </blockquote>
                 <small class="testi-meta">
-                    <th:block th:if="${vip  == 'false'}">
-                        <button id="modal3" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
-                                style="color: orangered">开通VIP会员
-                        </button>
-                    </th:block>
-                    <th:block th:if="${vip  == 'true'}">
-                        <button id="modal4" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
-                                style="color: orangered">续费VIP会员
-                        </button>
-                    </th:block>
+                    <button id="modal2" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                            style="color: orangered">
+                        <th:block th:if="${session.user.vip == false}">开通VIP会员</th:block>
+                        <th:block th:if="${session.user.vip == true}">续费VIP会员</th:block>
+                    </button>
                 </small>
             </div>
             <div class="col-sm-6 testi_grid list-item-1">
@@ -209,17 +205,12 @@
                         <div class="clearfix"></div>
                     </div>
                 </blockquote>
-                <small class="testi-meta">
-                    <th:block th:if="${vip  == 'false'}">
-                        <button id="modal5" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
-                                style="color: orangered">开通VIP会员
-                        </button>
-                    </th:block>
-                    <th:block th:if="${vip  == 'true'}">
-                        <button id="modal6" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
-                                style="color: orangered">续费VIP会员
-                        </button>
-                    </th:block>
+                <small class="testi-meta1">
+                    <button id="modal3" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                            style="color: orangered">
+                        <th:block th:if="${session.user.vip == false}">开通VIP会员</th:block>
+                        <th:block th:if="${session.user.vip == true}">续费VIP会员</th:block>
+                    </button>
                 </small>
             </div>
             <div class="clearfix"></div>
@@ -243,7 +234,7 @@
                         <div class="col-md-3">
                             <select name="starBuyWay" id="starBuyWay" class="form-control">
                                 <option value="支付宝">支付宝</option>
-                                <option value="珍爱币">珍爱币</option>
+                                <option value="牵手币">牵手币</option>
                             </select>
                         </div>
                     </div>
@@ -261,14 +252,18 @@
                             <input type="text" class="form-text" id="starBuyMoney" name="starBuyMoney" readonly>
                         </div>
                     </div>
-                </div>
-                <div style="height: 120px;text-align: center">
-                    <img th:src="@{/images/QRCode.jpg}" src="../../static/images/QRCode.jpg"
-                         style="height: 120px;text-align: center">
+                    <!--用支付宝进行付款-->
+                    <div id="moneyPayStar">
+                        <div style="height: 120px;text-align: center">
+                            <img th:src="@{/images/QRCode.jpg}" src="../../static/images/QRCode.jpg"
+                                 style="height: 120px;text-align: center">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">我已完成购买</button>
+                    <button id="starSubmit" type="button" class="btn btn-primary" data-dismiss="modal">我已完成购买
+                    </button>
                 </div>
             </form>
         </div><!-- /.modal-content -->
@@ -341,7 +336,9 @@
                 </div>
                 <div class="modal-footer" id="VIPSubmitDiv">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button id="VIPSubmit" type="button" class="btn btn-primary" data-dismiss="modal"><th:block>我已完成购买</th:block></button>
+                    <button id="VIPSubmit" type="button" class="btn btn-primary" data-dismiss="modal">
+                        我已完成购买
+                    </button>
                 </div>
             </form>
         </div><!-- /.modal-content -->

@@ -80,7 +80,7 @@ public class UserBasic {
         this.id = id;
     }
 
-    public boolean isVip() {
+    public boolean getVip() {
         return isVip;
     }
 
@@ -88,7 +88,7 @@ public class UserBasic {
         isVip = vip;
     }
 
-    public boolean isStar() {
+    public boolean getStar() {
         return isStar;
     }
 
@@ -380,6 +380,9 @@ public class UserBasic {
     public String toString() {
         return "UserBasic{" +
                 "age=" + age +
+                ", isVip=" + isVip +
+                ", isStar=" + isStar +
+                ", isAuthenticated=" + isAuthenticated +
                 ", id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

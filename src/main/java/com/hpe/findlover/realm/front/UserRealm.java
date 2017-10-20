@@ -1,6 +1,8 @@
 package com.hpe.findlover.realm.front;
 
+import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.service.front.UserAssetService;
 import com.hpe.findlover.service.front.UserService;
 import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
@@ -16,10 +18,14 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
+
 public class UserRealm extends AuthorizingRealm {
 	private Logger logger = LogManager.getLogger(UserRealm.class);
 	@Autowired
 	private UserService userService;
+	@Autowired
+	public UserAssetService userAssetService;
 
 	public UserRealm() {
 		this(new AllowAllCredentialsMatcher());
@@ -54,6 +60,17 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		if(userBasic.getStatus()==0){
 			throw  new DisabledAccountException("用户未激活");
+		}
+		UserAsset userAsset=userAssetService.selectByPrimaryKey(userBasic.getId());
+		if (userAsset==null||userAsset.getVipDeadline()==null){
+			userBasic.setVip(false);
+		}else{
+			userBasic.setVip(!userAsset.getVipDeadline().before(new Date()));
+		}
+		if (userAsset==null||userAsset.getStarDeadline()==null){
+			userBasic.setStar(false);
+		}else{
+			userBasic.setStar(!userAsset.getStarDeadline().before(new Date()));
 		}
 		logger.info("用户验证通过，把数据存入Session");
 		SecurityUtils.getSubject().getSession().setAttribute("user",userBasic);

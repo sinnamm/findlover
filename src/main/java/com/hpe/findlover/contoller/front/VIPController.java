@@ -24,22 +24,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("vip")
 public class VIPController {
-
     @Autowired
     UserAssetService userAssetService;
     private Logger logger = LogManager.getLogger(VIPController.class);
     @GetMapping
     public String vip(HttpServletRequest request)throws Exception{
-        UserBasic userBasic=(UserBasic) request.getSession().getAttribute("user");
-        UserAsset userAsset=userAssetService.selectByPrimaryKey(userBasic.getId());
-        request.setAttribute("userAsset",userAsset);
-        if (userAsset==null||userAsset.getVipDeadline()==null){
-            request.setAttribute("vip","false");
-        }else if(userAsset.getVipDeadline().before(new Date())){
-            request.setAttribute("vip","false");
-        }else{
-            request.setAttribute("vip","true");
-        }
         return "front/vip";
     }
     @PostMapping
