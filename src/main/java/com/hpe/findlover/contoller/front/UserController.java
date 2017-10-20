@@ -119,11 +119,6 @@ public class UserController {
 		}
 	}
 
-    @GetMapping("vip")
-    public String vip(){
-        return "front/vip";
-    }
-
     @GetMapping("otherSays")
     public String otherSays(){
         return "front/otherSays";

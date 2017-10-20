@@ -68,7 +68,6 @@ public class EmailUtil {
 
     /**
      * 创建一封只包含文本的简单邮件
-     *
      * @param session     和服务器交互的会话
      * @param sendMail    发件人邮箱
      * @param receiveMail 收件人邮箱

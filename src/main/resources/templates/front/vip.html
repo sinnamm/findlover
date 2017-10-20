@@ -1,145 +1,230 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org ">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>会员页面</title>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../static/jquery/jquery.min.js"></script>
-<script src="../../static/js/bootstrap.min.js"></script>
-<script src="../../static/js/front/vip.js"></script>
-<!-- Custom Theme files -->
-<link href="../../static/css/style.css" rel='stylesheet' type='text/css' />
-
-<!----font-Awesome----->
-<link href="../../static/css/font-awesome.css" rel="stylesheet"/>
-<!----font-Awesome----->
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown(100);
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp(100);
-            $(this).toggleClass('open');       
-        }
-    );
-});
-</script>
+    <title>会员页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <th:block th:include="/front/common/common_resource :: resources"/>
+    <script th:src="@{/js/front/vip.js}" src="../../static/js/front/vip.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
 </head>
 <body>
-<!-- ============================  Navigation Start =========================== --><div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->    <div class="navbar-inner">        <div class="container">            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>            <div class="pull-right">                <nav class="navbar nav_bottom" role="navigation">                    <!-- Brand and toggle get grouped for better mobile display -->                    <div class="navbar-header nav_2">                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"                                data-target="#bs-megadropdown-tabs">Menu                            <span class="sr-only">Toggle navigation</span>                            <span class="icon-bar"></span>                            <span class="icon-bar"></span>                            <span class="icon-bar"></span>                        </button>                        <a class="navbar-brand" href="#"></a>                    </div>                    <!-- Collect the nav links, forms, and other content for toggling -->                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">                        <ul class="nav navbar-nav nav_1">                            <li><a href="index.html">首页</a></li>                            <li><a href="reserve/about.html">搜索</a></li>                            <li><a href="reserve/about.html">会员</a></li>                            <li><a href="reserve/about.html">成功故事</a></li>                            <li><a href="reserve/about.html">他她说</a></li>                            <li class="dropdown">                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-envelope-o"></i><span class="caret"></span></a>                                <ul class="dropdown-menu" role="menu">                                    <li><a href="search.html">私信</a></li>                                    <li><a href="reserve/profile.html">关注</a></li>                                    <li><a href="reserve/search-id.html">访问记录</a></li>                                    <li><a href="reserve/faq.html">系统通知</a></li>                                </ul>                            </li>                            <li class="dropdown">                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-user"></i><span class="caret"></span></a>                                <ul class="dropdown-menu" role="menu">                                    <li><a href="login.html">编辑资料</a></li>                                    <li><a href="register.html">身份认证</a></li>                                    <li><a href="index.html">修改密码</a></li>                                    <li><a href="index.html">退出</a></li>                                </ul>                            </li>                            <!--<li class="dropdown">-->                                <!--<div class="navigation">-->                                    <!--<nav class="colorNav" id="user_info">-->                                        <!--<ul>-->                                            <!--<li class="green">-->                                                <!--<a href="#" class="icon-home"></a>-->                                                <!--<ul>-->                                                    <!--<li><a href="login.html">编辑资料</a></li>-->                                                    <!--<li><a href="register.html">身份认证</a></li>-->                                                    <!--<li><a href="index.html">修改密码</a></li>-->                                                    <!--<li><a href="index.html">退出</a></li>-->                                                <!--</ul>-->                                            <!--</li>-->                                        <!--</ul>-->                                    <!--</nav>-->                                <!--</div>-->                            <!--</li>-->                        </ul>                    </div><!-- /.navbar-collapse -->                </nav>            </div> <!-- end pull-right -->            <div class="clearfix"></div>        </div> <!-- end container -->    </div> <!-- end navbar-inner --></div> <!-- end navbar-inverse-blue --> <!--============================  Navigation End ============================-->
+<!-- ============================  Navigation Start =========================== -->
+<div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container"><a class="brand" href="index.html"><img th:src="@{/images/logo.png}"
+                                                                       src="../../static/images/logo.png"
+                                                                       alt="logo"></a>
+            <div class="pull-right">
+                <nav class="navbar nav_bottom" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav nav_1">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="reserve/about.html">搜索</a></li>
+                            <li><a href="reserve/about.html">会员</a></li>
+                            <li><a href="reserve/about.html">成功故事</a></li>
+                            <li><a href="reserve/about.html">他她说</a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-lg fa-envelope-o"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="search.html">私信</a></li>
+                                    <li><a href="reserve/profile.html">关注</a></li>
+                                    <li><a href="reserve/search-id.html">访问记录</a></li>
+                                    <li><a href="reserve/faq.html">系统通知</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-lg fa-user"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="login.html">编辑资料</a></li>
+                                    <li><a href="register.html">身份认证</a></li>
+                                    <li><a href="index.html">修改密码</a></li>
+                                    <li><a href="index.html">退出</a></li>
+                                </ul>
+                            </li>                            <!--<li class="dropdown">-->
+                            <!--<div class="navigation">-->
+                            <!--<nav class="colorNav" id="user_info">-->
+                            <!--<ul>-->                                            <!--<li class="green">-->
+                            <!--<a href="#" class="icon-home"></a>-->
+                            <!--<ul>-->
+                            <!--<li><a href="login.html">编辑资料</a></li>-->
+                            <!--<li><a href="register.html">身份认证</a></li>-->
+                            <!--<li><a href="index.html">修改密码</a></li>-->
+                            <!--<li><a href="index.html">退出</a></li>-->
+                            <!--</ul>-->                                            <!--</li>-->
+                            <!--</ul>-->                                    <!--</nav>-->
+                            <!--</div>-->                            <!--</li>-->                        </ul>
+                    </div><!-- /.navbar-collapse -->                </nav>
+            </div> <!-- end pull-right -->
+            <div class="clearfix"></div>
+        </div> <!-- end container -->    </div> <!-- end navbar-inner --></div> <!-- end navbar-inverse-blue -->
+<!--============================  Navigation End ============================-->
 
 <div class="grid_3x">
-  <div class="container">
-	  <div class="row text-center"><img src="../../static/images/member_img.png"></div>
-   <div class="services">
-   	<div class="page_header">
-   	 <h1>开通会员</h1>
-   	 <h3>15项特权，总有一项帮到您！</h3>
-   	 <p>1、购买12个月珍心会员的用户，即可获赠价值188元的礼物，有效期为一个月（请下载珍爱网app，登录后在“发现-礼物商店-已购买页面”查看并使用）；</p>
-	 <p>2、购买的服务仅限本账号使用，不能转移到其他账号；</p>
-	 <p>3、在使用本服务期间，若从事不恰当或不合法的行为，珍爱网保留进行调查并立即终止服务的权利；</p>
-	 <p>4、对于本服务和以上条款，在法律允许范围内珍爱网拥有最终解释权。</p>
-    </div>
-    <!--<div class="services_top">
-    	<div class="col-sm-4 item_content">
-    		<i class="fa fa-heart-o icon_4"> </i>
-    		<h4>Lorem ipsum dolor</h4>
-    		<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-    	</div>
-    	<div class="col-sm-4 item_content">
-    		<i class="fa fa-lemon-o icon_4"> </i>
-    		<h4>Lorem ipsum dolor</h4>
-    		<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-    	</div>
-    	<div class="col-sm-4 item_content">
-    		<i class="fa fa-thumbs-o-up icon_4"> </i>
-    		<h4>Lorem ipsum dolor</h4>
-    		<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-    	</div>
-    	<div class="clearfix"> </div>
-    </div>
-    <div class="services_top1">
-    	<div class="col-sm-4 item_content">
-    		<i class="fa fa-smile-o icon_4"> </i>
-    		<h4>Lorem ipsum dolor</h4>
-    		<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-    	</div>
-    	<div class="col-sm-4 item_content">
-    		<i class="fa fa-wheelchair icon_4"> </i>
-    		<h4>Lorem ipsum dolor</h4>
-    		<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-    	</div>
-    	<div class="col-sm-4 item_content">
-    		<i class="fa fa-spinner icon_4"> </i>
-    		<h4>Lorem ipsum dolor</h4>
-    		<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-    	</div>
-    	<div class="clearfix"> </div>
-    </div>	-->
+    <div class="container">
+        <div class="row text-center"><img th:src="@{/images/member_img.png}" src="../../static/images/member_img.png">
+        </div>
+        <div class="services">
+            <div class="page_header">
+                <h1>开通会员</h1>
+                <h3>4项特权，总有一项帮到您！</h3>
+                <p>1、购买12个月VIP的用户，即可获赠价值188元的礼物，有效期为一个月</p>
+                <p>2、购买的服务仅限本账号使用，不能转移到其他账号；</p>
+                <p>3、在使用本服务期间，若从事不恰当或不合法的行为，牵手网保留进行调查并立即终止服务的权利；</p>
+                <p>4、对于本服务和以上条款，在法律允许范围内牵手网拥有最终解释权。</p>
+            </div>
+            <!--<div class="services_top">
+                <div class="col-sm-4 item_content">
+                    <i class="fa fa-heart-o icon_4"> </i>
+                    <h4>Lorem ipsum dolor</h4>
+                    <p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
+                </div>
+                <div class="col-sm-4 item_content">
+                    <i class="fa fa-lemon-o icon_4"> </i>
+                    <h4>Lorem ipsum dolor</h4>
+                    <p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
+                </div>
+                <div class="col-sm-4 item_content">
+                    <i class="fa fa-thumbs-o-up icon_4"> </i>
+                    <h4>Lorem ipsum dolor</h4>
+                    <p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="services_top1">
+                <div class="col-sm-4 item_content">
+                    <i class="fa fa-smile-o icon_4"> </i>
+                    <h4>Lorem ipsum dolor</h4>
+                    <p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
+                </div>
+                <div class="col-sm-4 item_content">
+                    <i class="fa fa-wheelchair icon_4"> </i>
+                    <h4>Lorem ipsum dolor</h4>
+                    <p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
+                </div>
+                <div class="col-sm-4 item_content">
+                    <i class="fa fa-spinner icon_4"> </i>
+                    <h4>Lorem ipsum dolor</h4>
+                    <p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>	-->
 
-   </div>
-  </div>
+        </div>
+    </div>
 </div>
 <div class="about_middle1">
-	<div class="container">
+    <div class="container">
         <h2>星级会员&nbsp;&nbsp;&amp;&nbsp;&nbsp;VIP会员</h2>
-	  <div class="about_middle-grid1">
-		<div class="col-sm-6 testi_grid list-item-0">
-			<blockquote class="testi_grid_blockquote">
-				<figure class="featured-thumbnail">
-					<img src="../../static/images/a1.jpg" class="img-responsive" alt=""/>
-				</figure>
-                <div><a href="#">【开通星级用户（52.1/天）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
-				<div class="clearfix"></div>
-				</div>
-			</blockquote>
-		    <small class="testi-meta"><button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" style="color: orangered">立即开通星级会员</button></small>
-		</div>
-		<div class="col-sm-6 testi_grid list-item-1">
-			<blockquote class="testi_grid_blockquote">
-				<figure class="featured-thumbnail">
-					<img src="../../static/images/a2.jpg" class="img-responsive" alt=""/>
-				</figure>
-				<div><a href="#">【VIP会员1个月（52.1元）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
-				<div class="clearfix"></div>
-				</div>
-			</blockquote>
-			<small class="testi-meta1"><button id="modal1" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2" style="color: orangered">立即VIP会员</button></small>
-		</div>
-		<div class="clearfix"> </div>
-	  </div>
-	  <div class="about_middle-grid2">
-		<div class="col-sm-6 testi_grid list-item-0">
-			<blockquote class="testi_grid_blockquote">
-				<figure class="featured-thumbnail">
-					<img src="../../static/images/a1.jpg" class="img-responsive" alt=""/>
-				</figure>
-				<div><a href="#">【VIP会员3个月（138.1元）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
-				<div class="clearfix"></div>
-				</div>
-			</blockquote>
-		    <small class="testi-meta"><button id="modal2" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2" style="color: orangered">立即VIP会员</button></small>
-		</div>
-		<div class="col-sm-6 testi_grid list-item-1">
-			<blockquote class="testi_grid_blockquote">
-				<figure class="featured-thumbnail">
-					<img src="../../static/images/a2.jpg" class="img-responsive" alt=""/>
-				</figure>
-				<div><a href="#">【VIP会员1年（521.0元）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
-				<div class="clearfix"></div>
-				</div>
-			</blockquote>
-			<small class="testi-meta1"><button id="modal3" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2" style="color: orangered">立即VIP会员</button></small>
-		</div>
-		<div class="clearfix"> </div>
-	  </div>
-	</div>
+        <div class="about_middle-grid1">
+            <div class="col-sm-6 testi_grid list-item-0">
+                <blockquote class="testi_grid_blockquote">
+                    <figure class="featured-thumbnail">
+                        <img th:src="@{/images/a1.jpg}" src="../../static/images/a1.jpg" class="img-responsive" alt=""/>
+                    </figure>
+                    <div><a href="#">【开通星级用户（52.1/天）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </blockquote>
+                <small class="testi-meta">
+                    <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal"
+                            style="color: orangered">立即开通星级会员
+                    </button>
+                </small>
+            </div>
+            <div class="col-sm-6 testi_grid list-item-1">
+                <blockquote class="testi_grid_blockquote">
+                    <figure class="featured-thumbnail">
+                        <img th:src="@{/images/a2.jpg}" src="../../static/images/a2.jpg" class="img-responsive" alt=""/>
+                    </figure>
+                    <div><a href="#">【VIP会员1个月（52.1元）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </blockquote>
+                <small class="testi-meta">
+                    <th:block th:if="${vip  == 'false'}">
+                        <button id="modal1" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                                style="color: orangered">开通VIP会员
+                        </button>
+                    </th:block>
+                    <th:block th:if="${vip  == 'true'}">
+                        <button id="modal2" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                                style="color: orangered">续费VIP会员
+                        </button>
+                    </th:block>
+                </small>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="about_middle-grid2">
+            <div class="col-sm-6 testi_grid list-item-0">
+                <blockquote class="testi_grid_blockquote">
+                    <figure class="featured-thumbnail">
+                        <img th:src="@{/images/a1.jpg}" src="../../static/images/a1.jpg" class="img-responsive" alt=""/>
+                    </figure>
+                    <div><a href="#">【VIP会员3个月（138.1元）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </blockquote>
+                <small class="testi-meta">
+                    <th:block th:if="${vip  == 'false'}">
+                        <button id="modal3" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                                style="color: orangered">开通VIP会员
+                        </button>
+                    </th:block>
+                    <th:block th:if="${vip  == 'true'}">
+                        <button id="modal4" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                                style="color: orangered">续费VIP会员
+                        </button>
+                    </th:block>
+                </small>
+            </div>
+            <div class="col-sm-6 testi_grid list-item-1">
+                <blockquote class="testi_grid_blockquote">
+                    <figure class="featured-thumbnail">
+                        <img th:src="@{/images/a2.jpg}" src="../../static/images/a2.jpg" class="img-responsive" alt=""/>
+                    </figure>
+                    <div><a href="#">【VIP会员1年（521.0元）】您开通此项权限之后，您的信息将优先展示在与你最匹配的另一半的用户列表界面，让他（她）更快的寻找到您，让缘分来得更快更准！</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </blockquote>
+                <small class="testi-meta">
+                    <th:block th:if="${vip  == 'false'}">
+                        <button id="modal5" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                                style="color: orangered">开通VIP会员
+                        </button>
+                    </th:block>
+                    <th:block th:if="${vip  == 'true'}">
+                        <button id="modal6" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal2"
+                                style="color: orangered">续费VIP会员
+                        </button>
+                    </th:block>
+                </small>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 </div>
 
 
@@ -147,12 +232,12 @@ $(document).ready(function(){
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">请选择付款方式</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal reg-form">
+            <form class="form-horizontal reg-form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">请选择付款方式</h4>
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="starBuyWay" class="col-md-5 control-label">付费方式</label>
                         <div class="col-md-3">
@@ -173,15 +258,19 @@ $(document).ready(function(){
                     <div class="form-group">
                         <label for="starBuyMoney" class="col-md-5 control-label">总计</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-text" id="starBuyMoney" name="starBuyMoney"  readonly>
+                            <input type="text" class="form-text" id="starBuyMoney" name="starBuyMoney" readonly>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">确定购买</button>
-            </div>
+                </div>
+                <div style="height: 120px;text-align: center">
+                    <img th:src="@{/images/QRCode.jpg}" src="../../static/images/QRCode.jpg"
+                         style="height: 120px;text-align: center">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">我已完成购买</button>
+                </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
@@ -190,49 +279,74 @@ $(document).ready(function(){
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModal2Label">请选择付款方式</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal reg-form">
+            <form class="form-horizontal ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModal2Label">请选择付款方式</h4>
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="VIPBuyWay" class="col-md-5 control-label">付费方式</label>
                         <div class="col-md-3">
                             <select name="VIPBuyWay" id="VIPBuyWay" class="form-control">
                                 <option value="支付宝">支付宝</option>
-                                <option value="珍爱币">珍爱币</option>
+                                <option value="牵手币">牵手币</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="VIPBuyDay" class="col-md-5 control-label">选择购买天数</label>
-                        <div class="col-md-3">
-                            <select name="VIPBuyDay" id="VIPBuyDay" class="form-control">
-                                <option value="-1">请选择</option>
-                                <option value="1">一个月</option>
-                                <option value="3">三个月</option>
-                                <option value="12">一年</option>
-                            </select>
+                    <!--用牵手币进行付款-->
+                    <div id="loverPay">
+                        <div class="form-group">
+                            <label for="VIPBuyDay" class="col-md-5 control-label">选择购买天数</label>
+                            <div class="col-md-3">
+                                <select name="VIPBuyDay" id="VIPBuyDayLover" class="form-control">
+                                    <option value="-1">请选择</option>
+                                    <option value="1">一个月</option>
+                                    <option value="3">三个月</option>
+                                    <option value="12">一年</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="VIPBuyMoney" class="col-md-5 control-label">总计</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-text" id="VIPBuyMoneyLover" name="VIPBuyMoney" readonly>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="VIPBuyMoney" class="col-md-5 control-label">总计</label>
-                        <div class="col-md-3">
-                            <input type="text" class="form-text" id="VIPBuyMoney" name="VIPBuyMoney"  readonly>
+                    <!--用支付宝进行付款-->
+                    <div id="moneyPay">
+                        <div class="form-group">
+                            <label for="VIPBuyDay" class="col-md-5 control-label">选择购买天数</label>
+                            <div class="col-md-3">
+                                <select name="VIPBuyDay" id="VIPBuyDay" class="form-control">
+                                    <option value="-1">请选择</option>
+                                    <option value="1">一个月</option>
+                                    <option value="3">三个月</option>
+                                    <option value="12">一年</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="VIPBuyMoney" class="col-md-5 control-label">总计</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-text" id="VIPBuyMoney" name="VIPBuyMoney" readonly>
+                            </div>
+                        </div>
+                        <div style="height: 120px;text-align: center">
+                            <img th:src="@{/images/QRCode.jpg}" src="../../static/images/QRCode.jpg"
+                                 style="height: 120px;text-align: center">
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">确定购买</button>
-            </div>
+                </div>
+                <div class="modal-footer" id="VIPSubmitDiv">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="VIPSubmit" type="button" class="btn btn-primary" data-dismiss="modal"><th:block>我已完成购买</th:block></button>
+                </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
-
 
 <!--<div class="about_bottom">
 	<div class="container">
@@ -314,42 +428,45 @@ $(document).ready(function(){
 </div>-->
 
 <div class="footer">
-    	<div class="container">
-    		<div class="col-md-4 col_2">
-    			<h4>About Us</h4>
-    			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Help & Support</h4>
-    			<ul class="footer_links">
-    				<li><a href="#">24x7 Live help</a></li>
-    				<li><a href="reserve/contact.html">Contact us</a></li>
-    				<li><a href="#">Feedback</a></li>
-    				<li><a href="reserve/faq.html">FAQs</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Quick Links</h4>
-    			<ul class="footer_links">
-    				<li><a href="reserve/privacy.html">Privacy Policy</a></li>
-    				<li><a href="reserve/terms.html">Terms and Conditions</a></li>
-    				<li><a href="reserve/services.html">Services</a></li>
-    			</ul>
-    		</div>
-    		<div class="col-md-2 col_2">
-    			<h4>Social</h4>
-    			<ul class="footer_social">
-				  <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-				  <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-			    </ul>
-    		</div>
-    		<div class="clearfix"> </div>
-    		<div class="copy">
-		       <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-	        </div>
-      </div>
+    <div class="container">
+        <div class="col-md-4 col_2">
+            <h4>About Us</h4>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Help & Support</h4>
+            <ul class="footer_links">
+                <li><a href="#">24x7 Live help</a></li>
+                <li><a href="reserve/contact.html">Contact us</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="reserve/faq.html">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Quick Links</h4>
+            <ul class="footer_links">
+                <li><a href="reserve/privacy.html">Privacy Policy</a></li>
+                <li><a href="reserve/terms.html">Terms and Conditions</a></li>
+                <li><a href="reserve/services.html">Services</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2 col_2">
+            <h4>Social</h4>
+            <ul class="footer_social">
+                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
+                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="copy">
+            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
+                                                                         href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+            </p>
+        </div>
+    </div>
 </div>
 </body>
 </html>	

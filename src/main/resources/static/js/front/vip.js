@@ -3,18 +3,56 @@ $(function () {
     $("#modal1").click(function () {
         $("#VIPBuyDay").val("1")
         $("#VIPBuyMoney").val("￥52.10");
+        $("#VIPBuyDayLover").val("1")
+        $("#VIPBuyMoneyLover").val("52");
+    });
+    $("#modal2").click(function () {
+        $("#VIPBuyDay").val("1")
+        $("#VIPBuyMoney").val("￥52.10");
+        $("#VIPBuyDayLover").val("1")
+        $("#VIPBuyMoneyLover").val("52");
     });
     //点击三个月的立即开通VIP会员
-    $("#modal2").click(function () {
+    $("#modal3").click(function () {
         $("#VIPBuyDay").val("3")
         $("#VIPBuyMoney").val("￥138.52");
+        $("#VIPBuyDayLover").val("3")
+        $("#VIPBuyMoneyLover").val("138");
+    });
+    $("#modal4").click(function () {
+        $("#VIPBuyDay").val("3")
+        $("#VIPBuyMoney").val("￥138.52");
+        $("#VIPBuyDayLover").val("3")
+        $("#VIPBuyMoneyLover").val("138");
     });
     //点击一年的立即开通VIP会员
-    $("#modal3").click(function () {
+    $("#modal5").click(function () {
         $("#VIPBuyDay").val("12")
         $("#VIPBuyMoney").val("￥521.14");
+        $("#VIPBuyDayLover").val("12")
+        $("#VIPBuyMoneyLover").val("521");
     });
+    $("#modal6").click(function () {
+        $("#VIPBuyDay").val("12")
+        $("#VIPBuyMoney").val("￥521.14");
+        $("#VIPBuyDayLover").val("12")
+        $("#VIPBuyMoneyLover").val("521");
+    });
+    //切换支付宝支付和牵手币支付的div
+    $("#loverPay").hide();
+    $("#moneyPay").show();
+    $("#VIPBuyWay").change(function () {
+        if($(this).val()=="牵手币"){
+            $("#moneyPay").hide();
+            $("#loverPay").show();
+            $("#VIPSubmit").text("付款");
 
+        }else{
+            $("#loverPay").hide();
+            $("#moneyPay").show();
+            $("#VIPSubmit").text("我已完成付款");
+        }
+    });
     //给星级按天选择的下拉框添加30个选项天数
     for(var i =1;i<31;i++) {
         $("#starBuyDay").append($("<option value='" + i + "'>" + i + "</option>"));
@@ -47,5 +85,46 @@ $(function () {
                 $("#VIPBuyMoney").val("￥521.14");
                 break;
         }
+    });
+    //VIP会员选择月数后计算所需牵手币
+    $("#VIPBuyDayLover").change(function () {
+        if ($(this).val()<0) {
+            $("#VIPBuyMoneyLover").val('');
+            return;
+        }
+        switch (parseInt($(this).val())){
+            case 1:
+                $("#VIPBuyMoneyLover").val("52");
+                break;
+            case 3:
+                $("#VIPBuyMoneyLover").val("138");
+                break;
+            case 12:
+                $("#VIPBuyMoneyLover").val("521");
+                break;
+        }
+    });
+    $("#VIPSubmit").click(function(){
+        if ($("#VIPBuyWay").val()=="牵手币"){
+            var VIPBuyMoney=$("#VIPBuyMoneyLover").val();
+        }else{
+            VIPBuyMoney=$("#VIPBuyMoney").val();
+        }
+            $.ajax({
+                url:contextPath + "vip",
+                data:{
+                    VIPBuyWay:$("#VIPBuyWay").val(),
+                    VIPBuyDay:$("#VIPBuyDay").val(),
+                    VIPBuyMoney:VIPBuyMoney
+                },
+                type:"post",
+                dataType:"json",
+                success:function(data,b,c) {
+                    swal(data[1],data[0],data[1]);
+                },
+                error:function(a,b1,c1){
+                    swal(a[1],a[0],a[1]);
+                }
+            })
     });
 });
