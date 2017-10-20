@@ -20,7 +20,7 @@ public class UserBasicServiceBackImpl extends BaseServiceImpl<UserBasic> impleme
 	}
 
 	@Override
-	public List<UserBasic> selectAllByIdentity(String identity) {
-		return userBasicMapper.selectAllByIdentity(identity);
+	public List<UserBasic> selectAllByIdentity(String identity,String column,String keyword) {
+		return userBasicMapper.selectAllByIdentity(identity,column,keyword);
 	}
 }

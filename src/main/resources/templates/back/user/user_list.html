@@ -3,15 +3,11 @@
 <head>
     <th:block th:include="/back/common/common_resource :: resources"/>
     <title>Title</title>
-    <script th:src="@{/js/back/user.js}"></script>
+    <script th:src="@{/js/back/user_list.js}"></script>
     <th:block th:remove="all">
         <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
         <link rel="stylesheet" href="/static/css/font-awesome.css">
-        <link rel="stylesheet" href="/static/plugins/jquery-datatable/css/dataTables.bootstrap.css">
-        <script src="/static/plugins/jquery-datatable/js/jquery.dataTables.js"></script>
-        <script src="/static/plugins/jquery-datatable/js/dataTables.bootstrap.js"></script>
     </th:block>
-    <link th:href="@{/css/findlover-admin.css}" rel="stylesheet"/>
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
@@ -37,13 +33,14 @@
                                         <select id="basic-search-sel" class="form-control">
                                             <option value="id">ID</option>
                                             <option value="nickname">昵称</option>
+                                            <option value="email">邮箱</option>
                                         </select>
                                     </div>
                                     <div>
                                         <input type="text" id="basic-search-val" class="form-control">
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-primary dropdown-toggle"><i
+                                        <button id="user-search-btn" type="button" class="btn btn-primary dropdown-toggle" style="margin-bottom: 3px"><i
                                                 class="fa fa-search"></i>&nbsp;搜索
                                         </button>
                                     </div>
@@ -97,6 +94,37 @@
             </div>
         </section>
     </div>
+</div>
+<div class="modal fade" id="edit-user-status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="fa fa-edit"></span>
+                    <strong>修改账户状态</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label>用户ID：</label>
+                        <label id="user-id-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>账户状态：</label>
+                        <select id="user-status-edit-sel" class="form-control f-inline">
+                            <option value="1">已激活</option>
+                            <option value="0">已锁定</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="user-status-sub-btn" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 </body>
 </html>

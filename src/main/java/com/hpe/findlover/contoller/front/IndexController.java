@@ -4,7 +4,6 @@ import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.front.UserAssetService;
 import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @author sinnamm
@@ -56,10 +50,10 @@ public class IndexController {
         int vipDate=0, starDate=0,asset=0;
         if (userAsset!=null){
             if (userAsset.getVipDeadline()!=null){
-                vipDate = LoverUtil.getTime(userAsset.getVipDeadline());
+                vipDate = LoverUtil.getDiffOfHours(userAsset.getVipDeadline());
             }
             if (userAsset.getStarDeadline()!=null){
-                starDate = LoverUtil.getTime(userAsset.getStarDeadline());
+                starDate = LoverUtil.getDiffOfHours(userAsset.getStarDeadline());
             }
             if (userAsset.getAsset()==null){
                 userAsset.setAsset(asset);

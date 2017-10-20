@@ -42,11 +42,12 @@
         SELECT ub.id,ub.email,ub.nickname,ub.tel,ub.photo,ub.status
         FROM user_basic AS ub LEFT OUTER JOIN user_asset AS ua
         ON ub.id=ua.id
+        WHERE ub.${column} LIKE #{keyword}
         <if test="identity == 'vip'">
-            WHERE ua.vip_deadline>=now()
+            AND ua.vip_deadline>=now()
         </if>
         <if test="identity == 'star'">
-            WHERE ua.star_deadline>=now()
+            AND ua.star_deadline>=now()
         </if>
     </select>
 

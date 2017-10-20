@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/user_detail.js}"></script>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+    <script th:inline="javascript">
+        var userId = /*[[${param.id}]]*/'';
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">用户详细信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid">
+                                <ul id="user-tab" class="nav nav-tabs">
+                                    <li class="active">
+                                        <a id="basic" href="#basic-pane" data-toggle="tab">基本信息</a>
+                                    </li>
+                                    <li><a id="asset" href="#asset-pane" data-toggle="tab">用户资产</a></li>
+                                    <li><a id="pick" href="#pick-pane" data-toggle="tab">择偶条件</a></li>
+                                    <li><a id="detail" href="#detail-pane" data-toggle="tab">详细信息</a></li>
+                                    <li><a id="life" href="#life-pane" data-toggle="tab">工作生活</a></li>
+                                    <li><a id="status" href="#status-pane" data-toggle="tab">个人与家庭情况</a></li>
+                                </ul>
+                                <div id="user-tab-content" class="tab-content">
+                                    <div class="tab-pane fade in active" id="basic-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="asset-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pick-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="detail-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="life-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="status-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

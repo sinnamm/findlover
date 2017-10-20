@@ -11,10 +11,6 @@ public class AdminController {
 	public String index(){
 		return "back/index";
 	}
-	@GetMapping("users/basic")
-	public String userBasicList(){
-		return "back/user/user_basic_list";
-	}
 	@GetMapping("left")
 	public String left(){
 		return "back/common/left";

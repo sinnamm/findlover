@@ -6,5 +6,5 @@ import com.hpe.findlover.service.BaseService;
 import java.util.List;
 
 public interface UserBasicServiceBack extends BaseService<UserBasic> {
-	List<UserBasic> selectAllByIdentity(String identity);
+	List<UserBasic> selectAllByIdentity(String identity,String column,String keyword);
 }

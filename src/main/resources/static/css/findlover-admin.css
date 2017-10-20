@@ -12,6 +12,7 @@ td{
 }
 .f-inline{
     display: inline-block;
+    max-width: 260px;
 }
 .photo{
     width:50px;
@@ -22,4 +23,22 @@ td{
     width:20px;
     height: 20px;
     margin-bottom: 5px;
+}
+.modal-content{
+    border-radius: 10px;
+    padding: 0 15px;
+}
+#user-tab a{
+    color: #0b0b0b;
+}
+.f-content{
+    padding: 40px 15% 40px 5%;
+}
+.f-content span{
+    line-height: 50px;
+}
+.f-content .title{
+    font-weight: bold;
+    font-size: 15px;
+    color: #e55b19;
 }

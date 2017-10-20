@@ -1,6 +1,5 @@
 server:
   port: 80
-
 spring:
   thymeleaf:
     cache: false
@@ -27,6 +26,8 @@ spring:
           auth: true
           timeout: 30000
           connectiontimeout: 30000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
 
 
 # Mybatis config

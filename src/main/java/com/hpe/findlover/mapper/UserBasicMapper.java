@@ -11,5 +11,5 @@ import java.util.List;
 @Mapper
 public interface UserBasicMapper extends BaseTkMapper<UserBasic> {
 	UserBasic selectByEmail(String email);
-	List<UserBasic> selectAllByIdentity(@Param("identity") String identity);
+	List<UserBasic> selectAllByIdentity(@Param("identity") String identity,@Param("column") String column,@Param("keyword") String keyword);
 }

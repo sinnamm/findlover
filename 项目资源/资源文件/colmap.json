@@ -1,0 +1,341 @@
+[
+  {
+    "user_basic": {
+      "birthday": "生日",
+      "education": "学历",
+      "sex": "性别",
+      "salary": "月收入",
+      "liveCondition": {
+        "name": "住房条件",
+        "0": "无房",
+        "1": "有房"
+      },
+      "marryStatus": "婚姻状况",
+      "regTime": "注册时间",
+      "authority": {
+        "0": "所有用户不可见",
+        "1": "所有用户可见",
+        "2": "仅我关注的人可见",
+        "name": "资料可见性"
+      },
+      "nickname": "昵称",
+      "tel": "手机号",
+      "id": "用户ID",
+      "workplace": "工作地区",
+      "email": "邮箱",
+      "sexual": "性取向",
+      "height": "身高",
+      "status": {
+        "0": "已锁定",
+        "1": "已激活",
+        "2": "未激活",
+        "name": "账号状态"
+      }
+    }
+  },
+  {
+    "user_pick": {
+      "birthday": "籍贯",
+      "education": "学历",
+      "heightHigh": "身高上限",
+      "sex": "性别",
+      "smoke": "在意Ta吸烟吗",
+      "heightLow": "身高下限",
+      "drink": "在意Ta喝酒吗",
+      "marryStatus": "婚姻状况",
+      "ageHigh": "年龄上限",
+      "ageLow": "年龄下限",
+      "salaryHigh": "月收入上限",
+      "id": "用户ID",
+      "job": "职业",
+      "workplace": "工作地区",
+      "salaryLow": "月收入下限"
+    }
+  },
+  {
+    "user_detail": {
+      "birthplace": "籍贯",
+      "nation": "民族",
+      "graduation": "毕业院校",
+      "zodiac": "星座",
+      "weight": "体重",
+      "animal": "生肖",
+      "id": "用户ID",
+      "cardnumber": "身份证号",
+      "realname": "真实姓名",
+      "religion": "信仰",
+      "hobby": "爱好简述"
+    }
+  },
+  {
+    "user_life": {
+      "jobTime": "工作繁忙度",
+      "character": "个人性格",
+      "car": "是否有车",
+      "smoke": "是否抽烟",
+      "id": "用户ID",
+      "job": "职业",
+      "drink": "是否喝酒",
+      "jobBrief": "工作情况简述"
+    }
+  },
+  {
+    "user_status": {
+      "familyBrief": "家庭情况简述",
+      "marryTime": "想何时结婚",
+      "parentStatus": "父母状况",
+      "id": "用户ID",
+      "ldr": "是否接受异地恋",
+      "broAnd": "兄弟姐妹",
+      "loveHistory": "婚恋史"
+    }
+  },
+  {
+    "user_asset": {
+      "starDeadline": "星级身份到期时间",
+      "cost": "总消费",
+      "id": "用户ID",
+      "vipDeadline": "vip到期时间",
+      "asset": "牵手币余额"
+    }
+  },
+  {
+    "user_photo": {
+      "photo": "照片",
+      "id": "相册ID",
+      "userId": "用户ID"
+    }
+  },
+  {
+    "`label`": {
+      "name": "标签名称",
+      "id": "标签ID"
+    }
+  },
+  {
+    "user_label": {
+      "labelId": "标签ID",
+      "userId": "用户ID"
+    }
+  },
+  {
+    "letter": {
+      "sendId": "发信人",
+      "recieveId": "收信人",
+      "id": "私信ID",
+      "content": "内容",
+      "sendTime": "发送时间",
+      "status": "状态"
+    }
+  },
+  {
+    "follow": {
+      "followId": "被关注者ID",
+      "followTime": "关注时间",
+      "id": "关注ID",
+      "userId": "关注者ID"
+    }
+  },
+  {
+    "visit_trace": {
+      "visitTime": "访问时间",
+      "intervieweeId": "被访问者ID",
+      "id": "访问记录ID",
+      "userId": "访问者ID"
+    }
+  },
+  {
+    "notice": {
+      "pubTime": "发布时间",
+      "pubObj": {
+        "0": "所有用户",
+        "1": "vip",
+        "2": "星级用户",
+        "name": "发布对象",
+        "id": "用户ID"
+      },
+      "adminId": "管理员ID",
+      "id": "通知ID",
+      "title": "通知标题",
+      "content": "通知内容"
+    }
+  },
+  {
+    "notice_user": {
+      "readTime": "查看时间",
+      "userId": "用户ID",
+      "noticeId": "通知ID"
+    }
+  },
+  {
+    "success_story": {
+      "replyCount": "祝福数",
+      "successTime": "牵手时间",
+      "adminId": "审核管理员",
+      "likeCount": "点赞数",
+      "id": "成功故事ID",
+      "title": "标题",
+      "rightUser": "右手",
+      "content": "内容",
+      "leftUser": "左手",
+      "status": {
+        "0": "下架",
+        "1": "审核通过",
+        "2": "待右手审核",
+        "3": "待管理员审核",
+        "name": "状态"
+      }
+    }
+  },
+  {
+    "success_story_like": {
+      "id": "点赞ID",
+      "successStory": "成功故事ID",
+      "userId": "点赞者",
+      "likeTime": "点赞时间"
+    }
+  },
+  {
+    "success_story_reply": {
+      "replyId": "祝福时间",
+      "id": "祝福ID",
+      "userId": "祝福者",
+      "ssId": "成功故事ID",
+      "content": "内容"
+    }
+  },
+  {
+    "essay": {
+      "filename": "文章文件名",
+      "visitCount": "浏览量",
+      "pubTime": "发表时间",
+      "adminId": "审核管理员",
+      "likeCount": "点赞数",
+      "id": "文章ID",
+      "title": "标题",
+      "writerId": "作家ID",
+      "status": {
+        "0": "下架",
+        "1": "审核通过",
+        "2": "待审核",
+        "name": "状态"
+      }
+    }
+  },
+  {
+    "writer": {
+      "regTime": "注册时间",
+      "id": "作家ID",
+      "essayCount": "发表文章数",
+      "pseudonym": "作家笔名"
+    }
+  },
+  {
+    "writer_essay_like": {
+      "id": "点赞ID",
+      "userId": "点赞者",
+      "essayId": "文章ID",
+      "likeTime": "点赞时间"
+    }
+  },
+  {
+    "message": {
+      "replyCount": "评论数",
+      "pubTime": "发布时间",
+      "likeCount": "点赞数",
+      "id": "动态ID",
+      "userId": "发布用户",
+      "content": "内容"
+    }
+  },
+  {
+    "message_reply": {
+      "replyTime": "评论时间",
+      "messageId": "动态ID",
+      "id": "评论ID",
+      "userId": "评论者",
+      "content": "内容"
+    }
+  },
+  {
+    "message_like": {
+      "messageId": "动态ID",
+      "id": "点赞ID",
+      "userId": "点赞者",
+      "likeTime": "点赞时间"
+    }
+  },
+  {
+    "complain": {
+      "reason": "理由",
+      "comTime": "投诉时间",
+      "comObj": "被投诉者",
+      "adminId": "处理管理员",
+      "id": "投诉ID",
+      "userId": "投诉者",
+      "content": "内容",
+      "status": {
+        "0": "待处理",
+        "1": "忽略",
+        "2": "警告",
+        "3": "封号",
+        "name": "处理状态"
+      }
+    }
+  },
+  {
+    "dict": {
+      "id": "字典ID",
+      "type": "type",
+      "value": "value"
+    }
+  },
+  {
+    "admin": {
+      "lastLogin": "最后一次登录时间",
+      "password": "密码",
+      "flag": {
+        "0": "超级管理员",
+        "1": "普通管理员",
+        "name": "标志"
+      },
+      "createTime": "创建时间",
+      "id": "管理员ID",
+      "username": "用户名"
+    }
+  },
+  {
+    "role": {
+      "note": "备注",
+      "name": "名称",
+      "id": "角色ID"
+    }
+  },
+  {
+    "permission": {
+      "name": "名称",
+      "id": "权限ID",
+      "value": "内容"
+    }
+  },
+  {
+    "role_permission": {
+      "permissionId": "权限ID",
+      "roleId": "角色ID"
+    }
+  },
+  {
+    "admin_role": {
+      "roleId": "角色ID",
+      "adminId": "管理员ID"
+    }
+  },
+  {
+    "user_login_log": {
+      "loginTime": "登录时间",
+      "loginIp": "登录IP",
+      "id": "日志ID",
+      "userId": "用户ID"
+    }
+  }
+]
