@@ -110,7 +110,7 @@
                                     <p>请选择职业：</p>
                                     <select id="search-select-5">
                                         <option value="-1" content="职业不限">不限</option>
-                                        <option th:each="job : ${jobList}"
+                                        <option th:each="job : ${jobList}" th:selected="${userPick.job==job.value}"
                                                 th:value="${job.value}" th:text="${job.value}">销售</option>
                                     </select>
                                 </div>
@@ -125,7 +125,7 @@
                                     <p>请选择婚姻状况：</p>
                                     <select id="search-select-6">
                                         <option value="-1" content="婚史不限">不限</option>
-                                        <option th:each="marryStatus : ${marryStatusList}"
+                                        <option th:each="marryStatus : ${marryStatusList}" th:selected="${userPick.marryStatus==marryStatus.value}"
                                                 th:value="${marryStatus.value}" th:text="${marryStatus.value}">未婚</option>
                                     </select>
                                 </div>
@@ -160,7 +160,7 @@
                                     <p>请选择学历：</p>
                                     <select id="search-select-8">
                                         <option value="-1" content="学历不限">不限</option>
-                                        <option th:each="education : ${educationList}"
+                                        <option th:each="education : ${educationList}" th:selected="${userPick.education==education.value}"
                                                 th:value="${education.value}" th:text="${education.value}">未婚</option>
                                     </select>
                                 </div>

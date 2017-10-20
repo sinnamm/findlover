@@ -71,7 +71,8 @@ public class SearchController {
         model.addAttribute("religionList",religionList);
         /*2、搜索位用户信息*/
         UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
-
+        UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
+        model.addAttribute("userPick",userPick);
         /*3、广告位VIP用户信息*/
 
         return "front/search";

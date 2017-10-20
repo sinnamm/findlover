@@ -44,7 +44,7 @@ public class MethodTest {
             now.setTime(new Date());
             born.setTime(birthday);
             if (born.after(now)) {
-                throw new IllegalArgumentException("年龄不能超过当前日期");
+                throw new IllegalArgumentException("出生日期不能超过当前日期");
             }
             age = now.get(Calendar.YEAR) - born.get(Calendar.YEAR);
             int nowDayOfYear = now.get(Calendar.DAY_OF_YEAR);

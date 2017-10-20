@@ -21,12 +21,13 @@ $(function () {
     initNationalDropdown("search-select-13");
     selectUserBasic();
     getSearchUser();
+    initDropdownSpan();
 
 });
-/*function initDropdownSpan() {
+function initDropdownSpan() {
     //模拟操作，模拟select改变
     $("select[id*='select']").trigger("change");
-}*/
+}
 
 // 更新年龄的下拉列表option
 function updateAgeDropdown(dropdownBtnId) {
@@ -76,9 +77,10 @@ function updateHeightDropdown(dropdownBtnId) {
 
 //初始化月收入的下拉列表
 function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) {
+    $("select[id^=salary-select-]").find("option:gt('0')").remove();
     for (var x = 0; x < salary_array.length; x++) {
-        $("select[id=salary-select-low]").append($("<option value='" + x + "' " + (x == salary_low_value ? "selected" : "") + ">" + x + "</option>"));
-        $("select[id=salary-select-high]").append($("<option value='" + x + "' " + (x == salary_high_value ? "selected" : "") + ">" + x + "</option>"));
+        $("select[id=salary-select-low]").append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_low_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        $("select[id=salary-select-high]").append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_high_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
     }
     // 月收入条件控制
     $("#salary-select-low").change(function () {
@@ -129,16 +131,20 @@ function selectUserBasic() {
         type: "GET",
         dataType: "JSON",
         success: function (data) {
-            $("#sex-span").html(data.sex);
-            $("#search-select-1")
+            //性别
+            //年龄
             $("#age-span").html(data.ageLow + "-" + data.ageHigh);
-
+            initAgeDropdown("dropdown-btn-2",data.ageLow,data.ageHigh);
+            //地区
             if (data.workplace == "null") {
-                $("#workplace-span").html("地区不限");html
+                $("#workplace-span").html("地区不限");
+                initWorkplaceDropdown("workplace-span", "province-select", "city-select", -1, -1);
             } else {
                 $("#workplace-span").html(data.workplace);
+                var arr = data.workplace.split("-");
+                initWorkplaceDropdown("workplace-span", "province-select", "birthplace_city", arr[0], arr.length > 0 ? arr[1] : -1);
             }
-
+            //身高
             if(data.heightLow=="null"&&data.heightHigh!="null"){
                 $("#height-span").html(data.heightHigh+"cm以下");
             }else if (data.heightHigh=="null"&&data.heightLow!="null"){
@@ -148,19 +154,10 @@ function selectUserBasic() {
             }else {
                 $("#height-span").html("身高不限");
             }
-
-            if(data.job!="null"){
-                $("#job-span").html(data.job);
-            }else {
-                $("#job-span").html("职业不限");
-            }
-
-            if (data.marryStatus !="null"){
-                $("#marry-tatus-span").html(data.marryStatus);
-            }else {
-                $("#marry-tatus-span").html("婚史不限");
-            }
-
+            initHeightDropdown("height-span",data.heightLow,data.heightHigh);
+            //职业
+            //婚史
+            //月收入
             if(data.salaryLow=="null"&&data.salaryHigh!="null"){
                 $("#salary-span").html(data.salaryHigh+"元以下");
             }else if (data.salaryHigh=="null"&&data.salaryLow!="null"){
@@ -170,19 +167,17 @@ function selectUserBasic() {
             }else {
                 $("#salary-span").html("月收入不限");
             }
-
-            if (data.education !="null"){
-                $("#education-span").html(data.education);
-            }else {
-                $("#education-span").html("学历不限");
-            }
-
-            if (data.birthplace !="null"){
+            initSalaryDropdown("salary-span",data.salaryLow,data.salaryHigh)
+            //学历
+            //籍贯
+            if (data.birthplace == "null") {
                 $("#birthplace-span").html(data.birthplace);
-            }else {
+                initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", -1, -1);
+            } else {
                 $("#birthplace-span").html("籍贯不限");
+                var arr = data.birthplace.split("-");
+                initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", arr[0], arr.length > 0 ? arr[1] : -1);
             }
-
         }
     });
 }
