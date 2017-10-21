@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/label.js}"></script>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">标签管理</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid" style="margin-bottom: 15px">
+                                <div class="box-tools">
+                                    <button id="add-btn" class="button button-small button-3d button-highlight button-rounded"
+                                            style="font-size: 15px">添加新标签
+                                    </button>
+                                </div>
+                                <table id="label-table" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>标签ID</th>
+                                        <th width="65%">名称</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="label:${labels}" th:id="'tr-'+${label.id}">
+                                        <td th:text="${label.id}"></td>
+                                        <td th:text="${label.name}" class="editable"></td>
+                                        <td>
+                                            <button th:id="'del-'+${label.id}" class="button button-caution button-pill button-small">删除</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

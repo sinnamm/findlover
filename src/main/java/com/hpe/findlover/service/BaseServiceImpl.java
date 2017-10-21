@@ -22,6 +22,15 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@Override
+	public boolean existsWithPrimaryKey(Object key) {
+		return getMapper().existsWithPrimaryKey(key);
+	}
+	@Override
+	public int insertUseGeneratedKeys(T pojo) {
+		return getMapper().insertUseGeneratedKeys(pojo);
+	}
+
+	@Override
 	public boolean insertSelective(T pojo) {
 		return getMapper().insertSelective(pojo) > 0;
 	}
@@ -57,6 +66,11 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	@Override
 	public List<T> select(T pojo) {
 		return getMapper().select(pojo);
+	}
+
+	@Override
+	public T selectOne(T pojo) {
+		return getMapper().selectOne(pojo);
 	}
 
 	@Override

@@ -583,123 +583,135 @@ on writer_essay_like for each row
 update essay set like_count=like_count+1 where id=new.essay_id;
 
 -- 数据字典表数据
-INSERT INTO dict(type,value) VALUES('education','高中及以下');
-INSERT INTO dict(type,value) VALUES('education','中专');
-INSERT INTO dict(type,value) VALUES('education','大专');
-INSERT INTO dict(type,value) VALUES('education','大学本科');
-INSERT INTO dict(type,value) VALUES('education','硕士');
-INSERT INTO dict(type,value) VALUES('education','博士');
-
-INSERT INTO dict(type,value) VALUES('live_condition','和家人同住');
-INSERT INTO dict(type,value) VALUES('live_condition','已购房');
-INSERT INTO dict(type,value) VALUES('live_condition','租房');
-INSERT INTO dict(type,value) VALUES('live_condition','打算婚后购房');
-INSERT INTO dict(type,value) VALUES('live_condition','单位宿舍');
-
-INSERT INTO dict(type,value) VALUES('marry_status','未婚');
-INSERT INTO dict(type,value) VALUES('marry_status','离异');
-INSERT INTO dict(type,value) VALUES('marry_status','丧偶');
-
-INSERT INTO dict(type,value) VALUES('job','销售');
-INSERT INTO dict(type,value) VALUES('job','客户服务');
-INSERT INTO dict(type,value) VALUES('job','计算机/互联网');
-INSERT INTO dict(type,value) VALUES('job','通信/电子');
-INSERT INTO dict(type,value) VALUES('job','生产/制造');
-INSERT INTO dict(type,value) VALUES('job','物流/仓储');
-INSERT INTO dict(type,value) VALUES('job','商贸/采购');
-INSERT INTO dict(type,value) VALUES('job','人事/行政');
-INSERT INTO dict(type,value) VALUES('job','高级管理');
-INSERT INTO dict(type,value) VALUES('job','广告/市场');
-INSERT INTO dict(type,value) VALUES('job','传媒/艺术');
-INSERT INTO dict(type,value) VALUES('job','生物/制药');
-INSERT INTO dict(type,value) VALUES('job','医疗/护理');
-INSERT INTO dict(type,value) VALUES('job','金融/保险');
-INSERT INTO dict(type,value) VALUES('job','建筑/房地产');
-INSERT INTO dict(type,value) VALUES('job','咨询/顾问');
-INSERT INTO dict(type,value) VALUES('job','法律');
-INSERT INTO dict(type,value) VALUES('job','财会/审计');
-INSERT INTO dict(type,value) VALUES('job','教育/科研');
-INSERT INTO dict(type,value) VALUES('job','服务业');
-INSERT INTO dict(type,value) VALUES('job','交通运输');
-INSERT INTO dict(type,value) VALUES('job','政府机构');
-INSERT INTO dict(type,value) VALUES('job','军人/警察');
-INSERT INTO dict(type,value) VALUES('job','农林牧渔');
-INSERT INTO dict(type,value) VALUES('job','自由职业');
-INSERT INTO dict(type,value) VALUES('job','在校学生');
-INSERT INTO dict(type,value) VALUES('job','待业');
-INSERT INTO dict(type,value) VALUES('job','其他行业');
--- 鼠、牛、虎、兔、龙、蛇、马、羊、猴、鸡、狗、猪
-INSERT INTO dict(type,value) VALUES('animal','鼠');
-INSERT INTO dict(type,value) VALUES('animal','牛');
-INSERT INTO dict(type,value) VALUES('animal','虎');
-INSERT INTO dict(type,value) VALUES('animal','兔');
-INSERT INTO dict(type,value) VALUES('animal','龙');
-INSERT INTO dict(type,value) VALUES('animal','蛇');
-INSERT INTO dict(type,value) VALUES('animal','马');
-INSERT INTO dict(type,value) VALUES('animal','羊');
-INSERT INTO dict(type,value) VALUES('animal','猴');
-INSERT INTO dict(type,value) VALUES('animal','鸡');
-INSERT INTO dict(type,value) VALUES('animal','狗');
-INSERT INTO dict(type,value) VALUES('animal','猪');
-
-INSERT INTO dict(type,value) VALUES('zodiac','白羊座');
-INSERT INTO dict(type,value) VALUES('zodiac','金牛座');
-INSERT INTO dict(type,value) VALUES('zodiac','双子座');
-INSERT INTO dict(type,value) VALUES('zodiac','巨蟹座');
-INSERT INTO dict(type,value) VALUES('zodiac','狮子座');
-INSERT INTO dict(type,value) VALUES('zodiac','处女座');
-INSERT INTO dict(type,value) VALUES('zodiac','天秤座');
-INSERT INTO dict(type,value) VALUES('zodiac','天蝎座');
-INSERT INTO dict(type,value) VALUES('zodiac','射手座');
-INSERT INTO dict(type,value) VALUES('zodiac','摩羯座');
-INSERT INTO dict(type,value) VALUES('zodiac','水平座');
-INSERT INTO dict(type,value) VALUES('zodiac','双鱼座');
-
-INSERT INTO dict(type,value) VALUES('religion','不信教');
-INSERT INTO dict(type,value) VALUES('religion','佛教');
-INSERT INTO dict(type,value) VALUES('religion','道教');
-INSERT INTO dict(type,value) VALUES('religion','伊斯兰教');
-INSERT INTO dict(type,value) VALUES('religion','基督教');
-INSERT INTO dict(type,value) VALUES('religion','天主教');
-INSERT INTO dict(type,value) VALUES('religion','儒家门徒');
-INSERT INTO dict(type,value) VALUES('religion','不可知论者');
-INSERT INTO dict(type,value) VALUES('religion','其他宗教');
-
-INSERT INTO dict(type,value) VALUES('job_time','有双休');
-INSERT INTO dict(type,value) VALUES('job_time','工作忙碌');
-INSERT INTO dict(type,value) VALUES('job_time','工作清闲');
-INSERT INTO dict(type,value) VALUES('job_time','自由工作出差');
-INSERT INTO dict(type,value) VALUES('job_time','经常出差');
-
-INSERT INTO dict(type,value) VALUES('love_history','初恋还在');
-INSERT INTO dict(type,value) VALUES('love_history','谈过3次以内恋爱');
-INSERT INTO dict(type,value) VALUES('love_history','情场高手');
-
-INSERT INTO dict(type,value) VALUES('marry_time','认同闪婚');
-INSERT INTO dict(type,value) VALUES('marry_time','一年内');
-INSERT INTO dict(type,value) VALUES('marry_time','两年内');
-INSERT INTO dict(type,value) VALUES('marry_time','三年内');
-INSERT INTO dict(type,value) VALUES('marry_time','时机成熟就结婚');
-
-INSERT INTO dict(type,value) VALUES('parent_status','父母均健在');
-INSERT INTO dict(type,value) VALUES('parent_status','只有母亲健在');
-INSERT INTO dict(type,value) VALUES('parent_status','只有父亲健在');
-INSERT INTO dict(type,value) VALUES('parent_status','父母均已离世');
-
-INSERT INTO dict(type,value) VALUES('bro_and_sis','独生子女');
-INSERT INTO dict(type,value) VALUES('bro_and_sis','2');
-INSERT INTO dict(type,value) VALUES('bro_and_sis','3');
-INSERT INTO dict(type,value) VALUES('bro_and_sis','4');
-INSERT INTO dict(type,value) VALUES('bro_and_sis','更多');
-
-INSERT INTO dict(type,value) VALUES('com_reason','违法信息');
-INSERT INTO dict(type,value) VALUES('com_reason','有害信息');
-INSERT INTO dict(type,value) VALUES('com_reason','人身攻击我');
+INSERT INTO findlover.dict (type, value) VALUES ('education', '高中及以下');
+INSERT INTO findlover.dict (type, value) VALUES ('education', '中专');
+INSERT INTO findlover.dict (type, value) VALUES ('education', '大专');
+INSERT INTO findlover.dict (type, value) VALUES ('education', '大学本科');
+INSERT INTO findlover.dict (type, value) VALUES ('education', '硕士');
+INSERT INTO findlover.dict (type, value) VALUES ('education', '博士');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_status', '未婚');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_status', '离异');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_status', '丧偶');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '销售');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '客户服务');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '计算机/互联网');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '通信/电子');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '生产/制造');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '物流/仓储');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '商贸/采购');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '人事/行政');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '高级管理');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '广告/市场');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '传媒/艺术');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '生物/制药');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '医疗/护理');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '金融/保险');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '建筑/房地产');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '咨询/顾问');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '法律');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '财会/审计');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '教育/科研');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '服务业');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '交通运输');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '政府机构');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '军人/警察');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '农林牧渔');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '自由职业');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '在校学生');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '待业');
+INSERT INTO findlover.dict (type, value) VALUES ('job', '其他行业');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '鼠');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '牛');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '虎');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '兔');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '龙');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '蛇');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '马');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '羊');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '猴');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '鸡');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '狗');
+INSERT INTO findlover.dict (type, value) VALUES ('animal', '猪');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '白羊座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '金牛座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '双子座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '巨蟹座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '狮子座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '处女座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '天秤座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '天蝎座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '射手座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '摩羯座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '水平座');
+INSERT INTO findlover.dict (type, value) VALUES ('zodiac', '双鱼座');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '不信教');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '佛教');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '道教');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '伊斯兰教');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '基督教');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '天主教');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '儒家门徒');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '不可知论者');
+INSERT INTO findlover.dict (type, value) VALUES ('religion', '其他宗教');
+INSERT INTO findlover.dict (type, value) VALUES ('job_time', '有双休');
+INSERT INTO findlover.dict (type, value) VALUES ('job_time', '工作忙碌');
+INSERT INTO findlover.dict (type, value) VALUES ('job_time', '工作清闲');
+INSERT INTO findlover.dict (type, value) VALUES ('job_time', '自由工作出差');
+INSERT INTO findlover.dict (type, value) VALUES ('job_time', '经常出差');
+INSERT INTO findlover.dict (type, value) VALUES ('love_history', '初恋还在');
+INSERT INTO findlover.dict (type, value) VALUES ('love_history', '谈过3次以内恋爱');
+INSERT INTO findlover.dict (type, value) VALUES ('love_history', '情场高手');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_time', '认同闪婚');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_time', '一年内');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_time', '两年内');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_time', '三年内');
+INSERT INTO findlover.dict (type, value) VALUES ('marry_time', '时机成熟就结婚');
+INSERT INTO findlover.dict (type, value) VALUES ('parent_status', '父母均健在');
+INSERT INTO findlover.dict (type, value) VALUES ('parent_status', '只有母亲健在');
+INSERT INTO findlover.dict (type, value) VALUES ('parent_status', '只有父亲健在');
+INSERT INTO findlover.dict (type, value) VALUES ('parent_status', '父母均已离世');
+INSERT INTO findlover.dict (type, value) VALUES ('bro_and_sis', '独生子女');
+INSERT INTO findlover.dict (type, value) VALUES ('bro_and_sis', '2');
+INSERT INTO findlover.dict (type, value) VALUES ('bro_and_sis', '3');
+INSERT INTO findlover.dict (type, value) VALUES ('bro_and_sis', '4');
+INSERT INTO findlover.dict (type, value) VALUES ('bro_and_sis', '更多');
+INSERT INTO findlover.dict (type, value) VALUES ('com_reason', '违法信息');
+INSERT INTO findlover.dict (type, value) VALUES ('com_reason', '有害信息');
+INSERT INTO findlover.dict (type, value) VALUES ('com_reason', '人身攻击我');
 -- user_basic表
-INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('a@a.com', '123', 'Tom', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
-INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('gss@gss.com', '123', 'Gss', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
-INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
-INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('gss@qq.com', '202CB962AC59075B964B07152D234B70', 'gsssss', '123', '男', '1997-07-19', 'p7.jpg', '未婚', 175, '男', '大学本科', '山东-济南', 8000, 0, 1, 1, null, '2017-10-17 21:02:53');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('a@a.com', '202CB962AC59075B964B07152D234B70', 'Tom', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinna@163.com', '202CB962AC59075B964B07152D234B70', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京-朝阳区', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('sinnamm@163.com', '202CB962AC59075B964B07152D234B70', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', 168, '女', '大学本科', '北京-海淀区', 7000, 1, 1, 1, null, '2017-10-17 15:12:09');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('1472610316@qq.com', '202CB962AC59075B964B07152D234B70', 'aaa', '17865166639', '男', '2017-10-06', 'p6.jpg', '未婚', 161, '男', '大专', '山东-淄博', 111111, 0, 2, 1, '50005637-14b3-4599-8416-b1a86639dca8', '2017-10-18 11:48:14');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('b@a.com', '202CB962AC59075B964B07152D234B70', '昵称请看个性签名', '13222222222', '男', '2017-10-06', 'p6.jpg', '未婚', 164, '女', '中专', '上海-长宁区', 12345, 0, 1, 1, 'b96086a9-f706-41f0-9a3a-33fc167fb7d8', '2017-10-17 18:05:29');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('gss@gss.com', '202CB962AC59075B964B07152D234B70', 'Gss', '132', '男', '2017-10-16', 'p7.jpg', '未婚', 173, '女', '大学本科', '山东-菏泽', 5000, 1, 1, 1, null, '2017-10-17 15:12:13');
+INSERT INTO findlover.user_basic (email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual, education, workplace, salary, live_condition, authority, status, code, reg_time) VALUES ('zhangsan@163.com', '202CB962AC59075B964B07152D234B70', 'zhangsan', '16527783355', '男', '1992-12-01', 'p6.jpg', '未婚', 177, '女', '硕士', '山东-青岛', 8000, 0, 1, 1, 'a82b2b1f-ee86-43d3-a5d4-67327b91a063', '2017-10-21 15:29:56');
+-- user_detail表
+INSERT INTO findlover.user_detail (id, realname, cardnumber, birthplace, weight, animal, zodiac, nation, religion, graduation, hobby, signature) VALUES (100001, '帅帅', '4454151515', '山东-济宁', 67, '虎', '天蝎座', '汉族', '佛教', '山东-青岛科技大学', '爱睡觉，爱打撸啊撸，爱跑步', '生命诚可贵，爱情价更高');
+INSERT INTO findlover.user_detail (id, realname, cardnumber, birthplace, weight, animal, zodiac, nation, religion, graduation, hobby, signature) VALUES (100002, 'gggg', '123123', '山东-青岛', 12, null, null, null, null, null, null, null);
+INSERT INTO findlover.user_detail (id, realname, cardnumber, birthplace, weight, animal, zodiac, nation, religion, graduation, hobby, signature) VALUES (100007, '张三', '452127199903142713', '安徽-亳州', 66, '虎', '双子座', '蒙古族', '佛教', '广东-广州大学', '张三张三张三', '张三张三张三张三');
+-- user_pick表
+INSERT INTO findlover.user_pick (id, sex, age_low, age_high, workplace, birthplace, marry_status, education, salary_low, salary_high, height_low, height_high, job, drink, smoke) VALUES (100001, '女', 18, 33, '山东-青岛', '山东-菏泽', '未婚', '硕士', 3000, 5000, 185, 195, '客户服务', 0, 0);
+INSERT INTO findlover.user_pick (id, sex, age_low, age_high, workplace, birthplace, marry_status, education, salary_low, salary_high, height_low, height_high, job, drink, smoke) VALUES (100002, '女', 20, 25, '北京-东城区', '', '未婚', '大学本科', 3000, 5000, 165, 190, '', null, null);
+INSERT INTO findlover.user_pick (id, sex, age_low, age_high, workplace, birthplace, marry_status, education, salary_low, salary_high, height_low, height_high, job, drink, smoke) VALUES (100007, '女', 18, 33, '河南-许昌', '', '离异', '大专', 3000, 8000, 167, 187, '通信/电子', 1, -1);
+-- user_asset表
+INSERT INTO findlover.user_asset (id, vip_deadline, star_deadline, asset, cost) VALUES (100000, '2017-12-10 16:55:21', '2017-12-29 16:56:16', 100, 0);
+INSERT INTO findlover.user_asset (id, vip_deadline, star_deadline, asset, cost) VALUES (100002, '2017-12-10 16:55:21', '2017-11-17 16:55:30', 0, 0);
+INSERT INTO findlover.user_asset (id, vip_deadline, star_deadline, asset, cost) VALUES (100003, '2017-10-20 16:56:00', '2017-12-09 20:21:23', 11, 0);
+INSERT INTO findlover.user_asset (id, vip_deadline, star_deadline, asset, cost) VALUES (100005, '2020-04-29 16:55:21', '2017-12-31 16:56:35', 948, 3490.8399999999997);
+-- user_life表
+INSERT INTO findlover.user_life (id, smoke, drink, car, job, job_time, `character`, job_brief) VALUES (100002, 0, 1, 0, '服务业', '工作忙碌', '阳光开朗', '轻松愉快');
+INSERT INTO findlover.user_life (id, smoke, drink, car, job, job_time, `character`, job_brief) VALUES (100007, 0, 1, 1, '物流/仓储', '工作清闲', '张三张三张三张三张三', '张三张三张三张三张三张三');
+-- user_status表
+INSERT INTO findlover.user_status (id, love_history, marry_time, ldr, parent_status, bro_and_sis, family_brief) VALUES (100001, '情场高手', '三年内', 0, '父母均健在', '2', '家庭美满幸福');
+INSERT INTO findlover.user_status (id, love_history, marry_time, ldr, parent_status, bro_and_sis, family_brief) VALUES (100007, '初恋还在', '一年内', 0, '只有母亲健在', '4', '张三张三张三张三张三张三张三');
+-- label表
+INSERT INTO findlover.label (name) VALUES ('高收入');
+INSERT INTO findlover.label (name) VALUES ('高学历');
+INSERT INTO findlover.label (name) VALUES ('有车一族');
+INSERT INTO findlover.label (name) VALUES ('有房一族');
+INSERT INTO findlover.label (name) VALUES ('公务员');
 -- success_story表
 INSERT INTO findlover.success_story (id, left_user, right_user, title, content, success_time, photo, like_count, reply_count, status, admin_id) VALUES (1, 1, 2, '我们的恋爱历程', '
           <h3 style="margin: 30px">我们的恋爱历程</h3>
@@ -714,9 +726,5 @@ INSERT INTO findlover.success_story (id, left_user, right_user, title, content, 
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们俩年纪都不大，想要再谈几年，双方家庭都比较传统，结了婚就会被催着要小孩，会有各种约束，现在的恋爱状态彼此都很自由很享受，还暂时不想改变。等时间到了，也就会结婚了。</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很感恩珍爱网，愿意分享自己的故事也是基于对珍爱网的信任和感谢，人海茫茫遇到一个合适的人不容易，很多人蹉跎中错过了很多，我庆幸自己迈出了这一步。同时也很感谢红娘朱老师，教给了我很多东西，甚至拿自己跟先生的一些事例来告诉我爱情里和婚姻里的处事之道，真的很贴心。</p>
       ', '2017-10-17 15:15:53', 'wed.jpg', 1, 1, 1, null);
-
-INSERT INTO `findlover`.`user_basic`
-(`id`, `email`, `password`, `nickname`, `tel`, `sex`, `birthday`, `photo`, `marry_status`, `height`, `sexual`, `education`, `workplace`, `salary`, `live_condition`, `authority`, `status`, `code`, `reg_time`)
-VALUES ('3', 'sinna@163.com', '123', 'sinnamm', '123', '女', '1996-08-01', 'p6.jpg', '未婚', '168', '女', '大学本科', '北京', '7000.00', '1', '1', '1', NULL, '2017-10-17 15:12:09');
 
 commit;

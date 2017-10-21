@@ -40,29 +40,32 @@
                                         <input type="text" id="basic-search-val" class="form-control">
                                     </div>
                                     <div>
-                                        <button id="user-search-btn" type="button" class="btn btn-primary dropdown-toggle" style="margin-bottom: 3px"><i
+                                        <button id="user-search-btn" type="button"
+                                                class="btn btn-primary dropdown-toggle" style="margin-bottom: 3px"><i
                                                 class="fa fa-search"></i>&nbsp;搜索
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <table id="user-basic-table" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th>头像</th>
-                                    <th>ID</th>
-                                    <th>昵称</th>
-                                    <th>注册邮箱</th>
-                                    <th>手机号</th>
-                                    <th>身份认证</th>
-                                    <th>状态</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
+                                <table id="user-basic-table" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>头像</th>
+                                        <th>ID</th>
+                                        <th>昵称</th>
+                                        <th>注册邮箱</th>
+                                        <th>手机号</th>
+                                        <th>身份认证</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div id="pagetool">
                                 <ul class="pagination">
                                     <li class="head"><a href="#">首页</a></li>
@@ -82,10 +85,12 @@
                                     <li class="tail"><a href="#">尾页</a></li>
                                 </ul>
                                 <div style="float: right;margin: 28px;font-size: 15px;font-weight: 400;color: #666666;">
-                                    每页显示
+                                    共
+                                    <span id="total"></span>
+                                    条数据，每页显示
                                     <select id="pageSize-sel">
                                     </select>
-                                    条数据
+                                    条
                                 </div>
                             </div>
                         </div>
@@ -95,7 +100,8 @@
         </section>
     </div>
 </div>
-<div class="modal fade" id="edit-user-status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-user-status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

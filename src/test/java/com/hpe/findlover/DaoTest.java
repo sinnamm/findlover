@@ -1,6 +1,8 @@
 package com.hpe.findlover;
 
+import com.hpe.findlover.mapper.LabelMapper;
 import com.hpe.findlover.mapper.UserBasicMapper;
+import com.hpe.findlover.model.Label;
 import com.hpe.findlover.util.MD5Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,8 @@ public class DaoTest {
 	private DataSource dataSource;
 	@Autowired
 	private UserBasicMapper userBasicMapper;
+	@Autowired
+	private LabelMapper labelMapper;
 	@Test
 	public void getDatasource() {
 		System.out.println(dataSource.getClass());
@@ -29,6 +33,9 @@ public class DaoTest {
 	}
 	@Test
 	public void testMapper(){
-		System.err.println(userBasicMapper.selectByEmail("a@a"));
+		Label label = new Label();
+		label.setName("测试1");
+		System.err.println(labelMapper.insert(label));
+		System.err.println("label Id:"+label.getId());
 	}
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hpe.findlover.model.Label;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserDetail;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,15 +36,17 @@ public class UserControllerBack {
 	private final UserLifeServiceBack userLifeServiceBack;
 	private final UserStatusServiceBack userStatusServiceBack;
 	private final UserPickServiceBack userPickServiceBack;
+	private final LabelServiceBack labelServiceBack;
 
 	@Autowired
-	public UserControllerBack(UserBasicServiceBack userBasicServiceBack, UserAssetServiceBack userAssetServiceBack, UserDetailServiceBack userDetailServiceBack, UserLifeServiceBack userLifeServiceBack, UserStatusServiceBack userStatusServiceBack, UserPickServiceBack userPickServiceBack) {
+	public UserControllerBack(UserBasicServiceBack userBasicServiceBack, UserAssetServiceBack userAssetServiceBack, UserDetailServiceBack userDetailServiceBack, UserLifeServiceBack userLifeServiceBack, UserStatusServiceBack userStatusServiceBack, UserPickServiceBack userPickServiceBack,LabelServiceBack labelServiceBack) {
 		this.userBasicServiceBack = userBasicServiceBack;
 		this.userAssetServiceBack = userAssetServiceBack;
 		this.userDetailServiceBack = userDetailServiceBack;
 		this.userLifeServiceBack = userLifeServiceBack;
 		this.userStatusServiceBack = userStatusServiceBack;
 		this.userPickServiceBack = userPickServiceBack;
+		this.labelServiceBack = labelServiceBack;
 	}
 
 	@GetMapping("basic")
@@ -75,13 +79,27 @@ public class UserControllerBack {
 		declaredField.setAccessible(true);
 		return ((BaseService) declaredField.get(this)).selectByPrimaryKey(id);
 	}
-	@GetMapping("detail")
-	public String userDetail(){
+
+	@GetMapping("details/{id}")
+	public String userDetail(@ModelAttribute @PathVariable int id) {
 		return "back/user/user_detail";
 	}
+
+	@GetMapping("detail")
+	public String userDetailPre() {
+		return "back/user/user_detail_pre";
+	}
+
 	@GetMapping("list")
-	public String userList(){
+	public String userList() {
 		return "back/user/user_list";
+	}
+
+
+	@GetMapping("label")
+	public String labelList(Model model) {
+		model.addAttribute("labels", labelServiceBack.selectAll());
+		return "back/user/label";
 	}
 
 	@PutMapping("basic/{id}")
@@ -89,5 +107,38 @@ public class UserControllerBack {
 	public boolean updateUser(@PathVariable int id, UserBasic userBasic) {
 		userBasic.setId(id);
 		return userBasicServiceBack.updateByPrimaryKeySelective(userBasic);
+	}
+
+	@PostMapping("label")
+	@ResponseBody
+	public int addLabel(Label label){
+		if(labelServiceBack.insertUseGeneratedKeys(label) > 0) {
+			return label.getId();
+		}else{
+			return 0;
+		}
+	}
+
+	@PostMapping("label/exists")
+	@ResponseBody
+	public boolean selectLabel(@RequestParam String name) {
+		Label label = new Label();
+		label.setName(name);
+		boolean result = labelServiceBack.selectOne(label) != null;
+		logger.debug("名称为“"+name+"”的标签是否存在："+result);
+		return result;
+	}
+
+	@DeleteMapping("label/{id}")
+	@ResponseBody
+	public boolean deleteLabel(@PathVariable int id){
+		return labelServiceBack.deleteByPrimaryKey(id) > 0;
+	}
+
+	@PutMapping("label/{id}")
+	@ResponseBody
+	public boolean updateLabel(@PathVariable int id, Label label) {
+		label.setId(id);
+		return labelServiceBack.updateByPrimaryKey(label);
 	}
 }

@@ -1,7 +1,18 @@
 td{
+    padding: 5px 5px 5px 10px !important;
+}
+#user-basic-table td{
     line-height: 50px !important;
     vertical-align: middle;
-    padding: 5px 5px 5px 10px !important;
+}
+#label-table{
+    width:60%;
+}
+#label-table td{
+    line-height: 25px !important;
+}
+.box-body .box-tools{
+    margin-bottom: 20px;
 }
 .search-user{
     float: right;

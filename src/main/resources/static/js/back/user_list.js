@@ -46,10 +46,10 @@ function loadData() {
                 } else if (user.status === 2) {
                     tr.append($('<td><button class="btn btn-sm btn-warning"><i class="fa fa-exclamation"></i>&nbsp;未激活</button></td>'));
                 }
-                tr.append($('<td><a class="btn btn-sm btn-info" href="' + contextPath + 'admin/user/detail?id=' + user.id + '"><i class="fa fa-edit"></i>&nbsp;查看详情</a></td>'));
+                tr.append($('<td><a class="btn btn-sm btn-info" href="' + contextPath + 'admin/user/details/' + user.id + '"><i class="fa fa-edit"></i>&nbsp;查看详情</a></td>'));
                 $userBasicTBody.append(tr);
             }
-            setPage(data.pageNum, data.pages, "goPage");
+            setPage(data.pageNum,data.total, data.pages, "goPage");
             initEditUserStatusBtn();
         }, "json");
 }

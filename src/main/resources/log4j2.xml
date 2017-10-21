@@ -51,7 +51,7 @@
         <!--<logger name="org.springframework" level="INFO"/>-->
         <!--<logger name="org.mybatis" level="INFO"/>-->
         <!--<logger name="org.apache.shiro" level="INFO"/>-->
-        <logger name="com.hpe.findlover.mapper" level="TRACE"/>
+        <logger name="com.hpe.findlover" level="ALL"/>
         <!--<logger name="org.apache.ibatis" level="TRACE"/>-->
         <root level="info">
             <appender-ref ref="Console"/>
