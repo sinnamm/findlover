@@ -8,6 +8,8 @@ import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
 import com.hpe.findlover.service.front.DictService;
 import com.hpe.findlover.service.front.UserPickService;
+import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +38,8 @@ public class SearchController {
 
     @Autowired
     private DictService dictService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private UserPickService userPickService;
 
@@ -74,6 +80,26 @@ public class SearchController {
         UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
         model.addAttribute("userPick",userPick);
         /*3、广告位VIP用户信息*/
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        String dateStr = dateFormat.format(date);
+        List<UserBasic> userBasicStarList = userService.selectStarUser(dateStr,userPick.getSex(),"%"+userPick.getWorkplace().substring(0,2)+"%");
+        List<UserBasic> userBasicStarPick = null;
+       //如果用户数大于4则随机选四个用户显示
+        if(userBasicStarList.size()>4){
+            int[] nums = LoverUtil.getRandoms(0,userBasicStarList.size(),4);
+            for (int i=0;i<nums.length;i++){
+                userBasicStarPick.add(userBasicStarList.get(nums[i]));
+            }
+        }else {
+            userBasicStarPick=userBasicStarList;
+        }
+        for (UserBasic userbasic :
+                userBasicStarPick) {
+            userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
+        }
+        logger.info("userBasicStarPick....."+userBasicStarPick);
+        model.addAttribute("userBasicStarPick",userBasicStarPick);
 
         return "front/search";
     }
@@ -92,8 +118,7 @@ public class SearchController {
     @PostMapping("/getSearchUser")
     @ResponseBody
     public String getSearchUser(Search search){
-
-        System.out.println("search......"+search.toString());
+      logger.info("search......"+search.toString());
 
         //分页插件，使用分页查询,传入页码和每页数量
        // PageHelper.startPage(pageNum,5);

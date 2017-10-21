@@ -6,12 +6,50 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public final class LoverUtil {
 	private static Logger logger = LogManager.getLogger(LoverUtil.class);
+
+	/**
+	 * 根据min和max随机生成一个范围在[min,max]的随机数，包括min和max
+	 * @param min
+	 * @param max
+	 * @return int
+	 */
+	public  static  int getRandom(int min, int max){
+		Random random = new Random();
+		return random.nextInt( max - min + 1 ) + min;
+	}
+
+	/**
+	 * 根据min和max随机生成count个不重复的随机数组，用户随机选取用户显示
+	 * @param min 随机数的范围最小值，一般是0开始
+	 * @param max 随机数范围最大值，一般传入查询到的集合的长度
+	 * @param count 需要随机数的个数
+	 * @return int[] 返回的随机数数组
+	 */
+	public static int[] getRandoms(int min, int max, int count){
+		int[] randoms = new int[count];
+		List<Integer> listRandom = new ArrayList<Integer>();
+
+		if( count > ( max - min + 1 )){
+			return null;
+		}
+		// 将所有的可能出现的数字放进候选list
+		for(int i = min; i <= max; i++){
+			listRandom.add(i);
+		}
+		// 从候选list中取出放入数组，已经被选中的就从这个list中移除
+		for(int i = 0; i < count; i++){
+			int index = getRandom(0, listRandom.size()-1);
+			randoms[i] = listRandom.get(index);
+			listRandom.remove(index);
+		}
+
+		return randoms;
+	}
 
 	/**
 	 * @Author sinnamm

@@ -10,6 +10,7 @@ import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,6 +33,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 		return userBasicMapper.selectByEmail(email);
 	}
 
+	@Override
+	public List<UserBasic> selectStarUser(String date,String sexual,String workspace) {
+		return userBasicMapper.selectStarUser(date,sexual,workspace);
+	}
 
 
 }

@@ -1,6 +1,10 @@
 package com.hpe.findlover.contoller.front;
 
+import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.UserPick;
+import com.hpe.findlover.service.front.UserAssetService;
+import com.hpe.findlover.service.front.UserPickService;
 import com.hpe.findlover.service.front.UserService;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.EmailUtil;
@@ -37,6 +41,8 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	UserPickService userPickService;
 
 
 	@GetMapping("login")
@@ -67,22 +73,48 @@ public class UserController {
 		user.setCode(uuid);
 		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
 		user.setAuthority(1);
-		user.setStatus(0);
+		//暂时将状态码设置为1
+		user.setStatus(1);
 		user.setLiveCondition(0);
 		user.setPhoto("p6.jpg");
 		user.setRegTime(new Date());
 //		发送邮件
-		String url= LoverUtil.getBasePath(request)+"/"+"active?email="+user.getEmail()+"&code="+uuid;
-		EmailUtil.sendEmailByWeb(user.getEmail(),url);
-
+//		String url= LoverUtil.getBasePath(request)+"/"+"active?email="+user.getEmail()+"&code="+uuid;
+	//	EmailUtil.sendEmailByWeb(user.getEmail(),url);
 		//将用户存放在数据库中
 		if (userService.insert(user)){
-			return "redirect:login";
+			UserBasic userBasic = userService.selectByEmail(user.getEmail());
+			//用户注册成功之后，生成默认的择偶条件
+			UserPick userPick = new UserPick();
+			userPick.setId(userBasic.getId());
+			userPick.setSex(userBasic.getSexual());
+			userPick.setAgeLow(userBasic.getAge()-3);
+			userPick.setAgeHigh(userBasic.getAge()+3);
+			userPick.setWorkplace(userBasic.getWorkplace());
+			userPick.setMarryStatus("未婚");
+			userPick.setHeightLow(userBasic.getHeight()-10);
+			userPick.setHeightHigh(userBasic.getHeight()+10);
+			if(userPickService.insertSelective(userPick)){
+				return "redirect:login";
+			}else {
+				return "redirect:register";
+			}
+
 		}else{
 			return "redirect:register";
 		}
 	}
 
+	@RequestMapping("checkEmail")
+	@ResponseBody
+	public String checkEmail(@RequestParam("email")String email){
+		UserBasic userBasic = userService.selectByEmail(email);
+		if(userBasic!=null){
+			return "该邮箱已被注册";
+		}else {
+			return "ok";
+		}
+	}
 	@PostMapping("login")
 	public String login(HttpServletRequest request,UserBasic user, RedirectAttributes redirectAttributes) {
 		if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {

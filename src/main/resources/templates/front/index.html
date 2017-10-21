@@ -723,10 +723,10 @@
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
                         <img th:if="${starDate==0}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
 
-                        <img th:if="${userAsset.asset>0}" th:src="@{/images/coin.jpg}" src="../../static/images/coin.jpg"
+                        <img th:if="${asset>0}" th:src="@{/images/coin.jpg}" src="../../static/images/coin.jpg"
                              data-toolbar="asset-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:if="${userAsset.asset==0}" th:src="@{/images/coin-grey.png}" class="snap-flag" />
+                        <img th:if="${asset==0}" th:src="@{/images/coin-grey.png}" class="snap-flag" />
                         <div id="vip-deadline" class="hidden">
                             <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
                             th:text="${'vip剩余时间：'+ vipDate + '天'}"></a>
@@ -737,7 +737,7 @@
                         </div>
                         <div id="user-asset" class="hidden">
                             <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
-                               th:text="${'您所剩的牵手币：'+ userAsset.asset + '个'}"></a>
+                               th:text="${'您所剩的牵手币：'+ asset + '个'}"></a>
                         </div>
                         <p th:text="${'ID:'+session.user.id}">ID:10000001</p>
                         <p><span th:text="${session.user.age+'岁'}">20岁</span>&nbsp;&nbsp;&nbsp;

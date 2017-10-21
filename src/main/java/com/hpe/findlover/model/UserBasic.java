@@ -13,6 +13,10 @@ public class UserBasic {
     private boolean isStar;
     @Transient
     private boolean isAuthenticated;
+    @Transient
+    private UserDetail userDetail;
+    @Transient
+    private UserAsset userAsset;
     //----------------以上为自己添加的属性，数据库中不存在--------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -374,6 +378,30 @@ public class UserBasic {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public boolean isVip() {
+        return isVip;
+    }
+
+    public boolean isStar() {
+        return isStar;
+    }
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public UserAsset getUserAsset() {
+        return userAsset;
+    }
+
+    public void setUserAsset(UserAsset userAsset) {
+        this.userAsset = userAsset;
     }
 
     @Override

@@ -14,7 +14,8 @@ function niceValidator() {
             // 使用正则表达式定义规则
             mobile: [/^1[3-9]\d{9}$/, "请填写有效的手机号"],
             password: [/^[\S]{3,16}$/, "请填写3-16位字符，不能包含空格"],
-            chinese: [/^[\u4E00-\u9FA5A-Za-z0-9_]+$/, "昵称不能包含特殊字符"]
+            chinese: [/^[\u4E00-\u9FA5A-Za-z0-9_]+$/, "昵称不能包含特殊字符"],
+
         },
         fields: {
             'nickname': 'required;chinese;length(3~16)',
@@ -27,7 +28,7 @@ function niceValidator() {
             'height': 'required;range(100~249)',
             'salary': 'required;range(1001~249000)',
             'tel': 'required;mobile',
-            'email': 'required;email',
+            'email': 'required;email;remote[checkEmail, email]',
             'password': '密码:required;password',
             'confpassword': 'required;match(password)'
         },

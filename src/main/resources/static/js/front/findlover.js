@@ -39,6 +39,7 @@ function initDropdown() {
 
 //初始化年龄下拉列表
 function initAgeDropdown(dropdownBtnId, age_low_value, age_high_value) {
+    $("select[id^=age-select-]").find("option:gt('0')").remove();
     for (var x = age_low_limit; x <= age_high_limit; x++) {
         //[attr*=val]	匹配attr属性值含有val的元素
         $("select[id=age-select-low]").append($("<option value='" + x + "' " + (x == age_low_value ? "selected" : "") + ">" + x + "</option>"));
@@ -69,6 +70,7 @@ function initAgeDropdown(dropdownBtnId, age_low_value, age_high_value) {
 
 //初始化身高的下拉列表
 function initHeightDropdown(dropdownBtnId, height_low_value, height_high_value) {
+    $("select[id^=height-select-]").find("option:gt('0')").remove();
     for (var x = height_low_limit; x <= height_high_limit; x++) {
         $("select[id=height-select-low]").append($("<option value='" + x + "' " + (x == height_low_value ? "selected" : "") + ">" + x + "</option>"));
         $("select[id=height-select-high]").append($("<option value='" + x + "' " + (x == height_high_value ? "selected" : "") + ">" + x + "</option>"));
@@ -164,6 +166,7 @@ function updateWorkplaceDropdown(spanId, provinceId, cityId) {
 
 //初始化民族下拉列表
 function initNationalDropdown(nationalId) {
+    $("#" + nationalId).find("option:gt('0')").remove();
     $.getJSON(contextPath + "json/nations.json", function (data) {
         for (var x = 0; x < data.length; x++) {
             $("#" + nationalId).append($("<option value='" + data[x].name + "'>" + data[x].name + "</option>"));

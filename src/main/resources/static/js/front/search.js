@@ -13,15 +13,18 @@ $(function () {
             $("#dropdown-btn-" + this.id.split("-")[2]).find(".dropdown-value").html(this.value == "-1" ? $(this).find("option:selected").attr("content") : this.value);
         })
     });
-    initAgeDropdown("dropdown-btn-2");
-    initWorkplaceDropdown("workplace-span", "province-select", "city-select");
-    initHeightDropdown("dropdown-btn-4");
-    initSalaryDropdown("dropdown-btn-7");
-    initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp");
-    initNationalDropdown("search-select-13");
+    //initAgeDropdown("dropdown-btn-2");
+    //initWorkplaceDropdown("workplace-span", "province-select", "city-select");
+    //initHeightDropdown("dropdown-btn-4");
+    //initSalaryDropdown("dropdown-btn-7");
+   // initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp");
+    //初始化搜索下拉框，完成根据userpick表的赋值
     selectUserBasic();
-    getSearchUser();
+    initNationalDropdown("search-select-13");
+    //根据下拉框选中的值，更新显示的span信息
     initDropdownSpan();
+    //根据搜索条件搜索用户
+    getSearchUser();
 
 });
 function initDropdownSpan() {
@@ -140,9 +143,9 @@ function selectUserBasic() {
                 $("#workplace-span").html("地区不限");
                 initWorkplaceDropdown("workplace-span", "province-select", "city-select", -1, -1);
             } else {
-                $("#workplace-span").html(data.workplace);
+               $("#workplace-span").html(data.workplace);
                 var arr = data.workplace.split("-");
-                initWorkplaceDropdown("workplace-span", "province-select", "birthplace_city", arr[0], arr.length > 0 ? arr[1] : -1);
+                initWorkplaceDropdown("workplace-span", "province-select", "city-select", arr[0], arr.length > 1 ? arr[1] : -1);
             }
             //身高
             if(data.heightLow=="null"&&data.heightHigh!="null"){
@@ -171,12 +174,12 @@ function selectUserBasic() {
             //学历
             //籍贯
             if (data.birthplace == "null") {
-                $("#birthplace-span").html(data.birthplace);
+               $("#birthplace-span").html("籍贯不限");
                 initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", -1, -1);
             } else {
-                $("#birthplace-span").html("籍贯不限");
+               $("#birthplace-span").html(data.birthplace);
                 var arr = data.birthplace.split("-");
-                initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", arr[0], arr.length > 0 ? arr[1] : -1);
+                initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", arr[0], arr.length > 1 ? arr[1] : -1);
             }
         }
     });
@@ -185,12 +188,12 @@ function selectUserBasic() {
 //异步获取搜索条件对应的用户
 function getSearchUser() {
     $("#search-form-submit").click(function () {
-        alert($("#search-select-6 option:selected").val());
-        alert("form"+$("#search-form").serialize());
+        //获取表单信息
         $.ajax({
             url:contextPath+"search/getSearchUser",
             type:"POST",
-           // data:$("#search-form").serialize(),
+            async : true,
+            data:$("#search-form").serialize(),
             dataType:"JSON",
             success:function (data) {
                 alert(data)

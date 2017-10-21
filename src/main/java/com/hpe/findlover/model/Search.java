@@ -11,9 +11,12 @@ public class Search {
     private Integer ageLow;
     private Integer ageHigh;
     private String workplace;
+    private String workProvince;
+    private String workCity;
     private Integer heightLow;
     private Integer heightHigh;
     private String job;
+    private String marryStatus;
     private Double salaryLow;
     private Double salaryHigh;
 
@@ -22,6 +25,8 @@ public class Search {
     private String education;
     private Integer liveCondition;
     private String birthplace;
+    private String birthProvince;
+    private String birthCity;
     private String zodiac;
     private String animal;
     private String nation;
@@ -32,65 +37,49 @@ public class Search {
 
     /**
      * 非VIP用户搜索条件封装
-     * @param sex
-     * @param ageLow
-     * @param ageHigh
-     * @param workplace
-     * @param heightLow
-     * @param heightHigh
-     * @param job
-     * @param salaryLow
-     * @param salaryHigh
      */
-    public Search(String sex, Integer ageLow, Integer ageHigh, String workplace, Integer heightLow, Integer heightHigh, String job, Double salaryLow, Double salaryHigh) {
+    public Search(String sex, Integer ageLow, Integer ageHigh, String workplace, String workProvince, String workCity, Integer heightLow, Integer heightHigh, String job,String marryStatus, Double salaryLow, Double salaryHigh) {
         this.sex = sex;
         this.ageLow = ageLow;
         this.ageHigh = ageHigh;
         this.workplace = workplace;
+        this.workProvince = workProvince;
+        this.workCity = workCity;
         this.heightLow = heightLow;
         this.heightHigh = heightHigh;
         this.job = job;
+        this.marryStatus = marryStatus;
         this.salaryLow = salaryLow;
         this.salaryHigh = salaryHigh;
     }
 
     /**
      * VIP用户搜索条件封装
-     * @param sex
-     * @param ageLow
-     * @param ageHigh
-     * @param workplace
-     * @param heightLow
-     * @param heightHigh
-     * @param job
-     * @param salaryLow
-     * @param salaryHigh
-     * @param education
-     * @param liveCondition
-     * @param birthplace
-     * @param zodiac
-     * @param animal
-     * @param nation
-     * @param religion
      */
-    public Search(String sex, Integer ageLow, Integer ageHigh, String workplace, Integer heightLow, Integer heightHigh, String job, Double salaryLow, Double salaryHigh, String education, Integer liveCondition, String birthplace, String zodiac, String animal, String nation, String religion) {
+    public Search(String sex, Integer ageLow, Integer ageHigh, String workplace, String workProvince, String workCity, Integer heightLow, Integer heightHigh, String job, String marryStatus,Double salaryLow, Double salaryHigh, String education, Integer liveCondition, String birthplace, String birthProvince, String birthCity, String zodiac, String animal, String nation, String religion) {
         this.sex = sex;
         this.ageLow = ageLow;
         this.ageHigh = ageHigh;
         this.workplace = workplace;
+        this.workProvince = workProvince;
+        this.workCity = workCity;
         this.heightLow = heightLow;
         this.heightHigh = heightHigh;
         this.job = job;
+        this.marryStatus= marryStatus;
         this.salaryLow = salaryLow;
         this.salaryHigh = salaryHigh;
         this.education = education;
         this.liveCondition = liveCondition;
         this.birthplace = birthplace;
+        this.birthProvince = birthProvince;
+        this.birthCity = birthCity;
         this.zodiac = zodiac;
         this.animal = animal;
         this.nation = nation;
         this.religion = religion;
     }
+
 
     public String getSex() {
         return sex;
@@ -146,6 +135,14 @@ public class Search {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public String getMarryStatus() {
+        return marryStatus;
+    }
+
+    public void setMarryStatus(String marryStatus) {
+        this.marryStatus = marryStatus;
     }
 
     public Double getSalaryLow() {
@@ -220,6 +217,38 @@ public class Search {
         this.religion = religion;
     }
 
+    public String getWorkProvince() {
+        return workProvince;
+    }
+
+    public void setWorkProvince(String workProvince) {
+        this.workProvince = workProvince;
+    }
+
+    public String getWorkCity() {
+        return workCity;
+    }
+
+    public void setWorkCity(String workCity) {
+        this.workCity = workCity;
+    }
+
+    public String getBirthProvince() {
+        return birthProvince;
+    }
+
+    public void setBirthProvince(String birthProvince) {
+        this.birthProvince = birthProvince;
+    }
+
+    public String getBirthCity() {
+        return birthCity;
+    }
+
+    public void setBirthCity(String birthCity) {
+        this.birthCity = birthCity;
+    }
+
     @Override
     public String toString() {
         return "Search{" +
@@ -227,14 +256,19 @@ public class Search {
                 ", ageLow=" + ageLow +
                 ", ageHigh=" + ageHigh +
                 ", workplace='" + workplace + '\'' +
+                ", workProvince='" + workProvince + '\'' +
+                ", workCity='" + workCity + '\'' +
                 ", heightLow=" + heightLow +
                 ", heightHigh=" + heightHigh +
                 ", job='" + job + '\'' +
+                ", marryStatud='" + marryStatus + '\'' +
                 ", salaryLow=" + salaryLow +
                 ", salaryHigh=" + salaryHigh +
                 ", education='" + education + '\'' +
                 ", liveCondition=" + liveCondition +
                 ", birthplace='" + birthplace + '\'' +
+                ", birthProvince='" + birthProvince + '\'' +
+                ", birthCity='" + birthCity + '\'' +
                 ", zodiac='" + zodiac + '\'' +
                 ", animal='" + animal + '\'' +
                 ", nation='" + nation + '\'' +

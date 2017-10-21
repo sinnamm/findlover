@@ -25,6 +25,19 @@
     <!--<result column="code" property="code" jdbcType="VARCHAR" />-->
     <!--<result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />-->
     <!--</resultMap>-->
+    <resultMap id="userSearch" type="userBasic">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+        <result column="photo" property="photo" jdbcType="VARCHAR" />
+        <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+        <result column="marry_status" property="marryStatus" jdbcType="VARCHAR" />
+        <result column="height" property="height" jdbcType="INTEGER" />
+        <result column="workplace" property="workplace" jdbcType="VARCHAR" />
+        <result column="signature" property="userDetail.signature"/>
+        <result column="vip_deadline" property="userAsset.vipDeadline"/>
+        <result column="star_deadline" property="userAsset.starDeadline"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual,
         education, workplace, salary, live_condition, authority, status, code, reg_time
@@ -49,6 +62,71 @@
         <if test="identity == 'star'">
             AND ua.star_deadline>=now()
         </if>
+    </select>
+
+    <select id="selectStarUser" resultType="UserBasic">
+        SELECT ub.nickname,ub.photo,ub.birthday,ub.height,ub. workplace,ub.id
+        from user_basic as ub LEFT OUTER JOIN user_asset as ua
+        ON ub.id=ua.id
+        WHERE DATE(ua.star_deadline)>DATE(#{date})
+        AND ub.sex=#{sexual}
+        AND ub.workplace LIKE #{workplace}
+    </select>
+
+    <select id="selectUserBySearch" resultMap="userSearch">
+        SELECT user_basic..id,height,nickname,photo,workplace,birthday,marry_status,
+        signature,
+        vip_deadline,star_deadline
+        FROM user_basic INNER JOIN user_life INNER JOIN user_detail INNER JOIN user_asset
+        ON user_detail.id=user_basic.id AND user_basic.id=user_life.id AND user_basic.id=user_asset.id
+        <where>
+            <if test="sex!=null">
+              user_basic.sex=#{sex}
+            </if>
+            <if test="ageLow!=null and ageLow!=-1 and ageHigh!=null and ageHigh!=-1">
+                AND user_basic.age BETWEEN #{ageLow} AND #{ageHigh}
+            </if>
+            <if test="workplace!=null and workplace !=-1">
+                AND workplace LIKE #{workplace}
+            </if>
+            <if test="heightLow!=null and heightLow!=-1 and heighrHigh!=null and heightHigh!=-1">
+                AND user_basic.height BETWEEN #{heightLow} AND #{heightHigh}
+            </if>
+            <if test="job!=null and job !=-1">
+                AND job LIKE #{job}
+            </if>
+
+            <if test="marryStatus!=null and marryStatus !=-1">
+                AND marryStatus LIKE #{marryStatus}
+            </if>
+            <if test="salaryLow!=null and salaryLow!=-1 and salaryHigh!=null and salaryHigh!=-1">
+                AND user_basic.salary BETWEEN #{salaryLow} AND #{salaryHigh}
+            </if>
+            /*以下为VIP的搜索条件*/
+            <if test="education!=null and education !=-1">
+                AND education LIKE #{education}
+            </if>
+            <if test="liveCondition!=null and liveCondition !=-1">
+                AND liveCondition LIKE #{liveCondition}
+            </if>
+            <if test="birthplace!=null and birthplace !=-1">
+                AND birthplace LIKE #{birthplace}
+            </if>
+            <if test="education!=null and education !=-1">
+                AND education LIKE #{education}
+            </if>
+            private String zodiac;
+            <if test="education!=null and education !=-1">
+                AND education LIKE #{education}
+            </if>
+            private String animal;
+            <if test="nation!=null and nation !=-1">
+                AND nation LIKE #{nation}
+            </if>
+            <if test="religion!=null and education !=-1">
+                AND religion LIKE #{religion}
+            </if>
+        </where>
     </select>
 
 </mapper>

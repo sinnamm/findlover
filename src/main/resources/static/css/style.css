@@ -4847,6 +4847,7 @@ ul.feature_list.feature_list1 {
 
     ul.profile_item li.profile_item-desc h4, ul.profile_item li.profile_item-desc h5, ul.profile_item li.profile_item-desc p, ul.footer_links li {
         font-size: 12px;
+        font-weight: 700;
     }
 
     .col-md-6.about_right {

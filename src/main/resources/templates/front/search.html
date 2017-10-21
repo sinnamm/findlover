@@ -35,7 +35,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择性别：</p>
-                                    <select id="search-select-1">
+                                    <select id="search-select-1" name="sex">
                                         <option th:selected="${userPick.sex=='男'}" value="男" >男</option>
                                         <option th:selected="${userPick.sex=='女'}" value="女">女</option>
                                     </select>
@@ -49,11 +49,11 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
                                     <p>请选择年龄：</p>
-                                    <select id="age-select-low">
+                                    <select id="age-select-low" name="ageLow">
                                         <option value="-1">不限</option>
                                     </select>
                                     <span>-</span>
-                                    <select id="age-select-high">
+                                    <select id="age-select-high" name="ageHigh">
                                         <option value="-1">不限</option>
                                     </select>
                                 </div>
@@ -66,20 +66,12 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu" style="width: 230px">
                                     <p>请选择地区：</p>
-                                    <select id="province-select" th:remove="all-but-first">
+                                    <select id="province-select" th:remove="all-but-first" name="workProvince">
                                         <option value="-1">不限</option>
-                                        <option value="山东">山东</option>
-                                        <option value="四川">四川</option>
                                     </select>
 
-                                    <select id="city-select" th:remove="all-but-first">
+                                    <select id="city-select" th:remove="all-but-first" name="workCity">
                                         <option value="-1">不限</option>
-                                        <option value="聊城">聊城</option>
-                                        <option value="烟台">烟台</option>
-                                        <option value="青岛">青岛</option>
-                                        <option value="淄博">淄博</option>
-                                        <option value="济南">济南</option>
-                                        <option value="济宁">济宁</option>
                                     </select>
                                 </div>
                             </div>
@@ -91,11 +83,11 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
                                     <p>请选择身高：</p>
-                                    <select id="height-select-low">
+                                    <select id="height-select-low" name="heightLow">
                                         <option value="-1">不限</option>
                                     </select>
                                     <span>-</span>
-                                    <select id="height-select-high">
+                                    <select id="height-select-high" name="heightHigh">
                                         <option value="-1">不限</option>
                                     </select>
                                 </div>
@@ -108,7 +100,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择职业：</p>
-                                    <select id="search-select-5">
+                                    <select id="search-select-5" name="job">
                                         <option value="-1" content="职业不限">不限</option>
                                         <option th:each="job : ${jobList}" th:selected="${userPick.job==job.value}"
                                                 th:value="${job.value}" th:text="${job.value}">销售</option>
@@ -123,7 +115,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择婚姻状况：</p>
-                                    <select id="search-select-6">
+                                    <select id="search-select-6" name="marryStatus">
                                         <option value="-1" content="婚史不限">不限</option>
                                         <option th:each="marryStatus : ${marryStatusList}" th:selected="${userPick.marryStatus==marryStatus.value}"
                                                 th:value="${marryStatus.value}" th:text="${marryStatus.value}">未婚</option>
@@ -138,11 +130,11 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu" style="width: 240px">
                                     <p>请选择月收入：</p>
-                                    <select id="salary-select-low">
+                                    <select id="salary-select-low" name="salaryLow">
                                         <option value="-1">不限</option>
                                     </select>
                                     <span>-</span>
-                                    <select id="salary-select-high">
+                                    <select id="salary-select-high" name="salaryHigh">
                                         <option value="-1">不限</option>
                                     </select>
                                 </div>
@@ -158,7 +150,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择学历：</p>
-                                    <select id="search-select-8">
+                                    <select id="search-select-8" name="education">
                                         <option value="-1" content="学历不限">不限</option>
                                         <option th:each="education : ${educationList}" th:selected="${userPick.education==education.value}"
                                                 th:value="${education.value}" th:text="${education.value}">未婚</option>
@@ -173,7 +165,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择住房条件：</p>
-                                    <select id="search-select-9">
+                                    <select id="search-select-9" name="liveCondition">
                                         <option value="-1" content="住房条件不限">不限</option>
                                         <option th:each="liveCondition : ${liveConditionList}"
                                                 th:value="${liveCondition.value}" th:text="${liveCondition.value}">和家人同住</option>
@@ -189,17 +181,12 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu" style="width: 230px">
                                     <p>请选择籍贯：</p>
-                                    <select id="province-select-bp" th:remove="all-but-first">
+                                    <select id="province-select-bp" th:remove="all-but-first" name="birthProvince">
                                         <option value="-1">不限</option>
-                                        <option value="山东">山东</option>
-                                        <option value="北京">北京</option>
-                                        <option value="四川">四川</option>
                                     </select>
 
-                                    <select id="city-select-bp" th:remove="all-but-first">
+                                    <select id="city-select-bp" th:remove="all-but-first" name="birthCity">
                                         <option value="-1">不限</option>
-                                        <option value="聊城">聊城</option>
-                                        <option value="济宁">济宁</option>
                                     </select>
                                 </div>
                             </div>
@@ -211,7 +198,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择星座：</p>
-                                    <select id="search-select-11">
+                                    <select id="search-select-11" name="zodiac">
                                         <option value="-1" content="星座不限">不限</option>
                                         <option th:each="zodiac:${zodiacList}"
                                                 th:value="${zodiac.value}" th:text="${zodiac.value}">天秤座</option>
@@ -227,7 +214,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择生肖：</p>
-                                    <select id="search-select-12">
+                                    <select id="search-select-12" name="animal">
                                         <option value="-1" content="生肖不限">不限</option>
                                         <option th:each="animal: ${animalList}"
                                                 th:value="${animal.value}" th:text="${animal.value}">鼠</option>
@@ -242,9 +229,8 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择民族：</p>
-                                    <select id="search-select-13">
+                                    <select id="search-select-13" name="nation">
                                         <option value="-1" content="民族不限">不限</option>
-                                        <option value="汉族">汉族</option>
                                     </select>
                                 </div>
                             </div>
@@ -256,7 +242,7 @@
                                 </button>
                                 <div class="dropdown-menu search-dropdown-menu">
                                     <p>请选择信仰：</p>
-                                    <select id="search-select-14">
+                                    <select id="search-select-14" name="religion">
                                         <option value="-1" content="信仰不限">不限</option>
                                         <option  th:each="religion: ${religionList}"
                                                  th:value="${religion.value}" th:text="${religion.value}">佛教</option>
@@ -264,12 +250,11 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div id="search-submit"  class="col-sm-offset-6 col-sm-10">
-                            <button id="search-form-submit" style=" margin: 10px 0 23px 0"
-                                   class="button button-3d button-caution button-pill">搜索</button>
-                        </div>
                     </form>
+                    <div id="search-submit"  class="col-sm-offset-6 col-sm-10">
+                        <button id="search-form-submit" style=" margin: 10px 0 23px 0"
+                                class="button button-3d button-caution button-pill">搜索</button>
+                    </div>
                 </div>
                 <hr/>
                 <div class="col-md-2">
@@ -443,58 +428,19 @@
             <!--相似结果-->
             <div class="view_profile view_profile2">
                 <h3>相似结果</h3>
-                <ul class="profile_item">
+                <ul  style="margin-bottom: 0px" class="profile_item" th:each="userBasicVip: ${userBasicVipList}">
                     <a href="view_profile.html">
                         <li class="profile_item-img">
                             <img src="../../static/images/p5.jpg" th:src="@{/images/p5.jpg}" class="img-responsive"
                                  alt=""/>
                         </li>
                         <li class="profile_item-desc">
-                            <h4>2458741</h4>
-                            <p>29 Yrs, 5Ft 5in Christian</p>
-                            <h5>View Full Profile</h5>
-                        </li>
-                        <div class="clearfix"></div>
-                    </a>
-                </ul>
-                <ul class="profile_item">
-                    <a href="view_profile.html">
-                        <li class="profile_item-img">
-                            <img src="../../static/images/p6.jpg" th:src="@{/images/p6.jpg}" class="img-responsive"
-                                 alt=""/>
-                        </li>
-                        <li class="profile_item-desc">
-                            <h4>2458741</h4>
-                            <p>29 Yrs, 5Ft 5in Christian</p>
-                            <h5>View Full Profile</h5>
-                        </li>
-                        <div class="clearfix"></div>
-                    </a>
-                </ul>
-                <ul class="profile_item">
-                    <a href="view_profile.html">
-                        <li class="profile_item-img">
-                            <img src="../../static/images/p7.jpg" th:src="@{/images/p7.jpg}" class="img-responsive"
-                                 alt=""/>
-                        </li>
-                        <li class="profile_item-desc">
-                            <h4>2458741</h4>
-                            <p>29 Yrs, 5Ft 5in Christian</p>
-                            <h5>View Full Profile</h5>
-                        </li>
-                        <div class="clearfix"></div>
-                    </a>
-                </ul>
-                <ul class="profile_item">
-                    <a href="view_profile.html">
-                        <li class="profile_item-img">
-                            <img src="../../static/images/p8.jpg" th:src="@{/images/p8.jpg}" class="img-responsive"
-                                 alt=""/>
-                        </li>
-                        <li class="profile_item-desc">
-                            <h4>2458741</h4>
-                            <p>29 Yrs, 5Ft 5in Christian</p>
-                            <h5>View Full Profile</h5>
+                            <h4 style="margin: 0px" th:text="${userBasicVip.id}+'             '+${userBasicVip.nickname}"></h4>
+                            <p style="color: white"><span th:text="${userBasicVip.age+'岁'}">21岁</span>&nbsp;
+                                <span th:text="${userBasicVip.workplace}">山东</span>&nbsp;
+                                <span th:text="${userBasicVip.height+'cm'}">163cm</span>&nbsp;
+                            </p>
+                            <h5>查看更多信息</h5>
                         </li>
                         <div class="clearfix"></div>
                     </a>

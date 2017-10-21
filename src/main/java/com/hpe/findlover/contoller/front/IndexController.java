@@ -55,16 +55,15 @@ public class IndexController {
             if (userAsset.getStarDeadline()!=null){
                 starDate = LoverUtil.getDiffOfHours(userAsset.getStarDeadline());
             }
-            if (userAsset.getAsset()==null){
-                userAsset.setAsset(asset);
+            if (userAsset.getAsset()!=null){
+               asset= userAsset.getAsset();
             }
+
         }
-        logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+userAsset.getAsset());
-
-
+        logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+asset);
         model.addAttribute("vipDate",vipDate);
         model.addAttribute("starDate",starDate);
-        model.addAttribute("userAsset",userAsset);
+        model.addAttribute("asset",asset);
         return "front/index";
     }
 
