@@ -122,4 +122,17 @@ public class UserStatus {
     public void setFamilyBrief(String familyBrief) {
         this.familyBrief = familyBrief;
     }
+
+    @Override
+    public String toString() {
+        return "UserStatus{" +
+                "id=" + id +
+                ", loveHistory='" + loveHistory + '\'' +
+                ", marryTime='" + marryTime + '\'' +
+                ", ldr=" + ldr +
+                ", parentStatus='" + parentStatus + '\'' +
+                ", broAndSis='" + broAndSis + '\'' +
+                ", familyBrief='" + familyBrief + '\'' +
+                '}';
+    }
 }

@@ -55,11 +55,11 @@
 		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 		<!-- 支持识别yml配置 -->
 		<dependency>

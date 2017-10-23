@@ -47,17 +47,7 @@ function niceValidator() {
     });
 }
 
-//基础配置
-function niceBaseCofig() {
-    //配置nice-validator主题
-    $.validator.setTheme('bootstrap', {
-        validClass: 'has-success',
-        invalidClass: 'has-error',
-        bindClassTo: '.form-group',
-        formClass: 'n-default n-bootstrap',
-        msgClass: 'n-right'
-    });
-}
+
 //获取Education列表对象
 function selectEducationDict() {
     $.ajax({

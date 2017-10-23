@@ -14,8 +14,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserPickServiceImpl extends BaseServiceImpl<UserPick> implements UserPickService {
+
+    private final UserPickMapper userPickMapper;
+
     @Autowired
-    private UserPickMapper userPickMapper;
+    public UserPickServiceImpl(UserPickMapper userPickMapper) {
+        this.userPickMapper=userPickMapper;
+    }
 
     @Override
     public BaseTkMapper<UserPick> getMapper() {

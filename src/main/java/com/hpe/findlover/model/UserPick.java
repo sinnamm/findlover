@@ -123,10 +123,16 @@ public class UserPick {
         this.workplace = workplace;
     }
 
+    /**
+     * @return birthplace
+     */
     public String getBirthplace() {
         return birthplace;
     }
 
+    /**
+     * @param birthplace
+     */
     public void setBirthplace(String birthplace) {
         this.birthplace = birthplace;
     }
@@ -255,5 +261,26 @@ public class UserPick {
      */
     public void setSmoke(Integer smoke) {
         this.smoke = smoke;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPick{" +
+                "id=" + id +
+                ", sex='" + sex + '\'' +
+                ", ageLow=" + ageLow +
+                ", ageHigh=" + ageHigh +
+                ", workplace='" + workplace + '\'' +
+                ", birthplace='" + birthplace + '\'' +
+                ", marryStatus='" + marryStatus + '\'' +
+                ", education='" + education + '\'' +
+                ", salaryLow=" + salaryLow +
+                ", salaryHigh=" + salaryHigh +
+                ", heightLow=" + heightLow +
+                ", heightHigh=" + heightHigh +
+                ", job='" + job + '\'' +
+                ", drink=" + drink +
+                ", smoke=" + smoke +
+                '}';
     }
 }

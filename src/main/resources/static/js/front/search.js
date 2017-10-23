@@ -75,7 +75,8 @@ function updateHeightDropdown(dropdownBtnId) {
         else
             result = low_age + "-" + high_age + "cm";
     }
-    $("#" + dropdownBtnId).find(".dropdown-value").html(result);
+    if(dropdownBtnId!=undefined)
+        $("#" + dropdownBtnId).find(".dropdown-value").html(result);
 }
 
 //初始化月收入的下拉列表
@@ -93,7 +94,8 @@ function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) 
         for (var x = low_index == "-1" ? 0 : low_index; x < salary_array.length; x++) {
             $("#salary-select-high").append($("<option value='" + salary_array[x] + "' " + (x == pre_selected_index ? "selected" : "") + ">" + salary_array[x] + "</option>"));
         }
-        updateSalaryDropdown(dropdownBtnId);
+        if (dropdownBtnId!=undefined)
+            updateSalaryDropdown(dropdownBtnId);
     });
     $("#salary-select-high").change(function () {
         var high_index = salary_array.indexOf(this.value);
@@ -102,7 +104,8 @@ function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) 
         for (var x = 0; x < (high_index == '-1' ? salary_array.length : high_index); x++) {
             $("#salary-select-low").append($("<option value='" + salary_array[x] + "' " + (x == pre_selected_index ? "selected" : "") + ">" + salary_array[x] + "</option>"));
         }
-        updateSalaryDropdown(dropdownBtnId);
+        if (dropdownBtnId!=undefined)
+            updateSalaryDropdown(dropdownBtnId);
     });
 }
 

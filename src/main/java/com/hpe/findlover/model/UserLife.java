@@ -136,4 +136,18 @@ public class UserLife {
     public void setJobBrief(String jobBrief) {
         this.jobBrief = jobBrief;
     }
+
+    @Override
+    public String toString() {
+        return "UserLife{" +
+                "id=" + id +
+                ", smoke=" + smoke +
+                ", drink=" + drink +
+                ", car=" + car +
+                ", job='" + job + '\'' +
+                ", jobTime='" + jobTime + '\'' +
+                ", character='" + character + '\'' +
+                ", jobBrief='" + jobBrief + '\'' +
+                '}';
+    }
 }

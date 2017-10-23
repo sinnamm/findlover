@@ -191,4 +191,22 @@ public class UserDetail {
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }
+
+    @Override
+    public String toString() {
+        return "UserDetail{" +
+                "id=" + id +
+                ", realname='" + realname + '\'' +
+                ", cardnumber='" + cardnumber + '\'' +
+                ", birthplace='" + birthplace + '\'' +
+                ", weight=" + weight +
+                ", animal='" + animal + '\'' +
+                ", zodiac='" + zodiac + '\'' +
+                ", nation='" + nation + '\'' +
+                ", religion='" + religion + '\'' +
+                ", graduation='" + graduation + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", signature='" + signature + '\'' +
+                '}';
+    }
 }

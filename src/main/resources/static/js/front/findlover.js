@@ -177,9 +177,21 @@ function initNationalDropdown(nationalId) {
 //初始化单个身高下拉列表
 function initSingleHeightDropdown(heightId) {
     $("#" + heightId).empty();
-    $("#" + heightId).append($("<option value=\"请选择\">请选择</option>"));
-    for (var i = height_low_limit; i < height_high_limit + 1; i++) {
+    $("#" + heightId).append($("<option value='-1'>请选择</option>"));
+    for (var i = height_low_limit; i < height_high_limit+1; i++) {
         $("#" + heightId).append($("<option value='" + i + "'>" + i + "</option>"));
+    }
+}
+
+/**
+ * 初始化单个月薪下拉列表
+ * @param select_salary_id 下拉列表select元素id
+ * @param salary_value 回填值
+ */
+function initSingleSalaryDropdown(select_salary_id,salary_value) {
+    $("#"+select_salary_id).find("option:gt('0')").remove();
+    for (var x = 0; x < salary_array.length; x++) {
+        $("#"+select_salary_id).append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
     }
 }
 
@@ -216,5 +228,17 @@ function selectDict(dictType, selectId) {
                 $("#" + selectId).append($("<option value='" + element.value + "'>" + element.value + "</option>"));
             });
         }
+    });
+}
+
+//全局表单验证初始样式
+function niceBaseCofig() {
+    //配置nice-validator主题
+    $.validator.setTheme('bootstrap', {
+        validClass: 'has-success',
+        invalidClass: 'has-error',
+        bindClassTo: '.form-group',
+        formClass: 'n-default n-bootstrap',
+        msgClass: 'n-right'
     });
 }

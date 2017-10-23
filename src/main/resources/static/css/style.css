@@ -5277,3 +5277,15 @@ ul.feature_list.feature_list1 {
     height: 150px;
     border-radius: 75px;
 }
+
+#photodiv {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 34px;
+}
+
+.sigmapad {
+    padding: 0 1px 1px 0 !important;
+    margin: 0 !important;
+}

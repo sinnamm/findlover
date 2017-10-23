@@ -58,8 +58,10 @@ public class IndexController {
             if (userAsset.getAsset()!=null){
                asset= userAsset.getAsset();
             }
-
+            logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+userAsset.getAsset());
         }
+
+
         logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+asset);
         model.addAttribute("vipDate",vipDate);
         model.addAttribute("starDate",starDate);
