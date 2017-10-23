@@ -1,11 +1,7 @@
 package com.hpe.findlover.contoller.front;
 
-import com.hpe.findlover.model.UserAsset;
-import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.front.UserAssetService;
-import com.hpe.findlover.service.front.UserPickService;
-import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.model.*;
+import com.hpe.findlover.service.front.*;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.EmailUtil;
 import com.hpe.findlover.util.MD5Code;
@@ -43,6 +39,10 @@ public class UserController {
 	UserService userService;
 	@Autowired
 	UserPickService userPickService;
+	@Autowired
+	UserLabelService userLabelService;
+	@Autowired
+	LabelService labelService;
 
 
 	@GetMapping("login")
@@ -84,7 +84,7 @@ public class UserController {
 		//将用户存放在数据库中
 		if (userService.insert(user)){
 			UserBasic userBasic = userService.selectByEmail(user.getEmail());
-			//用户注册成功之后，生成默认的择偶条件
+			//用户注册成功之后，生成默认的择偶条件和标签信息
 			UserPick userPick = new UserPick();
 			userPick.setId(userBasic.getId());
 			userPick.setSex(userBasic.getSexual());
@@ -115,6 +115,7 @@ public class UserController {
 			return "ok";
 		}
 	}
+
 	@PostMapping("login")
 	public String login(HttpServletRequest request,UserBasic user, RedirectAttributes redirectAttributes) {
 		if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {

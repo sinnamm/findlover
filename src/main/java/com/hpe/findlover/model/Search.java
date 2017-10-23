@@ -261,7 +261,7 @@ public class Search {
                 ", heightLow=" + heightLow +
                 ", heightHigh=" + heightHigh +
                 ", job='" + job + '\'' +
-                ", marryStatud='" + marryStatus + '\'' +
+                ", marryStatus='" + marryStatus + '\'' +
                 ", salaryLow=" + salaryLow +
                 ", salaryHigh=" + salaryHigh +
                 ", education='" + education + '\'' +

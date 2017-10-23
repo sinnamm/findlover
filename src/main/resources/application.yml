@@ -7,10 +7,11 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      #172.17.46.180
-      url: jdbc:mysql://localhost:3306/findlover?useSSL=false
+      url: jdbc:mysql://172.17.46.180:3306/findlover?useSSL=false
+#      url: jdbc:mysql://localhost/findlover?useSSL=false
       username: root
-      password: 123456
+      password: gss991
+#      password: root
       initial-size: 1
       min-idle: 1
       max-idle: 2
@@ -42,7 +43,7 @@ mybatis:
 
 pagehelper:
     helperDialect: mysql
-    reasonable: true
+    reasonable: false
     supportMethodsArguments: true
     params: count=countSql
 

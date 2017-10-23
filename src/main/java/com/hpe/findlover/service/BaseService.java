@@ -25,6 +25,7 @@ public interface BaseService<T>{
      */
     public boolean insert(T pojo);
 
+
     /**
      *
      * 增加一个实体,只会增加不是null的字段

@@ -2,6 +2,7 @@ package com.hpe.findlover.mapper;
 
 import com.hpe.findlover.model.Search;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.UserLabel;
 import com.hpe.util.BaseTkMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -32,5 +33,8 @@ public interface UserBasicMapper extends BaseTkMapper<UserBasic> {
 	 * @return
 	 */
 	List<UserBasic> selectUserBySearch(Search search);
+
+	List<UserBasic> selectUsersByIds(String[] ids);
+
 	List<UserBasic> selectAllByIdentity(@Param("identity") String identity,@Param("column") String column,@Param("keyword") String keyword);
 }

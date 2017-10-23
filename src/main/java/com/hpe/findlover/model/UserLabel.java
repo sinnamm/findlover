@@ -10,6 +10,14 @@ public class UserLabel {
     @Column(name = "label_id")
     private Integer labelId;
 
+    public UserLabel() {
+    }
+
+    public UserLabel(Integer userId, Integer labelId) {
+        this.userId = userId;
+        this.labelId = labelId;
+    }
+
     /**
      * @return user_id
      */
