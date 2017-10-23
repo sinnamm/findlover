@@ -29,7 +29,12 @@ spring:
           timeout: 30000
           connectiontimeout: 30000
   jackson:
-    date-format: yyyy-MM-dd HH:mm
+    date-format: yyyy-MM-dd HH:mm:ss
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 3MB
+      max-request-size: 25MB
 
 
 # Mybatis config
@@ -48,8 +53,15 @@ pagehelper:
     params: count=countSql
 
 mapper:
-    mappers:
-        - com.hpe.util.BaseTkMapper
-    not-empty: false
-    identity: MYSQL
+  mappers:
+    - com.hpe.util.BaseTkMapper
+  not-empty: false
+  identity: MYSQL
 
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  thumbImage:             #缩略图生成参数
+    width: 150
+    height: 150
+  trackerList: 192.168.111.130:22122  #tracker路径，TrackerList参数,支持多个
