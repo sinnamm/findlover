@@ -106,4 +106,16 @@ public final class LoverUtil {
 				+ path ;
 		return basePath;
 	}
+	public static Date addMonth(Date baseDate,int month){
+		Calendar cld = Calendar.getInstance();
+		cld.setTime(baseDate);
+		cld.add(Calendar.MONTH, month);
+		return cld.getTime();
+	}
+	public static Date addDay(Date baseDate,int day){
+		Calendar cld = Calendar.getInstance();
+		cld.setTime(baseDate);
+		cld.add(Calendar.DAY_OF_YEAR, day);
+		return cld.getTime();
+	}
 }

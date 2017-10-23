@@ -110,9 +110,9 @@ public class UserController {
 	public String checkEmail(@RequestParam("email")String email){
 		UserBasic userBasic = userService.selectByEmail(email);
 		if(userBasic!=null){
-			return "该邮箱已被注册";
+			return "{\"error\":\"该邮箱已被注册！\"}";
 		}else {
-			return "ok";
+			return "{\"ok\":\"此邮箱可用！\"}";
 		}
 	}
 
@@ -151,14 +151,9 @@ public class UserController {
 			return "redirect:login";
 		}
 	}
-
     @GetMapping("otherSays")
     public String otherSays(){
         return "front/otherSays";
-    }
-    @GetMapping("letter")
-    public String letter(){
-        return "front/letter";
     }
     @GetMapping("care")
     public String care(){

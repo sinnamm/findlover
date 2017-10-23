@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hpe.findlover.mapper.LetterMapper" >
-  <resultMap id="BaseResultMap" type="com.hpe.findlover.model.Letter" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="send_id" property="sendId" jdbcType="INTEGER" />
-    <result column="recieve_id" property="recieveId" jdbcType="INTEGER" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
-    <result column="status" property="status" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    id, send_id, recieve_id, content, send_time, status
-  </sql>
+<mapper namespace="com.hpe.findlover.mapper.LetterMapper">
+    <resultMap id="BaseResultMap" type="com.hpe.findlover.model.Letter">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="send_id" property="sendId" jdbcType="INTEGER"/>
+        <result column="recieve_id" property="recieveId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="send_time" property="sendTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, send_id, recieve_id, content, send_time, status
+    </sql>
+    <select id="selectOther" resultType="LetterUser">
+    SELECT id,nickname,photo,last_time
+    FROM user_basic,( SELECT
+      uid,
+      max(last_time) last_time
+    FROM (
+          SELECT
+             recieve_id uid,
+             t.last_time
+           FROM letter, (SELECT
+                           id,
+                           max(send_time) last_time
+                         FROM letter
+                         WHERE send_id =  #{id}
+                         GROUP BY recieve_id
+                         ORDER BY recieve_id, send_time DESC) t
+           WHERE letter.id = t.id
+           UNION
+           SELECT
+             send_id uid,
+             t.last_time
+           FROM letter, (SELECT
+                           id,
+                           max(send_time) last_time
+                         FROM letter
+                         WHERE recieve_id = #{id}
+                         GROUP BY send_id
+                         ORDER BY send_id, send_time DESC) t
+           WHERE letter.id = t.id) result
+    GROUP BY uid  )a where a.uid=user_basic.id ORDER BY last_time DESC;
+
+    </select>
 </mapper>

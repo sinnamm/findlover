@@ -88,7 +88,7 @@
             #{val}
         </foreach>
     </select>
-   
+
     <select id="selectUserBySearch" resultMap="userSearch">
         <include refid="searchInfo"></include>
         FROM user_basic INNER JOIN user_life INNER JOIN user_detail INNER JOIN user_asset

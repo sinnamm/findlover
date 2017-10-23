@@ -6,10 +6,10 @@ import com.hpe.findlover.model.UserLabel;
 import com.hpe.util.BaseTkMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface UserBasicMapper extends BaseTkMapper<UserBasic> {

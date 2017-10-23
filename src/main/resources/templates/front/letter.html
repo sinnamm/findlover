@@ -1,350 +1,195 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>私信</title>
-	<!--公共css与js文件-->
-	<th:block th:include="/front/common/common_resource::resources"/>
-	<!--在使用模板解析时会自动删除-->
-	<th:block th:remove="all">
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
+    <title>私信</title>
+    <!--公共css与js文件-->
+    <th:block th:include="/front/common/common_resource::resources"/>
+    <link th:src="@{/css/chat-style.css}" src="../../static/css/chat-style.css"/>
+    <script src="../../static/js/front/letter.js" th:src="@{/js/front/letter.js}"></script>
+    <!--<style>-->
+        <!--.chat-right:before {-->
+            <!--background-image: url("@{/images/13.jpg}");-->
+        <!--}-->
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        } </script>
-	<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="../../static/jquery/jquery.min.js"></script>
-	<script src="../../static/js/bootstrap.min.js"></script>
-	<!-- Custom Theme files -->
-	<link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-	<link rel="stylesheet" href="../../static/css/chat-style.css" media="screen" type="text/css" />
-	<!----font-Awesome----->
-	<link href="../../static/css/font-awesome.css" rel="stylesheet"/>
-	<!----font-Awesome----->
-	<script>
-        var div = document.getElementById("convo");
-        div.scrollTop = div.scrollHeight;
-
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
-                    $(this).toggleClass('open');
-                }
-            );
-        });
-	</script>
-	</th:block>
+        <!--.chat-left:before {-->
+            <!--background-image: url(" @{/images/13.jpg}");-->
+        <!--}-->
+    <!--</style>-->
 </head>
 
 <body>
 <th:block th:include="/front/common/header::nav"/>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-	<!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-	<div class="navbar-inner">
-		<div class="container">
-
-			<a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>
-			<div class="pull-right">
-				<nav class="navbar nav_bottom" role="navigation">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-								data-target="#bs-megadropdown-tabs">Menu
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#"></a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav nav_1">
-							<li><a href="index.html">首页</a></li>
-							<li><a href="search.html">搜索</a></li>
-							<li><a href="reserve/about.html">会员</a></li>
-							<li><a href="success_story.html">成功故事</a></li>
-							<li><a href="other_says.html">他她说</a></li>
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-										class="fa fa-lg fa-envelope-o"></i><span
-										class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="letter.html">私信</a></li>
-									<li><a href="care.html">关注</a></li>
-									<li><a href="visite_trace.html">访问记录</a></li>
-									<li><a href="notice.html">系统通知</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-										class="fa fa-lg fa-user"></i><span
-										class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="login.html">编辑资料</a></li>
-									<li><a href="register.html">身份认证</a></li>
-									<li><a href="index.html">修改密码</a></li>
-									<li><a href="index.html">退出</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div><!-- /.navbar-collapse -->
-				</nav>
-			</div> <!-- end pull-right -->
-			<div class="clearfix"></div>
-		</div> <!-- end container -->
-	</div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
-<!--============================  Navigation End ============================-->
-
 <div class="grid_3">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumb1">
-					<ul>
-						<a href="index.html"><i class="fa fa-comment-o home_1"></i></a>
-						<span class="divider">&nbsp;|&nbsp;</span>
-						<li class="current-page">私信：</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb1">
+                    <ul>
+                        <a href="index.html"><i class="fa fa-comment-o home_1"></i></a>
+                        <span class="divider">&nbsp;|&nbsp;</span>
+                        <li class="current-page">私信：</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-		<div class="row">
-			<!--左侧消息列表-->
-			<div class="col-md-9 messageContainer">
-				<div class="row">
-					<!--联系人-->
-					<div class="col-md-3">
-						<ul class="match_box">
-							<li><h4>联系人</h4></li>
-							<hr/>
-							<li>
-								<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-									 class="jobs-item with-thumb">
-									<div class="thumb_top">
-										<div class="thumb">
-											<img src="../../static/images/p13.jpg" style="width: 50px"
-												 class="img-responsive" alt=""/></a>
-										</div>
-										<div class="jobs_right">
-											<p>之夏</p>
-										</div>
-									</div>
-								</div>
-							</li>
-							<hr/>
-							<li>
-								<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-									 class="jobs-item with-thumb">
-									<div class="thumb_top">
-										<div class="thumb">
-											<img src="../../static/images/p13.jpg" style="width: 50px"
-												 class="img-responsive" alt=""/></a>
-										</div>
-										<div class="jobs_right">
-											<p>之夏</p>
-										</div>
-									</div>
-								</div>
-							</li>
-							<hr/>
-							<li>
-								<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-									 class="jobs-item with-thumb">
-									<div class="thumb_top">
-										<div class="thumb">
-											<img src="../../static/images/p13.jpg" style="width: 50px"
-												 class="img-responsive" alt=""/></a>
-										</div>
-										<div class="jobs_right">
-											<p>之夏</p>
-										</div>
-									</div>
-								</div>
-							</li>
-							<hr/>
-							<li>
-								<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-									 class="jobs-item with-thumb">
-									<div class="thumb_top">
-										<div class="thumb">
-											<img src="../../static/images/p13.jpg" style="width: 50px"
-												 class="img-responsive" alt=""/></a>
-										</div>
-										<div class="jobs_right">
-											<p>之夏</p>
-										</div>
-									</div>
-								</div>
-							</li>
-							<hr/>
-							<li>
-								<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-									 class="jobs-item with-thumb">
-									<div class="thumb_top">
-										<div class="thumb">
-											<img src="../../static/images/p13.jpg" style="width: 50px"
-												 class="img-responsive" alt=""/></a>
-										</div>
-										<div class="jobs_right">
-											<p>之夏</p>
-										</div>
-									</div>
-								</div>
-							</li>
-							<hr/>
-							<li>
-								<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-									 class="jobs-item with-thumb">
-									<div class="thumb_top">
-										<div class="thumb">
-											<img src="../../static/images/p13.jpg" style="width: 50px"
-												 class="img-responsive" alt=""/></a>
-										</div>
-										<div class="jobs_right">
-											<p>之夏</p>
-										</div>
-									</div>
-								</div>
-							</li>
-							<hr/>
-						</ul>
-					</div>
-					<!--消息列表-->
-					<div class="col-md-9 members_box2 chat-window">
-						<!--消息-->
-						<div id="convo">
-							<ul class="chat-thread">
-								<li>Are we meeting today?</li>
-								<li>yes, what time suits you?</li>
-								<li>I was thinking after lunch, I have a meeting in the morning</li>
-								<li>Are we meeting today?</li>
-								<li>yes, what time suits you?</li>
-								<li>I was thinking after lunch, I have a meeting in the morning</li>
-								<li>Are we meeting today?</li>
-								<li>yes, what time suits you?</li>
-								<li>I was thinking after lunch, I have a meeting in the morning</li>
-								<li>Are we meeting today?</li>
-								<li>yes, what time suits you?</li>
-								<li>I was thinking after lunch, I have a meeting in the morning</li>
-							</ul>
-						</div>
-						<!--发送消息框-->
-						<div class="row">
-							<form class="form-inline">
-								<div style="margin:15px">
+        <div class="row">
+            <!--左侧消息列表-->
+            <div class="col-md-9  messageContainer">
+                <div class="row">
+                    <!--联系人-->
+                    <div class="col-md-3">
+                        <ul class="match_box" id="contactsLeft" name="contactsLeft">
+                            <li><h4>联系人</h4></li>
+                            <hr/>
+                            <th:block th:each="letterUser,iterStat : ${list}">
+                                <li>
+                                    <div style="cursor:pointer;" name="userLetter"
+                                         class="jobs-item with-thumb userLetter" >
+                                        <input th:value="${letterUser.id}" id="otherUserId" hidden>
+                                        <div class="thumb_top">
+                                            <div class="thumb">
+                                                <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
+                                                     style="width: 50px"
+                                                     class="img-responsive" alt=""/></a>
+                                            </div>
+                                            <div class="jobs_right">
+                                                <p th:text="${letterUser.nickname}"></p>
+                                                <p style="color: #c2c2c2;" th:text="${#dates.format(letterUser.lastTime,'yyyy/MM/dd')}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <hr/>
+                            </th:block>
+                        </ul>
+                    </div>
+                    <!--消息列表-->
+                    <div class="col-md-9 members_box2 chat-window">
+                        <!--消息-->
+                        <div id="convo">
+                            <ul class="chat-thread">
+                                <!--th:style="background:url(' + @{'/images/13.jpg'} + ')'"-->
+                                <li class="chat-right">Are we meeting today?</li>
+                                <li class="chat-left">yes, what time suits you?</li>
+                                <li class="chat-right">I was thinking after lunch, I have a meeting in the morning</li>
+                                <li class="chat-left">Are we meeting today?</li>
+                                <li class="chat-right">yes, what time suits you?</li>
+                                <li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>
+                                <li class="chat-left">Are we meeting today?</li>
+                                <li class="chat-right">yes, what time suits you?</li>
+                                <li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>
+                                <li class="chat-left">Are we meeting today?</li>
+                                <li class="chat-right">yes, what time suits you?</li>
+                                <li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>
+                            </ul>
+                        </div>
+                        <!--发送消息框-->
+                        <div class="row">
+                            <form class="form-inline">
+                                <div style="margin:15px">
 									<textarea class="col-md-11" rows="3" onfocus="this.value = '';"
-											  onblur="if (this.value == '') {this.value = '请输入消息内容';}">请输入消息内容</textarea>
-								</div>
-								<div>
-									<input class="col-md-1 btn btn-info text-right" style="margin: 37px 0 0 5px" type="submit" value="发送">
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+                                              onblur="if (this.value == '') {this.value = '请输入消息内容';}">请输入消息内容</textarea>
+                                </div>
+                                <div>
+                                    <input class="col-md-1 btn btn-info text-right" style="margin: 37px 0 0 5px"
+                                           type="submit" value="发送">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<!--右侧导航栏-->
-			<div class="col-md-3 col_5">
-				<div class="breadcrumb1">
-					<ul>
-						<a href="index.html"><i class="fa fa-home home_1"></i></a>
-						<span class="divider">&nbsp;|&nbsp;</span>
-						<li class="current-page">消息中心</li>
-					</ul>
-				</div>
+            <!--右侧导航栏-->
+            <div class="col-md-3 col_5">
+                <div class="breadcrumb1">
+                    <ul>
+                        <a href="index.html"><i class="fa fa-home home_1"></i></a>
+                        <span class="divider">&nbsp;|&nbsp;</span>
+                        <li class="current-page">消息中心</li>
+                    </ul>
+                </div>
 
-				<div class="center-middle" style="background-color: white">
-					<img src="../../static/images/13.jpg">
-					<p>会员107627885</p>
-				</div>
-				<!--消息菜单栏-->
-				<ul class="match_box message">
-					<li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span>(0)</span></li>
-					<li><i class="fa fa-heart"></i><a href="care.html"> 关注</a><span>(0)</span></li>
-					<li><i class="fa fa-eye"></i><a href="visite_trace.html"> 访问记录</a><span>(0)</span></li>
-					<li><i class="fa fa-envelope-o"></i><a href="notice.html"> 系统通知</a><span>(0)</span></li>
-				</ul>
-				<!--广告栏-->
-				<ul class="match_box">
-					<li><h4>新人抢先看</h4></li>
-					<hr/>
-					<li>
-						<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-							 class="jobs-item with-thumb">
-							<div class="thumb_top">
-								<div class="thumb">
-									<img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
-										 alt=""/></a>
-								</div>
-								<div class="jobs_right">
-									<h5>之夏</h5>
-									<p>18岁 高中及以下</p>
-									<span>3天前注册</span>
-								</div>
-							</div>
-						</div>
-					</li>
-					<hr/>
-					<li>
-						<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-							 class="jobs-item with-thumb">
-							<div class="thumb_top">
-								<div class="thumb">
-									<img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
-										 alt=""/></a>
-								</div>
-								<div class="jobs_right">
-									<h5>之夏</h5>
-									<p>18岁 高中及以下</p>
-									<span>3天前注册</span>
-								</div>
-							</div>
-						</div>
-					</li>
-					<hr/>
-					<li>
-						<div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-							 class="jobs-item with-thumb">
-							<div class="thumb_top">
-								<div class="thumb">
-									<img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
-										 alt=""/></a>
-								</div>
-								<div class="jobs_right">
-									<h5>之夏</h5>
-									<p>18岁 高中及以下</p>
-									<span>3天前注册</span>
-								</div>
-							</div>
-						</div>
-					</li>
-					<hr/>
-					<li><a href="view_profile.html" class="photo_view center-block "
-						   style="color: white;text-align: center">想查看更多吗</a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
+                <div class="center-middle" style="background-color: white">
+                    <img th:src="@{/images/13.jpg}" src="../../static/images/13.jpg">
+                    <p>会员107627885</p>
+                </div>
+                <!--消息菜单栏-->
+                <ul class="match_box message">
+                    <li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span>(0)</span></li>
+                    <li><i class="fa fa-heart"></i><a href="care.html"> 关注</a><span>(0)</span></li>
+                    <li><i class="fa fa-eye"></i><a href="visite_trace.html"> 访问记录</a><span>(0)</span></li>
+                    <li><i class="fa fa-envelope-o"></i><a href="notice.html"> 系统通知</a><span>(0)</span></li>
+                </ul>
+                <!--广告栏-->
+                <ul class="match_box">
+                    <li><h4>新人抢先看</h4></li>
+                    <hr/>
+                    <li>
+                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
+                             class="jobs-item with-thumb">
+                            <div class="thumb_top">
+                                <div class="thumb">
+                                    <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
+                                         style="width: 100px" class="img-responsive"
+                                         alt=""/></a>
+                                </div>
+                                <div class="jobs_right">
+                                    <h5>之夏</h5>
+                                    <p>18岁 高中及以下</p>
+                                    <span>3天前注册</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li>
+                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
+                             class="jobs-item with-thumb">
+                            <div class="thumb_top">
+                                <div class="thumb">
+                                    <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
+                                         style="width: 100px" class="img-responsive"
+                                         alt=""/></a>
+                                </div>
+                                <div class="jobs_right">
+                                    <h5>之夏</h5>
+                                    <p>18岁 高中及以下</p>
+                                    <span>3天前注册</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li>
+                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
+                             class="jobs-item with-thumb">
+                            <div class="thumb_top">
+                                <div class="thumb">
+                                    <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
+                                         style="width: 100px" class="img-responsive"
+                                         alt=""/></a>
+                                </div>
+                                <div class="jobs_right">
+                                    <h5>之夏</h5>
+                                    <p>18岁 高中及以下</p>
+                                    <span>3天前注册</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <hr/>
+                    <li><a href="view_profile.html" class="photo_view center-block "
+                           style="color: white;text-align: center">想查看更多吗</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
 
-			<div class="clearfix"></div>
-		</div>
+            <div class="clearfix"></div>
+        </div>
 
-	</div>
+    </div>
 </div>
 
 <!--页面尾部-->

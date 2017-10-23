@@ -1,123 +1,122 @@
-
 /*滚动条整体部分*/
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
+
 /*滚动条的轨道*/
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: rgba(25, 147, 147, 0.1);
+    border-radius: 10px;
+    background-color: rgba(25, 147, 147, 0.1);
 }
+
 /*滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）*/
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(25, 147, 147, 0.2);
+    border-radius: 10px;
+    background-color: rgba(25, 147, 147, 0.2);
 }
 
 .chat-thread {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow-y: scroll;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .chat-thread li {
-  position: relative;
-  clear: both;
-  display: inline-block;
-  padding: 16px 40px 16px 20px;
-  margin: 0 0 20px 0;
-  font: 16px/20px 'Noto Sans', sans-serif;
-  border-radius: 10px;
-  background-color: rgba(25, 147, 147, 0.2);
+    position: relative;
+    clear: both;
+    display: inline-block;
+    padding: 16px 40px 16px 20px;
+    margin: 0 0 20px 0;
+    font: 16px/20px 'Noto Sans', sans-serif;
+    border-radius: 10px;
+    background-color: rgba(25, 147, 147, 0.2);
 }
 
 /* Chat - Avatar */
 .chat-thread li:before {
-  position: absolute;
-  top: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  content: '';
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    content: '';
 }
 
 /* Chat - Speech Bubble Arrow */
 .chat-thread li:after {
-  position: absolute;
-  top: 15px;
-  content: '';
-  width: 0;
-  height: 0;
-  border-top: 15px solid rgba(25, 147, 147, 0.2);
+    position: absolute;
+    top: 15px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 15px solid rgba(25, 147, 147, 0.2);
 }
+
 /*右边*/
-.chat-thread li:nth-child(odd) {
-  animation: show-chat-odd 0.15s 1 ease-in;
-  -moz-animation: show-chat-odd 0.15s 1 ease-in;
-  -webkit-animation: show-chat-odd 0.15s 1 ease-in;
-  float: right;
-  margin-right: 90px;
-  color: black;
+.chat-right {
+    float: right;
+    margin-right: 90px !important;
+    color: black;
 }
 
-.chat-thread li:nth-child(odd):before {
-  right: -80px;
-  background-image: url("../../static/images/14.jpg");
+.chat-right:before {
+    right: -80px;
+    background-image: url("../../static/images/14.jpg");
 }
 
-.chat-thread li:nth-child(odd):after {
-  border-right: 15px solid transparent;
-  right: -15px;
+.chat-right:after {
+    border-right: 15px solid transparent;
+
+    right: -15px;
 }
 
 /*左边*/
-.chat-thread li:nth-child(even) {
-  animation: show-chat-even 0.15s 1 ease-in;
-  -moz-animation: show-chat-even 0.15s 1 ease-in;
-  -webkit-animation: show-chat-even 0.15s 1 ease-in;
-  float: left;
-  margin-left: 80px;
-  color: black;
+.chat-left {
+    float: left;
+    margin-left: 80px !important;
+    color: black;
 }
 
-.chat-thread li:nth-child(even):before {
-  left: -80px;
-  background-image: url("../../static/images/13.jpg");
+.chat-left:before {
+    left: -80px;
+    background-image: url("../../static/images/13.jpg");
 }
 
-.chat-thread li:nth-child(even):after {
-  border-left: 15px solid transparent;
-  left: -15px;
+.chat-left:after {
+    border-left: 15px solid transparent;
+    left: -15px;
 }
 
 .chat-window {
-  padding-left: 0px;
+    padding-left: 0px;
 }
 
-.messageContainer{
-  padding: 10px;
+.messageContainer {
+    padding: 10px;
 
 }
-.chat-window #convo{
-  background-color: white;
-  padding: 10px;
+
+.chat-window #convo {
+    background-color: white;
+    padding: 10px;
 }
 
 /* 最小高度*/
 @media all and (max-width: 767px) {
-  .chat-thread {
-    width: 90%;
-    height: 260px;
-  }
+    .chat-thread {
+        width: 90%;
+        height: 260px;
+    }
 
 }
+
 /* 聊天框最大高度 */
 @media all and (min-width: 768px) {
-  .chat-thread {
-    height: 500px;
-  }
+    .chat-thread {
+        height: 500px;
+    }
 
 }
 

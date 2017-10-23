@@ -126,9 +126,9 @@ $(function () {
         $.ajax({
             url: contextPath + "vip",
             data: {
-                VIPBuyWay: $("#VIPBuyWay").val(),
-                VIPBuyDay: $("#VIPBuyDay").val(),
-                VIPBuyMoney: VIPBuyMoney
+                vipBuyWay: $("#VIPBuyWay").val(),
+                vipBuyDay: $("#VIPBuyDay").val(),
+                vipBuyMoney: VIPBuyMoney
             },
             type: "post",
             dataType: "json",
@@ -141,12 +141,17 @@ $(function () {
         })
     });
     $("#starSubmit").click(function () {
+        if ($("#starBuyWay").val() == "牵手币") {
+            var starBuyMoney=$("#starBuyDay").val()*52;
+        } else {
+            starBuyMoney=$("#starBuyDay").val()*52.1;
+        }
         $.ajax({
             url: contextPath + "star",
             data: {
-                VIPBuyWay: $("#starBuyWay").val(),
-                VIPBuyDay: $("#starBuyDay").val(),
-                VIPBuyMoney:$("#starBuyMoney").val(),
+                starBuyWay: $("#starBuyWay").val(),
+                starBuyDay: $("#starBuyDay").val(),
+                starBuyMoney:starBuyMoney
             },
             type: "post",
             dataType: "json",
