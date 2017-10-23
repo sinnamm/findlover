@@ -30,6 +30,8 @@
 		<pagehelper.version>4.1.6</pagehelper.version>
 		<druid.version>1.1.2</druid.version>
 		<shiro.version>1.4.0</shiro.version>
+		<cglib.version>3.2.5</cglib.version>
+		<fastjson.version>1.2.38</fastjson.version>
 		<thymeleaf.extras.shiro.version>2.0.0</thymeleaf.extras.shiro.version>
 	</properties>
 
@@ -37,22 +39,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
             <!--排除Springboot起步依赖中的logging，使用log4j-->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
             </exclusions>
-        </dependency>
+		</dependency>
 		<!--<dependency>-->
 			<!--<groupId>javax.mail</groupId>-->
 			<!--<artifactId>javax.mail-api</artifactId>-->
@@ -93,11 +87,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <version>1.5.7.RELEASE</version>
-        </dependency>
 
         <!--Shiro  begin-->
 		<dependency>
@@ -195,13 +184,13 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>3.2.5</version>
+			<version>${cglib.version}</version>
 		</dependency>
-		<!--gson-->
+		<!--fastjson-->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.38</version>
+			<version>${fastjson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -213,6 +202,16 @@
 			<groupId>com.github.tobato</groupId>
 			<artifactId>fastdfs-client</artifactId>
 			<version>1.25.2-RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 
 
