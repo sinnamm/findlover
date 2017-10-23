@@ -53,9 +53,9 @@ function initResetPwd() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
+            /*var me = this;
             //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
+            me.holdSubmit();*/
             resetUser(form, "basic");
         }
     });
@@ -68,9 +68,6 @@ function initResetAuth() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
-            //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
             resetUser(form, "basic");
         }
     });
@@ -129,9 +126,6 @@ function initUserBasicValidator() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
-            //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
             resetUser(form, "basic");
         }
     });
@@ -152,9 +146,6 @@ function initUserDetailValidator() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
-            //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
             resetUser(form, "detail");
         }
     });
@@ -167,9 +158,6 @@ function initUserLifeValidator() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
-            //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
             resetUser(form, "life");
         }
     });
@@ -182,9 +170,6 @@ function initUserStatusValidator() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
-            //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
             resetUser(form, "status");
         }
     });
@@ -197,9 +182,6 @@ function initUserPickValidator() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
-            var me = this;
-            //提交表单之前，hold住表单，防止表单重复提交
-            me.holdSubmit();
             resetUser(form, "pick");
         }
     });

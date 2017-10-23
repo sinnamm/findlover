@@ -23,4 +23,5 @@ public class UserLabelServiceImpl extends BaseServiceImpl<UserLabel> implements 
     public BaseTkMapper<UserLabel> getMapper() {
         return userLabelMapper;
     }
+
 }

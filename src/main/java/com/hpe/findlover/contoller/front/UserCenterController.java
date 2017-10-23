@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -229,19 +230,22 @@ public class UserCenterController {
     @ResponseBody
     public Object updateUserBasic(UserBasic userBasic, String work_province, String work_city,HttpSession session) {
         boolean result = false;
-        if (work_province != null && work_city != null) {
-            userBasic.setWorkplace(work_province + "-" + work_city);
-        }
-        if (userBasic.getPassword() != null) {
-            userBasic.setPassword(new MD5Code().getMD5ofStr(userBasic.getPassword()));
-        }
-        logger.error(userBasic);
-        result = userService.updateByPrimaryKeySelective(userBasic);
-        //如果用户修改权限之后更新session中user值
-        if (userBasic !=null && userBasic.getAuthority()!=null){
-            UserBasic ubInSession = (UserBasic) session.getAttribute("user");
-            ubInSession.setAuthority(userBasic.getAuthority());
-            session.setAttribute("user",ubInSession);
+        if(userBasic!=null) {
+            if (work_province != null && work_city != null) {
+                userBasic.setWorkplace(work_province + "-" + work_city);
+            }
+            if (userBasic.getPassword() != null) {
+                userBasic.setPassword(new MD5Code().getMD5ofStr(userBasic.getPassword()));
+            }
+            logger.error(userBasic);
+            result = userService.updateUserBasicAndUserLabel(userBasic);
+            //result = userService.updateByPrimaryKeySelective(userBasic);
+            //如果用户修改权限之后更新session中user值
+            if (userBasic.getAuthority() != null) {
+                UserBasic ubInSession = (UserBasic) session.getAttribute("user");
+                ubInSession.setAuthority(userBasic.getAuthority());
+                session.setAttribute("user", ubInSession);
+            }
         }
         return result;
     }
@@ -281,10 +285,8 @@ public class UserCenterController {
     public Object updateUserLife(UserLife userLife) {
         boolean result = false;
         logger.error(userLife);
-        if(userLifeService.selectByPrimaryKey(userLife)!=null){
-            result = userLifeService.updateByPrimaryKeySelective(userLife);
-        }else {
-            result = userLifeService.insert(userLife);
+        if(userLife!=null) {
+            result = userLifeService.insertUserLifeAndUserLabel(userLife);
         }
         return result;
     }

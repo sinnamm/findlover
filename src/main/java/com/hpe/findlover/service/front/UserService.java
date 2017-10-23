@@ -21,4 +21,10 @@ public interface UserService extends BaseService<UserBasic> {
 
 	List<UserBasic> selectAllUser();
 
+	/**
+	 * 修改用户基本同时添加高收入、高学历标签
+	 * @param userBasic 用户基本信息
+	 * @return
+	 */
+	boolean updateUserBasicAndUserLabel(UserBasic userBasic);
 }

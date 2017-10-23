@@ -6,4 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserLabelMapper extends BaseTkMapper<UserLabel> {
+
+    UserLabel selectLabelByUserIdAndLabelId(Integer id, Integer i);
+
+    void deleteLabelByUserIdAndLabelId(Integer id, Integer i);
 }
