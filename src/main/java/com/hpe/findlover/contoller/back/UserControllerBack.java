@@ -14,6 +14,7 @@ import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -39,7 +40,7 @@ public class UserControllerBack {
 	private final LabelServiceBack labelServiceBack;
 
 	@Autowired
-	public UserControllerBack(UserBasicServiceBack userBasicServiceBack, UserAssetServiceBack userAssetServiceBack, UserDetailServiceBack userDetailServiceBack, UserLifeServiceBack userLifeServiceBack, UserStatusServiceBack userStatusServiceBack, UserPickServiceBack userPickServiceBack,LabelServiceBack labelServiceBack) {
+	public UserControllerBack(UserBasicServiceBack userBasicServiceBack, UserAssetServiceBack userAssetServiceBack, UserDetailServiceBack userDetailServiceBack, UserLifeServiceBack userLifeServiceBack, UserStatusServiceBack userStatusServiceBack, UserPickServiceBack userPickServiceBack, LabelServiceBack labelServiceBack) {
 		this.userBasicServiceBack = userBasicServiceBack;
 		this.userAssetServiceBack = userAssetServiceBack;
 		this.userDetailServiceBack = userDetailServiceBack;
@@ -74,7 +75,9 @@ public class UserControllerBack {
 
 	@GetMapping("{type}/{id}")
 	@ResponseBody
+	@Cacheable(value = "user-cache")
 	public Object userBasic(@PathVariable int id, @PathVariable String type) throws NoSuchFieldException, IllegalAccessException {
+		logger.debug("获取ID为" + id + "的User" + StringUtils.capitalize(type) + "数据...");
 		Field declaredField = this.getClass().getDeclaredField("user" + StringUtils.capitalize(type) + "ServiceBack");
 		declaredField.setAccessible(true);
 		return ((BaseService) declaredField.get(this)).selectByPrimaryKey(id);
@@ -111,10 +114,10 @@ public class UserControllerBack {
 
 	@PostMapping("label")
 	@ResponseBody
-	public int addLabel(Label label){
-		if(labelServiceBack.insertUseGeneratedKeys(label) > 0) {
+	public int addLabel(Label label) {
+		if (labelServiceBack.insertUseGeneratedKeys(label) > 0) {
 			return label.getId();
-		}else{
+		} else {
 			return 0;
 		}
 	}
@@ -125,13 +128,13 @@ public class UserControllerBack {
 		Label label = new Label();
 		label.setName(name);
 		boolean result = labelServiceBack.selectOne(label) != null;
-		logger.debug("名称为“"+name+"”的标签是否存在："+result);
+		logger.debug("名称为“" + name + "”的标签是否存在：" + result);
 		return result;
 	}
 
 	@DeleteMapping("label/{id}")
 	@ResponseBody
-	public boolean deleteLabel(@PathVariable int id){
+	public boolean deleteLabel(@PathVariable int id) {
 		return labelServiceBack.deleteByPrimaryKey(id) > 0;
 	}
 

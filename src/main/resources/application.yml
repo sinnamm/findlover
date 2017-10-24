@@ -3,6 +3,7 @@ server:
 spring:
   thymeleaf:
     cache: false
+    mode: HTML
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
@@ -35,6 +36,11 @@ spring:
       enabled: true
       max-file-size: 3MB
       max-request-size: 25MB
+  cache:
+    type: ehcache
+    ehcache:
+      config: ehcache.xml
+    cache-names: user-cache,dict-cache
 
 
 # Mybatis config

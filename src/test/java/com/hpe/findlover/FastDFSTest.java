@@ -29,7 +29,7 @@ public class FastDFSTest {
 	}
 	@Test
 	public void testUpload() throws IOException {
-		File file = new File("F://Akali.png");
+		File file = new File("F://Akali.bmp");
 		String result = uploadService.uploadFile(new MultipartFile() {
 			@Override
 			public String getName() {

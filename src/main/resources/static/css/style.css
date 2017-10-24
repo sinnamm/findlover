@@ -1770,6 +1770,7 @@ table.table_working_hours {
 td.day_label {
     color: #777;
     padding: 5px 0;
+    width: 70%;
 }
 
 .table_working_hours tr {
@@ -1871,7 +1872,7 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
 
 .newsletter input[type="text"] {
     padding: 10px 2%;
-    width: 77%;
+    width: 55%;
     margin-right: 10px;
     font-size: 12px;
     max-width: 96%;
@@ -1880,10 +1881,10 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
     display: inline-block;
 }
 
-.newsletter input[type="submit"] {
+.newsletter input[type="submit"],.search-btn {
     color: #fff;
     text-transform: uppercase;
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: 500;
     border: none;
     background: #c32143;
@@ -1897,7 +1898,7 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
     -o-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.14);
 }
 
-.newsletter input[type="submit"]:hover {
+.newsletter input[type="submit"]:hover,.search-btn:hover {
     background: #ffa417;
 }
 
@@ -5288,4 +5289,12 @@ ul.feature_list.feature_list1 {
 .sigmapad {
     padding: 0 1px 1px 0 !important;
     margin: 0 !important;
+}
+/**
+profile
+ */
+.row_3{
+    position: relative;
+    margin-top: 5%;
+    /*float: right;*/
 }

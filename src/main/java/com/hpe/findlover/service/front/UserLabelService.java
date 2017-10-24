@@ -9,4 +9,5 @@ import com.hpe.findlover.service.BaseService;
  */
 
 public interface UserLabelService extends BaseService<UserLabel> {
+	void reloadLabel(String meaning, int userId, boolean condition);
 }

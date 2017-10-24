@@ -75,7 +75,6 @@ public class UserController {
 		user.setAuthority(1);
 		//暂时将状态码设置为1
 		user.setStatus(1);
-		user.setLiveCondition("-1");
 		user.setPhoto("p6.jpg");
 		user.setRegTime(new Date());
 //		发送邮件

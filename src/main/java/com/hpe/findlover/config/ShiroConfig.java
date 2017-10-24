@@ -165,13 +165,13 @@ public class ShiroConfig {
 	 * 可见securityManager是整个shiro的核心；
 	 * @return
 	 */
-	@Bean
+	/*@Bean
 	public EhCacheManager ehCacheManager(){
 		logger.debug("初始化Ehcache缓存");
 		EhCacheManager cacheManager = new EhCacheManager();
 		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
 		return cacheManager;
-	}
+	}*/
 	/**
 	 * ShiroDialect，为了在thymeleaf里使用shiro的标签的bean
 	 * @return
