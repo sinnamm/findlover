@@ -64,6 +64,8 @@ public class VIPController {
             userAsset.setCost(Double.parseDouble(vipBuyMoney.substring(1)));
             if (userAssetService.insert(userAsset)) {
                 list.add("VIP购买成功");
+                user.setVip(true);
+                session.setAttribute("user",user);
                 list.add("success");
             } else {
                 list.add("VIP购买失败，正在退款");
@@ -79,6 +81,8 @@ public class VIPController {
         }
         if (userAssetService.updateByPrimaryKey(userAsset)) {
             list.add("VIP购买成功");
+            user.setVip(true);
+            session.setAttribute("user",user);
             list.add("success");
         } else {
             list.add("VIP购买失败");
@@ -114,8 +118,19 @@ public class VIPController {
         } else {
             if (userAsset == null) {
                 userAsset = new UserAsset();
+                userAsset.setId(userBasic.getId());
                 userAsset.setStarDeadline(LoverUtil.addDay(new Date(), starBuyDay));
                 userAsset.setCost(starBuyMoney);
+                if (userAssetService.insert(userAsset)) {
+                    list.add("星级会员购买成功");
+                    userBasic.setStar(true);
+                    session.setAttribute("user",userBasic);
+                    list.add("success");
+                } else {
+                    list.add("星级会员购买失败");
+                    list.add("error");
+                }
+
             } else if (userAsset.getStarDeadline().before(new Date())) {
                 userAsset.setStarDeadline(LoverUtil.addDay(new Date(), starBuyDay));
                 userAsset.setCost(userAsset.getCost() + starBuyMoney);
@@ -126,6 +141,8 @@ public class VIPController {
         }
         if (userAssetService.updateByPrimaryKey(userAsset)) {
             list.add("星级会员购买成功");
+            userBasic.setStar(true);
+            session.setAttribute("user",userBasic);
             list.add("success");
         } else {
             list.add("星级会员购买失败");

@@ -50,7 +50,7 @@ public class UserBasic {
     private Double salary;
 
     @Column(name = "live_condition")
-    private Integer liveCondition;
+    private String liveCondition;
 
     /**
      * 个人资料可见性（0：所有用户不可见，1：所有用户可见，2：仅我关注的人可见）
@@ -293,14 +293,14 @@ public class UserBasic {
     /**
      * @return live_condition
      */
-    public Integer getLiveCondition() {
+    public String getLiveCondition() {
         return liveCondition;
     }
 
     /**
      * @param liveCondition
      */
-    public void setLiveCondition(Integer liveCondition) {
+    public void setLiveCondition(String liveCondition) {
         this.liveCondition = liveCondition;
     }
 

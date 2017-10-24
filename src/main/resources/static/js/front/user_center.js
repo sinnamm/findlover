@@ -6,6 +6,8 @@ $(function () {
     initUserStatusValidator();
     initUserPickValidator();
     initRechargeValidator();
+    initSalaryDropdown(undefined,-1, -1);
+    initHeightDropdown(undefined, -1, -1);
     initResetPwd();
     initResetAuth();
     initPhotoWall();
@@ -25,6 +27,7 @@ $(function () {
     selectDict("marry_status", "marryStatus");
     selectDict("parent_status", "parentStatus");
     selectDict("bro_and_sis", "broAndSis");
+    selectDict("live_condition", "liveCondition");
     initNationalDropdown("nation");
     initSingleHeightDropdown("height");
     initCampus("graduation0", "graduation1", -1, -1);
@@ -35,7 +38,6 @@ $(function () {
     initSingleSalaryDropdown("salary", -1);
     initAgeDropdown(undefined);
     selectUserBasic1();
-
 });
 
 //重置密码验证
@@ -120,7 +122,7 @@ function initUserBasicValidator() {
             'education': 'required',
             'work_province': 'required',
             'work_city': 'required',
-            'test': 'required'
+            'liveCondition': 'required'
         },
         theme: 'bootstrap',
         timely: 2,
@@ -317,7 +319,7 @@ function selectUserBasic1() {
                 + "，" + data.height + "M";
             $("#userfixed").text(userfixed);
             loadDataByKeyArr(data,
-                ["nickname", "tel", "height", "education",
+                ["nickname", "tel", "email","height", "education",
                     "liveCondition"]);
            /* $("#nickname").val(data.nickname);
             $("#tel").val(data.tel);
@@ -367,7 +369,7 @@ function selectUserDetail() {
             }*/
             if (data.birthplace != null && data.birthplace != '') {
                 var arr = data.birthplace.split("-");
-                initCampus("graduation0", "graduation1", "山东", "青岛科技大学");
+                initCampus("graduation0", "graduation1", arr[0], arr[1]);
             }
             if (data.birthplace != null && data.birthplace != '') {
                 var arr = data.birthplace.split("-");

@@ -1,4 +1,3 @@
-var salary_array = ['3000','5000','8000','12000','15000','20000'];
 var pageNum = 1;
 window.onload = function () {
     $('.flexslider').flexslider({
@@ -80,6 +79,7 @@ function updateHeightDropdown(dropdownBtnId) {
         $("#" + dropdownBtnId).find(".dropdown-value").html(result);
 }
 
+/*
 //初始化月收入的下拉列表
 function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) {
     $("select[id^=salary-select-]").find("option:gt('0')").remove();
@@ -109,6 +109,7 @@ function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) 
             updateSalaryDropdown(dropdownBtnId);
     });
 }
+*/
 
 // 更新月收入的下拉列表option
 function updateSalaryDropdown(dropdownBtnId) {

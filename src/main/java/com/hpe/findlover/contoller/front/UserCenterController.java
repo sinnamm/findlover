@@ -150,7 +150,7 @@ public class UserCenterController {
             } else {//用户资产为非空情况
                 userAsset.setCost(userAsset.getCost()+cost);
                 userAsset.setAsset(userAsset.getAsset()+cost.intValue());
-                result = userAssetService.updateByPrimaryKeySelective(userAsset);
+                result = userAssetService.updateByPrimaryKey(userAsset);
             }
         }
         return result;
@@ -231,8 +231,10 @@ public class UserCenterController {
     public Object updateUserBasic(UserBasic userBasic, String work_province, String work_city,HttpSession session) {
         boolean result = false;
         if(userBasic!=null) {
-            if (work_province != null && work_city != null) {
+            if ( work_city != null) {
                 userBasic.setWorkplace(work_province + "-" + work_city);
+            }else {
+                userBasic.setWorkplace(work_province);
             }
             if (userBasic.getPassword() != null) {
                 userBasic.setPassword(new MD5Code().getMD5ofStr(userBasic.getPassword()));
@@ -260,15 +262,24 @@ public class UserCenterController {
     public Object updateUserDetail(UserDetail userDetail, String graduation0, String graduation1,
                                   String birthplace_province,String birthplace_city) {
         boolean result = false;
-        if (graduation0 != null && graduation1 != null) {
+        logger.warn("userDetail=   "+userDetail);
+        logger.warn("graduation0=   "+graduation0);
+        logger.warn("graduation1=   "+graduation1);
+        logger.warn("birthplace_province=   "+birthplace_province);
+        logger.warn("birthplace_city=   "+birthplace_city);
+        if (graduation1 != null) {
             userDetail.setGraduation(graduation0 + "-" + graduation1);
+        }else {
+            userDetail.setGraduation(graduation0);
         }
-        if (graduation0 != null && graduation1 != null) {
+        if (birthplace_city != null ) {
             userDetail.setBirthplace(birthplace_province + "-" + birthplace_city);
+        }else {
+            userDetail.setBirthplace(birthplace_province);
         }
         logger.error(userDetail);
         if(userDetailService.selectByPrimaryKey(userDetail)!=null){
-            result = userDetailService.updateByPrimaryKeySelective(userDetail);
+            result = userDetailService.updateByPrimaryKey(userDetail);
         }else {
             result = userDetailService.insert(userDetail);
         }
@@ -301,7 +312,7 @@ public class UserCenterController {
         boolean result = false;
         logger.error(userStatus);
         if(userStatusService.selectByPrimaryKey(userStatus)!=null){
-            result = userStatusService.updateByPrimaryKeySelective(userStatus);
+            result = userStatusService.updateByPrimaryKey(userStatus);
         }else {
             result = userStatusService.insert(userStatus);
         }
@@ -318,15 +329,19 @@ public class UserCenterController {
     public Object updateUserLife(UserPick userPick,String workplace_province1,String workplace_city1
     ,String birthplace_province1,String birthplace_city1) {
         boolean result = false;
-        if (workplace_province1 != null && workplace_city1 != null) {
+        if ( workplace_city1 != null) {
             userPick.setWorkplace(workplace_province1 + "-" + workplace_city1);
+        }else {
+            userPick.setWorkplace(workplace_province1);
         }
-        if (birthplace_province1 != null && birthplace_city1 != null) {
+        if (birthplace_city1 != null) {
             userPick.setWorkplace(birthplace_province1 + "-" + birthplace_city1);
+        }else {
+            userPick.setWorkplace(birthplace_province1);
         }
         logger.error(userPick);
         if(userPickService.selectByPrimaryKey(userPick)!=null){
-            result = userPickService.updateByPrimaryKeySelective(userPick);
+            result = userPickService.updateByPrimaryKey(userPick);
         }else {
             result = userPickService.insert(userPick);
         }

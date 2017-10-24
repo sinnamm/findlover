@@ -8,6 +8,7 @@ public class Label {
     private Integer id;
 
     private String name;
+    private String meaning;
 
     public Label() {
     }
@@ -15,6 +16,14 @@ public class Label {
     public Label(String name) {
         this.id=id;
         this.name = name;
+    }
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public String getMeaning() {
+        return meaning;
     }
 
     /**
@@ -43,5 +52,14 @@ public class Label {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Label{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", meaning='" + meaning + '\'' +
+                '}';
     }
 }

@@ -75,7 +75,7 @@ public class UserController {
 		user.setAuthority(1);
 		//暂时将状态码设置为1
 		user.setStatus(1);
-		user.setLiveCondition(0);
+		user.setLiveCondition("-1");
 		user.setPhoto("p6.jpg");
 		user.setRegTime(new Date());
 //		发送邮件
@@ -88,12 +88,12 @@ public class UserController {
 			UserPick userPick = new UserPick();
 			userPick.setId(userBasic.getId());
 			userPick.setSex(userBasic.getSexual());
-			userPick.setAgeLow(userBasic.getAge()-3);
-			userPick.setAgeHigh(userBasic.getAge()+3);
+			userPick.setAgeLow(Math.max(18,LoverUtil.getAge(userBasic.getBirthday())-3));
+			userPick.setAgeHigh(Math.min(66,LoverUtil.getAge(userBasic.getBirthday())+3));
 			userPick.setWorkplace(userBasic.getWorkplace());
 			userPick.setMarryStatus("未婚");
-			userPick.setHeightLow(userBasic.getHeight()-10);
-			userPick.setHeightHigh(userBasic.getHeight()+10);
+			userPick.setHeightLow(Math.max(145,userBasic.getHeight()-10));
+			userPick.setHeightHigh(Math.min(210,userBasic.getHeight()+10));
 			if(userPickService.insertSelective(userPick)){
 				return "redirect:login";
 			}else {

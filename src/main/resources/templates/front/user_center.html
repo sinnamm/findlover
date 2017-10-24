@@ -10,7 +10,7 @@
     <link th:href="@{/css/documentation.css}" href="../../static/css/documentation.css"  rel="stylesheet"/>
     <script th:src="@{/jquery/jquery.toolbar.js}" src="../../static/jquery/jquery.toolbar.js"></script>
     <script th:src="@{/js/front/user_center.js}" src="../../static/js/front/user_center.js"></script>
-    <script src="../../static/js/front/search.js" th:src="@{/js/front/search.js}"></script>
+    <!--<script src="../../static/js/front/search.js" th:src="@{/js/front/search.js}"></script>-->
     <!-- 相册js引入 -->
     <script src="../../static/jquery/ekko-lightbox.min.js" th:src="@{/jquery/ekko-lightbox.min.js}"></script>
 
@@ -241,7 +241,7 @@
                             </div>
                         </div>
                         <!-- vip 专属 -->
-                        <div class="form-group message_group" th:hidden="${!session.user.vip}">
+                        <div class="form-group message_group" >
                             <label class="col-md-3 control-label message-lable text-right">住房条件：</label>
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="liveCondition" id="liveCondition" class="form-control select-control">
@@ -255,9 +255,6 @@
                         <div class="form-group">
                             <div class="col-md-6 text-right">
                                 <input class="btn btn-primary " type="submit" value="提交" style="margin: 10px"/>
-                            </div>
-                            <div th:hidden="${session.user.vip}" class="col-md-6 text-left">
-                                <a class="btn btn-link" th:href="@{/vip}" style="margin: 10px">想获取更多权限请点击我。。。。</a>
                             </div>
                         </div>
                     </form>
@@ -284,7 +281,6 @@
                            <label class="col-md-3 control-label message-lable text-right">身份证号：</label>
                            <input id="cardnumber" name="cardnumber"  class="col-md-4 form-control message_main_input" >
                        </div>
-                       <div th:hidden="${!session.user.vip}">
                            <div class="form-group message_group" >
                                <label class="col-md-3 control-label message-lable text-right">星座：</label>
                                <div class="col-md-4" style="padding: 0px">
@@ -348,7 +344,6 @@
                                    </select>
                                </div>
                            </div>
-                       </div>
                        <div class="form-group message_group">
                            <label class="col-md-3 control-label message-lable text-right">毕业院校：</label>
                            <div class="col-md-4" style="padding: 0px">
@@ -368,7 +363,7 @@
                                </select>
                            </div>
                        </div>
-                       <div class="form-group message_group" th:hidden="${!session.user.vip}">
+                       <div class="form-group message_group" >
                            <label class="col-md-3 control-label message-lable text-right">籍贯：</label>
                            <div class="col-md-4" style="padding: 0px">
                                <select name="birthplace_province" id="birthplace_province" class="form-control select-control double-control">
@@ -798,7 +793,6 @@
                                 </select>
                             </div>
                         </div>
-                        <!--vip专属-->
                         <div class="form-group message_group" th:hidden="${!session.user.vip}">
                             <label class="col-md-3 control-label message-lable text-right">学历：</label>
                             <div class="col-md-4" style="padding: 0px">

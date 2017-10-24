@@ -4,6 +4,7 @@ $(function () {
     initWorkplaceDropdown();
     initWorkplaceDropdown(undefined,"province","city");
     initSingleHeightDropdown("height");
+    initSingleSalaryDropdown("salary",-1);
     selectDict("education", "education");
 });
 
@@ -26,7 +27,7 @@ function niceValidator() {
             'marry_status': 'required',
             'education': 'required',
             'height': 'required;range(100~249)',
-            'salary': 'required;range(1001~249000)',
+            'salary': 'required',
             'tel': 'required;mobile',
             'email': 'required;email;remote[checkEmail, email]',
             'password': '密码:required;password',
@@ -47,19 +48,3 @@ function niceValidator() {
     });
 }
 
-
-//获取Education列表对象
-function selectEducationDict() {
-    $.ajax({
-        url:contextPath+"get_dict/education",
-        type:"GET",
-        dataType:"JSON",
-        success:function (data) {
-            $("#education").empty();
-            $("#education").append($("<option value=\"请选择\">请选择</option>"));
-            $(data).each(function (index, element) {
-                $("#education").append($("<option value=\""+element.value+"\">"+element.value+"</option>"));
-            });
-        }
-    });
-}

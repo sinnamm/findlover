@@ -2,6 +2,7 @@ var age_low_limit = 18;
 var age_high_limit = 66;
 var height_low_limit = 145;
 var height_high_limit = 210;
+var salary_array = ['3000','5000','8000','12000','15000','20000'];
 
 
 // 会员、星级用户和牵手币logo toolbar
@@ -145,6 +146,36 @@ function initWorkplaceDropdown(spanId, provinceId, cityId, provinceValue, cityVa
     $citySel.change(function () {
         if (spanId != undefined)
             updateWorkplaceDropdown(spanId, provinceId, cityId);
+    });
+}
+
+//初始化月收入的下拉列表
+function initSalaryDropdown(dropdownBtnId, salary_low_value, salary_high_value) {
+    $("select[id^=salary-select-]").find("option:gt('0')").remove();
+    for (var x = 0; x < salary_array.length; x++) {
+        $("select[id=salary-select-low]").append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_low_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        $("select[id=salary-select-high]").append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_high_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+    }
+    // 月收入条件控制c
+    $("#salary-select-low").change(function () {
+        var low_index = salary_array.indexOf(this.value);
+        var pre_selected_index = salary_array.indexOf($("#salary-select-high").val());
+        $("#salary-select-high").find("option:gt('0')").remove();
+        for (var x = low_index == "-1" ? 0 : low_index; x < salary_array.length; x++) {
+            $("#salary-select-high").append($("<option value='" + salary_array[x] + "' " + (x == pre_selected_index ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        }
+        if (dropdownBtnId!=undefined)
+            updateSalaryDropdown(dropdownBtnId);
+    });
+    $("#salary-select-high").change(function () {
+        var high_index = salary_array.indexOf(this.value);
+        var pre_selected_index = salary_array.indexOf($("#salary-select-low").val());
+        $("#salary-select-low").find("option:gt('0')").remove();
+        for (var x = 0; x < (high_index == '-1' ? salary_array.length : high_index); x++) {
+            $("#salary-select-low").append($("<option value='" + salary_array[x] + "' " + (x == pre_selected_index ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        }
+        if (dropdownBtnId!=undefined)
+            updateSalaryDropdown(dropdownBtnId);
     });
 }
 
