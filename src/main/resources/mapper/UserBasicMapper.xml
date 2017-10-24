@@ -25,11 +25,7 @@
     <!--<result column="code" property="code" jdbcType="VARCHAR" />-->
     <!--<result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />-->
     <!--</resultMap>-->
-    <sql id="searchInfo">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status, YEAR(NOW())-YEAR(birthday) age,
-        signature,
-        vip_deadline,star_deadline
-    </sql>
+
     <resultMap id="userSearch" type="userBasic">
         <id column="userId" property="id" jdbcType="INTEGER" />
         <result column="nickname" property="nickname" jdbcType="VARCHAR" />
@@ -39,7 +35,9 @@
         <result column="height" property="height" jdbcType="INTEGER" />
         <result column="workplace" property="workplace" jdbcType="VARCHAR" />
         <result column="age" property="age"/>
+        <!--用户详细信息-->
         <result column="signature" property="userDetail.signature"/>
+        <!--用户资产信息-->
         <result column="vip_deadline" property="userAsset.vipDeadline"/>
         <result column="star_deadline" property="userAsset.starDeadline"/>
     </resultMap>
@@ -80,19 +78,91 @@
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">
-        <include refid="searchInfo"></include>
-        FROM user_basic INNER JOIN user_detail INNER user_asset
-        WHERE id IN
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status, YEAR(NOW())-YEAR(birthday) age,
+        signature,
+        vip_deadline,star_deadline
+        FROM user_basic
+        LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
+        LEFT OUTER JOIN user_asset  ON  user_basic.id=user_asset.id
+        WHERE user_basic.id IN
         <foreach collection="array" open="("
                  separator="," close=")" item="val">
             #{val}
         </foreach>
     </select>
 
+    <select id="selectUserByUserPick" resultMap="userSearch" >
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,
+        YEAR(NOW())-YEAR(birthday) age,
+        signature,
+        vip_deadline,star_deadline
+        FROM user_basic
+        LEFT OUTER JOIN user_life ON user_basic.id=user_life.id
+        LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
+        LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
+        <where>
+            <if test="sex != null">
+                sex=#{sex}
+            </if>
+            <if test="workplace !=null and workplace !='-1'">
+                AND workplace LIKE #{workplace}
+            </if>
+            <if test="heightLow != null and heightLow !='-1'">
+                AND height >= #{heightLow}
+            </if>
+            <if test="heightHigh !=null and heightHigh !='-1'">
+                AND  height &lt;=  #{heightHigh}
+            </if>
+            <if test="job != null and job !='-1'">
+                AND job LIKE #{job}
+            </if>
+
+            <if test="marryStatus !=null and marryStatus !='-1'">
+                AND marry_status LIKE #{marryStatus}
+            </if>
+            <if test="salaryLow !=null and salaryLow !='-1' ">
+                AND salary >= #{salaryLow}
+            </if>
+            <if test=" salaryHigh !=null and salaryHigh !='-1'">
+                AND salary &lt;= #{salaryHigh}
+            </if>
+            <!--以下为VIP的搜索条件-->
+            <if test="education != null and education !='-1'">
+                AND education LIKE #{education}
+            </if>
+            <if test="birthplace != null and birthplace !='-1'">
+                AND birthplace LIKE #{birthplace}
+            </if>
+            <if test="drink != null and drink !='-1'">
+                AND drink LIKE #{drink}
+            </if>
+            <if test="smoke != null and smoke !='-1'">
+                AND smoke LIKE #{smoke}
+            </if>
+
+        </where>
+
+        <if test="ageLow != null and ageLow !='-1'">
+            HAVING age >= #{ageLow}
+        </if>
+        <if test="ageLow == null">
+            HAVING age >= 18
+        </if>
+        <if test="ageHigh != null and ageHigh !='-1'">
+            and age &lt;= #{ageHigh}
+        </if>
+
+    </select>
+
     <select id="selectUserBySearch" resultMap="userSearch">
-        <include refid="searchInfo"></include>
-        FROM user_basic INNER JOIN user_life INNER JOIN user_detail INNER JOIN user_asset
-        ON user_detail.id=user_basic.id AND user_basic.id=user_life.id AND user_basic.id=user_asset.id
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,
+        YEAR(NOW())-YEAR(birthday) age,
+        signature,
+        vip_deadline,star_deadline
+        FROM user_basic
+        LEFT OUTER JOIN user_life ON user_basic.id=user_life.id
+        LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
+        LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
         <where>
             <if test="sex != null">
               sex=#{sex}
@@ -143,7 +213,10 @@
             </if>
         </where>
 
-        <if test="ageLow != null">
+        <if test="ageLow != null and ageLow !='-1'">
+            HAVING age >= #{ageLow}
+        </if>
+        <if test="ageLow == null">
             HAVING age >= 18
         </if>
         <if test="ageHigh != null and ageHigh !='-1'">

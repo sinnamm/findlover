@@ -1,13 +1,14 @@
 var salary_array = ['3000','5000','8000','12000','15000','20000'];
 var pageNum = 1;
-window.onload = function () {
-    $('.flexslider').flexslider({
-        animation: "slide",
-        start: function (slider) {
-            $('body').removeClass('loading');
-        }
-    });
-}
+var pageLabel = 0;
+// window.onload = function () {
+//     $('.flexslider').flexslider({
+//         animation: "slide",
+//         start: function (slider) {
+//             $('body').removeClass('loading');
+//         }
+//     });
+// }
 $(function () {
     $("select[id*='search-select-']").each(function () {
         $(this).change(function () {
@@ -16,13 +17,14 @@ $(function () {
     });
     //初始化搜索下拉框，完成根据userpick表的赋值
     selectUserBasic();
+
     initNationalDropdown("search-select-13");
     //根据下拉框选中的值，更新显示的span信息
     initDropdownSpan();
     //初始化标签
     initLabel();
     //初始化搜索用户
-    initSearchUser();
+    initPickUser();
     //根据搜索条件搜索用户
     getSearchUser();
 
@@ -128,7 +130,12 @@ function updateSalaryDropdown(dropdownBtnId) {
         else
             result = salary_array[low_index] + "-" + salary_array[high_index] + "元";
     }
+    var span = $("#" + dropdownBtnId).find(".dropdown-value");
+    alert(span.attr("tagName"));
     $("#" + dropdownBtnId).find(".dropdown-value").html(result);
+    var value =$("#" + dropdownBtnId).find(".dropdown-value").html()
+    alert(value);
+
 }
 
 //页面加载完成时第一次获取用户择偶条件的基本信息
@@ -143,7 +150,7 @@ function selectUserBasic() {
             $("#age-span").html(data.ageLow + "-" + data.ageHigh);
             initAgeDropdown("dropdown-btn-2",data.ageLow,data.ageHigh);
             //地区
-            if (data.workplace == "null") {
+            if (data.workplace == null||data.workplace.indexOf("-1")==0) {
                 $("#workplace-span").html("地区不限");
                 initWorkplaceDropdown("workplace-span", "province-select", "city-select", -1, -1);
             } else {
@@ -152,24 +159,25 @@ function selectUserBasic() {
                 initWorkplaceDropdown("workplace-span", "province-select", "city-select", arr[0], arr.length > 1 ? arr[1] : -1);
             }
             //身高
-            if(data.heightLow=="null"&&data.heightHigh!="null"){
+            if(data.heightLow==null&&data.heightHigh!=null){
                 $("#height-span").html(data.heightHigh+"cm以下");
-            }else if (data.heightHigh=="null"&&data.heightLow!="null"){
+            }else if (data.heightHigh==null&&data.heightLow!=null){
                 $("#height-span").html(data.heightLow+"cm以上");
-            }else if(data.heightLow!="null"&&data.heightHigh!="null"){
+            }else if(data.heightLow!=null&&data.heightHigh!=null){
+                alert((data.heightLow!=null)+"..."+data.heightHigh);
                 $("#height-span").html(data.heightLow+"-"+data.heightHigh);
-            }else {
+            }else if(data.heightLow==null&&data.heightHigh==null){
                 $("#height-span").html("身高不限");
             }
             initHeightDropdown("height-span",data.heightLow,data.heightHigh);
             //职业
             //婚史
             //月收入
-            if(data.salaryLow=="null"&&data.salaryHigh!="null"){
+            if(data.salaryLow==null&&data.salaryHigh!=null){
                 $("#salary-span").html(data.salaryHigh+"元以下");
-            }else if (data.salaryHigh=="null"&&data.salaryLow!="null"){
+            }else if (data.salaryHigh==null&&data.salaryLow!=null){
                 $("#salary-span").html(data.salaryLow+"元以上");
-            }else if(data.salaryLow!="null"&&data.salaryHigh!="null"){
+            }else if(data.salaryLow!=null&&data.salaryHigh!=null){
                 $("#salary-span").html(data.salaryLow+"-"+data.salaryHigh);
             }else {
                 $("#salary-span").html("月收入不限");
@@ -177,7 +185,7 @@ function selectUserBasic() {
             initSalaryDropdown("salary-span",data.salaryLow,data.salaryHigh)
             //学历
             //籍贯
-            if (data.birthplace == "null" || data.birthplace.trim()=="") {
+            if (data.birthplace == null || data.birthplace.trim()=="") {
                $("#birthplace-span").html("籍贯不限");
                 initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", -1, -1);
             } else {
@@ -220,11 +228,12 @@ function initLabel() {
 
 function getLabelUser(label) {
     pageNum=1;
-    initLabelUser(label);
+    pageLabel = label;
+    initLabelUser();
 }
 //加载标签条件对应的用户
-function initLabelUser(label) {
-    var data={"label":label,"pageNum":pageNum}
+function initLabelUser() {
+    var data={"labelId":pageLabel,"pageNum":pageNum}
     $.ajax({
         url:contextPath+"search/getLabelUser",
         type:"get",
@@ -234,11 +243,11 @@ function initLabelUser(label) {
             if (pageNum==1) {
                 $(".paid_people").empty();
             }
-            if(data.list.length==0){
+            if(data.message=="error"){
                 swal("提示","没有更多数据啦，扩大一下搜索条件试试？","error");
                 return;
             }
-            var list = data.list;
+            var list = data.pageInfo.list;
             for(i=0;i<list.length;i++){
                 $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
                     "                        <ul class='profile_item'>" +
@@ -251,35 +260,89 @@ function initLabelUser(label) {
                     "                            <li>" +
                     "                                <div style='height: 22px;line-height: 22px'>" +
                     "                                <a href=''>"+list[i].nickname+"</a>" +
-                    "                                <img  src='"+contextPath+"images/vip.png' class='flag'/>" +
-                    "                                <img  src='"+contextPath+"images/star-1.png' class='flag'/></div>" +
+                    "                                <img src='" + contextPath + "images/vip" + (list[i].vip ? "" : "-grey") + ".png' class='flag'>"  +
+                    "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? "" : "-grey") + ".png' class='flag'></div>" +
                     "                                <p>" +
                     "                                    <span>"+list[i].age+"</span>&nbsp;" +
                     "                                    <span>"+list[i].height+"</span>&nbsp;" +
                     "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
                     "                                    <span>"+list[i].marryStatus+"</span>" +
                     "                                </p>" +
-                    "                                <p>内心独白：我就是我，颜色不一样的烟火。</p>" +
+                    "                                <p>"+list[i].userDetail.signature+"</p>" +
                     "                            </li>" +
                     "                            <div class='clearfix'></div>" +
                     "                        </ul>" +
                     "                    </div>");
             }
 
-            $("#load-more-btn").empty();
+            $("#load-more-div").empty();
 
-            $("#load-more-btn").append("" +
-                "<button id='load-more-user' class='col-md-12 btn'>加载更多</button>").click(function () {
-                pageNum++;
-                initLabelUser(label);
+            $("#load-more-div").append("<button id='load-more-user' class='col-md-12 btn'>加载更多</button>")
+              $("#load-more-user").click(function () {
+                    pageNum++;
+                    //alert("labelClick");
+                    initLabelUser();
             });
 
         }
     })
 }
 
-//加载搜索的用户
-function initSearchUser(){
+//页面加载时，根据user-pick搜索的用户
+function initPickUser(){
+    $.ajax({
+        url:contextPath+"search/initSearchUser?pageNum="+pageNum,
+        type:"POST",
+        async : true,
+        dataType:"JSON",
+        success:function (data) {
+            if (pageNum==1) {
+                $(".paid_people").empty();
+            }
+            if(data.message=="error"){
+                swal("提示","没有更多数据啦，扩大一下搜索条件试试？","error");
+                return;
+            }
+            var list = data.pageInfo.list;
+            for(i=0;i<list.length;i++){
+                $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
+                    "                        <ul class='profile_item'>" +
+                    "                                <li class='profile_item-img'>" +
+                    "                                    <a href='view_profile.html'>" +
+                    "                                        <img src=" + contextPath + "images/a7.jpg "+
+                    "                                         class='img-responsive zoom-img' alt=''/>" +
+                    "                                    </a>" +
+                    "                                </li>" +
+                    "                            <li>" +
+                    "                                <div style='height: 22px;line-height: 22px'>" +
+                    "                                <a href=''>"+list[i].nickname+"</a>" +
+                    "                                 <img src='" + contextPath + "images/vip" + (list[i].vip ? '' : '-grey') + ".png' class='flag'>" +
+                    "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? '' : '-grey') + ".png' class='flag'></div>" +
+                    "                                <p>" +
+                    "                                    <span>"+list[i].age+"</span>&nbsp;" +
+                    "                                    <span>"+list[i].height+"</span>&nbsp;" +
+                    "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
+                    "                                    <span>"+list[i].marryStatus+"</span>" +
+                    "                                </p>" +
+                    "                                <p>"+list[i].userDetail.signature+"</p>" +
+                    "                            </li>" +
+                    "                            <div class='clearfix'></div>" +
+                    "                        </ul>" +
+                    "                    </div>");
+            }
+
+            $("#load-more-div").empty();
+            $("#load-more-div").append("<button id='load-more-user' class='col-md-12 btn'>加载更多</button>")
+            $("#load-more-user").click(function () {
+                pageNum++;
+                initPickUser();
+            });
+        }
+    });
+}
+
+//根据条件搜索用户
+function searchUser(){
     //获取表单信息
     $.ajax({
         url:contextPath+"search/getSearchUser",
@@ -291,11 +354,11 @@ function initSearchUser(){
             if (pageNum==1) {
                 $(".paid_people").empty();
             }
-            if(data.list.length==0){
+            if(data.message=="error"){
                 swal("提示","没有更多数据啦，扩大一下搜索条件试试？","error");
                 return;
             }
-            var list = data.list;
+            var list = data.pageInfo.list;
             for(i=0;i<list.length;i++){
                 $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
                     "                        <ul class='profile_item'>" +
@@ -308,27 +371,27 @@ function initSearchUser(){
                     "                            <li>" +
                     "                                <div style='height: 22px;line-height: 22px'>" +
                     "                                <a href=''>"+list[i].nickname+"</a>" +
-                    "                                <img  src='"+contextPath+"images/vip.png' class='flag'/>" +
-                    "                                <img  src='"+contextPath+"images/star-1.png' class='flag'/></div>" +
+                    "                                 <img src='" + contextPath + "images/vip" + (list[i].vip ? '' : '-grey') + ".png' class='flag'>" +
+                    "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? '' : '-grey') + ".png' class='flag'></div>" +
                     "                                <p>" +
                     "                                    <span>"+list[i].age+"</span>&nbsp;" +
                     "                                    <span>"+list[i].height+"</span>&nbsp;" +
                     "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
                     "                                    <span>"+list[i].marryStatus+"</span>" +
                     "                                </p>" +
-                    "                                <p>内心独白：我就是我，颜色不一样的烟火。</p>" +
+                    "                                <p>内心独白："+list[i].userDetail.signature+"</p>" +
                     "                            </li>" +
                     "                            <div class='clearfix'></div>" +
                     "                        </ul>" +
                     "                    </div>");
             }
 
-            $("#load-more-btn").empty();
-            $("#load-more-btn").append("" +
-                "<button id='load-more-user' class='col-md-12 btn'>加载更多</button>").click(function () {
+            $("#load-more-div").empty();
+            $("#load-more-div").append("<button id='load-more-user' data-loading-text='Loading...' class='col-md-12 btn'>加载更多</button>")
+            $("#load-more-user").click(function () {
                     pageNum++;
-                    initSearchUser();
-            })
+                    searchUser();
+            });
         }
     });
 }
@@ -337,7 +400,8 @@ function initSearchUser(){
 function getSearchUser() {
     $("#search-form-submit").click(function () {
         //查询用户
-       initSearchUser();
+        pageNum=1;
+        searchUser();
     })
 }
 

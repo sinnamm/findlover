@@ -2,15 +2,11 @@ package com.hpe.findlover.contoller.front;
 
 import  com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hpe.findlover.model.Dict;
-import com.hpe.findlover.model.Search;
-import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.front.DictService;
-import com.hpe.findlover.service.front.UserPickService;
-import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.model.*;
+import com.hpe.findlover.service.front.*;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
+import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +38,16 @@ public class SearchController {
     private UserService userService;
     @Autowired
     private UserPickService userPickService;
+    @Autowired
+    private LabelService labelService;
+    @Autowired
+    private UserLabelService userLabelService;
 
     /**
     * @Author sinnamm
     * @Describtion: 跳转到search页面，要查询数据库传递的页面信息有
      * 1、数据字典表：职业、婚史、学历，住房条件、星座、生肖、信仰
-     * 2、搜索位用户信息：默认是根据用户的择偶条件进行初步查询
+     * 2、搜索位用户择偶条件信息和标签信息：默认是根据用户的择偶条件进行初步查询
      * 3、广告位用户：随机从VIP用户中选择符合其性取向的用户（四位）显示在页面
     * @Date Create in  9:03 2017/10/19
     **/
@@ -75,9 +75,10 @@ public class SearchController {
         model.addAttribute("zodiacList",zodiacList);
         model.addAttribute("animalList",animalList);
         model.addAttribute("religionList",religionList);
-        /*2、搜索位用户信息*/
+        /*2、搜索位用户择偶条件信息和标签信息*/
         UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
         UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
+        logger.info("userPick.."+userPick);
         model.addAttribute("userPick",userPick);
         /*3、广告位VIP用户信息*/
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -104,6 +105,44 @@ public class SearchController {
         return "front/search";
     }
 
+    @GetMapping("/getLabel")
+    @ResponseBody
+    public List<Label> getLabel(){
+        List<Label> labelList = labelService.selectAll();
+        return labelList;
+    }
+
+    @GetMapping("/getLabelUser")
+    @ResponseBody
+    public UserInfo getLabelUser(@Param("labelId") Integer labelId, @Param("pageNum") Integer pageNum) {
+        logger.info("labelId==" + labelId + "....pageNum==" + pageNum);
+        List<UserLabel> userLabelList = userLabelService.select(new UserLabel(null, labelId));
+        logger.info("userLabelList======" + userLabelList.toString());
+        Integer[] ids = new Integer[userLabelList.size()];
+        for (int i = 0; i < ids.length; i++) {
+            ids[i] = userLabelList.get(i).getUserId();
+        }
+        if(ids.length==0){
+            logger.info("no more users ids.length="+ids.length);
+            return new UserInfo("error",null);
+        }
+        logger.info("more users ids.length="+ids.length);
+        PageHelper.startPage(pageNum, 6);
+        List<UserBasic> userBasicList = userService.selectUserByIds(ids);
+        if (userBasicList.size()>0) {
+            for (UserBasic userBasic:userBasicList) {
+                logger.info("userBasicLabelList======" + userBasic.toString());
+            }
+            //封装用户数据
+            formatUserInfo(userBasicList);
+            PageInfo page = new PageInfo(userBasicList);
+            return new UserInfo("success", page);
+        }else {
+            return new UserInfo("error", null);
+        }
+
+    }
+
     @GetMapping("/initUserPick")
     @ResponseBody
     public UserPick initUserPick(HttpServletRequest request) throws Exception {
@@ -115,18 +154,80 @@ public class SearchController {
         return userPick;
     }
 
-    @PostMapping("/getSearchUser")
+    @RequestMapping("/initSearchUser")
     @ResponseBody
-    public String getSearchUser(Search search){
-      logger.info("search......"+search.toString());
+    public UserInfo initSearchUser(@Param("pageNum")Integer pageNum,HttpServletRequest request) {
+        logger.info("pageNum......" + pageNum);
+        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        logger.info("userBasic===="+userBasic);
+        UserPick userPick = userPickService.selectByPrimaryKey(userBasic.getId());
+        logger.info("userPick:"+userPick);
+        userPick.setWorkplace("%"+userPick.getWorkplace()+"%");
+        if (userPick.getBirthplace()!=null) {
+            userPick.setBirthplace("%" + userPick.getBirthplace() + "%");
+        }
+        PageHelper.startPage(pageNum,6,false);
+        List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
+        logger.info("userBasicPickList======" + userBasicList);
+        for (UserBasic usesr:userBasicList){
+            logger.info("用户资产"+usesr.getUserAsset());
+            logger.info("用户详细"+usesr.getUserDetail());
+        }
+        if(userBasicList.size()>0) {
+            //封装用户数据
+            formatUserInfo(userBasicList);
+            PageInfo page = new PageInfo(userBasicList);
+            return new UserInfo("success", page);
+        }else {
+            return new UserInfo("error", null);
+        }
+    }
 
-        //分页插件，使用分页查询,传入页码和每页数量
-       // PageHelper.startPage(pageNum,5);
-        //startPage后面紧跟的查询就是分页查询
-        //List<UserBasic> employees = u.getAll();
-        //用PageInfo对结果进行包装,只需要将pageinfo交给页面
-        // pageInfo里面封装了详细的分页信息。第二个参数是连续显示的页数
-       // PageInfo page = new PageInfo(employees,5);
-        return "success";
+    @RequestMapping("/getSearchUser")
+    @ResponseBody
+    public UserInfo getSearchUser(Search search, @Param("pageNum")Integer pageNum) {
+        logger.info("search......" + search.toString());
+        logger.info("pageNum......" + pageNum);
+        PageHelper.startPage(pageNum,6,false);
+        List<UserBasic> userBasicList = userService.selectUserBySearch(search);
+        logger.info("userBasicSearchList======" + userBasicList);
+        if(userBasicList.size()>0) {
+            for (UserBasic userBasic:userBasicList){
+                logger.info("用户资产"+userBasic.getUserAsset());
+                logger.info("用户详细"+userBasic.getUserDetail());
+            }
+            //封装用户数据
+            formatUserInfo(userBasicList);
+            PageInfo page = new PageInfo(userBasicList);
+            return new UserInfo("success", page);
+        }else {
+            return new UserInfo("error", null);
+        }
+    }
+
+    public void formatUserInfo(List<UserBasic> userBasicList){
+        for (UserBasic userBasic:userBasicList) {
+            if (userBasic.getUserAsset() != null) {
+                userBasic.setVip(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getVipDeadline())>0);
+                userBasic.setStar(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getStarDeadline())>0);
+                logger.info("用户名："+userBasic.getNickname()+"...是否是VIP："+userBasic.getVip()+"...是否是星级用户："+userBasic.getStar());
+            }else {
+                UserAsset userAsset = new UserAsset();
+                userBasic.setVip(false);
+                userBasic.setStar(false);
+                userBasic.setUserAsset(userAsset);
+            }
+            if (userBasic.getUserDetail() != null) {
+                if (userBasic.getUserDetail().getSignature()==null)
+                {
+                    userBasic.getUserDetail().setSignature("该用户没有留下任何东西");
+                    logger.info("用户名："+userBasic.getNickname()+"...内心独白："+userBasic.getUserDetail().getSignature());
+                }
+            }else {
+                UserDetail userDetail = new UserDetail();
+                userDetail.setSignature("该用户没有留下任何东西");
+                userBasic.setUserDetail(userDetail);
+            }
+        }
     }
 }

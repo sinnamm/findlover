@@ -88,8 +88,8 @@ public class UserController {
 			UserPick userPick = new UserPick();
 			userPick.setId(userBasic.getId());
 			userPick.setSex(userBasic.getSexual());
-			userPick.setAgeLow(userBasic.getAge()-3);
-			userPick.setAgeHigh(userBasic.getAge()+3);
+			userPick.setAgeLow(Math.max(18,LoverUtil.getAge(userBasic.getBirthday())-3));
+			userPick.setAgeHigh(Math.min(66,LoverUtil.getAge(userBasic.getBirthday())+3));
 			userPick.setWorkplace(userBasic.getWorkplace());
 			userPick.setMarryStatus("未婚");
 			userPick.setHeightLow(userBasic.getHeight()-10);

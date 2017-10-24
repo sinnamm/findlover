@@ -88,4 +88,15 @@ public class UserAsset {
     public void setCost(Double cost) {
         this.cost = cost;
     }
+
+    @Override
+    public String toString() {
+        return "UserAsset{" +
+                "id=" + id +
+                ", vipDeadline=" + vipDeadline +
+                ", starDeadline=" + starDeadline +
+                ", asset=" + asset +
+                ", cost=" + cost +
+                '}';
+    }
 }

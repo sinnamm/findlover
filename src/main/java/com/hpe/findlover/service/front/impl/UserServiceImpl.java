@@ -2,6 +2,7 @@ package com.hpe.findlover.service.front.impl;
 
 import com.hpe.findlover.mapper.DictMapper;
 import com.hpe.findlover.mapper.UserBasicMapper;
+import com.hpe.findlover.model.*;
 import com.hpe.findlover.mapper.UserLabelMapper;
 import com.hpe.findlover.model.Dict;
 import com.hpe.findlover.model.Search;
@@ -54,8 +55,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	}
 
 	@Override
-	public List<UserBasic> selectUSerByLabel(UserLabel userLabel) {
-		return null;
+	public List<UserBasic> selectUserByUserPick(UserPick userPick) {
+		return userBasicMapper.selectUserByUserPick(userPick);
+	}
+
+	@Override
+	public List<UserBasic> selectUserByIds(Integer[] ids) {
+		return userBasicMapper.selectUsersByIds(ids);
 	}
 
 	@Override

@@ -95,6 +95,9 @@ public final class LoverUtil {
 	 * @Describtion: 计算当前日期与指定日期的时间差，单位由unit参数决定
 	 **/
 	public static int getDiff(TimeUnit unit,Date deadline){
+		if (deadline==null){
+			return 0;
+		}
 		long now = unit.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
 		long dead = unit.convert(deadline.getTime(), TimeUnit.MILLISECONDS);
 		return (int) (dead - now);
