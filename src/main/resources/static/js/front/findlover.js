@@ -104,6 +104,7 @@ function initWorkplaceDropdown(spanId, provinceId, cityId, provinceValue, cityVa
     var $provinceSel = $("#" + provinceId);
     var $citySel = $("#" + cityId);
     $provinceSel.find("option:gt('0')").remove();
+    $.ajaxSettings.async = false;
     $.getJSON(contextPath + "json/cities.json", function (data) {
         for (var x = 0; x < data.length; x++) {
             if (data[x].name == provinceValue)
@@ -117,10 +118,11 @@ function initWorkplaceDropdown(spanId, provinceId, cityId, provinceValue, cityVa
             for (var x = 0; x < data.length; x++) {
                 if (data[x].name == $provinceSel.val()) {
                     for (var y = 1; y < data[x].sub.length; y++) {
-                        if (data[x].sub[y].name == cityValue)
+                        if (data[x].sub[y].name == cityValue) {
                             $citySel.append($("<option value='" + data[x].sub[y].name + "' selected>" + data[x].sub[y].name + "</option>"));
-                        else
+                        } else {
                             $citySel.append($("<option value='" + data[x].sub[y].name + "'>" + data[x].sub[y].name + "</option>"));
+                        }
                     }
                     break;
                 }
@@ -128,17 +130,23 @@ function initWorkplaceDropdown(spanId, provinceId, cityId, provinceValue, cityVa
         });
     }
     $provinceSel.change(function () {
+        var preCityValue = $citySel.val();
         $citySel.find(":gt('0')").remove();
+        $.ajaxSettings.async = false;
         $.getJSON(contextPath + "json/cities.json", function (data) {
             for (var x = 0; x < data.length; x++) {
                 if (data[x].name == $("#" + provinceId).val()) {
                     for (var y = 1; y < data[x].sub.length; y++) {
-                        $citySel.append($("<option value='" + data[x].sub[y].name + "'>" + data[x].sub[y].name + "</option>"));
+                        if (data[x].sub[y].name == preCityValue) {
+                            $citySel.append($("<option value='" + data[x].sub[y].name + "' selected>" + data[x].sub[y].name + "</option>"));
+                        } else {
+                            $citySel.append($("<option value='" + data[x].sub[y].name + "'>" + data[x].sub[y].name + "</option>"));
+                        }
                     }
-                    break;
                 }
             }
         });
+        $.ajaxSettings.async = true;
         if (spanId != undefined)
             updateWorkplaceDropdown(spanId, provinceId, cityId);
     });
@@ -146,6 +154,7 @@ function initWorkplaceDropdown(spanId, provinceId, cityId, provinceValue, cityVa
         if (spanId != undefined)
             updateWorkplaceDropdown(spanId, provinceId, cityId);
     });
+    $.ajaxSettings.async = true;
 }
 
 // 动态更新地区下拉列表
@@ -178,7 +187,7 @@ function initNationalDropdown(nationalId) {
 function initSingleHeightDropdown(heightId) {
     $("#" + heightId).empty();
     $("#" + heightId).append($("<option value='-1'>请选择</option>"));
-    for (var i = height_low_limit; i < height_high_limit+1; i++) {
+    for (var i = height_low_limit; i < height_high_limit + 1; i++) {
         $("#" + heightId).append($("<option value='" + i + "'>" + i + "</option>"));
     }
 }
@@ -188,10 +197,10 @@ function initSingleHeightDropdown(heightId) {
  * @param select_salary_id 下拉列表select元素id
  * @param salary_value 回填值
  */
-function initSingleSalaryDropdown(select_salary_id,salary_value) {
-    $("#"+select_salary_id).find("option:gt('0')").remove();
+function initSingleSalaryDropdown(select_salary_id, salary_value) {
+    $("#" + select_salary_id).find("option:gt('0')").remove();
     for (var x = 0; x < salary_array.length; x++) {
-        $("#"+select_salary_id).append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
+        $("#" + select_salary_id).append($("<option value='" + salary_array[x] + "' " + (salary_array[x] == salary_value ? "selected" : "") + ">" + salary_array[x] + "</option>"));
     }
 }
 

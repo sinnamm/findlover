@@ -10,6 +10,7 @@ var pageLabel = 0;
 //     });
 // }
 $(function () {
+    $.ajaxSettings.async = false;
     $("select[id*='search-select-']").each(function () {
         $(this).change(function () {
             $("#dropdown-btn-" + this.id.split("-")[2]).find(".dropdown-value").html(this.value == "-1" ? $(this).find("option:selected").attr("content") : this.value);
@@ -27,6 +28,7 @@ $(function () {
     initPickUser();
     //根据搜索条件搜索用户
     getSearchUser();
+    $.ajaxSettings.async = true;
 
 });
 function initDropdownSpan() {
@@ -79,7 +81,7 @@ function updateHeightDropdown(dropdownBtnId) {
             result = low_age + "-" + high_age + "cm";
     }
     if(dropdownBtnId!=undefined)
-        $("#" + dropdownBtnId).find(".dropdown-value").html(result);
+        $("#" + dropdownBtnId).html(result);
 }
 
 //初始化月收入的下拉列表
@@ -130,11 +132,7 @@ function updateSalaryDropdown(dropdownBtnId) {
         else
             result = salary_array[low_index] + "-" + salary_array[high_index] + "元";
     }
-    var span = $("#" + dropdownBtnId).find(".dropdown-value");
-    alert(span.attr("tagName"));
-    $("#" + dropdownBtnId).find(".dropdown-value").html(result);
-    var value =$("#" + dropdownBtnId).find(".dropdown-value").html()
-    alert(value);
+    $("#" + dropdownBtnId).html(result);
 
 }
 
@@ -143,6 +141,7 @@ function selectUserBasic() {
     $.ajax({
         url: contextPath + "search/initUserPick",
         type: "GET",
+        async:false,
         dataType: "JSON",
         success: function (data) {
             //性别
@@ -159,29 +158,29 @@ function selectUserBasic() {
                 initWorkplaceDropdown("workplace-span", "province-select", "city-select", arr[0], arr.length > 1 ? arr[1] : -1);
             }
             //身高
-            if(data.heightLow==null&&data.heightHigh!=null){
-                $("#height-span").html(data.heightHigh+"cm以下");
-            }else if (data.heightHigh==null&&data.heightLow!=null){
-                $("#height-span").html(data.heightLow+"cm以上");
-            }else if(data.heightLow!=null&&data.heightHigh!=null){
-                alert((data.heightLow!=null)+"..."+data.heightHigh);
-                $("#height-span").html(data.heightLow+"-"+data.heightHigh);
-            }else if(data.heightLow==null&&data.heightHigh==null){
-                $("#height-span").html("身高不限");
-            }
+            // if(data.heightLow==null&&data.heightHigh!=null){
+            //     $("#height-span").html(data.heightHigh+"cm以下");
+            // }else if (data.heightHigh==null&&data.heightLow!=null){
+            //     $("#height-span").html(data.heightLow+"cm以上");
+            // }else if(data.heightLow!=null&&data.heightHigh!=null){
+            //     alert((data.heightLow!=null)+"..."+data.heightHigh);
+            //     $("#height-span").html(data.heightLow+"-"+data.heightHigh);
+            // }else if(data.heightLow==null&&data.heightHigh==null){
+            //     $("#height-span").html("身高不限");
+            // }
             initHeightDropdown("height-span",data.heightLow,data.heightHigh);
             //职业
             //婚史
             //月收入
-            if(data.salaryLow==null&&data.salaryHigh!=null){
-                $("#salary-span").html(data.salaryHigh+"元以下");
-            }else if (data.salaryHigh==null&&data.salaryLow!=null){
-                $("#salary-span").html(data.salaryLow+"元以上");
-            }else if(data.salaryLow!=null&&data.salaryHigh!=null){
-                $("#salary-span").html(data.salaryLow+"-"+data.salaryHigh);
-            }else {
-                $("#salary-span").html("月收入不限");
-            }
+            // if(data.salaryLow==null&&data.salaryHigh!=null){
+            //     $("#salary-span").html(data.salaryHigh+"元以下");
+            // }else if (data.salaryHigh==null&&data.salaryLow!=null){
+            //     $("#salary-span").html(data.salaryLow+"元以上");
+            // }else if(data.salaryLow!=null&&data.salaryHigh!=null){
+            //     $("#salary-span").html(data.salaryLow+"-"+data.salaryHigh);
+            // }else {
+            //     $("#salary-span").html("月收入不限");
+            // }
             initSalaryDropdown("salary-span",data.salaryLow,data.salaryHigh)
             //学历
             //籍贯
