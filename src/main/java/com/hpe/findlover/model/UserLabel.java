@@ -45,4 +45,12 @@ public class UserLabel {
     public void setLabelId(Integer labelId) {
         this.labelId = labelId;
     }
+
+    @Override
+    public String toString() {
+        return "UserLabel{" +
+                "userId=" + userId +
+                ", labelId=" + labelId +
+                '}';
+    }
 }

@@ -1,9 +1,10 @@
 package com.hpe.findlover.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 @Table(name = "user_basic")
-public class UserBasic {
+public class UserBasic implements Serializable {
 
     @Transient
     private int age;

@@ -2,6 +2,7 @@ package com.hpe.findlover;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
 import com.hpe.findlover.util.LoverUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
