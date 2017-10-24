@@ -3,15 +3,14 @@ var age_high_limit = 66;
 var height_low_limit = 145;
 var height_high_limit = 210;
 $(function () {
-    initAgeDropdown();
-    initHeightDropdown();
-    initWorkplaceDropdown(undefined,"province-select", "city-select");
-
+    initIndexSearch();
     flexisel();
     initToolBar();
     // Animations
     gridRotator();
     contentWayPoint();
+    //搜索事件
+    searchUser();
 });
 
 // 每日情缘
@@ -39,6 +38,7 @@ function flexisel() {
         }
     });
 }
+
 function gridRotator(){
     $('#ri-grid').gridrotator({
         rows: 2,
@@ -52,6 +52,7 @@ function gridRotator(){
         preventClick: false
     });
 }
+
 function contentWayPoint() {
     var i = 0;
     $('.animate-box').waypoint( function( direction ) {
@@ -78,4 +79,37 @@ function contentWayPoint() {
             }, 100);
         }
     } , { offset: '85%' } );
+}
+
+//初始化首页搜索条件
+function initIndexSearch() {
+    $.ajax({
+        url:contextPath+"index/initSearch",
+        typ:"get",
+        dataType:"json",
+        success:function (data) {
+            var arr = data.workplace.split("-");
+            initWorkplaceDropdown(null,"province-select","city-select",arr[0], arr.length > 1 ? arr[1] : -1);
+            initAgeDropdown(null,data.ageLow,data.ageHigh);
+            initHeightDropdown(null,data.heightLow,data.heightHigh)
+        }
+    })
+}
+
+function searchUser() {
+    $("#submit-btn").click(function () {
+        alert($("#search-form").serialize());
+        $.ajax({
+            url:contextPath+"index/getSearchUser",
+            data:$("#search-form").serialize(),
+            async:true,
+            type:"post",
+            dataType:"json",
+            sunccess:function (data) {
+                for(i=0;i<data.length;i++){
+                    alert(data[i].nickname);
+                }
+            }
+        })
+    });
 }

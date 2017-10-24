@@ -121,4 +121,11 @@ public final class LoverUtil {
 		cld.add(Calendar.DAY_OF_YEAR, day);
 		return cld.getTime();
 	}
+
+	public static void printList(List list){
+		for (int i=0;i<list.size();i++ ){
+			logger.info(list.get(i));
+		}
+
+	}
 }

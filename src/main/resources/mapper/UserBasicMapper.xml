@@ -104,8 +104,11 @@
             <if test="sex != null">
                 sex=#{sex}
             </if>
-            <if test="workplace !=null and workplace !='-1'">
-                AND workplace LIKE #{workplace}
+            <if test="workProvince !=null and workProvince !='-1'">
+                AND workplace LIKE '%${workProvince}%'
+            </if>
+            <if test="workCity !=null and workCity !='-1'">
+                AND workplace LIKE '%${workCity}%'
             </if>
             <if test="heightLow != null and heightLow !='-1'">
                 AND height >= #{heightLow}
@@ -167,8 +170,11 @@
             <if test="sex != null">
               sex=#{sex}
             </if>
-            <if test="workplace !=null and workplace !='-1'">
-                AND workplace LIKE #{workplace}
+            <if test="workProvince !=null and workProvince !='-1'">
+                AND workplace LIKE '%${workProvince}%'
+            </if>
+            <if test="workCity !=null and workCity !='-1'">
+                AND workplace LIKE '%${workCity}%'
             </if>
             <if test="heightLow != null and heightLow !='-1'">
                 AND height >= #{heightLow}

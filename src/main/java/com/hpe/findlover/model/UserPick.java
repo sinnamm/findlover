@@ -7,6 +7,11 @@ import javax.persistence.*;
  */
 @Table(name = "user_pick")
 public class UserPick {
+
+    @Transient
+    private String workProvince;
+    @Transient
+    private String workCity;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -261,6 +266,22 @@ public class UserPick {
      */
     public void setSmoke(Integer smoke) {
         this.smoke = smoke;
+    }
+
+    public String getWorkProvince() {
+        return workProvince;
+    }
+
+    public void setWorkProvince(String workProvince) {
+        this.workProvince = workProvince;
+    }
+
+    public String getWorkCity() {
+        return workCity;
+    }
+
+    public void setWorkCity(String workCity) {
+        this.workCity = workCity;
     }
 
     @Override

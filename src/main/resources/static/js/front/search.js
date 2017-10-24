@@ -147,14 +147,14 @@ function selectUserBasic() {
         success: function (data) {
             //性别
             //年龄
-            $("#age-span").html(data.ageLow + "-" + data.ageHigh);
+            // $("#age-span").html(data.ageLow + "-" + data.ageHigh);
             initAgeDropdown("dropdown-btn-2",data.ageLow,data.ageHigh);
             //地区
             if (data.workplace == null||data.workplace.indexOf("-1")==0) {
-                $("#workplace-span").html("地区不限");
+                //$("#workplace-span").html("地区不限");
                 initWorkplaceDropdown("workplace-span", "province-select", "city-select", -1, -1);
             } else {
-               $("#workplace-span").html(data.workplace);
+               //$("#workplace-span").html(data.workplace);
                 var arr = data.workplace.split("-");
                 initWorkplaceDropdown("workplace-span", "province-select", "city-select", arr[0], arr.length > 1 ? arr[1] : -1);
             }
@@ -186,10 +186,10 @@ function selectUserBasic() {
             //学历
             //籍贯
             if (data.birthplace == null || data.birthplace.trim()=="") {
-               $("#birthplace-span").html("籍贯不限");
+              // $("#birthplace-span").html("籍贯不限");
                 initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", -1, -1);
             } else {
-               $("#birthplace-span").html(data.birthplace);
+              // $("#birthplace-span").html(data.birthplace);
                 var arr = data.birthplace.split("-");
                 initWorkplaceDropdown("birthplace-span", "province-select-bp", "city-select-bp", arr[0], arr.length > 1 ? arr[1] : -1);
             }

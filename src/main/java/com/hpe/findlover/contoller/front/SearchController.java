@@ -4,6 +4,7 @@ import  com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.front.*;
+import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.ibatis.annotations.Param;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -85,9 +87,9 @@ public class SearchController {
         Date date = new Date(System.currentTimeMillis());
         String dateStr = dateFormat.format(date);
         List<UserBasic> userBasicStarList = userService.selectStarUser(dateStr,userPick.getSex(),"%"+userPick.getWorkplace().substring(0,2)+"%");
-        List<UserBasic> userBasicStarPick = null;
+        List<UserBasic> userBasicStarPick = new ArrayList<>();
        //如果用户数大于4则随机选四个用户显示
-        if(userBasicStarList.size()>4){
+        if(userBasicStarList.size()> Constant.SEARCH_SHOW_STAR_USER_NUMBER){
             int[] nums = LoverUtil.getRandoms(0,userBasicStarList.size(),4);
             for (int i=0;i<nums.length;i++){
                 userBasicStarPick.add(userBasicStarList.get(nums[i]));
@@ -161,6 +163,9 @@ public class SearchController {
         UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
         logger.info("userBasic===="+userBasic);
         UserPick userPick = userPickService.selectByPrimaryKey(userBasic.getId());
+        if (!(userBasic.getVip())){
+            formatPick(userPick);
+        }
         logger.info("userPick:"+userPick);
         userPick.setWorkplace("%"+userPick.getWorkplace()+"%");
         if (userPick.getBirthplace()!=null) {
@@ -185,16 +190,20 @@ public class SearchController {
 
     @RequestMapping("/getSearchUser")
     @ResponseBody
-    public UserInfo getSearchUser(Search search, @Param("pageNum")Integer pageNum) {
+    public UserInfo getSearchUser(HttpServletRequest request,Search search, @Param("pageNum")Integer pageNum) {
+        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        if (!(userBasic.getVip())){
+            formatSearch(search);
+        }
         logger.info("search......" + search.toString());
         logger.info("pageNum......" + pageNum);
         PageHelper.startPage(pageNum,6,false);
         List<UserBasic> userBasicList = userService.selectUserBySearch(search);
         logger.info("userBasicSearchList======" + userBasicList);
         if(userBasicList.size()>0) {
-            for (UserBasic userBasic:userBasicList){
-                logger.info("用户资产"+userBasic.getUserAsset());
-                logger.info("用户详细"+userBasic.getUserDetail());
+            for (UserBasic user:userBasicList){
+                logger.info("用户资产"+user.getUserAsset());
+                logger.info("用户详细"+user.getUserDetail());
             }
             //封装用户数据
             formatUserInfo(userBasicList);
@@ -203,6 +212,29 @@ public class SearchController {
         }else {
             return new UserInfo("error", null);
         }
+    }
+
+    public void formatPick(UserPick userPick){
+
+        if(userPick.getBirthplace()!=null) {
+            userPick.setBirthplace(null);
+        }
+        if (userPick.getEducation()!=null) {
+            userPick.setEducation(null);
+        }
+    }
+
+    public void formatSearch(Search search){
+        if (search.getEducation()!=null) {
+            search.setEducation(null);
+        }
+       if (search.getLiveCondition()!=null) {
+           search.setLiveCondition(null);
+       }
+       if (search.getBirthplace()!=null) {
+           search.setBirthplace(null);
+       }
+
     }
 
     public void formatUserInfo(List<UserBasic> userBasicList){

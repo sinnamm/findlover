@@ -5,6 +5,15 @@ import java.util.List;
 
 public class Constant {
 
+    /**
+     * 首页固定显示16个推荐用户个数
+     */
+    public static final int INDEX_SHOW_USER_NUMBER=16;
+    /**
+     * 广告位固定显示星级用户个数
+     */
+    public static final int SEARCH_SHOW_STAR_USER_NUMBER=4;
+
     public static final int AGE_LOW_LIMIT = 18;
     public static final int AGE_HIGH_LIMIT = 66;
     public static final int HEIGHT_LOW_LIMIT = 145;

@@ -37,68 +37,6 @@
 <th:block th:include="/front/common/header::nav"/>
 <!--导航栏（th:remove)-->
 
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" th:href="@{/front/index.html}" href="../index.html"><img th:src="@{/images/logo.png}"
-                                                                                      src="../../static/images/logo.png"
-                                                                                      alt="logo"/></a>
-            <div class="pull-right">
-                <nav class="navbar nav_bottom" role="navigation">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                                data-target="#bs-megadropdown-tabs">Menu
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"></a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav nav_1">
-                            <li><a th:href="@{/front/index.html}" href="../index.html">首页</a></li>
-                            <li><a th:href="@{/front/search.html}" href="../search.html">搜索</a></li>
-                            <li><a th:href="@{/front/vip.html}" href="../vip.html">会员</a></li>
-                            <li><a th:href="@{/front/success_story.html}" href="../success_story.html">成功故事</a></li>
-                            <li><a th:href="@{/front/otherSays.html}" href="../otherSays.html">他她说</a></li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-lg fa-envelope-o"></i>
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a th:href="@{/front/letter.html}" href="../letter.html">私信</a></li>
-                                    <li><a th:href="@{/front/care.html}" href="../care.html">关注</a></li>
-                                    <li><a th:href="@{/front/visiteTrace.html}" href="../visiteTrace.html">访问记录</a>
-                                    </li>
-                                    <li><a th:href="@{/front/notice.html}" href="../notice.html">系统通知</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-lg fa-user"></i>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a th:href="@{/front/user_center.html}" href="../login.html">编辑资料</a></li>
-                                    <li><a th:href="@{/front/register.html}" href="../register.html">身份认证</a></li>
-                                    <li><a th:href="@{/front/index.html}" href="../index.html">修改密码</a></li>
-                                    <li><a th:href="@{/front/index.html}" href="../index.html">退出</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
-
 <div class="banner">
     <div class="container">
         <div class="banner_info">
@@ -108,43 +46,37 @@
     </div>
     <div class="profile_search">
         <div class="container wrap_1">
-            <!--有待商讨是跳转到search页面显示搜索信息，还是其他-->
-            <form action="" th:action="@{/search}">
+            <form id="search-form">
                 <div class="search_top">
                     <div class="inline-block">
                         <label class="gender_1">我想找：</label>
                         <div class="age_box1" style="max-width: 100%; display: inline-block;">
-                            <select>
-                                <option value="男">男</option>
-                                <option value="女">女</option>
+                            <select id="sex-select" name="sex">
+                                <option th:selected="${userPick.sex=='男'}" value="男">男</option>
+                                <option th:selected="${userPick.sex=='女'}" value="女">女</option>
                             </select>
                         </div>
                     </div>
                     <div class="inline-block">
                         <label class="gender_1">工作地区：</label>
                         <div class="age_box1" style="margin-right: 0.3em">
-                            <select id="province-select">
+                            <select id="province-select" name="workProvince">
                                 <option value="-1">不限</option>
-                                <option value="山东">山东</option>
-                                <option value="北京">北京</option>
                             </select>
                         </div>
                         <div class="age_box1">
-                            <select id="city-select" th:remove="all-but-first">
+                            <select id="city-select" name="workCity">
                                 <option value="-1">不限</option>
-                                <option value="山东">山东</option>
-                                <option value="北京">北京</option>
                             </select>
                         </div>
                     </div>
                     <div class="inline-block" style="margin-right: 0">
                         <label class="gender_1">职业：</label>
                         <div class="age_box1">
-                            <select>
+                            <select id="job-select" name="job">
                                 <option value="-1">不限</option>
-                                <option value="销售">销售</option>
-                                <option value="计算机/互联网">计算机/互联网</option>
-                                <option value="医疗/教育">医疗/教育</option>
+                                <option th:each="job : ${jobList}" th:text="${job.value}"
+                                        th:value="${job.value}" th:selected="${job.value==userPick.job}">销售</option>
                             </select>
                         </div>
                     </div>
@@ -153,20 +85,12 @@
                     <div class="age_box2">
                         <label class="gender_1">年龄：</label>
                         <div class="age_box1">
-                            <select id="age-select-low">
+                            <select id="age-select-low" name="ageLow">
                                 <option value="-1">不限</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
                             </select>
                             <span>-</span>
-                            <select id="age-select-high">
+                            <select id="age-select-high" name="ageHigh">
                                 <option value="-1">不限</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
                             </select>
                         </div>
                     </div>
@@ -175,28 +99,22 @@
                     <div class="age_box2">
                         <label class="gender_1">身高：</label>
                         <div class="age_box1">
-                            <select id="height-select-low">
+                            <select id="height-select-low" name="heightLow">
                                 <option value="-1">不限</option>
-                                <option value="165">165</option>
-                                <option value="166">166</option>
-                                <option value="167">167</option>
-                                <option value="168">168</option>
                             </select>
                             <span>-</span>
-                            <select id="height-select-high">
+                            <select id="height-select-high" name="heightHigh">
                                 <option value="-1">不限</option>
-                                <option value="165">165</option>
-                                <option value="166">166</option>
-                                <option value="167">167</option>
-                                <option value="168">168</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="submit inline-block">
-                    <input id="submit-btn" class="hvr-wobble-vertical" type="submit" value="开始寻爱~"/>
+                <div class="submit inline-block" style="margin-top: 10px">
+                    <input id="submit-btn" class="hvr-wobble-vertical" type="button" value="开始寻爱~"/>
                 </div>
             </form>
+
+
         </div>
     </div>
 </div>
