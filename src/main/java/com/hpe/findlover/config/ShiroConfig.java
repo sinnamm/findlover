@@ -2,7 +2,10 @@ package com.hpe.findlover.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.hpe.findlover.realm.front.UserRealm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -27,6 +30,8 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+	private Logger logger = LogManager.getLogger(ShiroConfig.class);
+
 	@Bean(name = "lifecycleBeanPostProcessor")
 	public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
@@ -81,7 +86,8 @@ public class ShiroConfig {
 	 * 凭证匹配器 （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了
 	 * 所以我们需要修改下doGetAuthenticationInfo中的代码; ）
 	 * @return
-	 */
+	 **/
+	/**
 	@Bean
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -89,7 +95,8 @@ public class ShiroConfig {
 		hashedCredentialsMatcher.setHashIterations(1);// 散列的次数，比如散列两次，相当于md5(md5(""));
 		hashedCredentialsMatcher.setStoredCredentialsHexEncoded(true);
 		return hashedCredentialsMatcher;
-	}
+	}*/
+
 	/**
 	 * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
 	 * @return
@@ -97,17 +104,16 @@ public class ShiroConfig {
 	@Bean
 	@DependsOn("lifecycleBeanPostProcessor")
 	public UserRealm customRealm() {
-		UserRealm customRealm = new UserRealm();
-//		customRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-		return customRealm;
+		return new UserRealm();
 	}
 	@Bean
-	public SecurityManager securityManager(UserRealm userRealm) {
+	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		// 设置realm.
-		securityManager.setRealm(userRealm);
+		securityManager.setRealm(customRealm());
 		// 注入记住我管理器;
 		securityManager.setRememberMeManager(rememberMeManager());
+//		securityManager.setCacheManager(ehCacheManager());
 		return securityManager;
 	}
 	/**
@@ -151,6 +157,20 @@ public class ShiroConfig {
 		CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
 		cookieRememberMeManager.setCookie(rememberMeCookie());
 		return cookieRememberMeManager;
+	}
+	/**
+	 * shiro缓存管理器;
+	 * 需要注入对应的其它的实体类中：
+	 * 1、安全管理器：securityManager
+	 * 可见securityManager是整个shiro的核心；
+	 * @return
+	 */
+	@Bean
+	public EhCacheManager ehCacheManager(){
+		logger.debug("初始化Ehcache缓存");
+		EhCacheManager cacheManager = new EhCacheManager();
+		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+		return cacheManager;
 	}
 	/**
 	 * ShiroDialect，为了在thymeleaf里使用shiro的标签的bean

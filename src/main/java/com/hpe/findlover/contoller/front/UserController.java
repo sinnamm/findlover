@@ -132,10 +132,10 @@ public class UserController {
 			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,错误的凭证");
 			redirectAttributes.addAttribute("message", "密码不正确");
 		} catch (LockedAccountException ule){
-			logger.error("对用户[\" + user.getEmail() + \"]进行登录验证..验证未通过,用户被锁定");
+			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,用户被锁定");
 			redirectAttributes.addAttribute("message", "用户被锁定");
 		}catch (DisabledAccountException dae){
-			logger.error("对用户[\" + user.getEmail() + \"]进行登录验证..验证未通过,用户未激活");
+			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,用户未激活");
 			redirectAttributes.addAttribute("message", "用户未激活");
 		}
 		if (SecurityUtils.getSubject().isAuthenticated()) {

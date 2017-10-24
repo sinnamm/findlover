@@ -4,6 +4,7 @@ import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.front.UserAssetService;
 import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.util.Constant;
 import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,34 +50,31 @@ public class UserRealm extends AuthorizingRealm {
 		// 通过username从数据库中查找 User对象，如果找到，没找到.
 		// 这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
 		UserBasic userBasic;
-		if ((userBasic = userService.selectByEmail(email)) == null){
+		if ((userBasic = userService.selectByEmail(email)) == null) {
 			throw new UnknownAccountException("用户名不存在！");
-		}
-		if (!userBasic.getPassword().equals(new String((char[])token.getCredentials()))) {
+		} else if (!userBasic.getPassword().equals(new String((char[]) token.getCredentials()))) {
 			throw new IncorrectCredentialsException("用户名或密码错误");
+		} else if (userBasic.getStatus() == Constant.USER_LOCKED_STATUS) {
+			throw new LockedAccountException("用户被锁定");
+		} else if (userBasic.getStatus() == Constant.USER_DISABLED_STATUS) {
+			throw new DisabledAccountException("用户未激活");
 		}
-		if (userBasic.getStatus()==2){
-			throw  new LockedAccountException("用户被锁定");
-		}
-		if(userBasic.getStatus()==0){
-			throw  new DisabledAccountException("用户未激活");
-		}
-		UserAsset userAsset=userAssetService.selectByPrimaryKey(userBasic.getId());
-		if (userAsset==null||userAsset.getVipDeadline()==null){
+		UserAsset userAsset = userAssetService.selectByPrimaryKey(userBasic.getId());
+		if (userAsset == null || userAsset.getVipDeadline() == null) {
 			userBasic.setVip(false);
-		}else{
+		} else {
 			userBasic.setVip(!userAsset.getVipDeadline().before(new Date()));
 		}
-		if (userAsset==null||userAsset.getStarDeadline()==null){
+		if (userAsset == null || userAsset.getStarDeadline() == null) {
 			userBasic.setStar(false);
-		}else{
+		} else {
 			userBasic.setStar(!userAsset.getStarDeadline().before(new Date()));
 		}
 		logger.info("用户验证通过，把数据存入Session");
-		SecurityUtils.getSubject().getSession().setAttribute("user",userBasic);
+		SecurityUtils.getSubject().getSession().setAttribute("user", userBasic);
 		// userInfo.setPermissions(userService.findPermissions(user));
 		// 加密交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
-		return new SimpleAuthenticationInfo(email, token.getCredentials(),null, "userRealm");
+		return new SimpleAuthenticationInfo(email, token.getCredentials(), null, "userRealm");
 	}
 
 	@Override

@@ -27,6 +27,7 @@
 		<tk.mybatis.version>3.4.5</tk.mybatis.version>
 		<mybatis.version>3.4.0</mybatis.version>
 		<mybatis.spring.version>1.3.1</mybatis.spring.version>
+		<mybatis.ehcache.version>1.0.0</mybatis.ehcache.version>
 		<pagehelper.version>4.1.6</pagehelper.version>
 		<druid.version>1.1.2</druid.version>
 		<shiro.version>1.4.0</shiro.version>
@@ -58,6 +59,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -106,7 +111,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-cache</artifactId>
+			<artifactId>shiro-ehcache</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
@@ -156,6 +161,11 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-ehcache</artifactId>
+            <version>${mybatis.ehcache.version}</version>
+        </dependency>
 		<!--mapper-->
 		<dependency>
 			<groupId>tk.mybatis</groupId>
