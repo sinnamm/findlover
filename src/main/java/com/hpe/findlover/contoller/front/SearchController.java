@@ -90,15 +90,11 @@ public class SearchController {
         List<UserBasic> userBasicStarPick = new ArrayList<>();
        //如果用户数大于4则随机选四个用户显示
         if(userBasicStarList.size()> Constant.SEARCH_SHOW_STAR_USER_NUMBER){
-            int[] nums = LoverUtil.getRandoms(0,userBasicStarList.size(),4);
-            for (int i=0;i<nums.length;i++){
-                userBasicStarPick.add(userBasicStarList.get(nums[i]));
-            }
+           userBasicStarPick = LoverUtil.getRodomUser(userBasicStarList,Constant.SEARCH_SHOW_STAR_USER_NUMBER);
         }else {
             userBasicStarPick=userBasicStarList;
         }
-        for (UserBasic userbasic :
-                userBasicStarPick) {
+        for (UserBasic userbasic : userBasicStarPick) {
             userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
         }
         logger.info("userBasicStarPick....."+userBasicStarPick);
@@ -132,11 +128,9 @@ public class SearchController {
         PageHelper.startPage(pageNum, 6);
         List<UserBasic> userBasicList = userService.selectUserByIds(ids);
         if (userBasicList.size()>0) {
-            for (UserBasic userBasic:userBasicList) {
-                logger.info("userBasicLabelList======" + userBasic.toString());
-            }
+            userBasicList.forEach(logger::info);
             //封装用户数据
-            formatUserInfo(userBasicList);
+            LoverUtil.formatUserInfo(userBasicList);
             PageInfo page = new PageInfo(userBasicList);
             return new UserInfo("success", page);
         }else {
@@ -174,13 +168,9 @@ public class SearchController {
         PageHelper.startPage(pageNum,6,false);
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
         logger.info("userBasicPickList======" + userBasicList);
-        for (UserBasic usesr:userBasicList){
-            logger.info("用户资产"+usesr.getUserAsset());
-            logger.info("用户详细"+usesr.getUserDetail());
-        }
         if(userBasicList.size()>0) {
             //封装用户数据
-            formatUserInfo(userBasicList);
+            LoverUtil.formatUserInfo(userBasicList);
             PageInfo page = new PageInfo(userBasicList);
             return new UserInfo("success", page);
         }else {
@@ -192,6 +182,7 @@ public class SearchController {
     @ResponseBody
     public UserInfo getSearchUser(HttpServletRequest request,Search search, @Param("pageNum")Integer pageNum) {
         UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        search.setId(userBasic.getId());
         if (!(userBasic.getVip())){
             formatSearch(search);
         }
@@ -199,6 +190,7 @@ public class SearchController {
         logger.info("pageNum......" + pageNum);
         PageHelper.startPage(pageNum,6,false);
         List<UserBasic> userBasicList = userService.selectUserBySearch(search);
+
         logger.info("userBasicSearchList======" + userBasicList);
         if(userBasicList.size()>0) {
             for (UserBasic user:userBasicList){
@@ -206,7 +198,7 @@ public class SearchController {
                 logger.info("用户详细"+user.getUserDetail());
             }
             //封装用户数据
-            formatUserInfo(userBasicList);
+            LoverUtil.formatUserInfo(userBasicList);
             PageInfo page = new PageInfo(userBasicList);
             return new UserInfo("success", page);
         }else {
@@ -237,29 +229,4 @@ public class SearchController {
 
     }
 
-    public void formatUserInfo(List<UserBasic> userBasicList){
-        for (UserBasic userBasic:userBasicList) {
-            if (userBasic.getUserAsset() != null) {
-                userBasic.setVip(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getVipDeadline())>0);
-                userBasic.setStar(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getStarDeadline())>0);
-                logger.info("用户名："+userBasic.getNickname()+"...是否是VIP："+userBasic.getVip()+"...是否是星级用户："+userBasic.getStar());
-            }else {
-                UserAsset userAsset = new UserAsset();
-                userBasic.setVip(false);
-                userBasic.setStar(false);
-                userBasic.setUserAsset(userAsset);
-            }
-            if (userBasic.getUserDetail() != null) {
-                if (userBasic.getUserDetail().getSignature()==null)
-                {
-                    userBasic.getUserDetail().setSignature("该用户没有留下任何东西");
-                    logger.info("用户名："+userBasic.getNickname()+"...内心独白："+userBasic.getUserDetail().getSignature());
-                }
-            }else {
-                UserDetail userDetail = new UserDetail();
-                userDetail.setSignature("该用户没有留下任何东西");
-                userBasic.setUserDetail(userDetail);
-            }
-        }
-    }
 }

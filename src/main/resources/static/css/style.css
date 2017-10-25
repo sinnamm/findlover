@@ -111,7 +111,7 @@ img.zoom-img:hover {
 .agile-overlay ul {
     width: 100%;
     height: auto;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .agile-overlay h4 {
@@ -140,7 +140,7 @@ img.zoom-img:hover {
 }
 
 .agile-overlay ul li span {
-    width: 35%;
+    width: 50%;
     display: inline-block;
     color: #ffffff;
     font-weight: 400;
@@ -1904,7 +1904,7 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
 
 ul.profile_item {
     padding: 0;
-    margin: 0 0 1.5em 0;
+    margin: 0 0 0 0;
     list-style: none;
 }
 

@@ -7,6 +7,7 @@ package com.hpe.findlover.model;
  */
 
 public class Search {
+    private Integer id;
     private String sex;
     private Integer ageLow;
     private Integer ageHigh;
@@ -80,6 +81,13 @@ public class Search {
         this.religion = religion;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getSex() {
         return sex;

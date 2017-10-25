@@ -22,12 +22,21 @@ public interface UserBasicMapper extends BaseTkMapper<UserBasic> {
 	* @param sexual 用户的性取向
 	* @param workplace 用户的工作地
 	 *@param date 当前日期
-	 * @return  List</UserBasic> 返回的星级用户
+	 * @return  List<UserBasic> 返回的星级用户
 	**/
 	List<UserBasic> selectStarUser(@Param("date") String date,
 								   @Param("sexual") String sexual,
 								   @Param("workplace") String workplace);
 
+	/**
+	 * 通过用户性取向和用户所在地区查询用户
+	 * @param sexual
+	 * @param workProvince
+	 * @return
+	 */
+	List<UserBasic> selectUserBySexualAndWorkProvince(@Param("id")Integer id,
+													  @Param("sexual")String sexual,
+													  @Param("workProvince")String workProvince);
 	/**
 	 * 通过搜索条件搜索用户
 	 * @param search

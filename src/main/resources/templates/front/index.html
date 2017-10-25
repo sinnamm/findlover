@@ -4,21 +4,6 @@
     <title>FindLover</title>
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
-    <!--在使用模板解析时会自动删除-->
-    <th:block th:remove="all">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <script th:inline="javascript">
-            var contextPath = /*[[@{/}]]*/'';
-        </script>
-        <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-        <script src="../../static/jquery/jquery.min.js"></script>
-        <script src="../../static/js/bootstrap.min.js"></script>
-        <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-        <link href="../../static/css/font-awesome.css" rel="stylesheet"/>
-        <link href="../../static/css/buttons.css" rel="stylesheet"/>
-        <script src="../../static/js/buttons.js"></script>
-        <script src="../../static/js/front/findlover.js"></script>
-    </th:block>
 
     <!--VIP和星级用户标识-->
     <link href="../../static/css/jquery.toolbar.css" th:href="@{/css/jquery.toolbar.css}" rel="stylesheet"/>
@@ -135,194 +120,36 @@
                 <!-- slider -->
                 <div class="agile_featured-profiles">
                     <ul id="flexiselDemo3">
-                        <li>
-                            <div class="col-md-3 biseller-column">
+                        <li id="page1">
+                            <div th:each="user,userStat:${dayLover}" th:if="${userStat.index<8}"
+                                 class="col-md-3 biseller-column">
                                 <a href="view_profile.html">
                                     <div class="profile-image">
-                                        <img th:src="@{/images/p1.jpg}" src="../../static/images/p1.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
+                                        <img th:src="@{/images/p1.jpg}" class="img-responsive" alt="profile image"/>
                                         <div class="agile-overlay">
                                             <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
+                                                <span th:text="${user.nickname}"></span>
+                                                <img th:if="${user.vip==true}" th:src="@{/images/vip.png}" class="snap-flag"/>
+                                                <img th:if="${user.vip==false}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+
+                                                <img th:if="${user.star==true}" th:src="@{/images/star-0.png}" class="snap-flag"/>
+                                                <img th:if="${user.star==false}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
+
                                             </h4>
                                             <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p2.jpg}" src="../../static/images/p2.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p3.jpg}" src="../../static/images/p3.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p4.jpg}" src="../../static/images/p4.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p5.jpg}" src="../../static/images/p5.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p6.jpg}" src="../../static/images/p6.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p7.jpg}" src="../../static/images/p7.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p8.jpg}" src="../../static/images/p8.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
+                                                <li><span th:text="${user.age+'岁'}">21岁</span><span th:text="${user.workplace}">山东青岛</span></li>
+                                                <li><span th:text="${user.height+'cm'}">165cm</span><span th:text="${user.salary+'元'}">5000元</span></li>
+                                                <li th:text="${user.userDetail.signature}"></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </li>
-                        <li>
-                            <div class="col-md-3 biseller-column">
+                        <li id="page2">
+                            <div th:each="user,userStat:${dayLover}"
+                                 th:if="${userStat.index>=8 && userStat.index<16}"
+                                 class="col-md-3 biseller-column">
                                 <a href="view_profile.html">
                                     <div class="profile-image">
                                         <img th:src="@{/images/p9.jpg}" src="../../static/images/p9.jpg"
@@ -330,177 +157,17 @@
                                              alt="profile image"/>
                                         <div class="agile-overlay">
                                             <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
+                                                <span th:text="${user.nickname}"></span>
+                                                <img th:if="${user.vip==true}" th:src="@{/images/vip.png}" class="snap-flag"/>
+                                                <img th:if="${user.vip==false}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+
+                                                <img th:if="${user.star==true}" th:src="@{/images/star-0.png}" class="snap-flag"/>
+                                                <img th:if="${user.star==false}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
                                             </h4>
                                             <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p10.jpg}" src="../../static/images/p10.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p11.jpg}" src="../../static/images/p11.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p12.jpg}" src="../../static/images/p12.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p7.jpg}" src="../../static/images/p7.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p5.jpg}" src="../../static/images/p5.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p1.jpg}" src="../../static/images/p1.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3 biseller-column">
-                                <a href="view_profile.html">
-                                    <div class="profile-image">
-                                        <img th:src="@{/images/p2.jpg}" src="../../static/images/p2.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
-                                        <div class="agile-overlay">
-                                            <h4>
-                                                奔跑的小猪
-                                                <img th:src="@{/images/vip.png}" src="../../static/images/vip.png"
-                                                     class="snap-flag"/>
-                                                <img th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
-                                                     class="snap-flag"/>
-                                            </h4>
-                                            <ul>
-                                                <li><span>21岁</span>山东青岛</li>
-                                                <li><span>165cm</span>5000元</li>
-                                                <li>内心独白：爱情就像一个人在海滩捡贝壳，不要捡最大的，也不要捡最漂亮的...</li>
+                                                <li><span th:text="${user.age+'岁'}">21岁</span><span th:text="${user.workplace}">山东青岛</span></li>
+                                                <li><span th:text="${user.height+'cm'}">165cm</span><span th:text="${user.salary+'元'}">5000元</span></li>
+                                                <li th:text="${user.userDetail.signature}"></li>
                                             </ul>
                                         </div>
                                     </div>

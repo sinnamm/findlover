@@ -62,6 +62,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	}
 
 	@Override
+	public List<UserBasic> selectUserBySexualAndWorkProvince(Integer id, String sexual, String workProvince) {
+		return userBasicMapper.selectUserBySexualAndWorkProvince(id,sexual,workProvince);
+	}
+
+	@Override
 	public List<UserBasic> selectUserByIds(Integer[] ids) {
 		return userBasicMapper.selectUsersByIds(ids);
 	}

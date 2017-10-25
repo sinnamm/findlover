@@ -35,6 +35,7 @@
         <result column="height" property="height" jdbcType="INTEGER" />
         <result column="workplace" property="workplace" jdbcType="VARCHAR" />
         <result column="age" property="age"/>
+        <result column="salary" property="salary"/>
         <!--用户详细信息-->
         <result column="signature" property="userDetail.signature"/>
         <!--用户资产信息-->
@@ -90,9 +91,9 @@
             #{val}
         </foreach>
     </select>
-
-    <select id="selectUserByUserPick" resultMap="userSearch" >
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,
+    
+    <select id="selectUserBySexualAndWorkProvince" resultMap="userSearch">
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline
@@ -101,8 +102,28 @@
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
         LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
         <where>
+            sex = #{sexual}
+            <if test="workProvince !=null">
+                AND workplace like '%${workProvince}%'
+            </if>
+            AND user_basic.id != #{id}
+        </where>
+
+    </select>
+
+    <select id="selectUserByUserPick" resultMap="userSearch" >
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,
+        YEAR(NOW())-YEAR(birthday) age,
+        signature,
+        vip_deadline,star_deadline
+        FROM user_basic
+        LEFT OUTER JOIN user_life ON user_basic.id=user_life.id
+        LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
+        LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
+        <where>
+            user_basic.id != #{id}
             <if test="sex != null">
-                sex=#{sex}
+              AND  sex=#{sex}
             </if>
             <if test="workProvince !=null and workProvince !='-1'">
                 AND workplace LIKE '%${workProvince}%'
@@ -158,7 +179,7 @@
     </select>
 
     <select id="selectUserBySearch" resultMap="userSearch">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline
@@ -167,8 +188,9 @@
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
         LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
         <where>
+            user_basic.id != #{id}
             <if test="sex != null">
-              sex=#{sex}
+              AND sex=#{sex}
             </if>
             <if test="workProvince !=null and workProvince !='-1'">
                 AND workplace LIKE '%${workProvince}%'

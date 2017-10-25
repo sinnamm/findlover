@@ -16,6 +16,8 @@ public interface UserService extends BaseService<UserBasic> {
 
 	List<UserBasic> selectUserByUserPick(UserPick userPick);
 
+	List<UserBasic> selectUserBySexualAndWorkProvince(Integer id,String sexual,String workProvince);
+
 	List<UserBasic> selectUserByIds(Integer[] ids);
 
 	List<UserBasic> selectAllUser();

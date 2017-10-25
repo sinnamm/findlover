@@ -10,6 +10,8 @@ import com.hpe.findlover.service.front.UserPickService;
 import com.hpe.findlover.service.front.UserService;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
+import com.hpe.findlover.util.SessionUtils;
+import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,6 +82,8 @@ public class IndexController {
         model.addAttribute("asset",asset);
         //2、用户择偶条件，用于推荐每日情缘
         UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
+        List<UserBasic> userBasicList = getDayLovers(userPick,user);
+        model.addAttribute("dayLover",userBasicList);
         //职业
         List<Dict> jobList = dictService.selectDictByType("job");
         model.addAttribute("userPick",userPick);
@@ -97,18 +101,41 @@ public class IndexController {
 
     @PostMapping("/getSearchUser")
     @ResponseBody
-    public List<UserBasic> getSearchUser(UserPick userPick){
+    public List<UserBasic> getSearchUser(UserPick userPick,HttpServletRequest request){
+        UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
         logger.info("userPick..."+userPick);
+        return getDayLovers(userPick,user);
+    }
+
+    /**
+     * 更具用户择偶条件选出16个每日情缘，
+     * 如果择偶条件对应的人数不够，则从所有性取向对应用户随机选取凑够16个
+     * @param userPick
+     * @return
+     */
+    public List<UserBasic> getDayLovers(UserPick userPick,UserBasic user){
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
-        LoverUtil.printList(userBasicList);
+        LoverUtil.formatUserInfo(userBasicList);
         if (userBasicList.size()> Constant.INDEX_SHOW_USER_NUMBER){
-            List<UserBasic> userBasics = new ArrayList<>();
-            int[] nums = LoverUtil.getRandoms(0,userBasicList.size(),16);
-            for (Integer integer :nums) {
-                userBasics.add(userBasicList.get(integer));
-            }
+            logger.info("根据择偶条件选出来的用户大于16，需要随机选取");
+            List<UserBasic> userBasics = LoverUtil.getRodomUser(userBasicList,Constant.INDEX_SHOW_USER_NUMBER);
             return userBasics;
         }else {
+            int size = Constant.INDEX_SHOW_USER_NUMBER-userBasicList.size();
+            List<UserBasic> userBasics = userService.
+                    selectUserBySexualAndWorkProvince(user.getId(),user.getSexual(),user.getWorkplace().substring(0,2));
+            if (userBasics==null||userBasics.size()<size){
+                logger.info("根据性取向和工作最地选出来的用户小于16，需要从数据库随机获取");
+
+                userBasics =userService.
+                        selectUserBySexualAndWorkProvince(user.getId(),user.getSexual(),null);
+            }
+            LoverUtil.formatUserInfo(userBasics);
+            List<UserBasic> allUsers = LoverUtil.getRodomUser(userBasics,size);
+            allUsers.forEach(logger::info);
+            for (int i=0;i<allUsers.size();i++){
+                userBasicList.add(allUsers.get(i));
+            }
             return userBasicList;
         }
     }

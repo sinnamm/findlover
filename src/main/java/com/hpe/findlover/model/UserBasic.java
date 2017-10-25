@@ -71,6 +71,33 @@ public class UserBasic implements Serializable {
     @Column(name = "reg_time")
     private Date regTime;
 
+    public UserBasic() {
+    }
+
+    public UserBasic(String sex){
+        this.sex = sex;
+    }
+
+    public UserBasic( String email, String password, String nickname, String tel, String sex, Date birthday, String photo, String marryStatus, Integer height, String sexual, String education, String workplace, Double salary, Integer authority, Integer status, Date regTime) {
+
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.tel = tel;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.photo = photo;
+        this.marryStatus = marryStatus;
+        this.height = height;
+        this.sexual = sexual;
+        this.education = education;
+        this.workplace = workplace;
+        this.salary = salary;
+        this.authority = authority;
+        this.status = status;
+        this.regTime = regTime;
+    }
+
     /**
      * @return id
      */

@@ -54,6 +54,27 @@ public class UserPick {
 
     private Integer smoke;
 
+    public UserPick() {
+    }
+
+    public UserPick(Integer id,String sex, Integer ageLow, Integer ageHigh, String workplace, String birthplace, String marryStatus, String education, Double salaryLow, Double salaryHigh, Integer heightLow, Integer heightHigh, String job, Integer drink, Integer smoke) {
+        this.id=id;
+        this.sex = sex;
+        this.ageLow = ageLow;
+        this.ageHigh = ageHigh;
+        this.workplace = workplace;
+        this.birthplace = birthplace;
+        this.marryStatus = marryStatus;
+        this.education = education;
+        this.salaryLow = salaryLow;
+        this.salaryHigh = salaryHigh;
+        this.heightLow = heightLow;
+        this.heightHigh = heightHigh;
+        this.job = job;
+        this.drink = drink;
+        this.smoke = smoke;
+    }
+
     /**
      * @return id
      */

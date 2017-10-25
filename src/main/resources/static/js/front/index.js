@@ -4,6 +4,7 @@ var height_low_limit = 145;
 var height_high_limit = 210;
 $(function () {
     initIndexSearch();
+
     flexisel();
     initToolBar();
     // Animations
@@ -96,20 +97,62 @@ function initIndexSearch() {
     })
 }
 
+
 function searchUser() {
     $("#submit-btn").click(function () {
-        alert($("#search-form").serialize());
         $.ajax({
-            url:contextPath+"index/getSearchUser",
-            data:$("#search-form").serialize(),
-            async:true,
-            type:"post",
-            dataType:"json",
-            sunccess:function (data) {
-                for(i=0;i<data.length;i++){
-                    alert(data[i].nickname);
+            url: contextPath + "index/getSearchUser",
+            data: $("#search-form").serialize(),
+            async:false,
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                $("#page1").empty();
+                $("#page2").empty();
+                for (i = 0; i < 8; i++) {
+                    $("#page1").append("<div class='col-md-3 biseller-column'>" +
+                        "                                <a href='view_profile.html'>" +
+                        "                                    <div class='profile-image'>" +
+                        "                                        <img src='"+contextPath+"images/p2.jpg' class='img-responsive' alt='profile image'/>" +
+                        "                                        <div class='agile-overlay'>" +
+                        "                                            <h4>" + data[i].nickname +
+                        "                                                <img  src='"+contextPath+"images/vip"+(data[i].vip ? "" : "-grey")+".png' class='snap-flag'/>" +
+                        "                                                <img src='" + contextPath + "images/star-0" + (data[i].star ? "" : "-grey") + ".png' class='flag'>" +
+                        "                                            </h4>" +
+                        "                                            <ul>" +
+                        "                                                <li><span>"+data[i].age+"</span>"+data[i].workplace+"</li>" +
+                        "                                                <li><span>"+data[i].height+"</span>"+data[i].salary+"</li>" +
+                        "                                                <li>"+data[i].userDetail.signature+"</li>" +
+                        "                                            </ul>" +
+                        "                                        </div>" +
+                        "                                    </div>" +
+                        "                                </a>" +
+                        "                            </div>"
+                    );
+                }
+
+                for (i = 8; i < 16; i++) {
+                    $("#page2").append("<div class='col-md-3 biseller-column'>" +
+                        "                                <a href='view_profile.html'>" +
+                        "                                    <div class='profile-image'>" +
+                        "                                        <img src='"+contextPath+"images/p3.jpg' class='img-responsive' alt='profile image'/>" +
+                        "                                        <div class='agile-overlay'>" +
+                        "                                            <h4>" + data[i].nickname +
+                        "                                                <img  src='"+contextPath+"images/vip"+(data[i].vip ? "" : "-grey")+".png' class='snap-flag'/>" +
+                        "                                                <img src='" + contextPath + "images/star-0" + (data[i].star ? "" : "-grey") + ".png' class='flag'>" +
+                        "                                            </h4>" +
+                        "                                            <ul>" +
+                        "                                                <li><span>"+data[i].age+"</span>"+data[i].workplace+"</li>" +
+                        "                                                <li><span>"+data[i].height+"</span>"+data[i].salary+"</li>" +
+                        "                                                <li>"+data[i].userDetail.signature+"</li>" +
+                        "                                            </ul>" +
+                        "                                        </div>" +
+                        "                                    </div>" +
+                        "                                </a>" +
+                        "                            </div>"
+                    );
                 }
             }
-        })
+        });
     });
 }
