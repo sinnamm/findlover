@@ -107,8 +107,11 @@ function searchUser() {
             type: "post",
             dataType: "json",
             success: function (data) {
-                $("#page1").empty();
-                $("#page2").empty();
+                $("#dayLover").empty();
+                $("#dayLover").append("<ul id='flexiselDemo3'>");
+                $("#flexiselDemo3").append("<li id='page1'></li>");
+                $("#flexiselDemo3").append("<li id='page2'></li>")
+               /// $("#page1").empty();$("#page2").empty();
                 for (i = 0; i < 8; i++) {
                     $("#page1").append("<div class='col-md-3 biseller-column'>" +
                         "                                <a href='view_profile.html'>" +
@@ -152,6 +155,9 @@ function searchUser() {
                         "                            </div>"
                     );
                 }
+
+                flexisel();
+
             }
         });
     });

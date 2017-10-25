@@ -103,7 +103,6 @@ public class IndexController {
     @ResponseBody
     public List<UserBasic> getSearchUser(UserPick userPick,HttpServletRequest request){
         UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
-        logger.info("userPick..."+userPick);
         return getDayLovers(userPick,user);
     }
 
@@ -114,28 +113,31 @@ public class IndexController {
      * @return
      */
     public List<UserBasic> getDayLovers(UserPick userPick,UserBasic user){
+        userPick.setId(user.getId());
+        logger.info("userPick..."+userPick);
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
         LoverUtil.formatUserInfo(userBasicList);
+
         if (userBasicList.size()> Constant.INDEX_SHOW_USER_NUMBER){
             logger.info("根据择偶条件选出来的用户大于16，需要随机选取");
-            List<UserBasic> userBasics = LoverUtil.getRodomUser(userBasicList,Constant.INDEX_SHOW_USER_NUMBER);
+            List<UserBasic> userBasics = LoverUtil.getRandomUser(userBasicList,Constant.INDEX_SHOW_USER_NUMBER);
             return userBasics;
         }else {
+            logger.info("根据择偶条件选出来的用户小于16，需要从数据库随机获取");
             int size = Constant.INDEX_SHOW_USER_NUMBER-userBasicList.size();
             List<UserBasic> userBasics = userService.
                     selectUserBySexualAndWorkProvince(user.getId(),user.getSexual(),user.getWorkplace().substring(0,2));
             if (userBasics==null||userBasics.size()<size){
-                logger.info("根据性取向和工作最地选出来的用户小于16，需要从数据库随机获取");
-
+                logger.info("根据性取向和工作最地选出来的用户小于16，只选取性取向对应的用户");
                 userBasics =userService.
                         selectUserBySexualAndWorkProvince(user.getId(),user.getSexual(),null);
             }
             LoverUtil.formatUserInfo(userBasics);
-            List<UserBasic> allUsers = LoverUtil.getRodomUser(userBasics,size);
-            allUsers.forEach(logger::info);
+            List<UserBasic> allUsers = LoverUtil.getRandomUser(userBasics,size);
             for (int i=0;i<allUsers.size();i++){
                 userBasicList.add(allUsers.get(i));
             }
+            userBasicList.forEach(logger::info);
             return userBasicList;
         }
     }

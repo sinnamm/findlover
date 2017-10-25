@@ -90,7 +90,7 @@ public class SearchController {
         List<UserBasic> userBasicStarPick = new ArrayList<>();
        //如果用户数大于4则随机选四个用户显示
         if(userBasicStarList.size()> Constant.SEARCH_SHOW_STAR_USER_NUMBER){
-           userBasicStarPick = LoverUtil.getRodomUser(userBasicStarList,Constant.SEARCH_SHOW_STAR_USER_NUMBER);
+           userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,Constant.SEARCH_SHOW_STAR_USER_NUMBER);
         }else {
             userBasicStarPick=userBasicStarList;
         }

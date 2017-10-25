@@ -22,7 +22,7 @@ public final class LoverUtil {
 	 * @param num 随机挑选的个数
 	 * @return
 	 */
-	public static List<UserBasic> getRodomUser(List<UserBasic> userBasicList, int num)
+	public static List<UserBasic> getRandomUser(List<UserBasic> userBasicList, int num)
 	{
 		int[] nums = getRandoms(0,userBasicList.size()-1,num);
 		List<UserBasic> userBasics = new ArrayList<>();
