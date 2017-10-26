@@ -114,7 +114,7 @@ function searchUser() {
                /// $("#page1").empty();$("#page2").empty();
                 for (i = 0; i < 8; i++) {
                     $("#page1").append("<div class='col-md-3 biseller-column'>" +
-                        "                                <a href='view_profile.html'>" +
+                        "                                <a href='"+contextPath+"profile/"+data[i].id+"'>" +
                         "                                    <div class='profile-image'>" +
                         "                                        <img src='"+contextPath+"images/p2.jpg' class='img-responsive' alt='profile image'/>" +
                         "                                        <div class='agile-overlay'>" +
@@ -136,7 +136,7 @@ function searchUser() {
 
                 for (i = 8; i < 16; i++) {
                     $("#page2").append("<div class='col-md-3 biseller-column'>" +
-                        "                                <a href='view_profile.html'>" +
+                        "                                <a href='"+contextPath+"profile/"+data[i].id+"'>" +
                         "                                    <div class='profile-image'>" +
                         "                                        <img src='"+contextPath+"images/p3.jpg' class='img-responsive' alt='profile image'/>" +
                         "                                        <div class='agile-overlay'>" +

@@ -331,16 +331,14 @@
         <div class="col-md-3 match_right">
             <!--id搜索框-->
             <div class="profile_search1">
-                <form>
-                    <input type="text" class="m_1" name="ne" size="30" required="" placeholder="ID搜索"/>
-                    <input type="submit" value="搜索"/>
-                </form>
+                <input id="search-id" type="text" class="m_1" size="30" required="" placeholder="ID搜索"/>
+                <input id="search-by-id" type="button" value="搜索"/>
             </div>
             <!--相似结果-->
             <div class="view_profile view_profile2">
                 <h3>相似结果</h3>
                 <ul style="margin-bottom: 0px" class="profile_item" th:each="userBasicStar: ${userBasicStarPick}">
-                    <a href="view_profile.html">
+                    <a th:href="@{' profile/'+${userBasicStar.id}}">
                         <li class="profile_item-img">
                             <img src="../../static/images/p5.jpg" th:src="@{/images/p5.jpg}" class="img-responsive"
                                  alt=""/>

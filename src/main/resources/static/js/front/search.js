@@ -29,6 +29,11 @@ $(function () {
     getSearchUser();
     $.ajaxSettings.async = true;
 
+    $("#search-by-id").click(function () {
+        var id = $("#search-id").val();
+        window.location.href=contextPath+"profile/"+id;
+    });
+
 });
 function initDropdownSpan() {
     //模拟操作，模拟select改变
@@ -308,14 +313,14 @@ function initPickUser(){
                 $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
                     "                        <ul class='profile_item'>" +
                     "                                <li class='profile_item-img'>" +
-                    "                                    <a href='view_profile.html'>" +
+                    "                                    <a href='"+contextPath+"profile/"+list[i].id+"'>" +
                     "                                        <img src=" + contextPath + "images/a7.jpg "+
                     "                                         class='img-responsive zoom-img' alt=''/>" +
                     "                                    </a>" +
                     "                                </li>" +
                     "                            <li>" +
                     "                                <div style='height: 22px;line-height: 22px'>" +
-                    "                                <a href=''>"+list[i].nickname+"</a>" +
+                    "                                <a href='"+contextPath+"profile/"+list[i].id+"'>"+list[i].nickname+"</a>" +
                     "                                 <img src='" + contextPath + "images/vip" + (list[i].vip ? '' : '-grey') + ".png' class='flag'>" +
                     "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? '' : '-grey') + ".png' class='flag'></div>" +
                     "                                <p>" +
@@ -363,14 +368,14 @@ function searchUser(){
                 $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
                     "                        <ul class='profile_item'>" +
                     "                                <li class='profile_item-img'>" +
-                    "                                    <a href='view_profile.html'>" +
+                    "                                    <a href='"+contextPath+"profile/"+list[i].id+"'>" +
                     "                                        <img src=" + contextPath + "images/a7.jpg "+
                     "                                         class='img-responsive zoom-img' alt=''/>" +
                     "                                    </a>" +
                     "                                </li>" +
                     "                            <li>" +
                     "                                <div style='height: 22px;line-height: 22px'>" +
-                    "                                <a href=''>"+list[i].nickname+"</a>" +
+                    "                                <a href='"+contextPath+"profile/"+list[i].id+"'>"+list[i].nickname+"</a>" +
                     "                                 <img src='" + contextPath + "images/vip" + (list[i].vip ? '' : '-grey') + ".png' class='flag'>" +
                     "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? '' : '-grey') + ".png' class='flag'></div>" +
                     "                                <p>" +
