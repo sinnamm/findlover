@@ -70,7 +70,7 @@
     </select>
 
     <select id="selectStarUser" resultType="UserBasic">
-        SELECT ub.nickname,ub.photo,ub.birthday,ub.height,ub. workplace,ub.id
+        SELECT ub.nickname,ub.photo,ub.birthday,ub.height,ub. workplace,ub.id,ub.salary
         from user_basic as ub LEFT OUTER JOIN user_asset as ua
         ON ub.id=ua.id
         WHERE DATE(ua.star_deadline)>DATE(#{date})

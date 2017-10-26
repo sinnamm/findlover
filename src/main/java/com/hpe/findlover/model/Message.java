@@ -1,10 +1,11 @@
 package com.hpe.findlover.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
-public class Message {
+public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,6 +29,25 @@ public class Message {
 
     @Transient
     private List<MessageReply> replies;
+
+    @Transient
+    private UserBasic userBasic;
+
+    public Message() {
+    }
+
+    public Message(Integer id, Integer likeCount) {
+        this.id = id;
+        this.likeCount = likeCount;
+    }
+
+    public UserBasic getUserBasic() {
+        return userBasic;
+    }
+
+    public void setUserBasic(UserBasic userBasic) {
+        this.userBasic = userBasic;
+    }
 
     public List<MessageLike> getLikes() {
         return likes;

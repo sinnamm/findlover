@@ -28,4 +28,5 @@ public class MessageServiceImpl extends BaseServiceImpl<Message> implements Mess
 	public List<Message> selectList() {
 		return messageMapper.selectList();
 	}
+
 }

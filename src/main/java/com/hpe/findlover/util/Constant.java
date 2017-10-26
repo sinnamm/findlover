@@ -16,6 +16,12 @@ public class Constant {
      */
     public static final int SEARCH_SHOW_STAR_USER_NUMBER=4;
 
+    /**
+     * 用户动态的分类
+     */
+    public static final String HOT="hot";
+    public static final String NEW="new";
+
     public static final int AGE_LOW_LIMIT = 18;
     public static final int AGE_HIGH_LIMIT = 66;
     public static final int HEIGHT_LOW_LIMIT = 145;
