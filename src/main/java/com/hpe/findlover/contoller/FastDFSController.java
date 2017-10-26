@@ -24,8 +24,8 @@ public class FastDFSController {
 	 * @param response
 	 * @throws IOException
 	 */
-	@GetMapping("{filePath}")
-	public void getFile(@PathVariable String filePath, HttpServletResponse response) throws IOException {
+	@GetMapping
+	public void getFile(@RequestParam("path") String filePath, HttpServletResponse response) throws IOException {
 		FileInfo fileInfo = uploadService.getFileInfo(filePath);
 		if (fileInfo != null && fileInfo.getFileSize() != 0) {
 			byte[] buffer = uploadService.downloadFile(filePath);

@@ -1,7 +1,9 @@
 package com.hpe.findlover.contoller.front;
 
 import com.hpe.findlover.model.*;
+import com.hpe.findlover.service.UploadService;
 import com.hpe.findlover.service.front.*;
+import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.MD5Code;
 import org.apache.logging.log4j.LogManager;
@@ -16,9 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 /**
@@ -43,6 +43,10 @@ public class UserCenterController {
     private UserPickService userPickService;
     @Autowired
     private UserAssetService userAssetService;
+    @Autowired
+    private UploadService uploadService;
+    @Autowired
+    private UserPhotoService userPhotoService;
 
     /**
      * 跳转到用户中心界面
@@ -52,6 +56,13 @@ public class UserCenterController {
         //跳转前查询用资产
         UserBasic user = (UserBasic) session.getAttribute("user");
         UserAsset userAsset = userAssetService.selectByPrimaryKey(user.getId());
+        UserPhoto userPhoto = new UserPhoto();
+        userPhoto.setUserId(user.getId());
+        //获取用户所有照片
+        List<UserPhoto> photos = userPhotoService.select(userPhoto);
+        //获取用户头像
+        UserBasic userBasic = userService.selectByPrimaryKey(user.getId());
+        session.setAttribute("user",userBasic);
         logger.info("userAsset:"+userAsset);
         //剩余时间计算
         int vipDate=0, starDate=0,asset=0;
@@ -68,6 +79,7 @@ public class UserCenterController {
             logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+userAsset.getAsset());
         }
         logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+asset);
+        model.addAttribute("photos",photos);
         model.addAttribute("vipDate",vipDate);
         model.addAttribute("starDate",starDate);
         model.addAttribute("asset",asset);
@@ -81,36 +93,107 @@ public class UserCenterController {
      */
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     @ResponseBody
-    public Object upload(HttpServletRequest request){
-        String realPath = "src/main/resources/static/upload/user/photo/";
-        System.out.println("/////////////////////////////////////////////////"+realPath);
-        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("photos");
-        MultipartFile file = null;
-        BufferedOutputStream stream = null;
-        for (int i = 0; i < files.size(); i++) {
-            file = files.get(i);
-            System.out.println(UUID.randomUUID()+"."
-                    +file.getContentType().substring(file.getContentType().indexOf("/")+1));
-            if (!file.isEmpty()) {
-                try {
-                    byte[] bytes = file.getBytes();
-                    stream = new BufferedOutputStream(new FileOutputStream(
-                            new File(realPath, UUID.randomUUID()+"."
-                                    +file.getContentType().substring(file.getContentType().indexOf("/")+1))));
-                    stream.write(bytes);
-                    stream.close();
-                } catch (Exception e) {
-                    stream = null;
-                    e.printStackTrace();
-                    return "上传失败 " + i + " => "
-                            + e.getMessage();
-                }
-            } else {
-                return "上传失败 " + i
-                        + " 因为是一个空文件。";
-            }
+    public Object upload(HttpServletRequest request,HttpSession session) throws Exception{
+        //先检查图片数量是否已经上传至最大，即8张
+        UserBasic userBasic = (UserBasic) session.getAttribute("user");
+        UserPhoto checkPhoto = new UserPhoto();
+        checkPhoto.setUserId(userBasic.getId());
+        List<UserPhoto> validatPhotos = userPhotoService.select(checkPhoto);
+        if(validatPhotos.size()>=8){
+            return "{\"result\":\"false\"}";
         }
-        return "[{\"result\":\"successful\"}]";
+        Map<String,Object> resultMap = null;
+        //如果符合以上条件就给予上传
+        if(request instanceof MultipartHttpServletRequest){
+            MultipartHttpServletRequest mrequest=(MultipartHttpServletRequest)request;
+            List<MultipartFile> photos = mrequest.getFiles("photos");
+            logger.error("上传总数====>"+photos.size());
+            logger.error("上传总数====>"+(validatPhotos.size()+photos.size()));
+            if((validatPhotos.size()+photos.size())>8){
+                return "{\"result\":\"false\"}";
+            }
+            resultMap = new HashMap<>();
+            List<UserPhoto> paths=new ArrayList<>();
+            Iterator<MultipartFile> iterator = photos.iterator();
+            while (iterator.hasNext()){
+                MultipartFile photo = iterator.next();
+                if (photo!=null){
+                    logger.error("文件名称====>"+photo.getName());
+                    logger.error("文件类型====>"+photo.getContentType());
+                    logger.error("文件大小====>"+photo.getSize());
+                    String photoPath = uploadService.uploadFile(photo);
+                    UserPhoto userPhoto = new UserPhoto();
+                    userPhoto.setUserId(userBasic.getId());
+                    userPhoto.setPhoto(photoPath);
+                    userPhotoService.insertUseGeneratedKeys(userPhoto);
+                    paths.add(userPhoto);
+                    logger.error("上传完成!");
+                    logger.error("==================================");
+                }
+            }
+            //查询出所有的照片
+            resultMap.put("photos",paths);
+
+        }
+        resultMap.put("result","true");
+        return resultMap;
+    }
+
+    /**
+     * 删除照片
+     * @param id 要删除照片的id
+     * @return
+     */
+    @RequestMapping(value = "photo/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Object uploadPhoto(@PathVariable Integer id){
+        boolean result =false;
+        if (id != null) {
+            logger.debug("删除的图片id为："+id);
+            result = userPhotoService.deletePhotoByUserPhotoId(id);
+        }
+        return result;
+    }
+
+    /**
+     * 用户头像上传
+     * @param photo
+     * @return 严格返回JSON格式
+     */
+    @RequestMapping(value = "photo", method = RequestMethod.POST)
+    @ResponseBody
+    public Object uploadPhoto(MultipartFile photo,HttpSession session){
+        if (photo==null) {
+            return "{\"result\":\"false\"}";
+        }
+        String uploadPhotoPath =null;
+        UserBasic userBasic = (UserBasic) session.getAttribute("user");
+        try {
+            //上传之前删除原来头像
+            if(userBasic.getPhoto()!=null
+                    && !Constant.MALE_PHOTO.equals(userBasic.getPhoto())
+                    && !Constant.FEMALE_PHOTO.equals(userBasic.getPhoto())) {
+                uploadService.deleteFile(userBasic.getPhoto());
+            }
+            //获取用户头像
+            logger.error("文件名称====>"+photo.getName());
+            logger.error("文件类型====>"+photo.getContentType());
+            logger.error("文件大小====>"+photo.getSize());
+            uploadPhotoPath = uploadService.uploadFile(photo);
+            userBasic.setPhoto(uploadPhotoPath);
+            logger.debug(uploadPhotoPath);
+            //更新sesion中图片路径
+            session.setAttribute("user",userBasic);
+            userService.updateByPrimaryKeySelective(userBasic);
+            logger.error("上传完成!");
+            logger.error("==================================");
+
+        }catch (Exception e){
+            //如果出错先删除刚刚上传的图片
+            uploadService.deleteFile(uploadPhotoPath);
+            e.printStackTrace();
+        }
+        return "{\"result\":\"true\",\"path\":\""+uploadPhotoPath+"\"}";
     }
 
     /**
@@ -283,6 +366,22 @@ public class UserCenterController {
         }else {
             result = userDetailService.insert(userDetail);
         }
+        return result;
+    }
+
+    /**
+     * 用户身份认证
+     *
+     * @return 返回Json格式
+     */
+    @PutMapping("confirm")
+    @ResponseBody
+    public Object UserConfirm(UserDetail userDetail,HttpSession session) {
+        boolean result = false;
+        result = userDetailService.updateByPrimaryKeySelective(userDetail);
+        UserBasic user = (UserBasic)session.getAttribute("user");
+        user.setConfirm(true);
+        session.setAttribute("user",user);
         return result;
     }
 

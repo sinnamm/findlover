@@ -13,6 +13,8 @@ public class UserBasic implements Serializable {
     @Transient
     private boolean isStar;
     @Transient
+    private boolean isConfirm;//用户是否认证过
+    @Transient
     private boolean isAuthenticated;
     @Transient
     private UserDetail userDetail;
@@ -49,6 +51,14 @@ public class UserBasic implements Serializable {
     private String workplace;
 
     private Double salary;
+
+    public boolean isConfirm() {
+        return isConfirm;
+    }
+
+    public void setConfirm(boolean confirm) {
+        isConfirm = confirm;
+    }
 
     @Column(name = "live_condition")
     private String liveCondition;
@@ -438,7 +448,10 @@ public class UserBasic implements Serializable {
                 "age=" + age +
                 ", isVip=" + isVip +
                 ", isStar=" + isStar +
+                ", isConfirm=" + isConfirm +
                 ", isAuthenticated=" + isAuthenticated +
+                ", userDetail=" + userDetail +
+                ", userAsset=" + userAsset +
                 ", id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
@@ -453,7 +466,7 @@ public class UserBasic implements Serializable {
                 ", education='" + education + '\'' +
                 ", workplace='" + workplace + '\'' +
                 ", salary=" + salary +
-                ", liveCondition=" + liveCondition +
+                ", liveCondition='" + liveCondition + '\'' +
                 ", authority=" + authority +
                 ", status=" + status +
                 ", code='" + code + '\'' +

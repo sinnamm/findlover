@@ -1,4 +1,5 @@
 $(function () {
+    initSetPhotoBtn();
     niceBaseCofig();
     initUserBasicValidator();
     initUserDetailValidator();
@@ -6,7 +7,8 @@ $(function () {
     initUserStatusValidator();
     initUserPickValidator();
     initRechargeValidator();
-    initSalaryDropdown(undefined,-1, -1);
+    initUserComfirmValidator();
+    initSalaryDropdown(undefined, -1, -1);
     initHeightDropdown(undefined, -1, -1);
     initResetPwd();
     initResetAuth();
@@ -39,6 +41,162 @@ $(function () {
     initAgeDropdown(undefined);
     selectUserBasic1();
 });
+// 设置设为头像按钮的显示
+function initSetPhotoBtn() {
+    $("div[id^='photo-single']").each(function () {
+        var id = this.id.split("-")[2];
+        var $btn = $("button[id^='photo-btn-" + id + "']");
+        var $del = $("#photo-del-" + id);
+        $(this).hover(function () {
+            $btn.fadeIn(500);
+        }, function () {
+            $btn.fadeOut(500);
+        });
+        $del.click(function () {
+            deletePhoto(this);
+        });
+    })
+}
+
+//单个删除相册中的图片
+function deletePhoto(delBtnInstance) {
+    //找到他父节点div
+    if(confirm("您确定删除此照片吗？")) {
+        $.ajax({
+            url: contextPath + "usercenter/photo/" + $(delBtnInstance).attr("id").split("-")[2],
+            type: "DELETE",
+            dataType: "TEXT",
+            success: function (data) {
+                if (data == "true") {
+                    var $delId = $(delBtnInstance).closest("div");
+                    //隐藏不可上传按钮
+                    $("#max-upload").hide();
+                    //显示可上传按钮
+                    $("#min-upload").show();
+                    $delId.remove();
+                    swal("温馨提示", "删除成功！", "success");
+                } else {
+                    swal("温馨提示", "删除失败！", "error");
+                }
+            }
+        });
+    }
+
+}
+
+//照片上传
+function initPhotoUpload() {
+    //照片批量上传
+    $("#file-1").fileinput({
+        language: 'zh',
+        theme: 'fa',
+        uploadUrl: contextPath + "usercenter/upload", // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        overwriteInitial: false,
+        maxFileSize: 2048,
+        //maxFilesNum: 3,
+        minFileCount: 1,
+        maxFileCount: 8,
+        enctype: 'multipart/form-data',
+        allowedFileTypes: ['image'],
+        uploadAsync: false, //同步上传
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_').replace("-", "_");
+        }
+    });
+    //上传成功回调,没上传成功一次就回调一次 filepreupload fileuploaded
+   /* $("#file-1").on("filepreupload", function (event, data, previewId, index) {
+        $("#myModal").modal("hide");
+        if(data.response.result=="true"){
+            alert(JSON.stringify(data.response));
+            alert(data.response.result);
+            swal("温馨提示","上传成功！","success");
+            return true;
+        }else {
+            alert(JSON.stringify(data.response));
+            alert(data.response.result);
+            swal("温馨提示","不能超过八张","error");
+            return false;
+        }
+
+    });
+*/
+    //同步上传成功回调
+    $('#file-1').on('filebatchuploadsuccess', function(event, data, previewId, index) {
+        $("#myModal").modal("hide");
+        if(data.response.result=="true"){
+            var photos = data.response.photos;
+            // alert(JSON.stringify(data.response));
+            // alert(photos);
+            for(var i=0;i<photos.length;i++){
+                var photoDiv="<div class='photo-single' id='photo-single-"+photos[i].id+"'>" +
+                    "             <a href='"+contextPath+"file?path="+photos[i].photo+"'" +
+                    "                data-toggle='lightbox' data-gallery='sigma-gallery'" +
+                    "                data-title='Image Title 01'>" +
+                    "                 <img src='"+contextPath+"file?path="+photos[i].photo+"'" +
+                    "                      alt='第1张'" +
+                    "                      class='img-fluid sigmapad'>" +
+                    "                 <a id='photo-del-"+photos[i].id+"' onclick='deletePhoto(this)' class='photo-del'><i" +
+                    "                         class='fa fa-times'></i></a>" +
+                    "             </a>" +
+                    "             <div class='submit inline-block'>" +
+                    "                 <button id='photo-btn-"+photos[i].id+"' class='hvr-wobble-vertical set-photo-btn'>设为头像</button>" +
+                    "             </div>" +
+                    "         </div>";
+
+                $("div[class='photo-single']:last").after($(photoDiv));
+                //成功之后给所用div再次添加响应事件
+                initSetPhotoBtn();
+            }
+            //这里是判断如果图片达到8张了，就把图片上传按钮禁用
+            if($("div[id^='photo-single']").size()<8){
+                //隐藏不可上传按钮
+                $("#max-upload").hide();
+                //显示可上传按钮
+                $("#min-upload").show();
+            }else {
+                //显示不可上传按钮
+                $("#max-upload").show();
+                //隐藏可上传按钮
+                $("#min-upload").hide();
+            }
+            swal("温馨提示","上传成功！","success");
+        }else {
+            alert(JSON.stringify(data.response));
+            alert(data.response.result);
+            swal("温馨提示","不能超过八张","error");
+        }
+    });
+
+    //头像上传
+    $("#img").fileinput({
+        language: 'zh',
+        theme: 'fa',
+        uploadUrl: contextPath + "usercenter/photo", // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        overwriteInitial: false,
+        maxFileSize: 2048,
+        maxFilesNum: 1,
+        minFileCount: 1,
+        maxFileCount: 1,
+        enctype: 'multipart/form-data',
+        allowedFileTypes: ['image'],
+        //uploadAsync: false, //同步上传
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_').replace("-", "_");
+        }
+    });
+    //头像异步上传成功回调
+    $("#img").on("fileuploaded", function (event, data, previewId, index) {
+        $("#myImg").modal("hide");
+        if(data.response.result=="true"){
+            $("#head-sculpture").attr("src",contextPath+"file?path="+data.response.path);
+            swal("温馨提示","上传成功！","success");
+        }else{
+            swal("温馨提示","上传失败！","error");
+        }
+    });
+}
 
 //重置密码验证
 function initResetPwd() {
@@ -88,7 +246,7 @@ function initRechargeValidator() {
             var cost = $(form).find(":input[name='cost']").val();
             $.ajax({
                 url: contextPath + "usercenter/pay",
-                data: {"cost":cost},
+                data: {"cost": cost},
                 type: "PUT",
                 dataType: "TEXT",
                 success: function (data) {
@@ -136,19 +294,33 @@ function initUserBasicValidator() {
 //用户详细信息验证
 function initUserDetailValidator() {
     $("#form-user-detail").validator({
-        rules: {
-            chinese: [/^[\u4E00-\u9FA5A-Za-z0-9_]+$/, "昵称不能包含特殊字符"]
-        },
         fields: {
-            'realname': 'chinese;length(2~8)',
-            'weight': 'digits',
-            'cardnumber': 'IDcard'
+            'weight': 'digits'
         },
         theme: 'bootstrap',
         timely: 2,
         stopOnError: true,
         valid: function (form) {
             resetUser(form, "detail");
+        }
+    });
+}
+
+//用户身份认证
+function initUserComfirmValidator() {
+    $("#form-user-comfirm").validator({
+        rules: {
+            chinese: [/^[\u4E00-\u9FA5A-Za-z0-9_]+$/, "昵称不能包含特殊字符"]
+        },
+        fields: {
+            'realname': 'chinese;length(2~8)',
+            'cardnumber': 'IDcard'
+        },
+        theme: 'bootstrap',
+        timely: 2,
+        stopOnError: true,
+        valid: function (form) {
+            resetUser(form, "confirm");
         }
     });
 }
@@ -206,28 +378,6 @@ function resetUser(form, exturl) {
     });
 }
 
-//照片批量上传
-function initPhotoUpload() {
-    $("#file-1").fileinput({
-        language: 'zh',
-        theme: 'fa',
-        uploadUrl: contextPath + "usercenter/upload", // you must set a valid URL here else you will get an error
-        allowedFileExtensions: ['jpg', 'png', 'gif'],
-        overwriteInitial: false,
-        maxFileSize: 2048,
-        //maxFilesNum: 3,
-        minFileCount: 1,
-        maxFileCount: 8,
-        enctype: 'multipart/form-data',
-        allowedFileTypes: ['image'],
-        //uploadAsync: false, //同步上传
-        slugCallback: function (filename) {
-            return filename.replace('(', '_').replace(']', '_').replace("-", "_");
-        }
-    });
-}
-
-
 //初始化点击事件
 function initTabClick() {
     $("#basic-tab").click(function () {
@@ -248,21 +398,21 @@ function initTabClick() {
     //支付方式下拉框
     $("#weChatpayImg").hide();
     $("#payway").change(function () {
-        var text= $(this).val();
+        var text = $(this).val();
         //alert(text);
-        if("支付宝"==text){
+        if ("支付宝" == text) {
             $("#weChatpayImg").hide();
             $("#payImg").show();
-        }else {
+        } else {
             $("#weChatpayImg").show();
             $("#payImg").hide();
         }
     });
 
     $("#cost").change(function () {
-        var text= $(this).val();
-        if(text!=undefined && text!=''){
-            $("#needpayspan").text("￥ "+parseInt(text));
+        var text = $(this).val();
+        if (text != undefined && text != '') {
+            $("#needpayspan").text("￥ " + parseInt(text));
         }
     });
 }
@@ -319,11 +469,11 @@ function selectUserBasic1() {
                 + "，" + data.height + "M";
             $("#userfixed").text(userfixed);
             loadDataByKeyArr(data,
-                ["nickname", "tel", "email","height", "education",
+                ["nickname", "tel", "email", "height", "education",
                     "liveCondition"]);
-           /* $("#nickname").val(data.nickname);
-            $("#tel").val(data.tel);
-            $("#email").val(data.email);*/
+            /* $("#nickname").val(data.nickname);
+             $("#tel").val(data.tel);
+             $("#email").val(data.email);*/
             if (data.salary != null && data.salary != '') {
                 initSingleSalaryDropdown("salary", data.salary);
             }

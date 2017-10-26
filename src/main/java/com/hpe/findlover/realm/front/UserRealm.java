@@ -2,7 +2,9 @@ package com.hpe.findlover.realm.front;
 
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.UserDetail;
 import com.hpe.findlover.service.front.UserAssetService;
+import com.hpe.findlover.service.front.UserDetailService;
 import com.hpe.findlover.service.front.UserService;
 import com.hpe.findlover.util.Constant;
 import org.apache.catalina.User;
@@ -27,6 +29,8 @@ public class UserRealm extends AuthorizingRealm {
 	private UserService userService;
 	@Autowired
 	public UserAssetService userAssetService;
+	@Autowired
+	public UserDetailService userDetailService;
 
 	public UserRealm() {
 		this(new AllowAllCredentialsMatcher());
@@ -60,6 +64,8 @@ public class UserRealm extends AuthorizingRealm {
 			throw new DisabledAccountException("用户未激活");
 		}
 		UserAsset userAsset = userAssetService.selectByPrimaryKey(userBasic.getId());
+		//身份是否认证过
+		userBasic.setConfirm(userDetailService.selectByPrimaryKey(userBasic.getId()).getCardnumber()!=null);
 		if (userAsset == null || userAsset.getVipDeadline() == null) {
 			userBasic.setVip(false);
 		} else {

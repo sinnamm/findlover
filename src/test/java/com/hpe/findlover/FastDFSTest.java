@@ -28,6 +28,11 @@ public class FastDFSTest {
 		System.out.println(StorePath.praseFromUrl(url));
 	}
 	@Test
+	public void test2(){
+		String url = "group1/M00/00/00/rBEutlnwin-AYHvdAACksI7AjhE714.png";
+		System.out.println(uploadService.deleteFile(url));
+	}
+	@Test
 	public void testUpload() throws IOException {
 		File file = new File("F://Akali.bmp");
 		String result = uploadService.uploadFile(new MultipartFile() {
