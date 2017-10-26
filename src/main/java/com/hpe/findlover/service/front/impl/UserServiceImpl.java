@@ -92,6 +92,4 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 
 		return this.updateByPrimaryKeySelective(userBasic);
 	}
-
-
 }

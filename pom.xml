@@ -212,6 +212,7 @@
 			<groupId>com.github.tobato</groupId>
 			<artifactId>fastdfs-client</artifactId>
 			<version>1.25.2-RELEASE</version>
+
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>

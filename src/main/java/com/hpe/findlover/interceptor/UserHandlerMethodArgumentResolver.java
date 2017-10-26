@@ -29,7 +29,6 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        logger.error("================supportsParameter()====================");
         Class<?> parameterType = methodParameter.getParameterType();
         //如果Controller类中自定义的方法的参数类型是用户的信息类都进行过滤处理，即调用resolveArgument()函数
         if (parameterType.equals(UserBasic.class)
@@ -56,13 +55,6 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
             ModelAndViewContainer modelAndViewContainer,
             NativeWebRequest nativeWebRequest,
             WebDataBinderFactory webDataBinderFactory) throws Exception {
-        logger.error("methodParameter=" + methodParameter.getParameterName());
-        logger.error("modelAndViewContainer=" + modelAndViewContainer);
-        logger.error("nativeWebRequest=" + nativeWebRequest);
-        logger.error("=====================================================");
-        logger.error("nativeWebRequest=" + nativeWebRequest.getParameter(methodParameter.getParameterName()));
-        logger.error("=====================================================");
-        logger.error("nativeWebRequest=" + webDataBinderFactory);
 
         Class<?> parameterType = methodParameter.getParameterType();
 

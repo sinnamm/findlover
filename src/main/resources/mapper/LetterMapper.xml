@@ -18,6 +18,10 @@
         -->
         id, send_id, recieve_id, content, send_time, status
     </sql>
+    <select id="selectAmount" resultType="int">
+        select count(*)  from letter
+        where recieve_id=#{arg1} and send_id=#{arg0} and status=0
+    </select>
     <select id="selectOther" resultType="LetterUser">
     SELECT id,nickname,photo,last_time
     FROM user_basic,( SELECT
@@ -50,4 +54,15 @@
     GROUP BY uid  )a where a.uid=user_basic.id ORDER BY last_time DESC;
 
     </select>
+    <select id="selectLetter" resultType="Letter">
+        SELECT *
+        FROM letter
+        WHERE send_id = #{arg0} AND recieve_id=#{arg1}
+        UNION
+        SELECT *
+        FROM letter
+        WHERE recieve_id = #{arg0} AND send_id=#{arg1}
+        ORDER BY send_time DESC
+    </select>
+
 </mapper>

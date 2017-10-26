@@ -130,7 +130,7 @@ public class VIPController {
                     list.add("星级会员购买失败");
                     list.add("error");
                 }
-
+                return list;
             } else if (userAsset.getStarDeadline().before(new Date())) {
                 userAsset.setStarDeadline(LoverUtil.addDay(new Date(), starBuyDay));
                 userAsset.setCost(userAsset.getCost() + starBuyMoney);

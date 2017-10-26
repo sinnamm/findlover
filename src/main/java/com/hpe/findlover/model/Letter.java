@@ -104,4 +104,16 @@ public class Letter {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Letter{" +
+                "id=" + id +
+                ", sendId=" + sendId +
+                ", recieveId=" + recieveId +
+                ", content='" + content + '\'' +
+                ", sendTime=" + sendTime +
+                ", status=" + status +
+                '}';
+    }
 }

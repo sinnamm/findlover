@@ -2205,6 +2205,16 @@ ul.login_details li a {
     width: 45%;
     display: inline-block;
 }
+.redPoint{
+    background-color: #ff4519;
+    height: 20px;
+    width:20px;
+    position: relative;
+    top:-23px;
+    right: -90%;
+    border-radius: 5px;
+    text-align: center;
+}
 
 /*yyf*/
 .slider h3 {

@@ -6,15 +6,15 @@
     <th:block th:include="/front/common/common_resource::resources"/>
     <link th:src="@{/css/chat-style.css}" src="../../static/css/chat-style.css"/>
     <script src="../../static/js/front/letter.js" th:src="@{/js/front/letter.js}"></script>
-    <!--<style>-->
-        <!--.chat-right:before {-->
-            <!--background-image: url("@{/images/13.jpg}");-->
-        <!--}-->
+    <style>
+        .chat-right:before {
+            background-image: url("@{/images/13.jpg}");
+        }
 
-        <!--.chat-left:before {-->
-            <!--background-image: url(" @{/images/13.jpg}");-->
-        <!--}-->
-    <!--</style>-->
+        .chat-left:before {
+            background-image: url(" @{/images/13.jpg}");
+        }
+    </style>
 </head>
 
 <body>
@@ -36,27 +36,38 @@
         <div class="row">
             <!--左侧消息列表-->
             <div class="col-md-9  messageContainer">
+                <input th:value="${session.user.vip}" id="userVip" hidden/>
                 <div class="row">
                     <!--联系人-->
                     <div class="col-md-3">
                         <ul class="match_box" id="contactsLeft" name="contactsLeft">
                             <li><h4>联系人</h4></li>
                             <hr/>
-                            <th:block th:each="letterUser,iterStat : ${list}">
+                            <th:block th:each="letterUser,iterStat : ${map[list]}">
                                 <li>
                                     <div style="cursor:pointer;" name="userLetter"
-                                         class="jobs-item with-thumb userLetter" >
-                                        <input th:value="${letterUser.id}" id="otherUserId" hidden>
+                                         class="jobs-item with-thumb userLetter">
+                                        <input th:value="${letterUser.id}" id="otherUserId" hidden/>
                                         <div class="thumb_top">
                                             <div class="thumb">
                                                 <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
                                                      style="width: 50px"
-                                                     class="img-responsive" alt=""/></a>
+                                                     class="img-responsive" alt=""/>
+
                                             </div>
                                             <div class="jobs_right">
-                                                <p th:text="${letterUser.nickname}"></p>
-                                                <p style="color: #c2c2c2;" th:text="${#dates.format(letterUser.lastTime,'yyyy/MM/dd')}"></p>
+                                                <div>
+                                                    <p th:text="${letterUser.nickname}"></p>
+                                                    <p style="color: #c2c2c2;"
+                                                       th:text="${#dates.format(letterUser.lastTime,'yyyy/MM/dd')}"></p>
+                                                </div>
                                             </div>
+                                            <th:block th:if="${map[num].get(iterStat.index)>0}">
+                                                <div class="redPoint">
+                                                    <span style="color: #FFFFFF;font-size: 5px" th:text="${map[num].get(iterStat.index) }"></span>
+                                                </div>
+                                            </th:block>
+
                                         </div>
                                     </div>
                                 </li>
@@ -68,32 +79,44 @@
                     <div class="col-md-9 members_box2 chat-window">
                         <!--消息-->
                         <div id="convo">
-                            <ul class="chat-thread">
+                            <div style="text-align: center"><a href="#" id="overloadOldLetter">点击加载更多聊天记录>></a></div>
+                            <ul class="chat-thread" id="letterUl">
                                 <!--th:style="background:url(' + @{'/images/13.jpg'} + ')'"-->
-                                <li class="chat-right">Are we meeting today?</li>
-                                <li class="chat-left">yes, what time suits you?</li>
-                                <li class="chat-right">I was thinking after lunch, I have a meeting in the morning</li>
-                                <li class="chat-left">Are we meeting today?</li>
-                                <li class="chat-right">yes, what time suits you?</li>
-                                <li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>
-                                <li class="chat-left">Are we meeting today?</li>
-                                <li class="chat-right">yes, what time suits you?</li>
-                                <li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>
-                                <li class="chat-left">Are we meeting today?</li>
-                                <li class="chat-right">yes, what time suits you?</li>
-                                <li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>
+                                <!--<li class="chat-right">Are we meeting today?</li>-->
+                                <!--<li class="chat-left">yes, what time suits you?</li>-->
+                                <!--<li class="chat-right">I was thinking after lunch, I have a meeting in the morning</li>-->
+                                <!--<li class="chat-left">Are we meeting today?</li>-->
+                                <!--<li class="chat-right">yes, what time suits you?</li>-->
+                                <!--<li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>-->
+                                <!--<li class="chat-left">Are we meeting today?</li>-->
+                                <!--<li class="chat-right">yes, what time suits you?</li>-->
+                                <!--<li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>-->
+                                <!--<li class="chat-left">Are we meeting today?</li>-->
+                                <!--<li class="chat-right">yes, what time suits you?</li>-->
+                                <!--<li class="chat-left">I was thinking after lunch, I have a meeting in the morning</li>-->
                             </ul>
                         </div>
                         <!--发送消息框-->
+                        <input id="userid" th:value="${session.user.getId()}" hidden/>
                         <div class="row">
                             <form class="form-inline">
                                 <div style="margin:15px">
-									<textarea class="col-md-11" rows="3" onfocus="this.value = '';"
-                                              onblur="if (this.value == '') {this.value = '请输入消息内容';}">请输入消息内容</textarea>
+                                    <th:block th:if="${session.user.getVip()==true}">
+                                        <textarea id="vipInput" name="vipInput" class="col-md-11" rows="3"
+                                                 placeholder="请输入消息内容">
+                                           </textarea>
+                                    </th:block>
+                                    <th:block th:if="${session.user.getVip()==false}">
+                                        <textarea id="notVipInput" name="notVipInput" class="col-md-11" rows="3"
+                                             placeholder="请输入消息内容,每条消息将会收费五个牵手币">
+                                        </textarea>
+                                    </th:block>
+
                                 </div>
                                 <div>
-                                    <input class="col-md-1 btn btn-info text-right" style="margin: 37px 0 0 5px"
-                                           type="submit" value="发送">
+                                    <input id="inputSubmit" name="inputSubmit" class="col-md-1 btn btn-info text-right"
+                                           style="margin: 37px 0 0 5px"
+                                           value="发送">
                                 </div>
                             </form>
                         </div>
@@ -113,11 +136,11 @@
 
                 <div class="center-middle" style="background-color: white">
                     <img th:src="@{/images/13.jpg}" src="../../static/images/13.jpg">
-                    <p>会员107627885</p>
+                    <p style="font-size: 30px; font: '微软雅黑', serif;" th:text="${session.user.getNickname()}"></p>
                 </div>
                 <!--消息菜单栏-->
                 <ul class="match_box message">
-                    <li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span>(0)</span></li>
+                    <li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span th:text="${'('+map[num][#lists.size(map[num])-1]+')'}">(0)</span></li>
                     <li><i class="fa fa-heart"></i><a href="care.html"> 关注</a><span>(0)</span></li>
                     <li><i class="fa fa-eye"></i><a href="visite_trace.html"> 访问记录</a><span>(0)</span></li>
                     <li><i class="fa fa-envelope-o"></i><a href="notice.html"> 系统通知</a><span>(0)</span></li>
