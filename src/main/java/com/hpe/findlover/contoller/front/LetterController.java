@@ -42,6 +42,7 @@ public class LetterController {
         UserBasic userBasic = (UserBasic) session.getAttribute("user");
         Map<String,Object> map= letterService.selectOther(userBasic.getId());
         model.addAttribute("map", map);
+        logger.debug("查询结果："+map);
         return "front/letter";
     }
 
@@ -52,7 +53,7 @@ public class LetterController {
         PageHelper.startPage(currentPage, lineSize);
         List<Letter> list = letterService.selectLetter(user.getId(), otherUserId);
         if (user.getVip()) {
-            boolean f = letterService.updateVipLetterStatus(list);
+            boolean f = letterService.updateVipLetterStatus(list,user);
         }
         return list;
     }

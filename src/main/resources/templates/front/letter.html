@@ -4,11 +4,18 @@
     <title>私信</title>
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
-    <link th:src="@{/css/chat-style.css}" src="../../static/css/chat-style.css"/>
+    <link th:href="@{/css/chat-style.css}" href="../../static/css/chat-style.css"/>
     <script src="../../static/js/front/letter.js" th:src="@{/js/front/letter.js}"></script>
+    <script th:inline="javascript">
+        $(function () {
+            var photo = /*[[@{/file(path=${session.user.photo})}]]*/;
+            $('<style>.right-photo:before{background-image:url("'+photo+'")}</style>').appendTo('head');
+            $(".chat-right").addClass("right-photo");
+
+        })
+    </script>
     <style>
         .chat-right:before {
-            background-image: url("@{/images/13.jpg}");
         }
 
         .chat-left:before {
@@ -45,12 +52,12 @@
                             <hr/>
                             <th:block th:each="letterUser,iterStat : ${map[list]}">
                                 <li>
-                                    <div style="cursor:pointer;" name="userLetter"
+                                    <div style="cursor:pointer; height: 50px;" name="userLetter"
                                          class="jobs-item with-thumb userLetter">
                                         <input th:value="${letterUser.id}" id="otherUserId" hidden/>
                                         <div class="thumb_top">
                                             <div class="thumb">
-                                                <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
+                                                <img th:src="@{/file(path=${letterUser.photo})}"
                                                      style="width: 50px"
                                                      class="img-responsive" alt=""/>
 
@@ -62,7 +69,7 @@
                                                        th:text="${#dates.format(letterUser.lastTime,'yyyy/MM/dd')}"></p>
                                                 </div>
                                             </div>
-                                            <th:block th:if="${map[num].get(iterStat.index)>0}">
+                                            <th:block th:if="${map[num].get(iterStat.index)>0 && iterStat.index>0}">
                                                 <div class="redPoint">
                                                     <span style="color: #FFFFFF;font-size: 5px" th:text="${map[num].get(iterStat.index) }"></span>
                                                 </div>

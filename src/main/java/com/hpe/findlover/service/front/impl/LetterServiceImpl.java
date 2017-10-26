@@ -5,6 +5,7 @@ import com.hpe.findlover.mapper.UserAssetMapper;
 import com.hpe.findlover.model.Letter;
 import com.hpe.findlover.model.LetterUser;
 import com.hpe.findlover.model.UserAsset;
+import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.front.LetterService;
 import com.hpe.util.BaseTkMapper;
@@ -55,11 +56,11 @@ public class LetterServiceImpl extends BaseServiceImpl<Letter> implements Letter
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
-    public Boolean updateVipLetterStatus(List<Letter> list) {
+    public Boolean updateVipLetterStatus(List<Letter> list, UserBasic user) {
         Iterator<Letter> it=list.iterator();
         while(it.hasNext()){
             Letter letter=it.next();
-            if (letter.getStatus()==0){
+            if (letter.getStatus()==0 && letter.getRecieveId().equals(user.getId())){
                 letter.setStatus(1);
                 if (letterMapper.updateByPrimaryKey(letter)<=0){
                     return false;

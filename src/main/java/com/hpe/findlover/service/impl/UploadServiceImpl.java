@@ -53,7 +53,7 @@ public class UploadServiceImpl implements UploadService {
 		synchronized (storageClient) {
 			data = storageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
 		}
-		return data;
+        return data;
 	}
 
 	@Override
@@ -63,6 +63,7 @@ public class UploadServiceImpl implements UploadService {
 		synchronized (storageClient) {
 			fileInfo = storageClient.queryFileInfo(storePath.getGroup(), storePath.getPath());
 		}
-		return fileInfo;
+        logger.debug("获取图片信息："+filePath);
+        return fileInfo;
 	}
 }

@@ -1,6 +1,6 @@
 var lineSize = 15;
 var currentPage = 1;
-window.onload = function () {
+$(function () {
     $("#notVipInput").val("");
     $("#vipInput").val("");
     var otherUserId = $("#contactsLeft").find("input:eq(0)").val();
@@ -10,7 +10,8 @@ window.onload = function () {
     addLetter(otherUserId, userid, vip);
     sendLetter(otherUserId, vip);
     loadMessage(otherUserId,userid,vip);
-}
+})
+
 
 function sendLetter(otherUserId,vip) {
     var content = "";
@@ -20,7 +21,7 @@ function sendLetter(otherUserId,vip) {
         } else {
             content = $("#notVipInput").val();
         }
-        if ((vip === "true" && content==="")||(vip==="false" && content==="")){
+        if (content===""){
             swal("警告","请输入您要发送的信息","error");
         }else{
             $.ajax({
@@ -36,6 +37,7 @@ function sendLetter(otherUserId,vip) {
                         $("#hiddenLi1").before("<li class = 'chat-right' >" + content + "</li>");
                         $("#notVipInput").val("");
                         $("#vipInput").val("");
+                        $('#letterUl').scrollTop(100000);
                     }else{
                         swal("警告",data,"error");
                     }
@@ -43,7 +45,7 @@ function sendLetter(otherUserId,vip) {
                 error:function () {
                     swal("错误","失败","error");
                 }
-            })
+            });
         }
     })
 }
@@ -51,11 +53,12 @@ function sendLetter(otherUserId,vip) {
 function addLetter(otherUserId, userid, vip) {
     if(currentPage==1){
         $("#letterUl").empty();
-        $("#letterUl").append("  <p id=\"hiddenLi\" hidden=\"true\"></p>");
+        $("#letterUl").append("  <p id=\"hiddenLi\" hidden=></p>");
         $("#hiddenLi").after("<p id=\"hiddenLi1\" hidden></p>");
     }
     $.ajax({
         url: contextPath + "letter",
+        async:false,
         data: {
             otherUserId: otherUserId,
             lineSize: lineSize,
@@ -80,14 +83,18 @@ function addLetter(otherUserId, userid, vip) {
             $("a[id^='letter-']").click(function () {
                 var x = this.id.split("-")[1];
                 readLetter(this, data[x]);
+
             })
+            $('#letterUl').scrollTop(100000);
         }
-    })
+    });
 }
 function loadMessage(otherUserId,userid,vip) {
     $("#overloadOldLetter").click(function (){
         currentPage = currentPage + 1;
         addLetter(otherUserId, userid, vip);
+        $('#letterUl').scrollTop(0);
+
     });
 }
 function addLetterUser(otherUserId, userid, vip) {
@@ -95,6 +102,8 @@ function addLetterUser(otherUserId, userid, vip) {
         otherUserId = $(this).find("input").val();
         currentPage = 1;
         addLetter(otherUserId, userid, vip,currentPage);
+        $(this).find("div[class='redPoint']").hide();
+        // window.location.reload();
     });
 }
 
@@ -111,6 +120,7 @@ function readLetter(arg, letter) {
                 var par = $(arg).parent();
                 $(arg).remove();
                 par.html(letter.content);
+
             } else {
                 swal("警告", data, "error");
             }
@@ -119,4 +129,5 @@ function readLetter(arg, letter) {
             swal("警告", "出现未知错误", "error");
         }
     });
+
 }

@@ -63,7 +63,7 @@
 
 .chat-right:before {
     right: -80px;
-    background-image: url("../../static/images/14.jpg");
+    /*background-image: url("../../static/images/14.jpg");*/
 }
 
 .chat-right:after {
@@ -81,7 +81,7 @@
 
 .chat-left:before {
     left: -80px;
-    background-image: url("../../static/images/13.jpg");
+    /*background-image: url("../../static/images/13.jpg");*/
 }
 
 .chat-left:after {
