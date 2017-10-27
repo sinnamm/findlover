@@ -83,23 +83,9 @@ public class SearchController {
         logger.info("userPick.."+userPick);
         model.addAttribute("userPick",userPick);
         /*3、广告位VIP用户信息*/
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(System.currentTimeMillis());
-        String dateStr = dateFormat.format(date);
-        List<UserBasic> userBasicStarList = userService.selectStarUser(dateStr,userPick.getSex(),"%"+userPick.getWorkplace().substring(0,2)+"%");
-        List<UserBasic> userBasicStarPick = new ArrayList<>();
-       //如果用户数大于4则随机选四个用户显示
-        if(userBasicStarList.size()> Constant.SEARCH_SHOW_STAR_USER_NUMBER){
-           userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,Constant.SEARCH_SHOW_STAR_USER_NUMBER);
-        }else {
-            userBasicStarPick=userBasicStarList;
-        }
-        for (UserBasic userbasic : userBasicStarPick) {
-            userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
-        }
-        logger.info("userBasicStarPick....."+userBasicStarPick);
+        List<UserBasic> userBasicStarPick = LoverUtil.getRandomStarUser(userPick,Constant.SEARCH_SHOW_STAR_USER_NUMBER,userService);
+        userBasicStarPick.forEach(logger::info);
         model.addAttribute("userBasicStarPick",userBasicStarPick);
-
         return "front/search";
     }
 

@@ -1,6 +1,7 @@
 var pageNum = 1;
 var type = "new";
 var likeMessageValue = false;
+var msgId = 0;
 
 $(function () {
     btnClick();
@@ -19,7 +20,7 @@ function getMessage() {
                 $("#news-div").append(" <div class='jobs-item with-thumb'>" +
                     "                                <div class='thumb_top'>" +
                     "                                    <div class='thumb1'><a href='" + contextPath + "profile/" + list[i].userId + "'>" +
-                    "                                        <img src='" + contextPath + "images/p1.jpg' class='img-responsive' alt=''/></a>" +
+                    "                                        <img src='" + contextPath + "file?path="+list[i].userBasic.photo+"' class='img-responsive' alt=''/></a>" +
                     "                                    </div>" +
                     "                                    <div class='jobs_right'>" +
                     "                                        <h6 class='title'><a href='" + contextPath + "profile/" + list[i].userId + "'>" + list[i].userBasic.nickname + " (" + list[i].userId + ")</a></h6>" +
@@ -30,7 +31,7 @@ function getMessage() {
                     "                                    <div class='clearfix'></div>" +
                     "                                </div>" +
                     "                                <div class='message_content' style='padding: 0px 10px 0 10px'>" +
-                    "                                    <p style='margin-bottom: 0px; '>" + list[i].content + "</p>" +
+                    "                                    <p style='margin-bottom: 0px; font-size: medium '>" + list[i].content + "</p>" +
                     "                                </div>" +
                     "                                <div class='row text-right'>" +
                     "                                    <div class='col-sm-7'></div>" +
@@ -45,14 +46,33 @@ function getMessage() {
                     "                                    </div>" +
                     "                                    <div class='clearfix'></div>" +
                     "                                </div>" +
-                    "                                <div id='collapse-div-"+i+"' class='accordion-body collapse '>" +
-                    "                                评论</div>" +
+                    "                                <div class='row'>" +
+                    "                                   <div class='col-md-9 col-md-offset-1'>" +
+                    "                                        <ul id='collapse-div-"+i+"' class='media-list accordion-body collapse'>"+
+                    "                                        </ul>"+
+                    "                                   </div>"+
+                    "                                </div>"+
                     "                            </div><hr/>"
                 );
                 var reply_list = list[i].replies;
-                for (var j=0;j<reply_list.length;j++){
-                    $("#collapse-div-"+i).append("<div>"+reply_list[i].content+"</div>");
+                if (reply_list!=""&&reply_list!=undefined&&reply_list!=null&&reply_list.length>0){
+                    for (var j=0;j<reply_list.length;j++){
+                        var user = reply_list[j].userBasic;
+                        $("#collapse-div-"+i).append("<li class='media'>" +
+                            "                <div class='thumb1'>" +
+                            "                    <a href='#'>" +
+                            "                        <img class='media-object img-circle' width='30px' " +
+                                                        "src='" + contextPath + "file?path= "+user.photo+"' alt='菜鸟'>" +
+                            "                    </a>" +
+                            "                </div>" +
+                            "                <div class='jobs_right'>" +
+                            "                    <h6 class='media-heading'><span class='label label-info'>"+user.nickname+"</span> "+reply_list[j].replyTime+"</h6>" +
+                            "                    <p style='margin-bottom: 5px'>"+reply_list[j].content+"</p>" +
+                            "                </div>" +
+                            "            <hr/></li>");
+                    }
                 }
+
             }
 
             setPage(data.pageNum,data.total, data.pages, "goPage");
@@ -82,25 +102,8 @@ function likeMessage(massageId) {
 }
 
 function replyMessage(messageId) {
+    msgId = messageId;
     $('#reply').modal();
-    $("#reply-submit-btn").click(function () {
-        var reply = $("#reply-content").val();
-        var data = {"reply":reply,"messageId":messageId}
-        $.ajax({
-            url:contextPath+"other_says/replyMessage",
-            type:"get",
-            data:data,
-            success:function (data) {
-                if (data=="success"){
-                    swal("评论成功！", "success");
-                    likeMessageValue=true;
-                    getMessage();
-                }else {
-                    swal("评论失败！", "error");
-                }
-            }
-        })
-    })
 }
 
 function btnClick() {
@@ -108,7 +111,7 @@ function btnClick() {
         $.post(contextPath + "other_says/message", {content: $("#content").val()}, function (data) {
             if (data == "true") {
                 swal("发布成功！", "success");
-                $("#pubMsgModal").modal("hide");
+                $("#pubMsgModal").modal("hide");ad
                 getMessage();
             }
             else {
@@ -116,6 +119,27 @@ function btnClick() {
             }
         }, "text");
     });
+
+    $("#reply-submit-btn").click(function () {
+        var reply = $("#reply-content").val();
+        var data = {"reply":reply,"messageId":msgId};
+        $.ajax({
+            url:contextPath+"other_says/replyMessage",
+            type:"get",
+            data:data,
+            success:function (data) {
+                if (data=="success"){
+                    swal("评论成功！", "success");
+                    $("#reply").modal("hide");
+                    likeMessageValue=true;
+                    getMessage();
+                }else {
+                    swal("评论失败！", "error");
+                    $("#reply").modal("hide");
+                }
+            }
+        });
+    })
 
     $("#essay-btn").click(function () {
     });

@@ -123,7 +123,7 @@
                                  class="col-md-3 biseller-column">
                                 <a th:href="@{'profile/'+${user.id}}">
                                     <div class="profile-image">
-                                        <img th:src="@{/images/p1.jpg}" class="img-responsive" alt="profile image"/>
+                                        <img th:src="@{'file?path='+${user.photo}}" style="width: 206px;height: 206px"  class="img-responsive" alt="profile image"/>
                                         <div class="agile-overlay">
                                             <h4>
                                                 <span th:text="${user.nickname}"></span>
@@ -150,9 +150,8 @@
                                  class="col-md-3 biseller-column">
                                 <a th:href="@{'profile/'+${user.id}}">
                                     <div class="profile-image">
-                                        <img th:src="@{/images/p9.jpg}" src="../../static/images/p9.jpg"
-                                             class="img-responsive"
-                                             alt="profile image"/>
+                                        <img th:src="@{'file?path='+${user.photo}}"
+                                             class="img-responsive" style="width: 206px;height: 206px" alt="profile image"/>
                                         <div class="agile-overlay">
                                             <h4>
                                                 <span th:text="${user.nickname}"></span>
@@ -289,7 +288,7 @@
             <div class="snap container-fluid">
                 <div class="snap-1">
                     <div>
-                        <a th:href="@{'profile/'+${session.user.id}}"><img th:src="@{/images/p1.jpg}" src="../../static/images/p1.jpg"
+                        <a th:href="@{'profile/'+${session.user.id}}"><img th:src="@{'file?path='+${session.user.photo}}"
                                          class="snap-photo"/></a>
                     </div>
                     <div>

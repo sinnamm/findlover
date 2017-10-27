@@ -17,6 +17,27 @@ public class MessageLike {
 
     @Column(name = "like_time")
     private Date likeTime;
+
+    @Transient
+    private UserBasic userBasic;
+
+    public MessageLike() {
+    }
+
+    public MessageLike(Integer messageId, Integer userId, Date likeTime) {
+        this.messageId = messageId;
+        this.userId = userId;
+        this.likeTime = likeTime;
+    }
+
+    public UserBasic getUserBasic() {
+        return userBasic;
+    }
+
+    public void setUserBasic(UserBasic userBasic) {
+        this.userBasic = userBasic;
+    }
+
     /**
      * @return id
      */

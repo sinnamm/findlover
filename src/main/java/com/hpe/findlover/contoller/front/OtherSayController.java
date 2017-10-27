@@ -59,21 +59,8 @@ public class OtherSayController {
 	public String otherSays(HttpServletRequest request,Model model) {
 		UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
 		UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(System.currentTimeMillis());
-		String dateStr = dateFormat.format(date);
-		List<UserBasic> userBasicStarList = userService.selectStarUser(dateStr,userPick.getSex(),"%"+userPick.getWorkplace().substring(0,2)+"%");
-		List<UserBasic> userBasicStarPick = null;
-		//如果用户数大于4则随机选四个用户显示
-		if(userBasicStarList.size()> Constant.SEARCH_SHOW_STAR_USER_NUMBER){
-			userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,Constant.SEARCH_SHOW_STAR_USER_NUMBER);
-		}else {
-			userBasicStarPick=userBasicStarList;
-		}
-		for (UserBasic userbasic : userBasicStarPick) {
-			userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
-		}
-		logger.info("userBasicStarPick....."+userBasicStarPick);
+		List<UserBasic> userBasicStarPick = LoverUtil.getRandomStarUser(userPick,Constant.SEARCH_SHOW_STAR_USER_NUMBER,userService);
+		userBasicStarPick.forEach(logger::info);
 		model.addAttribute("userBasicStarPick",userBasicStarPick);
 		return "front/other_says";
 	}
@@ -100,6 +87,12 @@ public class OtherSayController {
 			PageHelper.startPage(pageNum,4,"pub_time desc");
 		}
 		List<Message> list = messageService.selectList();
+		for (int i=0;i<list.size();i++){
+			List<MessageReply> messageReplies = list.get(i).getReplies();
+			for (int j=0;j<messageReplies.size();j++){
+				messageReplies.get(j).setUserBasic(userService.selectByPrimaryKey(messageReplies.get(j).getUserId()));
+			}
+		}
 		list.forEach(logger::info);
 		PageInfo pageInfo = new PageInfo(list);
 		return JSON.toJSONStringWithDateFormat(pageInfo,"yyyy-MM-dd HH:mm:ss", SerializerFeature.DisableCircularReferenceDetect);

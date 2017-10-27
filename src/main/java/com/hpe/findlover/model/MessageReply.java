@@ -20,6 +20,27 @@ public class MessageReply {
     @Column(name = "reply_time")
     private Date replyTime;
 
+    @Transient
+    private UserBasic userBasic;
+
+    public MessageReply() {
+    }
+
+    public MessageReply(Integer messageId, Integer userId, String content, Date replyTime) {
+        this.messageId = messageId;
+        this.userId = userId;
+        this.content = content;
+        this.replyTime = replyTime;
+    }
+
+    public UserBasic getUserBasic() {
+        return userBasic;
+    }
+
+    public void setUserBasic(UserBasic userBasic) {
+        this.userBasic = userBasic;
+    }
+
     /**
      * @return id
      */

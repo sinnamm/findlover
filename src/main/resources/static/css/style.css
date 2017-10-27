@@ -95,6 +95,19 @@ img.zoom-img:hover {
     border-radius: 3px;
 }
 
+/*瀑布流*/
+.container-fluid {
+    padding: 5px;
+}
+.box {
+    margin-bottom: 10px;
+    float: left;
+
+}
+.box img {
+    max-width: 100%
+}
+/*----------*/
 .agile-overlay {
     position: absolute;
     bottom: 0;
@@ -1912,7 +1925,7 @@ ul.profile_item li.profile_item-img {
     width: 265px;
     height: 190px;
     /*float: left;*/
-    margin-right: 5%;
+    margin-right: 10px;
     margin-bottom: 10px;
 }
 
@@ -2040,7 +2053,7 @@ ul.login_details li a {
 }
 
 .paid_people {
-    margin: 3em 0 0 0;
+    margin: 1em 0 0 0;
 }
 
 /* search */
@@ -4859,6 +4872,7 @@ ul.feature_list.feature_list1 {
     ul.profile_item li.profile_item-desc h4, ul.profile_item li.profile_item-desc h5, ul.profile_item li.profile_item-desc p, ul.footer_links li {
         font-size: 12px;
         font-weight: 700;
+
     }
 
     .col-md-6.about_right {

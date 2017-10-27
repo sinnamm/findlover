@@ -3,9 +3,13 @@ package com.hpe.findlover.util;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserDetail;
+import com.hpe.findlover.model.UserPick;
+import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.service.front.impl.UserServiceImpl;
 import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -15,6 +19,31 @@ import java.util.concurrent.TimeUnit;
 
 public final class LoverUtil {
 	private static Logger logger = LogManager.getLogger(LoverUtil.class);
+
+	/**
+	 * 获取随机推荐给用户的星级用户
+	 * @param userPick 用户择偶条件
+	 * @param number 最多推荐个数
+	 * @param userService 服务层接口
+	 * @return
+	 */
+	public static List<UserBasic> getRandomStarUser(UserPick userPick,int number,UserService userService){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date(System.currentTimeMillis());
+		String dateStr = dateFormat.format(date);
+		List<UserBasic> userBasicStarList = userService.selectStarUser(dateStr,userPick.getSex(),"%"+userPick.getWorkplace().substring(0,2)+"%");
+		List<UserBasic> userBasicStarPick = null;
+		//如果用户数大于需要的人数则随机选四个用户显示
+		if(userBasicStarList.size()> number){
+			userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,number);
+		}else {
+			userBasicStarPick=userBasicStarList;
+		}
+		for (UserBasic userbasic : userBasicStarPick) {
+			userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
+		}
+		return  userBasicStarPick;
+	}
 
 	/**
 	 * 用户随机获取用户，从查询的数据从随机获取用户，需要结合getRandoms使用

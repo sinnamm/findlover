@@ -17,7 +17,7 @@ $(function () {
     });
     //初始化搜索下拉框，完成根据userpick表的赋值
     selectUserBasic();
-
+    //初始化民族下拉框
     initNationalDropdown("search-select-13");
     //根据下拉框选中的值，更新显示的span信息
     initDropdownSpan();
@@ -27,6 +27,7 @@ $(function () {
     initPickUser();
     //根据搜索条件搜索用户
     getSearchUser();
+
     $.ajaxSettings.async = true;
 
     $("#search-by-id").click(function () {
@@ -34,6 +35,14 @@ $(function () {
         window.location.href=contextPath+"profile/"+id;
     });
 
+    // //初始化瀑布流
+    // $('#masonry').imagesLoaded(function() {
+    //     $container.masonry({
+    //         itemSelector: '.box',
+    //         gutter: 20,
+    //         isAnimated: true,
+    //     });
+    // });
 });
 function initDropdownSpan() {
     //模拟操作，模拟select改变
@@ -309,31 +318,8 @@ function initPickUser(){
                 return;
             }
             var list = data.pageInfo.list;
-            for(i=0;i<list.length;i++){
-                $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
-                    "                        <ul class='profile_item'>" +
-                    "                                <li class='profile_item-img'>" +
-                    "                                    <a href='"+contextPath+"profile/"+list[i].id+"'>" +
-                    "                                        <img src=" + contextPath + "images/a7.jpg "+
-                    "                                         class='img-responsive zoom-img' alt=''/>" +
-                    "                                    </a>" +
-                    "                                </li>" +
-                    "                            <li>" +
-                    "                                <div style='height: 22px;line-height: 22px'>" +
-                    "                                <a href='"+contextPath+"profile/"+list[i].id+"'>"+list[i].nickname+"</a>" +
-                    "                                 <img src='" + contextPath + "images/vip" + (list[i].vip ? '' : '-grey') + ".png' class='flag'>" +
-                    "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? '' : '-grey') + ".png' class='flag'></div>" +
-                    "                                <p>" +
-                    "                                    <span>"+list[i].age+"</span>&nbsp;" +
-                    "                                    <span>"+list[i].height+"</span>&nbsp;" +
-                    "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
-                    "                                    <span>"+list[i].marryStatus+"</span>" +
-                    "                                </p>" +
-                    "                                <p>"+list[i].userDetail.signature+"</p>" +
-                    "                            </li>" +
-                    "                            <div class='clearfix'></div>" +
-                    "                        </ul>" +
-                    "                    </div>");
+            for(var i=0;i<list.length;i++){
+                loadUser(list[i]);
             }
 
             $("#load-more-div").empty();
@@ -344,6 +330,33 @@ function initPickUser(){
             });
         }
     });
+}
+
+function loadUser(item){
+    $(".paid_people").append("<div  class='box col-sm-4 paid_people-left'>" +
+        "                        <ul class='profile_item'>" +
+        "                                <li class='profile_item-img'>" +
+        "                                    <a href='"+contextPath+"profile/"+item.id+"'>" +
+        "                                        <img src='" + contextPath + "file?path= "+item.photo+"'"+
+        "                                         style=' width: 265px;height: 190px;'class='img-responsive zoom-img' alt=''/>" +
+        "                                    </a>" +
+        "                                </li>" +
+        "                            <li>" +
+        "                                <div style='height: 22px;line-height: 22px'>" +
+        "                                <a href='"+contextPath+"profile/"+item.id+"'>"+item.nickname+"</a>" +
+        "                                 <img src='" + contextPath + "images/vip" + (item.vip ? '' : '-grey') + ".png' class='flag'>" +
+        "                                 <img src='" + contextPath + "images/star-0" + (item.star ? '' : '-grey') + ".png' class='flag'></div>" +
+        "                                <p>" +
+        "                                    <span>"+item.age+"</span>&nbsp;" +
+        "                                    <span>"+item.height+"</span>&nbsp;" +
+        "                                    <span>"+item.workplace+"</span>&nbsp;" +
+        "                                    <span>"+item.marryStatus+"</span>" +
+        "                                </p>" +
+        "                                <p>内心独白: "+item.userDetail.signature+"</p>" +
+        "                            </li>" +
+        "                            <div class='clearfix'></div>" +
+        "                        </ul>" +
+        "                    </div>");
 }
 
 //根据条件搜索用户
@@ -365,30 +378,7 @@ function searchUser(){
             }
             var list = data.pageInfo.list;
             for(i=0;i<list.length;i++){
-                $(".paid_people").append("<div class='col-sm-4 paid_people-left'>" +
-                    "                        <ul class='profile_item'>" +
-                    "                                <li class='profile_item-img'>" +
-                    "                                    <a href='"+contextPath+"profile/"+list[i].id+"'>" +
-                    "                                        <img src=" + contextPath + "images/a7.jpg "+
-                    "                                         class='img-responsive zoom-img' alt=''/>" +
-                    "                                    </a>" +
-                    "                                </li>" +
-                    "                            <li>" +
-                    "                                <div style='height: 22px;line-height: 22px'>" +
-                    "                                <a href='"+contextPath+"profile/"+list[i].id+"'>"+list[i].nickname+"</a>" +
-                    "                                 <img src='" + contextPath + "images/vip" + (list[i].vip ? '' : '-grey') + ".png' class='flag'>" +
-                    "                                 <img src='" + contextPath + "images/star-0" + (list[i].star ? '' : '-grey') + ".png' class='flag'></div>" +
-                    "                                <p>" +
-                    "                                    <span>"+list[i].age+"</span>&nbsp;" +
-                    "                                    <span>"+list[i].height+"</span>&nbsp;" +
-                    "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
-                    "                                    <span>"+list[i].marryStatus+"</span>" +
-                    "                                </p>" +
-                    "                                <p>内心独白："+list[i].userDetail.signature+"</p>" +
-                    "                            </li>" +
-                    "                            <div class='clearfix'></div>" +
-                    "                        </ul>" +
-                    "                    </div>");
+               loadUser(list[i]);
             }
 
             $("#load-more-div").empty();

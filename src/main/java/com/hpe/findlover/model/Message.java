@@ -41,6 +41,7 @@ public class Message implements Serializable {
         this.likeCount = likeCount;
     }
 
+
     public UserBasic getUserBasic() {
         return userBasic;
     }

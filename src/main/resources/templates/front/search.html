@@ -318,7 +318,7 @@
 
             </div>
 
-            <div class="paid_people">
+            <div id="masonry" class=" container-fluid paid_people">
 
 
             </div>
@@ -340,10 +340,10 @@
                 <ul style="margin-bottom: 0px" class="profile_item" th:each="userBasicStar: ${userBasicStarPick}">
                     <a th:href="@{' profile/'+${userBasicStar.id}}">
                         <li class="profile_item-img">
-                            <img src="../../static/images/p5.jpg" th:src="@{/images/p5.jpg}" class="img-responsive"
-                                 alt=""/>
+                            <img  th:src="@{'file?path='+${userBasicStar.photo}}" class="img-responsive"
+                                  style="width: 265px;height: 265px;" alt=""/>
                         </li>
-                        <li class="profile_item-desc">
+                        <li class="profile_item-desc" style=" margin-left: 10px; margin-bottom: 10px">
                             <h4 style="margin: 0px"
                                 th:text="${userBasicStar.id}+'             '+${userBasicStar.nickname}"></h4>
                             <p style="color: white"><span th:text="${userBasicStar.age+'岁'}">21岁</span>&nbsp;

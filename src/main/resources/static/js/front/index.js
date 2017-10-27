@@ -116,7 +116,8 @@ function searchUser() {
                     $("#page1").append("<div class='col-md-3 biseller-column'>" +
                         "                                <a href='"+contextPath+"profile/"+data[i].id+"'>" +
                         "                                    <div class='profile-image'>" +
-                        "                                        <img src='"+contextPath+"images/p2.jpg' class='img-responsive' alt='profile image'/>" +
+                        "                                        <img src='"+contextPath+"file?path="+data[i].photo+"' class='img-responsive'"+
+                                                                    "style='width: 265px;height: 190px;' alt='profile image'/>" +
                         "                                        <div class='agile-overlay'>" +
                         "                                            <h4>" + data[i].nickname +
                         "                                                <img  src='"+contextPath+"images/vip"+(data[i].vip ? "" : "-grey")+".png' class='snap-flag'/>" +
@@ -138,7 +139,8 @@ function searchUser() {
                     $("#page2").append("<div class='col-md-3 biseller-column'>" +
                         "                                <a href='"+contextPath+"profile/"+data[i].id+"'>" +
                         "                                    <div class='profile-image'>" +
-                        "                                        <img src='"+contextPath+"images/p3.jpg' class='img-responsive' alt='profile image'/>" +
+                        "                                        <img src='"+contextPath+"file?path="+data[i].photo+"' class='img-responsive'" +
+                                                                        "style='width: 265px;height: 190px;' alt='profile image'/>" +
                         "                                        <div class='agile-overlay'>" +
                         "                                            <h4>" + data[i].nickname +
                         "                                                <img  src='"+contextPath+"images/vip"+(data[i].vip ? "" : "-grey")+".png' class='snap-flag'/>" +
