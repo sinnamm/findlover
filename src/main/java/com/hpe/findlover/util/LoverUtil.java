@@ -4,15 +4,11 @@ import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserDetail;
 import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.front.UserService;
-import com.hpe.findlover.service.front.impl.UserServiceImpl;
-import org.apache.catalina.User;
+import com.hpe.findlover.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;

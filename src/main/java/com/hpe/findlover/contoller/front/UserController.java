@@ -1,9 +1,11 @@
 package com.hpe.findlover.contoller.front;
 
 import com.hpe.findlover.model.*;
-import com.hpe.findlover.service.front.*;
+import com.hpe.findlover.service.LabelService;
+import com.hpe.findlover.service.UserLabelService;
+import com.hpe.findlover.service.UserPickService;
+import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.EmailUtil;
 import com.hpe.findlover.util.MD5Code;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,13 +38,13 @@ public class UserController {
 	private Logger logger = LogManager.getLogger(UserController.class);
 
 	@Autowired
-	UserService userService;
+    UserService userService;
 	@Autowired
-	UserPickService userPickService;
+    UserPickService userPickService;
 	@Autowired
-	UserLabelService userLabelService;
+    UserLabelService userLabelService;
 	@Autowired
-	LabelService labelService;
+    LabelService labelService;
 
 
 	@GetMapping("login")

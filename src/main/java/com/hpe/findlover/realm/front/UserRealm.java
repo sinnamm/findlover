@@ -2,23 +2,19 @@ package com.hpe.findlover.realm.front;
 
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserDetail;
-import com.hpe.findlover.service.front.UserAssetService;
-import com.hpe.findlover.service.front.UserDetailService;
-import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.service.UserAssetService;
+import com.hpe.findlover.service.UserDetailService;
+import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.Constant;
-import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;

@@ -9,7 +9,7 @@ import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserDetail;
 import com.hpe.findlover.service.BaseService;
-import com.hpe.findlover.service.back.*;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,23 +31,23 @@ import java.util.List;
 @RequestMapping("admin/user")
 public class UserControllerBack {
 	private Logger logger = LogManager.getLogger(UserControllerBack.class);
-	private final UserBasicServiceBack userBasicServiceBack;
-	private final UserAssetServiceBack userAssetServiceBack;
-	private final UserDetailServiceBack userDetailServiceBack;
-	private final UserLifeServiceBack userLifeServiceBack;
-	private final UserStatusServiceBack userStatusServiceBack;
-	private final UserPickServiceBack userPickServiceBack;
-	private final LabelServiceBack labelServiceBack;
+	private final UserService userBasicService;
+	private final UserAssetService userAssetService;
+	private final UserDetailService userDetailService;
+	private final UserLifeService userLifeService;
+	private final UserStatusService userStatusService;
+	private final UserPickService userPickService;
+	private final LabelService labelService;
 
 	@Autowired
-	public UserControllerBack(UserBasicServiceBack userBasicServiceBack, UserAssetServiceBack userAssetServiceBack, UserDetailServiceBack userDetailServiceBack, UserLifeServiceBack userLifeServiceBack, UserStatusServiceBack userStatusServiceBack, UserPickServiceBack userPickServiceBack, LabelServiceBack labelServiceBack) {
-		this.userBasicServiceBack = userBasicServiceBack;
-		this.userAssetServiceBack = userAssetServiceBack;
-		this.userDetailServiceBack = userDetailServiceBack;
-		this.userLifeServiceBack = userLifeServiceBack;
-		this.userStatusServiceBack = userStatusServiceBack;
-		this.userPickServiceBack = userPickServiceBack;
-		this.labelServiceBack = labelServiceBack;
+	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService) {
+		this.userBasicService = userBasicService;
+		this.userAssetService = userAssetService;
+		this.userDetailService = userDetailService;
+		this.userLifeService = userLifeService;
+		this.userStatusService = userStatusService;
+		this.userPickService = userPickService;
+		this.labelService = labelService;
 	}
 
 	@GetMapping("basic")
@@ -55,11 +55,11 @@ public class UserControllerBack {
 	public PageInfo<UserBasic> userBasicList(Page<UserBasic> page, @RequestParam String identity, @RequestParam String column, @RequestParam String keyword) {
 		logger.info("接收参数：identity=" + identity + ",pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize() + ",column=" + column + ",keyword=" + keyword);
 		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		List<UserBasic> basics = userBasicServiceBack.selectAllByIdentity(identity, column, "%" + keyword + "%");
+		List<UserBasic> basics = userBasicService.selectAllByIdentity(identity, column, "%" + keyword + "%");
 		// 遍历list查出所有相对应的Asset和Detail数据
 		basics.forEach(user -> {
-			UserAsset asset = userAssetServiceBack.selectByPrimaryKey(user.getId());
-			UserDetail detail = userDetailServiceBack.selectByPrimaryKey(user.getId());
+			UserAsset asset = userAssetService.selectByPrimaryKey(user.getId());
+			UserDetail detail = userDetailService.selectByPrimaryKey(user.getId());
 			if (asset != null) {
 				user.setVip(LoverUtil.getDiffOfHours(asset.getVipDeadline()) > 0);
 				user.setStar(LoverUtil.getDiffOfHours(asset.getStarDeadline()) > 0);
@@ -78,7 +78,7 @@ public class UserControllerBack {
 	@Cacheable(value = "user-cache")
 	public Object userBasic(@PathVariable int id, @PathVariable String type) throws NoSuchFieldException, IllegalAccessException {
 		logger.debug("获取ID为" + id + "的User" + StringUtils.capitalize(type) + "数据...");
-		Field declaredField = this.getClass().getDeclaredField("user" + StringUtils.capitalize(type) + "ServiceBack");
+		Field declaredField = this.getClass().getDeclaredField("user" + StringUtils.capitalize(type) + "Service");
 		declaredField.setAccessible(true);
 		return ((BaseService) declaredField.get(this)).selectByPrimaryKey(id);
 	}
@@ -101,7 +101,7 @@ public class UserControllerBack {
 
 	@GetMapping("label")
 	public String labelList(Model model) {
-		model.addAttribute("labels", labelServiceBack.selectAll());
+		model.addAttribute("labels", labelService.selectAll());
 		return "back/user/label";
 	}
 
@@ -109,13 +109,13 @@ public class UserControllerBack {
 	@ResponseBody
 	public boolean updateUser(@PathVariable int id, UserBasic userBasic) {
 		userBasic.setId(id);
-		return userBasicServiceBack.updateByPrimaryKeySelective(userBasic);
+		return userBasicService.updateByPrimaryKeySelective(userBasic);
 	}
 
 	@PostMapping("label")
 	@ResponseBody
 	public int addLabel(Label label) {
-		if (labelServiceBack.insertUseGeneratedKeys(label) > 0) {
+		if (labelService.insertUseGeneratedKeys(label) > 0) {
 			return label.getId();
 		} else {
 			return 0;
@@ -127,7 +127,7 @@ public class UserControllerBack {
 	public boolean selectLabel(@RequestParam String name) {
 		Label label = new Label();
 		label.setName(name);
-		boolean result = labelServiceBack.selectOne(label) != null;
+		boolean result = labelService.selectOne(label) != null;
 		logger.debug("名称为“" + name + "”的标签是否存在：" + result);
 		return result;
 	}
@@ -135,13 +135,13 @@ public class UserControllerBack {
 	@DeleteMapping("label/{id}")
 	@ResponseBody
 	public boolean deleteLabel(@PathVariable int id) {
-		return labelServiceBack.deleteByPrimaryKey(id) > 0;
+		return labelService.deleteByPrimaryKey(id) > 0;
 	}
 
 	@PutMapping("label/{id}")
 	@ResponseBody
 	public boolean updateLabel(@PathVariable int id, Label label) {
 		label.setId(id);
-		return labelServiceBack.updateByPrimaryKey(label);
+		return labelService.updateByPrimaryKey(label);
 	}
 }

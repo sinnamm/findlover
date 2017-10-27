@@ -4,15 +4,13 @@ import com.hpe.findlover.model.Dict;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.front.DictService;
-import com.hpe.findlover.service.front.UserAssetService;
-import com.hpe.findlover.service.front.UserPickService;
-import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.service.DictService;
+import com.hpe.findlover.service.UserAssetService;
+import com.hpe.findlover.service.UserPickService;
+import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
-import org.apache.catalina.User;
-import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

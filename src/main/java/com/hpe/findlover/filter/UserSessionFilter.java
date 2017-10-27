@@ -1,6 +1,6 @@
 package com.hpe.findlover.filter;
 
-import com.hpe.findlover.service.front.UserService;
+import com.hpe.findlover.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.subject.Subject;

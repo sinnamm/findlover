@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/user_message.js}"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">他他说动态管理</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid" style="margin-bottom: 15px">
+                                <div class="search-user">
+                                    <div>
+                                        <select id="basic-search-sel" class="form-control">
+                                            <option value="id">ID</option>
+                                            <option value="nickname">昵称</option>
+                                            <option value="email">内容</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="basic-search-val" class="form-control">
+                                    </div>
+                                    <div>
+                                        <button id="user-search-btn" type="button"
+                                                class="btn btn-primary dropdown-toggle" style="margin-bottom: 3px"><i
+                                                class="fa fa-search"></i>&nbsp;搜索
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button id="user-delete-btn" type="button"
+                                                class="btn btn-danger dropdown-toggle" style="margin-bottom: 3px"><i
+                                                class="fa fa-icon-trash"></i>&nbsp;批量删除
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="user-basic-table" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>用户ID</th>
+                                        <th>昵称</th>
+                                        <th>内容</th>
+                                        <th>时间</th>
+                                        <th>点赞</th>
+                                        <th>评论</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="pagetool">
+                                <ul class="pagination">
+                                    <li class="head"><a href="#">首页</a></li>
+                                    <li class="lastpage"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li class="disabled morehead"><a>...</a></li>
+                                    <li class="page-4"><a></a></li>
+                                    <li class="page-3"><a></a></li>
+                                    <li class="page-2"><a></a></li>
+                                    <li class="page-1"><a></a></li>
+                                    <li class="currentpage active"><a>1</a></li>
+                                    <li class="page_1"><a></a></li>
+                                    <li class="page_2"><a></a></li>
+                                    <li class="page_3"><a></a></li>
+                                    <li class="page_4"><a></a></li>
+                                    <li class="disabled moretail"><a>...</a></li>
+                                    <li class="nextpage"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                    <li class="tail"><a href="#">尾页</a></li>
+                                </ul>
+                                <div style="float: right;margin: 28px;font-size: 15px;font-weight: 400;color: #666666;">
+                                    共
+                                    <span id="total"></span>
+                                    条数据，每页显示
+                                    <select id="pageSize-sel">
+                                    </select>
+                                    条
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="modal fade" id="edit-user-status-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="fa fa-edit"></span>
+                    <strong>修改账户状态</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label>用户ID：</label>
+                        <label id="user-id-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>账户状态：</label>
+                        <select id="user-status-edit-sel" class="form-control f-inline">
+                            <option value="1">已激活</option>
+                            <option value="0">已锁定</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="user-status-sub-btn" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>

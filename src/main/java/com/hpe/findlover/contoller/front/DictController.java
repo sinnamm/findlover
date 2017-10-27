@@ -1,11 +1,10 @@
 package com.hpe.findlover.contoller.front;
 
 import com.hpe.findlover.model.Dict;
-import com.hpe.findlover.service.front.DictService;
+import com.hpe.findlover.service.DictService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
