@@ -14,6 +14,9 @@
 
         })
     </script>
+    <script >
+
+    </script>
     <style>
         .chat-right:before {
         }
@@ -46,19 +49,20 @@
                 <input th:value="${session.user.vip}" id="userVip" hidden/>
                 <div class="row">
                     <!--联系人-->
-                    <div class="col-md-3">
-                        <ul class="match_box" id="contactsLeft" name="contactsLeft">
+                    <div class="col-md-3" >
+                        <ul class="match_box" id="contactsLeft" name="contactsLeft" style="overflow-y:scroll;height: 500px;">
                             <li><h4>联系人</h4></li>
                             <hr/>
+                            <span id="hiddenInput" hidden></span>
                             <th:block th:each="letterUser,iterStat : ${map[list]}">
                                 <li>
-                                    <div style="cursor:pointer; height: 50px;" name="userLetter"
+                                    <div style="cursor:pointer; height: 50px;" name="userLetter" th:id="${letterUser.id}"
                                          class="jobs-item with-thumb userLetter">
                                         <input th:value="${letterUser.id}" id="otherUserId" hidden/>
                                         <div class="thumb_top">
                                             <div class="thumb">
                                                 <img th:src="@{/file(path=${letterUser.photo})}"
-                                                     style="width: 50px"
+                                                     style="width: 50px ;height: 50px;"
                                                      class="img-responsive" alt=""/>
 
                                             </div>
@@ -71,7 +75,7 @@
                                             </div>
                                             <th:block th:if="${map[num].get(iterStat.index)>0 && iterStat.index>0}">
                                                 <div class="redPoint">
-                                                    <span style="color: #FFFFFF;font-size: 5px" th:text="${map[num].get(iterStat.index) }"></span>
+                                                    <span style="color: #FFFFFF;font-size: 5px;line-height: 20px; position:relative;top:-5px;" th:text="${map[num].get(iterStat.index) }"></span>
                                                 </div>
                                             </th:block>
 

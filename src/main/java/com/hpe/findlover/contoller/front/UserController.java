@@ -150,7 +150,13 @@ public class UserController {
 			return "redirect:login";
 		}
 	}
-    @GetMapping("otherSays")
+	@PostMapping("getUesrById")
+	@ResponseBody
+	public UserBasic getById(int otherUserId){
+			logger.error("otherUserId=="+otherUserId);
+			return userService.selectByPrimaryKey(otherUserId);
+	}
+	@GetMapping("otherSays")
     public String otherSays(){
         return "front/otherSays";
     }

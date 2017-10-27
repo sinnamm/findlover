@@ -2225,7 +2225,7 @@ ul.login_details li a {
     position: relative;
     top:-23px;
     right: -90%;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
 }
 
