@@ -4,6 +4,7 @@
     <title>个人资料</title>
     <meta charset="utf-8">
     <th:block th:include="/front/common/common_resource :: resources"/>
+    <script th:src="@{/js/front/view_profile.js}"></script>
     <th:block th:remove="all">
         <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -19,66 +20,6 @@
 </head>
 <body>
 <th:block th:include="/front/common/header::nav"/>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-    <div class="navbar-inner">
-        <div class="container">
-
-            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>
-            <div class="pull-right">
-                <nav class="navbar nav_bottom" role="navigation">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                                data-target="#bs-megadropdown-tabs">Menu
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"></a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav nav_1">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="search.html">搜索</a></li>
-                            <li><a href="reserve/about.html">会员</a></li>
-                            <li><a href="success_story.html">成功故事</a></li>
-                            <li><a href="reserve/matches.html">他她说</a></li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-lg fa-envelope-o"></i><span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="search.html">私信</a></li>
-                                    <li><a href="reserve/profile.html">关注</a></li>
-                                    <li><a href="reserve/search-id.html">访问记录</a></li>
-                                    <li><a href="reserve/faq.html">系统通知</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-lg fa-user"></i><span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="login.html">编辑资料</a></li>
-                                    <li><a href="register.html">身份认证</a></li>
-                                    <li><a href="index.html">修改密码</a></li>
-                                    <li><a href="index.html">退出</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
-            </div> <!-- end pull-right -->
-            <div class="clearfix"></div>
-        </div> <!-- end container -->
-    </div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
-<!--============================  Navigation End ============================-->
 <div class="grid_3">
     <div class="container">
         <div class="breadcrumb1">
@@ -88,33 +29,46 @@
                 <li class="current-page">查看个人资料</li>
             </ul>
         </div>
+
         <div class="profile">
-            <div class="col-md-8 profile_left">
+            <div class="col-md-8">
+            <div class="profile-no-auth" th:if="${code==0}">
+                <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
+                <span>该用户很害羞，个人资料不想被别人看到。。。试着跟Ta<a href="javascript:void(0)">打个招呼</a>？</span>
+            </div>
+            <div class="profile-no-auth" th:if="${code==2}">
+                <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
+                <span>该用户很高冷，个人资料只想让被自己关注的人看到。。。
+            向Ta<a href="javascript:void(0)">打招呼</a>，让Ta关注你吧！</span>
+            </div>
+            </div>
+            <div class="col-md-8 profile_left" th:if="${code==1}">
                 <h2 th:inline="text">
-                    [[${basic.nickname}]]
-                    <img th:src="@{/images/vip.png}" th:if="${basic.vip==true}" class="flag"/>
-                    <img th:src="@{/images/vip-grey.png}" th:if="${basic.vip==false}" class="flag"/>
-                    <img th:src="@{/images/star-0.png}" th:if="${basic.star==true}" class="flag"/>
-                    <img th:src="@{/images/star-0-grey.png}" th:if="${basic.star==false}" class="flag"/>
+                    [[${basic[nickname]}]]
+                    <img th:src="@{/images/vip.png}" th:if="${basic[isVip]==true}" class="flag"/>
+                    <img th:src="@{/images/vip-grey.png}" th:if="${basic[isVip]==false}" class="flag"/>
+                    <img th:src="@{/images/star-0.png}" th:if="${basic[isStar]==true}" class="flag"/>
+                    <img th:src="@{/images/star-0-grey.png}" th:if="${basic[isStar]==false}" class="flag"/>
                 </h2>
                 <div class="col_3">
                     <div class="col-sm-4 row_2">
-                        <div class="flexslider">
+                        <div id="slider" class="flexslider">
                             <ul class="slides">
-                                <li data-thumb="../../static/images/p1.jpg">
-                                    <img src="../../static/images/p1.jpg"/>
+                                <li>
+                                    <img th:src="@{/file(path=${basic[photo]})}" src="../../static/images/p1.jpg"/>
                                 </li>
-                                <li data-thumb="../../static/images/p2.jpg">
-                                    <img src="../../static/images/p2.jpg"/>
+                                <li th:each="userPhoto:${userPhotos}">
+                                    <img th:src="@{/file(path=${userPhoto.photo})}" src="../../static/images/p2.jpg"/>
                                 </li>
-                                <li data-thumb="../../static/images/p3.jpg">
-                                    <img src="../../static/images/p3.jpg"/>
+                            </ul>
+                        </div>
+                        <div id="carousel" class="flexslider" style="margin-bottom: 0!important;">
+                            <ul class="slides">
+                                <li>
+                                    <img th:src="@{/file(path=${basic[photo]})}" src="../../static/images/p1.jpg"/>
                                 </li>
-                                <li data-thumb="../../static/images/p4.jpg">
-                                    <img src="../../static/images/p4.jpg"/>
-                                </li>
-                                <li data-thumb="../../static/images/p4.jpg">
-                                    <img src="../../static/images/p4.jpg"/>
+                                <li th:each="userPhoto:${userPhotos}">
+                                    <img th:src="@{/file(path=${userPhoto.photo})}" src="../../static/images/p2.jpg"/>
                                 </li>
                             </ul>
                         </div>
@@ -128,49 +82,43 @@
                             </tr>
                             <tr>
                                 <td class="day_label">年龄：</td>
-                                <td class="day_value" th:inline="text">[[${basic.age}]]岁</td>
+                                <td class="day_value" th:inline="text">[[${basic[age]}]]岁</td>
                             </tr>
                             <tr>
                                 <td class="day_label">身高：</td>
-                                <td class="day_value" th:inline="text">[[${basic.height}]]cm</td>
+                                <td class="day_value" th:inline="text">[[${basic[height]}]]cm</td>
                             </tr>
                             <tr>
                                 <td class="day_label">月收入：</td>
-                                <td class="day_value" th:inline="text">[[${basic.salary}]]元</td>
+                                <td class="day_value" th:inline="text">[[${basic[salary]}]]元</td>
                             </tr>
                             <tr>
                                 <td class="day_label">婚姻状况：</td>
-                                <td class="day_value" th:text="${basic.marryStatus}">未婚</td>
+                                <td class="day_value" th:text="${basic[marryStatus]}">未婚</td>
                             </tr>
                             <tr>
                                 <td class="day_label">学历：</td>
-                                <td class="day_value" th:text="${basic.education}">本科</td>
+                                <td class="day_value" th:text="${basic[education]}">本科</td>
                             </tr>
                             <tr>
                                 <td class="day_label">工作地：</td>
-                                <td class="day_value" th:text="${basic.workplace}">山东菏泽</td>
+                                <td class="day_value" th:text="${basic[workplace]}">山东菏泽</td>
                             </tr>
                             <tr>
                                 <td class="day_label">籍贯：</td>
-                                <td class="day_value" th:if="${detail==null or detail.birthplace==null}">暂无</td>
-                                <td class="day_value" th:unless="${detail==null or detail.birthplace==null}"
-                                    th:text="${detail.birthplace}">山东菏泽
-                                </td>
+                                <td class="day_value" th:text="${detail[birthplace]}">山东菏泽</td>
                             </tr>
                             <tr>
                                 <td class="day_label">职业：</td>
-                                <td class="day_value" th:if="${life==null}">暂无</td>
-                                <td class="day_value" th:if="${life!=null}" th:text="${life.job==null?'暂无':life.job}">
-                                    程序员
-                                </td>
+                                <td class="day_value" th:text="${life[job]}">程序员</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-sm-5 row_3">
-                        <button class="search-btn"><i class="fa fa-envelope-o"></i>&nbsp;发私信</button>
-                        <button class="search-btn"><i class="fa fa-heart-o"></i>&nbsp;关注</button>
-                        <button class="search-btn"><i class="fa fa-bell-o"></i>&nbsp;投诉</button>
+                    <div class="col-sm-6 row_3">
+                        <a class="search-btn" th:href="@{/letter(id=${basic.id})}"><i class="fa fa-envelope-o"></i>&nbsp;发私信</a>
+                        <button class="search-btn" id="follow-btn"><i class="fa fa-heart-o"></i>&nbsp;<span id="follow-info" th:text="${isFollow==true?'已关注':'关注'}">请先登录</span></button>
+                        <button class="search-btn com-btn"><i class="fa fa-bell-o"></i>&nbsp;投诉</button>
                     </div>
                     <div class="clearfix">
                     </div>
@@ -188,7 +136,7 @@
                             <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                 <div class="tab_box">
                                     <h1>内心独白：</h1>
-                                    <p th:text="${(detail==null or detail.signature==null)?'暂无':detail.signature}"></p>
+                                    <p th:text="${detail[signature]}"></p>
                                 </div>
                                 <div class="basic_1">
                                     <h3>基本信息</h3>
@@ -197,33 +145,23 @@
                                             <tbody>
                                             <tr>
                                                 <td class="day_label">性别：</td>
-                                                <td class="day_value" th:text="${basic.sex}">女</td>
+                                                <td class="day_value" th:text="${basic[sex]}">女</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">民族：</td>
-                                                <td class="day_value" th:if="${detail==null or detail.nation==null}">
-                                                    暂无
-                                                </td>
-                                                <td class="day_value" th:unless="${detail==null or detail.nation==null}"
-                                                    th:text="${detail.nation}">汉
-                                                </td>
+                                                <td class="day_value" th:text="${detail[nation]}">汉</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">婚姻状况:</td>
-                                                <td class="day_value" th:text="${basic.marryStatus}">未婚</td>
+                                                <td class="day_value" th:text="${basic[marryStatus]}">未婚</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">生肖：</td>
-                                                <td class="day_value" th:if="${detail==null or detail.animal==null}">
-                                                    暂无
-                                                </td>
-                                                <td class="day_value" th:unless="${detail==null or detail.animal==null}"
-                                                    th:text="${detail.animal}">鼠
-                                                </td>
+                                                <td class="day_value" th:text="${detail[animal]}">鼠</td>
                                             </tr>
                                             <tr>
-                                                <td class="day_label">身高:</td>
-                                                <td class="day_value" th:inline="text">[[${basic.height}]]cm</td>
+                                                <td class="day_label">身高（cm）:</td>
+                                                <td class="day_value" th:inline="text">[[${basic[height]}]]</td>
                                             </tr>
 
                                             </tbody>
@@ -234,30 +172,24 @@
                                             <tbody>
                                             <tr>
                                                 <td class="day_label">年龄:</td>
-                                                <td class="day_value" th:inline="text">[[${basic.age}]]岁</td>
+                                                <td class="day_value" th:inline="text">[[${basic[age]}]]岁</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">毕业院校:</td>
-                                                <td class="day_value" th:text="${basic.education}">青岛科技大学</td>
+                                                <td class="day_value" th:text="${basic[education]}">青岛科技大学</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">星座:</td>
-                                                <td class="day_value"
-                                                    th:text="${(detail==null or detail.zodiac==null)?'暂无':detail.zodiac}">
-                                                    射手座
-                                                </td>
+                                                <td class="day_value" th:text="${detail[zodiac]}">射手座</td>
                                             </tr>
                                             <tr>
-                                                <td class="day_label">体重：</td>
-                                                <td class="day_value" th:inline="text">
-                                                    [[${(detail==null or detail.weight==null)?'暂无':detail.weight+'KG'
-                                                    }]]
-                                                </td>
+                                                <td class="day_label">体重（kg）：</td>
+                                                <td class="day_value" th:inline="text">[[${detail[weight]}]]</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">职业：</td>
                                                 <td class="day_value"
-                                                    th:text="${(life==null or life.job==null)?'暂无':life.job}">程序员
+                                                    th:text="${life[job]}">程序员
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -272,20 +204,17 @@
                                             <tbody>
                                             <tr>
                                                 <td class="day_label">住房条件：</td>
-                                                <td class="day_value" th:text="${basic.liveCondition}">与家人同住</td>
+                                                <td class="day_value" th:text="${basic[liveCondition]}">与家人同住</td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">是否购车：</td>
-                                                <td class="day_value" th:if="${life==null or life.car==null}">暂无</td>
-                                                <td class="day_value" th:if="${life!=null and life.car==0}">未购车</td>
-                                                <td class="day_value" th:if="${life!=null and life.car==1}">已购车</td>
+                                                <td class="day_value"
+                                                    th:text="${(life[car]==1)?'已购车':(life[car]==0?'未购车':life[car])}">已购车
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">个人性格：</td>
-                                                <td class="day_value"
-                                                    th:text="${(life==null or life.character==null)?'暂无':life.character}">
-                                                    活泼开朗
-                                                </td>
+                                                <td class="day_value" th:text="${life[character]}">活泼开朗</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -295,22 +224,23 @@
                                             <tbody>
                                             <tr>
                                                 <td class="day_label">工作繁忙程度：</td>
-                                                <td class="day_value" th:if="${life==null}">暂无</td>
-                                                <td class="day_value" th:if="${life!=null}"
-                                                    th:text="${life.jobTime==null?'暂无':life.jobTime}">较为繁忙
+                                                <td class="day_value" th:text="${life[jobTime]}">
+                                                    较为繁忙
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">是否抽烟:</td>
-                                                <td class="day_value" th:if="${life==null or life.smoke==null}">暂无</td>
-                                                <td class="day_value" th:if="${life!=null and life.smoke==0}">不抽烟</td>
-                                                <td class="day_value" th:if="${life!=null and life.smoke==1}">偶尔会抽</td>
+                                                <td class="day_value"
+                                                    th:text="${(life[smoke]==1)?'偶尔抽':(life[smoke]==0?'不抽烟':life[smoke])}">
+                                                    不抽烟
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">是否喝酒：</td>
-                                                <td class="day_value" th:if="${life==null or life.drink==null}">暂无</td>
-                                                <td class="day_value" th:if="${life!=null and life.drink==0}">不喝酒</td>
-                                                <td class="day_value" th:if="${life!=null and life.drink==1}">偶尔会喝</td>
+                                                <td class="day_value"
+                                                    th:text="${(life[drink]==1)?'偶尔喝':(life[drink]==0?'不喝酒':life[drink])}">
+                                                    不抽烟
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -324,49 +254,43 @@
                                             <tbody>
                                             <tr class="opened">
                                                 <td class="day_label">婚恋史：</td>
-                                                <td class="day_value" th:if="${status==null}">暂无</td>
-                                                <td class="day_value" th:if="${status!=null}"
-                                                    th:text="${status.loveHistory==null?'暂无':status.loveHistory}">
+                                                <td class="day_value"
+                                                    th:text="${status[loveHistory]}">
                                                     一次恋爱
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">想何时结婚</td>
-                                                <td class="day_value" th:if="${status==null}">暂无</td>
-                                                <td class="day_value" th:if="${status!=null}"
-                                                    th:text="${status.marryTime==null?'暂无':status.marryTime}">
+                                                <td class="day_value"
+                                                    th:text="${status[marryTime]}">
                                                     2019年
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">是否接受异地恋：</td>
-                                                <td class="day_value" th:if="${status==null}">暂无</td>
-                                                <td class="day_value" th:if="${status!=null and status.ldr==0}">不太看好
-                                                </td>
-                                                <td class="day_value" th:if="${status!=null and status.ldr==1}">可以接受
+                                                <td class="day_value"
+                                                    th:text="${(status[ldr]==1)?'可以接受':(status[ldr]==0?'不太看好':status[ldr])}">
+                                                    可以接受
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">父母状况 :</td>
-                                                <td class="day_value" th:if="${status==null}">暂无</td>
-                                                <td class="day_value" th:if="${status!=null}"
-                                                    th:text="${status.parentStatus==null?'暂无':status.parentStatus}">
+                                                <td class="day_value"
+                                                    th:text="${status[parentStatus]}">
                                                     2019年
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">兄弟姐妹 :</td>
-                                                <td class="day_value" th:if="${status==null}">暂无</td>
-                                                <td class="day_value" th:if="${status!=null}"
-                                                    th:text="${status.broAndSis==null?'暂无':status.broAndSis}">
+                                                <td class="day_value"
+                                                    th:text="${status[broAndSis]}">
                                                     2019年
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">家庭情况简述 :</td>
-                                                <td class="day_value" th:if="${status==null}">暂无</td>
-                                                <td class="day_value" th:if="${status!=null}"
-                                                    th:text="${status.familyBrief==null?'暂无':status.familyBrief}">
+                                                <td class="day_value"
+                                                    th:text="${status[familyBrief]}">
                                                     2019年
                                                 </td>
                                             </tr>
@@ -425,7 +349,9 @@
                                             </tr>
                                             <tr>
                                                 <td class="day_label">学历：</td>
-                                                <td class="day_value" th:text="${pick.education}">本科</td>
+                                                <td class="day_value"
+                                                    th:text="${pick.education==null?'不限':pick.education}">本科
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="day_label">月收入：</td>
@@ -481,10 +407,8 @@
             </div>
             <div class="col-md-4 profile_right">
                 <div class="newsletter">
-                    <form>
-                        <input type="text" name="ne" size="30" placeholder="ID搜索">
-                        <input type="submit" value="搜索">
-                    </form>
+                    <input id="id-input" type="text" size="30" placeholder="ID搜索">
+                    <input id="id-btn" class="search-btn" type="button" value="搜索">
                 </div>
                 <div class="view_profile">
                     <h3>相似会员</h3>
@@ -545,20 +469,56 @@
             </div>
         </div>
     </div>
-
     <th:block th:include="/front/common/footer::foot"/>
 </div>
-<!-- FlexSlider -->
-<script defer src="../../static/jquery/jquery.flexslider.js"></script>
-<link rel="stylesheet" href="../../static/css/flexslider.css" type="text/css" media="screen"/>
-<script>
-    // Can also be used with $(document).ready()
-    $(window).load(function () {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            controlNav: "thumbnails"
-        });
-    });
-</script>
+<div class="modal fade" id="comModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true"
+     data-keyboard="true">
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">
+                    <span class="fa fa-bell-o"></span>
+                    <strong>投诉</strong></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="title">投诉对象：</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span id="obj" th:text="${basic.id}"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;margin-bottom: 10px">
+                    <div class="col-md-2">
+                        <span class="title">投诉理由：</span>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="com-sel" class="form-control">
+                            <option value="-1">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="title">描述：</span>
+                    </div>
+                    <div class="col-md-8">
+                        <textarea id="com-content" rows="3" cols="50"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button id="comSubBtn" class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

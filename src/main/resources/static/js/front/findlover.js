@@ -282,3 +282,10 @@ function niceBaseCofig() {
         msgClass: 'n-right'
     });
 }
+function errorAlert(){
+    swal({
+        title: "发生未知错误，请联系管理员！",
+        icon: "danger",
+        dangerMode: true
+    })
+}

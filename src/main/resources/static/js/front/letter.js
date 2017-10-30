@@ -28,7 +28,7 @@ function  addNewWindow(myurl) {
     if (myurl!==null){
         otherUserId=myurl;
         $.ajax({
-            url: contextPath + "getUesrById",
+            url: contextPath + "getUserById",
             data: {
                 otherUserId: otherUserId
             },
@@ -60,7 +60,7 @@ function  addNewWindow(myurl) {
                 }
             },
             error:function () {
-                swal("错误","遇到未知错误","error");
+                swal("错误","遇到未知错误..","error");
             }
         });
     }
@@ -97,7 +97,7 @@ function sendLetter(otherUserId,vip) {
                         $("#vipInput").val("");
                         $('#letterUl').scrollTop(100000);
                     }else{
-                        swal("警告",data,"error");
+                        swal("警告",data,"warning");
                     }
                 },
                 error:function () {

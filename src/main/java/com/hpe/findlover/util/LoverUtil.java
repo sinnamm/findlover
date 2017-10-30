@@ -7,14 +7,44 @@ import com.hpe.findlover.model.UserPick;
 import com.hpe.findlover.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Field;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public final class LoverUtil {
 	private static Logger logger = LogManager.getLogger(LoverUtil.class);
+
+	public static Map<String, Object> prettyDisplay(Object obj,Class<?> clazz) {
+		if(obj == null) {
+			obj = BeanUtils.instantiate(clazz);
+		}
+		String replacer = "-";
+		Field[] declaredFields = obj.getClass().getDeclaredFields();
+		Map<String, Object> map = new HashMap<>(20);
+		for (Field field : declaredFields) {
+			field.setAccessible(true);
+			Object value = null;
+			String name = field.getName();
+			try {
+				value = field.get(obj);
+			} catch (IllegalAccessException e) {
+				logger.error("属性" + name + "的值获取失败。");
+				e.printStackTrace();
+			}
+			if("signature".equals(name) && value == null){
+				map.put(name, Constant.INIT_SIGNATURE);
+			}else {
+				map.put(name, value == null ? replacer : value);
+			}
+		}
+		return map;
+	}
 
 	/**
 	 * 获取随机推荐给用户的星级用户
@@ -89,36 +119,38 @@ public final class LoverUtil {
 
 	/**
 	 * 根据min和max随机生成一个范围在[min,max]的随机数，包括min和max
+	 *
 	 * @param min
 	 * @param max
 	 * @return int
 	 */
-	public  static  int getRandom(int min, int max){
+	public static int getRandom(int min, int max) {
 		Random random = new Random();
-		return random.nextInt( max - min + 1 ) + min;
+		return random.nextInt(max - min + 1) + min;
 	}
 
 	/**
 	 * 根据min和max随机生成count个不重复的随机数组，用户随机选取用户显示
-	 * @param min 随机数的范围最小值，一般是0开始
-	 * @param max 随机数范围最大值，一般传入查询到的集合的长度-1
+	 *
+	 * @param min   随机数的范围最小值，一般是0开始
+	 * @param max   随机数范围最大值，一般传入查询到的集合的长度-1
 	 * @param count 需要随机数的个数
 	 * @return int[] 返回的随机数数组
 	 */
-	public static int[] getRandoms(int min, int max, int count){
+	public static int[] getRandoms(int min, int max, int count) {
 		int[] randoms = new int[count];
 		List<Integer> listRandom = new ArrayList<Integer>();
 
-		if( count > ( max - min + 1 )){
+		if (count > (max - min + 1)) {
 			return null;
 		}
 		// 将所有的可能出现的数字放进候选list
-		for(int i = min; i <= max; i++){
+		for (int i = min; i <= max; i++) {
 			listRandom.add(i);
 		}
 		// 从候选list中取出放入数组，已经被选中的就从这个list中移除
-		for(int i = 0; i < count; i++){
-			int index = getRandom(0, listRandom.size()-1);
+		for (int i = 0; i < count; i++) {
+			int index = getRandom(0, listRandom.size() - 1);
 			randoms[i] = listRandom.get(index);
 			listRandom.remove(index);
 		}
@@ -131,7 +163,7 @@ public final class LoverUtil {
 	 * @Describtion: 计算年龄的方法
 	 * @Date Create in  21:36 2017/10/17
 	 **/
-	public static int getAge(Date birthday){
+	public static int getAge(Date birthday) {
 		int age = -1;
 		Calendar born = Calendar.getInstance();
 		Calendar now = Calendar.getInstance();
@@ -161,16 +193,17 @@ public final class LoverUtil {
 	public static int getDiffOfHours(Date deadline) {
 		return getDiff(TimeUnit.HOURS, deadline);
 	}
+
 	public static int getDiffOfDays(Date deadline) {
 		return getDiff(TimeUnit.DAYS, deadline);
 	}
 
-	 /**
+	/**
 	 * @Author gss
 	 * @Describtion: 计算当前日期与指定日期的时间差，单位由unit参数决定
 	 **/
-	public static int getDiff(TimeUnit unit,Date deadline){
-		if (deadline==null){
+	public static int getDiff(TimeUnit unit, Date deadline) {
+		if (deadline == null) {
 			return 0;
 		}
 		long now = unit.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
@@ -178,19 +211,21 @@ public final class LoverUtil {
 		return (int) (dead - now);
 	}
 
-	public static String getBasePath(HttpServletRequest request){
+	public static String getBasePath(HttpServletRequest request) {
 		String path = request.getContextPath();
 		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-				+ path ;
+				+ path;
 		return basePath;
 	}
-	public static Date addMonth(Date baseDate,int month){
+
+	public static Date addMonth(Date baseDate, int month) {
 		Calendar cld = Calendar.getInstance();
 		cld.setTime(baseDate);
 		cld.add(Calendar.MONTH, month);
 		return cld.getTime();
 	}
-	public static Date addDay(Date baseDate,int day){
+
+	public static Date addDay(Date baseDate, int day) {
 		Calendar cld = Calendar.getInstance();
 		cld.setTime(baseDate);
 		cld.add(Calendar.DAY_OF_YEAR, day);

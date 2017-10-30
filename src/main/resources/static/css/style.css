@@ -32,6 +32,7 @@ html, body {
 .reg-form {
     opacity: 0.7;
 }
+
 .reg-form label {
     font-family: "微软雅黑", serif;
     font-weight: normal;
@@ -74,14 +75,14 @@ img.zoom-img:hover {
     -o-background-size: cover;
 }
 
-.dim_background{
+.dim_background {
     background: #f0f0f0;
     padding: 20px 20px 20px;
     border-radius: 20px;
     opacity: 0.8
 }
 
-.dim_background form{
+.dim_background form {
     color: #000000;
     opacity: 1
 }
@@ -91,6 +92,7 @@ img.zoom-img:hover {
 .profile-image {
     position: relative;
 }
+
 .profile-image img {
     border-radius: 3px;
 }
@@ -230,22 +232,26 @@ img.zoom-img:hover {
     color: #ff8e42;
 }
 
-.service-1{
+.service-1 {
     margin: 5px auto;
 }
-.service-1 img{
+
+.service-1 img {
     width: 90px;
     height: 90px;
     border-radius: 2px;
 }
-.service-1 h3{
+
+.service-1 h3 {
     /*color: #fe5b5b;*/
     color: #da2649;
 }
-.service-1 h3:hover{
+
+.service-1 h3:hover {
     color: #ff8e42;
 }
-.service-1 p{
+
+.service-1 p {
     color: gray;
 }
 
@@ -337,14 +343,17 @@ ul#flexiselDemo3.nbs-flexisel-nav-left, ul#flexiselDemo3.nbs-flexisel-nav-right 
     margin-bottom: 45px;
     text-align: center;
 }
-.agile_featured-profiles>div {
+
+.agile_featured-profiles > div {
     float: right;
     margin-top: 10px;
 }
-.agile_featured-profiles>div>a {
+
+.agile_featured-profiles > div > a {
     color: #da2143;
 }
-.agile_featured-profiles>div>a:hover {
+
+.agile_featured-profiles > div > a:hover {
     color: #ff6218;
 }
 
@@ -853,10 +862,12 @@ input.transparent {
     padding-right: 1%;
     color: #fff;
 }
+
 .inline-block div {
     display: inline-block;
     margin-right: 1em;
 }
+
 .profile_search select {
     display: inline-block;
     width: auto;
@@ -1789,7 +1800,6 @@ td.day_label {
 .table_working_hours tr {
     color: #000;
     font-size: 0.85em;
-    text-transform: capitalize;
 }
 
 .table_working_hours tr.opened_1 td {
@@ -1894,7 +1904,7 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
     display: inline-block;
 }
 
-.newsletter input[type="submit"],.search-btn {
+.newsletter input[type="submit"], .search-btn {
     color: #fff;
     text-transform: uppercase;
     font-size: 0.8em;
@@ -1911,7 +1921,7 @@ a#profile-tab, a#home-tab, a#profile-tab1 {
     -o-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.14);
 }
 
-.newsletter input[type="submit"]:hover,.search-btn:hover {
+.newsletter input[type="submit"]:hover, .search-btn:hover {
     background: #ffa417;
 }
 
@@ -2149,7 +2159,7 @@ ul.login_details li a {
     top: -60px;
 }
 
-.img-div img{
+.img-div img {
     margin: 4px;
     height: 110px;
     width: 110px;
@@ -2164,26 +2174,32 @@ ul.login_details li a {
     height: auto;
     text-align: center
 }
-.short-message a{
+
+.short-message a {
     color: #09b9da;
 }
-.short-message a:hover{
+
+.short-message a:hover {
     color: #ff8e42;
 }
-.short-message img{
+
+.short-message img {
     margin-bottom: 5px !important;
 }
-.short-message p{
+
+.short-message p {
     font-size: 14px;
     color: grey;
     display: block;
     margin: 2px;
 }
-.message-flag{
+
+.message-flag {
     width: 20px;
     height: 20px;
 }
-.panel-message a{
+
+.panel-message a {
     text-align: center;
 }
 
@@ -5285,19 +5301,22 @@ ul.feature_list.feature_list1 {
     transform: scale(1);
     border: 1px solid red;
 }
-.visitTrace img{
-    width: 180px;
-}
-.visitTrace .agile-overlay{
+
+.visitTrace img {
     width: 180px;
 }
 
-#pubMsgBtn{
-    display: block;
-    margin:40px 0 15px 0;
-    width:100%;
+.visitTrace .agile-overlay {
+    width: 180px;
 }
-.pub-msg-img{
+
+#pubMsgBtn {
+    display: block;
+    margin: 40px 0 15px 0;
+    width: 100%;
+}
+
+.pub-msg-img {
     width: 150px;
     height: 150px;
     border-radius: 75px;
@@ -5369,13 +5388,74 @@ ul.feature_list.feature_list1 {
     color: #FFF;
     padding: 4px 7px;
 }
+
 /**
 profile
  */
-.row_3{
+.row_3 {
     position: relative;
     margin-top: 5%;
     /*float: right;*/
+}
+
+.profile-no-auth {
+    height: 220px;
+    margin: 50px 0;
+    padding: 5px;
+    color: #969696;
+    border: #c3c3c3 1px solid;
+    border-radius: 6px;
+}
+.profile-no-auth p{
+    display: block;
+    float: right;
+}
+.profile-no-auth span {
+    display: block;
+    margin: 90px auto auto 40px;
+}
+
+.profile-no-auth a {
+    color: #e55a22;
+}
+
+.profile-no-auth a:hover {
+    color: #ff8e42;
+}
+.flexslider{
+    margin-bottom: 25px!important;
+}
+
+#slider img {
+    /*width: 50px !important;*/
+    height: 245px !important;
+}
+
+#carousel li {
+    width: 50px !important;
+}
+
+#carousel img {
+    display: block;
+    opacity: .5;
+    cursor: pointer;
+    width: 50px !important;
+    height: 50px !important;
+}
+
+#carousel img:hover {
+    opacity: 1;
+}
+
+#carousel .flex-active-slide img {
+    opacity: 1;
+    cursor: default;
+}
+/*投诉模态框中title*/
+.title{
+    font-weight: bold;
+    font-size: 15px;
+    color: #2f2e2e;
 }
 
 .ident_auth {

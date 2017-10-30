@@ -7,7 +7,7 @@ import java.util.Date;
 public class UserBasic implements Serializable {
 
     @Transient
-    private int age;
+    private Integer age;
     @Transient
     private boolean isVip;
     @Transient
@@ -410,11 +410,11 @@ public class UserBasic implements Serializable {
         this.regTime = regTime;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

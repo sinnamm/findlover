@@ -1,5 +1,6 @@
 package com.hpe.findlover.contoller.front;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.LabelService;
 import com.hpe.findlover.service.UserLabelService;
@@ -8,6 +9,7 @@ import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.MD5Code;
+import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -108,6 +110,16 @@ public class UserController {
             return "redirect:register";
         }
     }
+	@PutMapping("user")
+	@ResponseBody
+	public boolean updateUser(UserBasic userBasic,HttpServletRequest request){
+		userBasic.setId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());
+		if(userService.updateByPrimaryKeySelective(userBasic)){
+			request.getSession().setAttribute("user",userService.selectByPrimaryKey(userBasic.getId()));
+			return true;
+		}
+		return false;
+	}
 
 	@RequestMapping("checkEmail")
 	@ResponseBody
@@ -118,6 +130,13 @@ public class UserController {
 		}else {
 			return "{\"ok\":\"此邮箱可用！\"}";
 		}
+	}
+	@GetMapping("user/exists/{id}")
+	@ResponseBody
+	public boolean existsById(@PathVariable int id){
+		UserBasic basic = new UserBasic();
+		basic.setId(id);
+		return userService.selectOne(basic) != null;
 	}
 
 	@PostMapping("login")
@@ -155,19 +174,20 @@ public class UserController {
 			return "redirect:login";
 		}
 	}
-	@PostMapping("getUesrById")
+	@PostMapping("getUserById")
 	@ResponseBody
 	public UserBasic getById(int otherUserId){
-			logger.error("otherUserId=="+otherUserId);
-			return userService.selectByPrimaryKey(otherUserId);
+		logger.error("otherUserId=="+otherUserId);
+		return userService.selectByPrimaryKey(otherUserId);
+	}
+	@GetMapping("session/user")
+	@ResponseBody
+	public UserBasic getSessionUser(HttpServletRequest request){
+		return SessionUtils.getSessionAttr(request, "user", UserBasic.class);
 	}
 	@GetMapping("otherSays")
     public String otherSays(){
         return "front/otherSays";
-    }
-    @GetMapping("care")
-    public String care(){
-        return "front/care";
     }
     @GetMapping("visiteTrace")
     public String visiteTrace(){
@@ -176,10 +196,6 @@ public class UserController {
     @GetMapping("notice")
     public String notice(){
         return "front/notice";
-    }
-    @GetMapping("user_center")
-    public String user_center(){
-        return "front/user_center";
     }
 
 }

@@ -12,7 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * @author Gss
@@ -27,6 +31,19 @@ public class UploadServiceImpl implements UploadService {
 	public String uploadFile(MultipartFile file) throws IOException {
 		StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
 		logger.debug("上传文件：" + file.getOriginalFilename() + "到：" + storePath.getFullPath());
+		return storePath.getFullPath();
+	}
+	/**
+	 * 将一段字符串生成一个文件上传
+	 * @param content 文件内容
+	 * @param fileExtension
+	 * @return
+	 */
+	@Override
+	public String uploadFile(String content, String fileExtension) {
+		byte[] buff = content.getBytes(Charset.forName("UTF-8"));
+		ByteArrayInputStream stream = new ByteArrayInputStream(buff);
+		StorePath storePath = storageClient.uploadFile(stream,buff.length, fileExtension,null);
 		return storePath.getFullPath();
 	}
 
@@ -46,14 +63,8 @@ public class UploadServiceImpl implements UploadService {
 	public byte[] downloadFile(String filePath) {
 		StorePath storePath = StorePath.praseFromUrl(filePath);
 		logger.debug("下载文件：" + filePath);
-		logger.debug("client:"+storageClient);
-		logger.debug("getGroup:"+storePath.getGroup());
-		logger.debug("getPath:"+storePath.getPath());
-		byte[] data;
-		synchronized (storageClient) {
-			data = storageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
-		}
-        return data;
+		return storageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
+
 	}
 
 	@Override

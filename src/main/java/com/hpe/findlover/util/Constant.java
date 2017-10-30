@@ -29,6 +29,9 @@ public class Constant {
     public static final int USER_DISABLED_STATUS = 2;
     public static final int USER_ACTIVE_STATUS = 1;
     public static final int USER_LOCKED_STATUS = 0;
+    public static final int PROFILE_AUTH_ALL = 1;
+    public static final int PROFILE_AUTH_NONE = 0;
+    public static final int PROFILE_AUTH_FOLLOW = 2;
 
     //用于从数据表中查询出对应意义
     public static final String HIGH_SALARY = "high_salary";

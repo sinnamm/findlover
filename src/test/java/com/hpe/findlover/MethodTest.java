@@ -2,14 +2,17 @@ package com.hpe.findlover;
 
 import com.hpe.findlover.util.LoverUtil;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -17,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @author sinnamm
  * @Date Create in  2017/10/17.
  */
-@SpringBootTest
+//@SpringBootTest
 public class MethodTest {
 
     @Test
@@ -59,5 +62,78 @@ public class MethodTest {
             }
         }
         return age;
+    }
+    @Test
+    public void testBool(){
+    }
+    @Test
+    public void beanUtilsTest() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Student s = new Student(112, "gss", null, new Date());
+        Field[] declaredFields = s.getClass().getDeclaredFields();
+        Map<String, Object> map = new HashMap<>();
+        for (Field field : declaredFields) {
+            field.setAccessible(true);
+            Object obj = field.get(s);
+            map.put(field.getName(), obj ==null?"-":obj);
+        }
+        System.out.println(map);
+    }
+    static class Student{
+        private Integer sid;
+        private String name;
+        private Double score;
+        private Date birthday;
+        private boolean flag;
+
+        public boolean isFlag() {
+            return flag;
+        }
+
+        public void setFlag(boolean flag) {
+            this.flag = flag;
+        }
+
+        public Student(Integer sid, String name, Double score, Date birthday) {
+            this.sid = sid;
+            this.name = name;
+            this.score = score;
+            this.birthday = birthday;
+        }
+
+        public Student() {
+
+        }
+
+        public Integer getSid() {
+            return sid;
+        }
+
+        public void setSid(Integer sid) {
+            this.sid = sid;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Double getScore() {
+            return score;
+        }
+
+        public void setScore(Double score) {
+            this.score = score;
+        }
+
+        public Date getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(Date birthday) {
+            this.birthday = birthday;
+        }
     }
 }

@@ -12,8 +12,7 @@ public class SessionUtils {
 	public static <T> T getSessionAttr(HttpServletRequest request, String attrName, Class<T> clazz) {
 		Object attrValue = request.getSession().getAttribute(attrName);
 		if (attrValue == null) {
-			logger.error("Session中" + attrName + "属性为null");
-			return null;
+			throw new NullPointerException("Session中" + attrName + "属性为null");
 		}
 		if(!clazz.isInstance(attrValue)) {
 			throw new ClassCastException("session属性类型与指定类型不符！");

@@ -2,6 +2,7 @@ package com.hpe.findlover.realm.front;
 
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.UserDetail;
 import com.hpe.findlover.service.UserAssetService;
 import com.hpe.findlover.service.UserDetailService;
 import com.hpe.findlover.service.UserService;
@@ -61,7 +62,8 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		UserAsset userAsset = userAssetService.selectByPrimaryKey(userBasic.getId());
 		//身份是否认证过
-		if(userDetailService.selectByPrimaryKey(userBasic.getId())!=null) {
+		UserDetail userDetail = userDetailService.selectByPrimaryKey(userBasic.getId());
+		if(userDetail != null) {
 			userBasic.setConfirm(userDetailService.selectByPrimaryKey(userBasic.getId()).getCardnumber() != null);
 		}
 		if (userAsset == null || userAsset.getVipDeadline() == null) {

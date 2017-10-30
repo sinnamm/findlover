@@ -72,4 +72,14 @@ public class Follow {
     public void setFollowTime(Date followTime) {
         this.followTime = followTime;
     }
+
+    @Override
+    public String toString() {
+        return "Follow{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", followId=" + followId +
+                ", followTime=" + followTime +
+                '}';
+    }
 }

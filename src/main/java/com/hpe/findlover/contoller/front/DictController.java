@@ -27,7 +27,7 @@ public class DictController {
      * @return 返回Json格式
      */
     @RequestMapping("{type}")
-    public Object selectEducationDict(@PathVariable String type){
+    public List<Dict> selectEducationDict(@PathVariable String type){
         List<Dict> dicts = null;
         try {
             dicts = dictService.selectDictByType(type);
