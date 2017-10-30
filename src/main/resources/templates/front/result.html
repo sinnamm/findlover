@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FindLover</title>
+    <!--公共css与js文件-->
+    <th:block th:include="/front/common/common_resource::resources"/>
+</head>
+<body>
+<!-- 导航栏 -->
+<th:block th:include="/front/common/header::nav"/>
+<!--导航栏（th:remove)-->
+
+<div class="container grid_0">
+    <div style="padding: 50px">
+        <th:block th:utext="${msg}"></th:block>
+    </div>
+</div>
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
+</body>
+</html>	

@@ -44,6 +44,7 @@ public class UploadServiceImpl implements UploadService {
 		byte[] buff = content.getBytes(Charset.forName("UTF-8"));
 		ByteArrayInputStream stream = new ByteArrayInputStream(buff);
 		StorePath storePath = storageClient.uploadFile(stream,buff.length, fileExtension,null);
+		logger.debug("上传文件到：" + storePath.getFullPath());
 		return storePath.getFullPath();
 	}
 

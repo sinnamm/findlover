@@ -29,7 +29,7 @@ public class FastDFSTest {
 	}
 	@Test
 	public void test2(){
-		String url = "group1/M00/00/00/rBEuvlnyruGAH3zTAAAf3o02Ok8076.jpg";
+		String url = "group1/M00/00/00/rBEuvln20X2AKMePAAAXK2q5LxQ380.jpg";
 		System.out.println(uploadService.deleteFile(url));
 	}
 	@Test

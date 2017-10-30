@@ -19,6 +19,15 @@ public class Essay {
     private Date pubTime;
 
     /**
+     * 发布状态默认值
+     */
+    public static Integer DEFAUlT_STATUS=0;
+    /**
+     * 发布状态的发布状态值
+     */
+    public static Integer PUBLIC_STATUS=1;
+
+    /**
      * 0：下架，1：审核通过，2：待审核
      */
     private Integer status;
