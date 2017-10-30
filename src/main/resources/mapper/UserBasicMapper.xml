@@ -73,9 +73,11 @@
         SELECT ub.nickname,ub.photo,ub.birthday,ub.height,ub. workplace,ub.id,ub.salary
         from user_basic as ub LEFT OUTER JOIN user_asset as ua
         ON ub.id=ua.id
-        WHERE DATE(ua.star_deadline)>DATE(#{date})
+        WHERE
+        DATE(ua.star_deadline)>DATE(#{date})
         AND ub.sex=#{sexual}
         AND ub.workplace LIKE #{workplace}
+        AND ub.authority =1
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">
@@ -85,7 +87,9 @@
         FROM user_basic
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
         LEFT OUTER JOIN user_asset  ON  user_basic.id=user_asset.id
-        WHERE user_basic.id IN
+        WHERE
+        authority =1
+        AND user_basic.id IN
         <foreach collection="array" open="("
                  separator="," close=")" item="val">
             #{val}
@@ -103,6 +107,7 @@
         LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
         <where>
             sex = #{sexual}
+            AND authority =1
             <if test="workProvince !=null">
                 AND workplace like '%${workProvince}%'
             </if>
@@ -122,6 +127,7 @@
         LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
         <where>
             user_basic.id != #{id}
+            AND authority =1
             <if test="sex != null">
               AND  sex=#{sex}
             </if>
@@ -189,6 +195,7 @@
         LEFT OUTER JOIN user_asset  ON user_basic.id=user_asset.id
         <where>
             user_basic.id != #{id}
+            AND authority =1
             <if test="sex != null">
               AND sex=#{sex}
             </if>

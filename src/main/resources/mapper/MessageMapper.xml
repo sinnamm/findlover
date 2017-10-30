@@ -8,6 +8,12 @@
         <collection property="likes" column="id" javaType="ArrayList" ofType="MessageLike" select="selectLikeListByMessage" fetchType="lazy"/>
         <collection property="replies" column="id" javaType="ArrayList" ofType="MessageReply" select="selectReplyListByMessage"/>
     </resultMap>
+    <resultMap id="BackResultMap" type="com.hpe.findlover.model.Message">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userBasic.id"/>
+        <result column="nickname" property="userBasic.nickname"/>
+    </resultMap>
     <sql id="Base_Column_List">
         id, user_id, content, pub_time, like_count, reply_count
     </sql>
@@ -28,5 +34,22 @@
     </select>
     <select id="selectList" resultMap="BaseResultMap">
         SELECT * FROM message
+    </select>
+    <select id="selectMessageByColumn" resultMap="BackResultMap">
+        SELECT message.*,user_basic.nickname
+        FROM message
+        LEFT OUTER JOIN findlover.user_basic
+        ON message.user_id = user_basic.id
+        <where>
+            <if test="column == 'id'">
+                user_basic.id LIKE #{keyword}
+            </if>
+            <if test="column == 'nickname'">
+              AND  user_basic.nickname LIKE #{keyword}
+            </if>
+            <if test="column == 'content'">
+              AND message.content LIKE #{keyword}
+            </if>
+        </where>
     </select>
 </mapper>

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 基础接口，已经实现的方法有：
@@ -87,7 +88,7 @@ public interface BaseService<T>{
 	 * @param keys
 	 * @return 是否删除成功
 	 */
-	boolean deleteByPrimaryKeyList(List<String> keys) throws Exception;
+	boolean deleteByPrimaryKeyList(Set<Integer> keys) throws Exception;
 
 	/**
 	 * 根据实体类不为null的字段进行查询集合,条件全部使用=号and条件

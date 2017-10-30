@@ -53,5 +53,7 @@ public interface UserBasicMapper extends BaseTkMapper<UserBasic> {
 
 	List<UserBasic> selectUsersByIds(Integer[] ids);
 
+	//--------------------------------------后台功能------------------------------
+
 	List<UserBasic> selectAllByIdentity(@Param("identity") String identity,@Param("column") String column,@Param("keyword") String keyword);
 }

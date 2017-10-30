@@ -5,6 +5,7 @@ import com.hpe.util.BaseTkMapper;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 基础接口
@@ -25,6 +26,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	public boolean existsWithPrimaryKey(Object key) {
 		return getMapper().existsWithPrimaryKey(key);
 	}
+
 	@Override
 	public int insertUseGeneratedKeys(T pojo) {
 		return getMapper().insertUseGeneratedKeys(pojo);
@@ -56,9 +58,10 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@Override
-	public boolean deleteByPrimaryKeyList(List<String> keys) throws Exception {
-		if (CollectionUtils.isEmpty(keys))
+	public boolean deleteByPrimaryKeyList(Set<Integer> keys) throws Exception {
+		if (CollectionUtils.isEmpty(keys)){
 			return false;
+		}
 		keys.forEach(getMapper()::deleteByPrimaryKey);
 		return true;
 	}

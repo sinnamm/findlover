@@ -29,4 +29,9 @@ public class MessageServiceImpl extends BaseServiceImpl<Message> implements Mess
 		return messageMapper.selectList();
 	}
 
+	@Override
+	public List<Message> selectMessageByColumn(String column,String keyword) {
+		return messageMapper.selectMessageByColumn(column,keyword);
+	}
+
 }
