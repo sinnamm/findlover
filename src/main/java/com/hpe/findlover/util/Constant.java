@@ -46,6 +46,9 @@ public class Constant {
     public static final String COMPUTER_INTERNET = "计算机/互联网";
     public static List<String> education =null;
 
+    /**
+     * 默认用户那女头像
+     */
     public static final String MALE_PHOTO = "group1/M00/00/00/rBEuvlnxjMuAQiedAABzD4s1V58372.png";
     public static final String FEMALE_PHOTO = "group1/M00/00/00/rBEuvlnxjQqAIjfAAAB54pr6RHc334.png";
 

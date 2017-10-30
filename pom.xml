@@ -224,6 +224,13 @@
                 </exclusion>
             </exclusions>
 		</dependency>
+		<!--ueditor依赖-->
+		<dependency>
+			<groupId>cn.songxinqiang</groupId>
+			<artifactId>com.baidu.ueditor</artifactId>
+			<version>1.1.2-offical</version>
+		</dependency>
+
 
 
 	</dependencies>

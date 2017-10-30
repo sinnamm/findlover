@@ -45,17 +45,40 @@ $(function () {
 function initSetPhotoBtn() {
     $("div[id^='photo-single']").each(function () {
         var id = this.id.split("-")[2];
-        var $btn = $("button[id^='photo-btn-" + id + "']");
+        var $btn = $("button[id='photo-btn-" + id + "']");
         var $del = $("#photo-del-" + id);
         $(this).hover(function () {
-            $btn.fadeIn(500);
+            $btn.fadeIn(50);
         }, function () {
-            $btn.fadeOut(500);
+            $btn.fadeOut(50);
         });
         $del.click(function () {
             deletePhoto(this);
         });
+        $btn.click(function () {
+            setHeadPortrait(this);
+        });
     })
+}
+
+//在相册中设置头像
+function setHeadPortrait(btnInstance) {
+    $.ajax({
+        url: contextPath + "usercenter/photo/head/" + $(btnInstance).attr("id").split('-')[2],
+        type: "PUT",
+        dataType: "TEXT",
+        async:false,
+        success: function (data) {
+            if (data== "true") {
+                // swal("温馨提示", "设置成功！", "success");
+                $("#basicPanel").removeClass("active");
+                $("#photoPanel").addClass("active");
+            } else {
+                swal("温馨提示", "设置失败！", "error");
+            }
+        }
+    });
+
 }
 
 //单个删除相册中的图片
@@ -320,6 +343,9 @@ function initUserComfirmValidator() {
         timely: 2,
         stopOnError: true,
         valid: function (form) {
+            var me = this;
+            //提交表单之前，hold住表单，防止表单重复提交
+            me.holdSubmit();
             resetUser(form, "confirm");
         }
     });

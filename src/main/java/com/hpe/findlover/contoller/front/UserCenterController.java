@@ -59,9 +59,15 @@ public class UserCenterController {
         //获取用户所有照片
         List<UserPhoto> photos = userPhotoService.select(userPhoto);
         //获取用户头像
-        UserBasic userBasic = userService.selectByPrimaryKey(user.getId());
-        session.setAttribute("user",userBasic);
+        UserPhoto userBasicPhoto = new UserPhoto();
+        userBasicPhoto.setId(0);
+        userBasicPhoto.setPhoto(user.getPhoto());
+        userBasicPhoto.setUserId(user.getId());
+        photos.add(0,userBasicPhoto);
+
+        session.setAttribute("user",user);
         logger.info("userAsset:"+userAsset);
+        logger.info("userAsset:"+user.isConfirm());
         //剩余时间计算
         int vipDate=0, starDate=0,asset=0;
         if (userAsset!=null){
@@ -135,6 +141,24 @@ public class UserCenterController {
         }
         resultMap.put("result","true");
         return resultMap;
+    }
+
+    /**
+     * 在相册中选择
+     * @param id 要删除照片的id
+     * @return
+     */
+    @RequestMapping(value = "photo/head/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Object updateUserPhoto(@PathVariable Integer id,HttpSession session){
+        boolean result =false;
+        if(id!=null) {
+            UserPhoto photo = userPhotoService.selectByPrimaryKey(id);
+            UserBasic user= (UserBasic) session.getAttribute("user");
+            result = userService.updatePhoto(photo,user);
+            session.setAttribute("user",user);
+        }
+        return result;
     }
 
     /**

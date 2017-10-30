@@ -29,6 +29,8 @@ public interface UserService extends BaseService<UserBasic> {
 	 */
 	boolean updateUserBasicAndUserLabel(UserBasic userBasic);
 
+	boolean updatePhoto(UserPhoto photo, UserBasic user);
+
 	//--------------------------后台功能------------------------
 
 	List<UserBasic> selectAllByIdentity(String identity,String column,String keyword);

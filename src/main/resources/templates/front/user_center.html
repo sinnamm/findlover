@@ -598,11 +598,13 @@
                                         <img th:src="@{/file(path=${photo.photo})}"
                                              alt="第1张"
                                              class="img-fluid sigmapad">
-                                        <a th:id="${'photo-del-'+photo.id}" class="photo-del"><i
+                                        <a th:id="${'photo-del-'+photo.id}" th:if="${pStat.index!=0}" class="photo-del"><i
                                                 class="fa fa-times"></i></a>
                                     </a>
                                     <div class="submit inline-block">
-                                        <button th:id="${'photo-btn-'+photo.id}" class="hvr-wobble-vertical set-photo-btn" >设为头像</button>
+                                        <button th:id="${'photo-btn-'+photo.id}" th:disabled="${pStat.index==0}"
+                                                class="hvr-wobble-vertical set-photo-btn" th:text="${pStat.index==0?'当前头像':'设为头像'}">
+                                        </button>
                                     </div>
                                 </div>
 
@@ -675,9 +677,11 @@
                 <div class="message_header">
                     <h3>身份认证</h3>
                 </div>
-                <span th:hidden="${!session.user.confirm}" style="font-size: 25px"
-                      class="col-md-12 text-center">您已经认证过！</span>
-                <div th:hidden="${session.user.confirm}">
+                <div th:if="${session.user.confirm}" class="ident_auth">
+                    <span  style="font-size: 25px"
+                        class="col-md-12 text-center">您已经认证过！</span>
+                </div>
+                <div th:if="${!session.user.confirm}">
                     <form class="more_message" id="form-user-comfirm">
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">真实姓名：</label>
@@ -998,45 +1002,8 @@
     </div>
 </div>
 
-<div class="footer">
-    <div class="container">
-        <div class="col-md-4 col_2">
-            <h4>About Us</h4>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Help & Support</h4>
-            <ul class="footer_links">
-                <li><a href="#">24x7 Live help</a></li>
-                <li><a href="reserve/contact.html">Contact us</a></li>
-                <li><a href="#">Feedback</a></li>
-                <li><a href="reserve/faq.html">FAQs</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Quick Links</h4>
-            <ul class="footer_links">
-                <li><a href="reserve/privacy.html">Privacy Policy</a></li>
-                <li><a href="reserve/terms.html">Terms and Conditions</a></li>
-                <li><a href="reserve/services.html">Services</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Social</h4>
-            <ul class="footer_social">
-                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-            </ul>
-        </div>
-        <div class="clearfix"></div>
-        <div class="copy">
-            <p>Copyright &copy; 2015.Company name All rights reserved.</p>
-        </div>
-    </div>
-</div>
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
 
 <!-- 图片上传 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

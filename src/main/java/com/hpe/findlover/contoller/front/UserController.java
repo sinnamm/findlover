@@ -5,6 +5,7 @@ import com.hpe.findlover.service.LabelService;
 import com.hpe.findlover.service.UserLabelService;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.MD5Code;
 import org.apache.logging.log4j.LogManager;
@@ -71,40 +72,42 @@ public class UserController {
 		String city=request.getParameter("city");
 		user.setWorkplace(province+"-"+city);
 //		设置注册页面没有的必填信息
-		String uuid=UUID.randomUUID().toString();
-		user.setCode(uuid);
-		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
-		user.setAuthority(1);
-		//暂时将状态码设置为1
-		user.setStatus(1);
-		user.setPhoto("p6.jpg");
-		user.setRegTime(new Date());
+        String uuid = UUID.randomUUID().toString();
+        user.setCode(uuid);
+        user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
+        user.setAuthority(1);
+        //暂时将状态码设置为1
+        user.setStatus(1);
+        user.setPhoto("男".equals(user.getSex()) ? Constant.MALE_PHOTO : Constant.FEMALE_PHOTO);
+        user.setRegTime(new Date());
 //		发送邮件
 //		String url= LoverUtil.getBasePath(request)+"/"+"active?email="+user.getEmail()+"&code="+uuid;
-	//	EmailUtil.sendEmailByWeb(user.getEmail(),url);
-		//将用户存放在数据库中
-		if (userService.insert(user)){
-			UserBasic userBasic = userService.selectByEmail(user.getEmail());
-			//用户注册成功之后，生成默认的择偶条件和标签信息
-			UserPick userPick = new UserPick();
-			userPick.setId(userBasic.getId());
-			userPick.setSex(userBasic.getSexual());
-			userPick.setAgeLow(Math.max(18,LoverUtil.getAge(userBasic.getBirthday())-3));
-			userPick.setAgeHigh(Math.min(66,LoverUtil.getAge(userBasic.getBirthday())+3));
-			userPick.setWorkplace(userBasic.getWorkplace());
-			userPick.setMarryStatus("未婚");
-			userPick.setHeightLow(Math.max(145,userBasic.getHeight()-10));
-			userPick.setHeightHigh(Math.min(210,userBasic.getHeight()+10));
-			if(userPickService.insertSelective(userPick)){
-				return "redirect:login";
-			}else {
-				return "redirect:register";
-			}
+        //	EmailUtil.sendEmailByWeb(user.getEmail(),url);
+        //将用户存放在数据库中
+        if (userService.insertUseGeneratedKeys(user)>0) {
+            //添加高收入，高学历标签
+            userService.updateUserBasicAndUserLabel(user);
+            UserBasic userBasic = userService.selectByEmail(user.getEmail());
+            //用户注册成功之后，生成默认的择偶条件和标签信息
+            UserPick userPick = new UserPick();
+            userPick.setId(userBasic.getId());
+            userPick.setSex(userBasic.getSexual());
+            userPick.setAgeLow(Math.max(18, LoverUtil.getAge(userBasic.getBirthday()) - 3));
+            userPick.setAgeHigh(Math.min(66, LoverUtil.getAge(userBasic.getBirthday()) + 3));
+            userPick.setWorkplace(userBasic.getWorkplace());
+            userPick.setMarryStatus("未婚");
+            userPick.setHeightLow(Math.max(145, userBasic.getHeight() - 10));
+            userPick.setHeightHigh(Math.min(210, userBasic.getHeight() + 10));
+            if (userPickService.insert(userPick)) {
+                return "redirect:login";
+            } else {
+                return "redirect:register";
+            }
 
-		}else{
-			return "redirect:register";
-		}
-	}
+        } else {
+            return "redirect:register";
+        }
+    }
 
 	@RequestMapping("checkEmail")
 	@ResponseBody

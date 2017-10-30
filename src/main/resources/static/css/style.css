@@ -5377,3 +5377,12 @@ profile
     margin-top: 5%;
     /*float: right;*/
 }
+
+.ident_auth {
+    height: 400px;
+    width: auto;
+    border-radius: 5px;
+    border: 1px solid #BBBBBB;
+    vertical-align: middle;
+    padding: 180px
+}

@@ -2,6 +2,7 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.LabelMapper;
 import com.hpe.findlover.mapper.UserBasicMapper;
+import com.hpe.findlover.mapper.UserPhotoMapper;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.mapper.UserLabelMapper;
 import com.hpe.findlover.service.BaseServiceImpl;
@@ -26,14 +27,16 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	private final UserLabelMapper userLabelMapper;
 	private final LabelMapper labelMapper;
 	private final UserLabelService userLabelService;
+	private final UserPhotoMapper userPhotoMapper;
 
 	@Autowired
 	public UserServiceImpl(UserBasicMapper userBasicMapper, UserLabelMapper userLabelMapper
-			, LabelMapper labelMapper, UserLabelService userLabelService) {
+			, LabelMapper labelMapper, UserLabelService userLabelService, UserPhotoMapper userPhotoMapper) {
 		this.userBasicMapper = userBasicMapper;
 		this.userLabelMapper = userLabelMapper;
 		this.labelMapper = labelMapper;
 		this.userLabelService = userLabelService;
+		this.userPhotoMapper = userPhotoMapper;
 	}
 
 	@Override
@@ -97,5 +100,20 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	@Override
 	public List<UserBasic> selectAllByIdentity(String identity,String column,String keyword) {
 		return userBasicMapper.selectAllByIdentity(identity,column,keyword);
+	}
+
+	@Transactional(rollbackFor = RuntimeException.class)
+	@Override
+	public boolean updatePhoto(UserPhoto photo, UserBasic user) {
+		String tmp = user.getPhoto();
+		user.setPhoto(photo.getPhoto());
+		photo.setPhoto(tmp);
+		if (!this.updateByPrimaryKey(user)){
+			return false;
+		}
+		if (userPhotoMapper.updateByPrimaryKey(photo)<0){
+			return false;
+		}
+		return true;
 	}
 }

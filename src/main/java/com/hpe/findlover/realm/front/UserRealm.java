@@ -61,7 +61,9 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		UserAsset userAsset = userAssetService.selectByPrimaryKey(userBasic.getId());
 		//身份是否认证过
-		userBasic.setConfirm(userDetailService.selectByPrimaryKey(userBasic.getId()).getCardnumber()!=null);
+		if(userDetailService.selectByPrimaryKey(userBasic.getId())!=null) {
+			userBasic.setConfirm(userDetailService.selectByPrimaryKey(userBasic.getId()).getCardnumber() != null);
+		}
 		if (userAsset == null || userAsset.getVipDeadline() == null) {
 			userBasic.setVip(false);
 		} else {

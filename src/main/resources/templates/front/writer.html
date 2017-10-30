@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FindLover</title>
+    <!--公共css与js文件-->
+    <th:block th:include="/front/common/common_resource::resources"/>
+    <!--ueditor引入-->
+    <script th:src="@{/plugins/ueditor/ueditor.config.js}" type="text/javascript" charset="utf-8" src="../../static/plugins/ueditor/ueditor.config.js"></script>
+    <script th:src="@{/plugins/ueditor/ueditor.all.min.js}" type="text/javascript" charset="utf-8" src="../../static/plugins/ueditor/ueditor.all.min.js"> </script>
+    <script th:src="@{/plugins/ueditor/lang/zh-cn/zh-cn.js}" type="text/javascript" charset="utf-8" src="../../static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script type="text/javascript">
+
+        $(function() {
+            window.UEDITOR_HOME_URL = contextPath+"plugins/ueditor/";
+            //实例化编辑器
+            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+            var ue = UE.getEditor('editor');
+            UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+            UE.Editor.prototype.getActionUrl = function(action) {
+                if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+                    return 'http://localhost/writer/uploadfile';
+                } else {
+                    return this._bkGetActionUrl.call(this, action);
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+<!-- 导航栏 -->
+<th:block th:include="/front/common/header::nav"/>
+<!--导航栏（th:remove)-->
+
+<div class="container grid_0">
+    <form th:action="@{/writer/upload}" th:method="post">
+        <div class="text-center">
+            <button class="btn btn-primary">提交</button>
+        </div>
+        <div id="test-editormd" align="center" style="margin: 30px">
+            <textarea id="editor" name="test-editormd-markdown-doc" style="height: 600px;width: 95%"></textarea>
+        </div>
+    </form>
+</div>
+<!--页面尾部-->
+<th:block th:include="/front/common/footer::foot"/>
+</body>
+</html>	
