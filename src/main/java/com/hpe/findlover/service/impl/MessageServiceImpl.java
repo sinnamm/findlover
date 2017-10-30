@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.MessageMapper;
 import com.hpe.findlover.model.Message;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.MessageService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;

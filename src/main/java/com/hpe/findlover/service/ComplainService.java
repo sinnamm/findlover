@@ -1,4 +1,4 @@
-package com.hpe.findlover.service.front;
+package com.hpe.findlover.service;
 
 import com.hpe.findlover.model.Complain;
 import com.hpe.findlover.service.BaseService;

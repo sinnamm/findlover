@@ -1,14 +1,12 @@
-package com.hpe.findlover.mapper;
+package com.hpe.findlover.service;
 
 import com.hpe.findlover.model.Follow;
 import com.hpe.findlover.model.UserBasic;
-import com.hpe.util.BaseTkMapper;
-import org.apache.ibatis.annotations.Mapper;
+import com.hpe.findlover.service.BaseService;
 
 import java.util.List;
 
-@Mapper
-public interface FollowMapper extends BaseTkMapper<Follow> {
+public interface FollowService extends BaseService<Follow> {
 	List<UserBasic> selectAllFollow(int userId);
 
 	List<UserBasic> selectAllFollower(int followId);

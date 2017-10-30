@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.DictMapper;
 import com.hpe.findlover.model.Dict;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.DictService;
 import com.hpe.util.BaseTkMapper;
 import org.apache.logging.log4j.LogManager;

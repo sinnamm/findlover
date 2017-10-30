@@ -4,7 +4,6 @@ import com.hpe.findlover.mapper.LabelMapper;
 import com.hpe.findlover.mapper.UserLabelMapper;
 import com.hpe.findlover.mapper.UserLifeMapper;
 import com.hpe.findlover.model.UserLife;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.UserLabelService;
 import com.hpe.findlover.service.UserLifeService;
 import com.hpe.findlover.util.Constant;

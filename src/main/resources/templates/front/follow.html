@@ -4,6 +4,9 @@
     <title>我的关注</title>
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
+    <script th:src="@{/js/front/follow.js}"></script>
+    <script th:src="@{/js/pagetool.js}"></script>
+
     <!--在使用模板解析时会自动删除-->
     <th:block th:remove="all">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -21,67 +24,6 @@
 <body>
 <!-- 导航栏 -->
 <th:block th:include="/front/common/header::nav"/>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-    <div class="navbar-inner">
-        <div class="container">
-
-            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"/></a>
-            <div class="pull-right">
-                <nav class="navbar nav_bottom" role="navigation">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                                data-target="#bs-megadropdown-tabs">Menu
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"></a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav nav_1">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="search.html">搜索</a></li>
-                            <li><a href="reserve/about.html">会员</a></li>
-                            <li><a href="success_story.html">成功故事</a></li>
-                            <li><a href="other_says.html">他她说</a></li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-lg fa-envelope-o"></i><span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="letter.html">私信</a></li>
-                                    <li><a href="follow.html">关注</a></li>
-                                    <li><a href="visite_trace.html">访问记录</a></li>
-                                    <li><a href="notice.html">系统通知</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-lg fa-user"></i><span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="login.html">编辑资料</a></li>
-                                    <li><a href="register.html">身份认证</a></li>
-                                    <li><a href="index.html">修改密码</a></li>
-                                    <li><a href="index.html">退出</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
-            </div> <!-- end pull-right -->
-            <div class="clearfix"></div>
-        </div> <!-- end container -->
-    </div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
-<!--============================  Navigation End ============================-->
-
 
 <div class="grid_3">
     <div class="container">
@@ -103,15 +45,15 @@
                 <div class="careMessage">
                     <div class="row">
                         <ul class="nav nav-pills">
-                            <li role="presentation" class="active"><a href="#">我关注的人(11)</a></li>
-                            <li role="presentation"><a href="#">关注我的人(7)</a></li>
+                            <li role="presentation" class="active"><a role="tab" href="#myfollowPanel" id="myfollow-tab" data-toggle="tab">我关注的人(<span id="myfollow-count"></span>)</a></li>
+                            <li role="presentation"><a role="tab" href="#followerPanel" id="follower-tab" data-toggle="tab">关注我的人(<span id="follower-count"></span>)</a></li>
                         </ul>
                     </div>
                     <hr/>
                     <div class="row">
                         <div id="myTabContent" class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                                <div class="jobs-item ">
+                            <div class="tab-pane fade in active" id="myfollowPanel">
+                                <div class="jobs-item">
                                     <div class="thumb_top">
                                         <div class="thumb" style="width: 150px">
                                             <a href="view_profile.html"><img src="../../static/images/p17.jpg"
@@ -124,46 +66,8 @@
                                             <ul class="login_details1">
                                                 <li>2017-10-12</li>
                                             </ul>
-                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">Send
-                                                Mail</a>
+                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">取消关注</a>
                                             </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <hr/>
-
-                                    <div class="thumb_top">
-                                        <div class="thumb" style="width: 150px">
-                                            <a href="view_profile.html"><img src="../../static/images/p17.jpg"
-                                                                             class="img-responsive" alt=""/></a></div>
-                                        <div class="jobs_right">
-                                            <h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>
-                                            <ul class="login_details1">
-                                                <li>19岁 山东菏泽 大专 未婚 3000-5000</li>
-                                            </ul>
-                                            <ul class="login_details1">
-                                                <li>2017-10-12</li>
-                                            </ul>
-                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">Send
-                                                Mail</a>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <hr/>
-
-                                    <div class="thumb_top">
-                                        <div class="thumb" style="width: 150px">
-                                            <a href="view_profile.html"><img src="../../static/images/p17.jpg"
-                                                                             class="img-responsive" alt=""/></a></div>
-                                        <div class="jobs_right">
-                                            <h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>
-                                            <ul class="login_details1">
-                                                <li>19岁 山东菏泽 大专 未婚 3000-5000</li>
-                                            </ul>
-                                            <ul class="login_details1">
-                                                <li>2017-10-12</li>
-                                            </ul>
                                             <div class="thumb_but"><a href="view_profile.html" class="photo_view">Send
                                                 Mail</a>
                                             </div>
@@ -172,9 +76,51 @@
                                     </div>
                                     <hr/>
                                 </div>
-                                <hr/>
-
                             </div>
+                            <div class="tab-pane fade in" id="followerPanel">
+                                <div class="jobs-item">
+                                    <div class="thumb_top">
+                                        <div class="thumb" style="width: 150px">
+                                            <a href="view_profile.html"><img src="../../static/images/p17.jpg"
+                                                                             class="img-responsive" alt=""/></a></div>
+                                        <div class="jobs_right">
+                                            <h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>
+                                            <ul class="login_details1">
+                                                <li>19岁 山东菏泽 大专 未婚 3000-5000</li>
+                                            </ul>
+                                            <ul class="login_details1">
+                                                <li>2017-10-12</li>
+                                            </ul>
+                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">取消关注</a>
+                                            </div>
+                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">Send
+                                                Mail</a>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <hr/>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pagetool">
+                            <ul class="pagination">
+                                <li class="head"><a href="#">首页</a></li>
+                                <li class="lastpage"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                                <li class="disabled morehead"><a>...</a></li>
+                                <li class="page-4"><a></a></li>
+                                <li class="page-3"><a></a></li>
+                                <li class="page-2"><a></a></li>
+                                <li class="page-1"><a></a></li>
+                                <li class="currentpage active"><a>1</a></li>
+                                <li class="page_1"><a></a></li>
+                                <li class="page_2"><a></a></li>
+                                <li class="page_3"><a></a></li>
+                                <li class="page_4"><a></a></li>
+                                <li class="disabled moretail"><a>...</a></li>
+                                <li class="nextpage"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                <li class="tail"><a href="#">尾页</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

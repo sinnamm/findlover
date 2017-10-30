@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.UserPhotoMapper;
 import com.hpe.findlover.model.UserPhoto;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.UploadService;
 import com.hpe.findlover.service.UserPhotoService;
 import com.hpe.util.BaseTkMapper;

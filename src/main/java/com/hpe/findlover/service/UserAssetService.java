@@ -1,9 +1,6 @@
 package com.hpe.findlover.service;
 
 import com.hpe.findlover.model.UserAsset;
-import com.hpe.findlover.service.BaseService;
-import com.hpe.findlover.service.BaseServiceImpl;
-import com.hpe.util.BaseTkMapper;
 
 /**
  * @author sinnamm

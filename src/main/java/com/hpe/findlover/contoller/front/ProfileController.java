@@ -2,8 +2,8 @@ package com.hpe.findlover.contoller.front;
 
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.*;
-import com.hpe.findlover.service.front.ComplainService;
-import com.hpe.findlover.service.front.FollowService;
+import com.hpe.findlover.service.ComplainService;
+import com.hpe.findlover.service.FollowService;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
@@ -26,18 +26,20 @@ public class ProfileController {
 	private final UserLifeService userLifeService;
 	private final UserStatusService userStatusService;
 	private final UserPickService userPickService;
+	private final UserPhotoService userPhotoService;
 	private final LabelService labelService;
 	private final ComplainService complainService;
 	private final FollowService followService;
 
 	@Autowired
-	public ProfileController(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService, ComplainService complainService, FollowService followService) {
+	public ProfileController(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, UserPhotoService userPhotoService, LabelService labelService, ComplainService complainService, FollowService followService) {
 		this.userBasicService = userBasicService;
 		this.userAssetService = userAssetService;
 		this.userDetailService = userDetailService;
 		this.userLifeService = userLifeService;
 		this.userStatusService = userStatusService;
 		this.userPickService = userPickService;
+		this.userPhotoService = userPhotoService;
 		this.labelService = labelService;
 		this.complainService = complainService;
 		this.followService = followService;
@@ -51,17 +53,15 @@ public class ProfileController {
 		} else if (basic.getAuthority() == 2) {
 			logger.debug("ID为" + basic.getId() + "的用户个人资料仅关注可见");
 		}
-		basic.setAge(LoverUtil.getAge(basic.getBirthday()));
-		UserAsset asset = userAssetService.selectByPrimaryKey(userId);
-		if (asset != null) {
-			basic.setVip(LoverUtil.getDiffOfHours(asset.getVipDeadline()) > 0);
-			basic.setStar(LoverUtil.getDiffOfHours(asset.getStarDeadline()) > 0);
-		}
+		userBasicService.userAttrHandler(basic);
 		model.addAttribute("basic", LoverUtil.prettyDisplay(basic,UserBasic.class));
 		model.addAttribute("detail", LoverUtil.prettyDisplay(userDetailService.selectByPrimaryKey(userId), UserDetail.class));
 		model.addAttribute("life", LoverUtil.prettyDisplay(userLifeService.selectByPrimaryKey(userId),UserLife.class));
 		model.addAttribute("pick", LoverUtil.prettyDisplay(userPickService.selectByPrimaryKey(userId),UserPick.class));
 		model.addAttribute("status", LoverUtil.prettyDisplay(userStatusService.selectByPrimaryKey(userId),UserStatus.class));
+		UserPhoto userPhoto = new UserPhoto();
+		userPhoto.setUserId(basic.getId());
+		model.addAttribute("userPhotos", userPhotoService.select(userPhoto));
 		model.addAttribute("code", basic.getAuthority());
 		Follow follow = new Follow();
 		follow.setUserId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());

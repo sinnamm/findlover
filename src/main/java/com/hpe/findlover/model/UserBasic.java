@@ -1,5 +1,7 @@
 package com.hpe.findlover.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -34,7 +36,7 @@ public class UserBasic implements Serializable {
     private String tel;
 
     private String sex;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private String photo;

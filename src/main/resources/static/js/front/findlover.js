@@ -282,6 +282,32 @@ function niceBaseCofig() {
         msgClass: 'n-right'
     });
 }
+
+//取消关注
+function cancelFollow(followId) {
+    swal({
+        "title":"不在关注此用户？",
+        "icon":"waring",
+        buttons: ["取消", "确定"]
+    }).then(choice=>{
+        if(choice){
+            $.ajax({
+                url: contextPath + "follow?followId=" + followId,
+                type: "delete",
+                dataType: "text",
+                success: function (result) {
+                    if (result == "true") {
+                        $("#follow-info").text("关注");
+                    } else {
+                        errorAlert();
+                    }
+                },
+                error: errorAlert
+            });
+        }
+    });
+}
+
 function errorAlert(){
     swal({
         title: "发生未知错误，请联系管理员！",
@@ -289,3 +315,4 @@ function errorAlert(){
         dangerMode: true
     })
 }
+

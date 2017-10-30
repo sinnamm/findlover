@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.UserPickMapper;
 import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;

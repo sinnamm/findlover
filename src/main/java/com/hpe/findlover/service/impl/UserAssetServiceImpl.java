@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.UserAssetMapper;
 import com.hpe.findlover.model.UserAsset;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.UserAssetService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;

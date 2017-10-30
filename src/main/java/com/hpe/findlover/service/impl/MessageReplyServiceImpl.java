@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.MessageReplyMapper;
 import com.hpe.findlover.model.MessageReply;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.MessageReplyService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;

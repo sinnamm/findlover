@@ -2,7 +2,6 @@ package com.hpe.findlover.service.impl;
 
 import com.hpe.findlover.mapper.UserDetailMapper;
 import com.hpe.findlover.model.UserDetail;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.UserDetailService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;

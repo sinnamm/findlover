@@ -57,17 +57,7 @@ public class UserControllerBack {
 		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		List<UserBasic> basics = userBasicService.selectAllByIdentity(identity, column, "%" + keyword + "%");
 		// 遍历list查出所有相对应的Asset和Detail数据
-		basics.forEach(user -> {
-			UserAsset asset = userAssetService.selectByPrimaryKey(user.getId());
-			UserDetail detail = userDetailService.selectByPrimaryKey(user.getId());
-			if (asset != null) {
-				user.setVip(LoverUtil.getDiffOfHours(asset.getVipDeadline()) > 0);
-				user.setStar(LoverUtil.getDiffOfHours(asset.getStarDeadline()) > 0);
-			}
-			if (detail != null) {
-				user.setAuthenticated(detail.getCardnumber() != null);
-			}
-		});
+		userBasicService.userAttrHandler(basics);
 		PageInfo<UserBasic> pageInfo = new PageInfo<>(basics);
 		logger.info(JSONObject.toJSON(pageInfo));
 		return pageInfo;

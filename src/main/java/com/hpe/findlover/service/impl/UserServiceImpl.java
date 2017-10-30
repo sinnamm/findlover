@@ -1,14 +1,11 @@
 package com.hpe.findlover.service.impl;
 
-import com.hpe.findlover.mapper.LabelMapper;
-import com.hpe.findlover.mapper.UserBasicMapper;
-import com.hpe.findlover.mapper.UserPhotoMapper;
+import com.hpe.findlover.mapper.*;
 import com.hpe.findlover.model.*;
-import com.hpe.findlover.mapper.UserLabelMapper;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.UserLabelService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.Constant;
+import com.hpe.findlover.util.LoverUtil;
 import com.hpe.util.BaseTkMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,15 +25,19 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	private final LabelMapper labelMapper;
 	private final UserLabelService userLabelService;
 	private final UserPhotoMapper userPhotoMapper;
+	private final UserAssetMapper userAssetMapper;
+	private final UserDetailMapper userDetailMapper;
 
 	@Autowired
 	public UserServiceImpl(UserBasicMapper userBasicMapper, UserLabelMapper userLabelMapper
-			, LabelMapper labelMapper, UserLabelService userLabelService, UserPhotoMapper userPhotoMapper) {
+			, LabelMapper labelMapper, UserLabelService userLabelService, UserPhotoMapper userPhotoMapper, UserAssetMapper userAssetMapper, UserDetailMapper userDetailMapper) {
 		this.userBasicMapper = userBasicMapper;
 		this.userLabelMapper = userLabelMapper;
 		this.labelMapper = labelMapper;
 		this.userLabelService = userLabelService;
 		this.userPhotoMapper = userPhotoMapper;
+		this.userAssetMapper = userAssetMapper;
+		this.userDetailMapper = userDetailMapper;
 	}
 
 	@Override
@@ -75,11 +76,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	}
 
 	@Override
-	public List<UserBasic> selectAllUser() {
-		return userBasicMapper.selectAll();
-	}
-
-	@Override
 	@Transactional(rollbackFor = RuntimeException.class)
 	public boolean updateUserBasicAndUserLabel(UserBasic userBasic) {
 
@@ -100,6 +96,25 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	@Override
 	public List<UserBasic> selectAllByIdentity(String identity,String column,String keyword) {
 		return userBasicMapper.selectAllByIdentity(identity,column,keyword);
+	}
+
+	@Override
+	public void userAttrHandler(List<UserBasic> basics) {
+		basics.forEach(this::userAttrHandler);
+	}
+
+	@Override
+	public void userAttrHandler(UserBasic user) {
+		user.setAge(LoverUtil.getAge(user.getBirthday()));
+		UserAsset asset = userAssetMapper.selectByPrimaryKey(user.getId());
+		UserDetail detail = userDetailMapper.selectByPrimaryKey(user.getId());
+		if (asset != null) {
+			user.setVip(LoverUtil.getDiffOfHours(asset.getVipDeadline()) > 0);
+			user.setStar(LoverUtil.getDiffOfHours(asset.getStarDeadline()) > 0);
+		}
+		if (detail != null) {
+			user.setAuthenticated(detail.getCardnumber() != null);
+		}
 	}
 
 	@Transactional(rollbackFor = RuntimeException.class)

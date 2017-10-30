@@ -6,7 +6,6 @@ import com.hpe.findlover.model.Letter;
 import com.hpe.findlover.model.LetterUser;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.LetterService;
 import com.hpe.util.BaseTkMapper;
 import org.slf4j.Logger;

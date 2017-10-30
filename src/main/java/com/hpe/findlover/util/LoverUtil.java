@@ -20,6 +20,13 @@ import java.util.concurrent.TimeUnit;
 public final class LoverUtil {
 	private static Logger logger = LogManager.getLogger(LoverUtil.class);
 
+	/**
+	 * 有关用户的pojo对象的漂亮显示，传入一个pojo类和这个类的Class对象，
+	 * 返回和这个类各属性和值等价的的Map集合，自动处理null对象和null属性
+	 * @param obj
+	 * @param clazz
+	 * @return
+	 */
 	public static Map<String, Object> prettyDisplay(Object obj,Class<?> clazz) {
 		if(obj == null) {
 			obj = BeanUtils.instantiate(clazz);

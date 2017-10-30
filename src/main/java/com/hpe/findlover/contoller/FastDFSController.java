@@ -2,6 +2,7 @@ package com.hpe.findlover.contoller;
 
 import com.github.tobato.fastdfs.domain.FileInfo;
 import com.hpe.findlover.service.UploadService;
+import com.hpe.findlover.util.Constant;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,11 @@ public class FastDFSController {
 	 */
 	@GetMapping
 	public void getFile(@RequestParam("path") String filePath, HttpServletResponse response) throws IOException {
+		if("male".equals(filePath)){
+			filePath = Constant.MALE_PHOTO;
+		}else if("female".equals(filePath)){
+			filePath = Constant.FEMALE_PHOTO;
+		}
 		FileInfo fileInfo = uploadService.getFileInfo(filePath);
 		if (fileInfo != null && fileInfo.getFileSize() != 0) {
 			byte[] buffer = uploadService.downloadFile(filePath);

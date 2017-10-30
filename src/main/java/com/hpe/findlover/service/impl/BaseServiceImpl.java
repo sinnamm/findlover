@@ -1,6 +1,7 @@
-package com.hpe.findlover.service;
+package com.hpe.findlover.service.impl;
 
 import com.github.pagehelper.PageInfo;
+import com.hpe.findlover.service.BaseService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.util.CollectionUtils;
 

@@ -16,4 +16,10 @@
     -->
     id, user_id, follow_id, follow_time
   </sql>
+  <select id="selectAllFollow" resultType="UserBasic">
+    SELECT ub.* FROM user_basic AS ub, follow AS f WHERE ub.id=f.follow_id AND f.user_id=#{userId} ORDER BY f.follow_time DESC
+  </select>
+  <select id="selectAllFollower" resultType="UserBasic">
+    SELECT ub.* FROM user_basic AS ub, follow AS f WHERE ub.id=f.user_id AND f.follow_id=#{followId} ORDER BY f.follow_time DESC
+  </select>
 </mapper>
