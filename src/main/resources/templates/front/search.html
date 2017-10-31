@@ -5,6 +5,7 @@
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
     <script src="../../static/js/front/search.js" th:src="@{/js/front/search.js}"></script>
+    <script th:src="@{/js/masonry-docs.min.js}"></script>
 </head>
 <body>
 <!-- 导航栏 -->
@@ -153,141 +154,146 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2" th:if="${session.user.vip==true}">
-                                <a  style="margin-left: 5px;font-size: 1px" id="more-search" class="accordion-toggle"
-                                   data-toggle="collapse" href="#vip-search-cond">更多</a>
+                            <div th:if="${session.user.vip==true}">
+                                <div class="col-md-2" >
+                                    <a  style="margin-left: 5px;font-size: 1px" id="more-search" class="accordion-toggle"
+                                        data-toggle="collapse" href="#vip-search-cond">更多</a>
+                                </div>
+                                <div id="vip-cond" class="col-md-offset-2 ">
+                                    <div id="vip-search-cond">
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-8" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span id="education-span" class="dropdown-value">学历不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu">
+                                                <p>请选择学历：</p>
+                                                <select id="search-select-8" name="education">
+                                                    <option value="-1" content="学历不限">不限</option>
+                                                    <option th:each="education : ${educationList}"
+                                                            th:selected="${userPick.education==education.value}"
+                                                            th:value="${education.value}" th:text="${education.value}">未婚
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-9" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="dropdown-value">住房条件不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu">
+                                                <p>请选择住房条件：</p>
+                                                <select id="search-select-9" name="liveCondition">
+                                                    <option value="-1" content="住房条件不限">不限</option>
+                                                    <option th:each="liveCondition : ${liveConditionList}"
+                                                            th:value="${liveCondition.value}"
+                                                            th:text="${liveCondition.value}">和家人同住
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-10" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span id="birthplace-span" class="dropdown-value">籍贯不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu" style="width: 230px">
+                                                <p>请选择籍贯：</p>
+                                                <select id="province-select-bp" th:remove="all-but-first"
+                                                        name="birthProvince">
+                                                    <option value="-1">不限</option>
+                                                </select>
+
+                                                <select id="city-select-bp" th:remove="all-but-first" name="birthCity">
+                                                    <option value="-1">不限</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-11" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="dropdown-value">星座不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu">
+                                                <p>请选择星座：</p>
+                                                <select id="search-select-11" name="zodiac">
+                                                    <option value="-1" content="星座不限">不限</option>
+                                                    <option th:each="zodiac:${zodiacList}"
+                                                            th:value="${zodiac.value}" th:text="${zodiac.value}">天秤座
+                                                    </option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-12" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="dropdown-value">生肖不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu">
+                                                <p>请选择生肖：</p>
+                                                <select id="search-select-12" name="animal">
+                                                    <option value="-1" content="生肖不限">不限</option>
+                                                    <option th:each="animal: ${animalList}"
+                                                            th:value="${animal.value}" th:text="${animal.value}">鼠
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-13" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="dropdown-value">民族不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu">
+                                                <p>请选择民族：</p>
+                                                <select id="search-select-13" name="nation">
+                                                    <option value="-1" content="民族不限">不限</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown search-dropdown">
+                                            <button id="dropdown-btn-14" class="btn btn-sm btn-default dropdown-toggle"
+                                                    type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <span class="dropdown-value">信仰不限</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div class="dropdown-menu search-dropdown-menu">
+                                                <p>请选择信仰：</p>
+                                                <select id="search-select-14" name="religion">
+                                                    <option value="-1" content="信仰不限">不限</option>
+                                                    <option th:each="religion: ${religionList}"
+                                                            th:value="${religion.value}" th:text="${religion.value}">佛教
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
+
+
                             <div class="col-md-3" th:if="${session.user.vip==false}">
                                 <a  style="margin-left: 5px;font-size: 1px"
-                                   th:href="@{vip}">条件不够？开通VIP获得更精确搜索条件</a>
+                                   th:href="@{vip}">条件不够？开通VIP获得更精确搜索条件
+                                </a>
                             </div>
                             <!--<br>-->
-                            <div id="vip-cond" class="col-md-offset-2 ">
-                                <div id="vip-search-cond">
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-8" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span id="education-span" class="dropdown-value">学历不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu">
-                                            <p>请选择学历：</p>
-                                            <select id="search-select-8" name="education">
-                                                <option value="-1" content="学历不限">不限</option>
-                                                <option th:each="education : ${educationList}"
-                                                        th:selected="${userPick.education==education.value}"
-                                                        th:value="${education.value}" th:text="${education.value}">未婚
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-9" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="dropdown-value">住房条件不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu">
-                                            <p>请选择住房条件：</p>
-                                            <select id="search-select-9" name="liveCondition">
-                                                <option value="-1" content="住房条件不限">不限</option>
-                                                <option th:each="liveCondition : ${liveConditionList}"
-                                                        th:value="${liveCondition.value}"
-                                                        th:text="${liveCondition.value}">和家人同住
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-10" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span id="birthplace-span" class="dropdown-value">籍贯不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu" style="width: 230px">
-                                            <p>请选择籍贯：</p>
-                                            <select id="province-select-bp" th:remove="all-but-first"
-                                                    name="birthProvince">
-                                                <option value="-1">不限</option>
-                                            </select>
-
-                                            <select id="city-select-bp" th:remove="all-but-first" name="birthCity">
-                                                <option value="-1">不限</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-11" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="dropdown-value">星座不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu">
-                                            <p>请选择星座：</p>
-                                            <select id="search-select-11" name="zodiac">
-                                                <option value="-1" content="星座不限">不限</option>
-                                                <option th:each="zodiac:${zodiacList}"
-                                                        th:value="${zodiac.value}" th:text="${zodiac.value}">天秤座
-                                                </option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-12" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="dropdown-value">生肖不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu">
-                                            <p>请选择生肖：</p>
-                                            <select id="search-select-12" name="animal">
-                                                <option value="-1" content="生肖不限">不限</option>
-                                                <option th:each="animal: ${animalList}"
-                                                        th:value="${animal.value}" th:text="${animal.value}">鼠
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-13" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="dropdown-value">民族不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu">
-                                            <p>请选择民族：</p>
-                                            <select id="search-select-13" name="nation">
-                                                <option value="-1" content="民族不限">不限</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown search-dropdown">
-                                        <button id="dropdown-btn-14" class="btn btn-sm btn-default dropdown-toggle"
-                                                type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="dropdown-value">信仰不限</span>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu search-dropdown-menu">
-                                            <p>请选择信仰：</p>
-                                            <select id="search-select-14" name="religion">
-                                                <option value="-1" content="信仰不限">不限</option>
-                                                <option th:each="religion: ${religionList}"
-                                                        th:value="${religion.value}" th:text="${religion.value}">佛教
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -330,12 +336,12 @@
 
         <div class="col-md-3 match_right">
             <!--id搜索框-->
-            <div class="profile_search1">
-                <input id="search-id" type="text" class="m_1" size="30" required="" placeholder="ID搜索"/>
+            <div class="profile_search1" style="margin-bottom: 10px">
+                <input id="search-id" type="text" class="m_1" size="30"  placeholder="ID搜索"/>
                 <input id="search-by-id" type="button" value="搜索"/>
             </div>
             <!--相似结果-->
-            <div class="view_profile view_profile2">
+            <div class="view_profile view_profile2" style="margin-top: 10px">
                 <h3>相似结果</h3>
                 <ul style="margin-bottom: 0px" class="profile_item" th:each="userBasicStar: ${userBasicStarPick}">
                     <a th:href="@{' profile/'+${userBasicStar.id}}">

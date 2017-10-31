@@ -81,7 +81,7 @@
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status, YEAR(NOW())-YEAR(birthday) age,
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,
         signature,
         vip_deadline,star_deadline
         FROM user_basic
@@ -117,7 +117,7 @@
     </select>
 
     <select id="selectUserByUserPick" resultMap="userSearch" >
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,birthday,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline
@@ -169,23 +169,22 @@
             <if test="smoke != null and smoke !='-1'">
                 AND smoke LIKE #{smoke}
             </if>
-
+            <if test="ageLow != null and ageLow !='-1'">
+                AND YEAR(NOW())-YEAR(birthday) >= #{ageLow}
+            </if>
+            <if test="ageLow == null">
+                AND YEAR(NOW())-YEAR(birthday) >= 18
+            </if>
+            <if test="ageHigh != null and ageHigh !='-1'">
+                AND YEAR(NOW())-YEAR(birthday) &lt;= #{ageHigh}
+            </if>
         </where>
 
-        <if test="ageLow != null and ageLow !='-1'">
-            HAVING age >= #{ageLow}
-        </if>
-        <if test="ageLow == null">
-            HAVING age >= 18
-        </if>
-        <if test="ageHigh != null and ageHigh !='-1'">
-            and age &lt;= #{ageHigh}
-        </if>
 
     </select>
 
     <select id="selectUserBySearch" resultMap="userSearch">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,
+        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,birthday,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline
@@ -246,17 +245,16 @@
             <if test="religion != null and religion !='-1'">
                 AND religion LIKE #{religion}
             </if>
+            <if test="ageLow != null and ageLow !='-1'">
+                AND YEAR(NOW())-YEAR(birthday) >= #{ageLow}
+            </if>
+            <if test="ageLow == null">
+                AND YEAR(NOW())-YEAR(birthday) >= 18
+            </if>
+            <if test="ageHigh != null and ageHigh !='-1'">
+                AND YEAR(NOW())-YEAR(birthday) &lt;= #{ageHigh}
+            </if>
         </where>
-
-        <if test="ageLow != null and ageLow !='-1'">
-            HAVING age >= #{ageLow}
-        </if>
-        <if test="ageLow == null">
-            HAVING age >= 18
-        </if>
-        <if test="ageHigh != null and ageHigh !='-1'">
-            and age &lt;= #{ageHigh}
-        </if>
 
     </select>
 

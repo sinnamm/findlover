@@ -107,6 +107,7 @@ function replyMessage(messageId) {
 }
 
 function btnClick() {
+    //发布动态按钮
     $("#msgSubBtn").click(function () {
         $.post(contextPath + "other_says/message", {content: $("#content").val()}, function (data) {
             if (data == "true") {
@@ -120,6 +121,7 @@ function btnClick() {
         }, "text");
     });
 
+    //回复模态框评论提交按钮
     $("#reply-submit-btn").click(function () {
         var reply = $("#reply-content").val();
         var data = {"reply":reply,"messageId":msgId};
@@ -158,6 +160,9 @@ function btnClick() {
         $("#sort-btn").html("最热")
         getMessage();
     });
+    $("#follow-btn").click(function () {
+
+    })
 }
 
 function goPage(_pageNum) {

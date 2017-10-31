@@ -110,7 +110,8 @@ public class UserController {
             return "redirect:register";
         }
     }
-	@PutMapping("user")
+
+    @PutMapping("user")
 	@ResponseBody
 	public boolean updateUser(UserBasic userBasic,HttpServletRequest request){
 		userBasic.setId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());

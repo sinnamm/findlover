@@ -60,7 +60,9 @@
                         <li role="presentation" class="dropdown">
                             <a id="news-btn" href="#news" data-toggle="tab">新鲜事儿</a>
                         </li>
-                        <li role="presentation"><a href="#message" data-toggle="tab">关注的ta们</a></li>
+                        <li role="presentation">
+                            <a id="follow-btn" href="#message" data-toggle="tab">关注的ta们</a>
+                        </li>
                     </ul>
 
                     <div id="myTabContent" class="tab-content" style="background-color: white">
@@ -159,13 +161,11 @@
                                 <button class="button button-primary button-large">
                                   <i class="fa fa-bars"></i> <span id = "sort-btn">排序</span>
                                 </button>
-
                                 <ul class="button-dropdown-list is-below">
                                   <li id="new-li"><a><i class="fa fa-heart-o"></i> 最新</a></li>
                                   <li id="hot-li"><a><i class="fa fa-heart-o"></i>最热</a></li>
-
                                 </ul>
-                              </span>
+                            </span>
 
                             <div id="news-div">
 
@@ -174,110 +174,9 @@
 
                         <!-- 关注的ta们 -->
                         <div role="tabpanel" class="tab-pane fade" id="message" aria-labelledby="message-tab">
-
-                            <ul class="pagination pagination_1"></ul>
-                            <div class="clearfix"></div>
-                            <div class="jobs-item with-thumb">
-
-                                <!-- 发送信息者资料 -->
-                                <div class="thumb_top">
-                                    <div class="thumb1"><a href="view_profile.html"><img th:src="@{/images/p17.jpg}"
-                                                                                         class="img-responsive" alt=""/></a>
-                                    </div>
-                                    <div class="jobs_right">
-                                        <h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>
-                                        <ul class="login_details1">
-                                            <li>2017-10-12 14:21</li>
-                                        </ul>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                <!-- 信息内容 -->
-                                <div class="message_content">
-                                    <p style="margin-bottom: 0px">此页面可以查看所有网站用户的动态，动态使用Ajax异步加载，加载更多按钮。
-                                        1. 可以按最新或最热排序
-                                        2. 要展示的信息：用户头像、昵称、动态内容、点赞数、评论数、时间、点赞按钮、评论按钮。
-                                        3. 某条动态的回复内容也要使用Ajax异步加载，加载更多按钮。
-                                    </p>
-                                </div>
-
-                                <!-- 信息点赞和回复按钮 -->
-                                <div class="row text-right">
-                                    <div class="col-sm-7"></div>
-                                    <div class="col-sm-2"><a href="#"
-                                                             class="fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up"></a>&nbsp;&nbsp;(28)
-                                    </div>
-                                    <div class="col-sm-2"><a href="#" class="fa fa-lg fa-comment-o"></a>&nbsp;&nbsp;(28)
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                <!-- 回复信息 -->
-                                <div class="container">
-                                    <form class="contact-form">
-                                        <div class="row text-center">
-                                            <textarea class="col-md-6" rows="2" value="Message"
-                                                      onfocus="this.value = '';"
-                                                      onblur="if (this.value == '') {this.value = '请输入回复内容';}">请输入回复内容</textarea>
-                                            <input class="col-md-1 btn btn-info" style="margin-top: 16px" name="submit"
-                                                   type="submit" value="回复">
-                                        </div>
-                                    </form>
-                                </div>
+                            <div id="news-follow-div">
 
                             </div>
-                            <hr/>
-
-                            <div class="clearfix"></div>
-                            <div class="jobs-item with-thumb">
-                                <div class="thumb_top">
-                                    <div class="thumb1"><a href="view_profile.html"><img th:src="@{/images/}"
-                                                                                         src="../../static/images/p17.jpg"
-                                                                                         class="img-responsive" alt=""/></a>
-                                    </div>
-                                    <div class="jobs_right">
-                                        <h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>
-                                        <ul class="login_details1">
-                                            <li>2017-10-12 14:21</li>
-                                        </ul>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="message_content">
-                                    <p style="margin-bottom: 0px">此页面可以查看所有网站用户的动态，动态使用Ajax异步加载，加载更多按钮。
-                                        1. 可以按最新或最热排序
-                                        2. 要展示的信息：用户头像、昵称、动态内容、点赞数、评论数、时间、点赞按钮、评论按钮。
-                                        3. 某条动态的回复内容也要使用Ajax异步加载，加载更多按钮。
-                                    </p>
-                                </div>
-                                <div class="row text-right">
-                                    <div class="col-sm-7"></div>
-                                    <div class="col-sm-2"><a href="#"
-                                                             class="fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up"></a>&nbsp;&nbsp;(28)
-                                    </div>
-                                    <div class="col-sm-2"><a href="#" class="fa fa-lg fa-comment-o"></a>&nbsp;&nbsp;(28)
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-
-                                <div class="container">
-                                    <form class="contact-form">
-                                        <div class="row text-center">
-                                            <textarea class="col-md-6" rows="2" value="Message"
-                                                      onfocus="this.value = '';"
-                                                      onblur="if (this.value == '') {this.value = '请输入回复内容';}">请输入回复内容</textarea>
-                                            <input class="col-md-1 btn btn-info" style="margin-top: 16px" name="submit"
-                                                   type="submit" value="回复">
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                            <hr/>
-
-
                         </div>
                         <!--分页-->
                         <div class="row">
@@ -334,8 +233,8 @@
                                 <div class="thumb_top">
                                     <div class="thumb">
                                         <a th:href="@{'profile/'+${userBasicStar.id}}">
-                                            <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
-                                                style="width: 100px" class="img-responsive"
+                                            <img th:src="@{'file?path='+${userBasicStar.photo}}"
+                                                style="width: 100px;height: 80px" class="img-responsive"
                                                 alt=""/></a>
                                     </div>
                                     <div class="jobs_right">

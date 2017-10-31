@@ -146,7 +146,7 @@ public class SearchController {
         if (userPick.getBirthplace()!=null) {
             userPick.setBirthplace("%" + userPick.getBirthplace() + "%");
         }
-        PageHelper.startPage(pageNum,9,false);
+        PageHelper.startPage(pageNum,9);
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
         logger.info("userBasicPickList======" + userBasicList);
         if(userBasicList.size()>0) {
@@ -169,7 +169,7 @@ public class SearchController {
         }
         logger.info("search......" + search.toString());
         logger.info("pageNum......" + pageNum);
-        PageHelper.startPage(pageNum,9,false);
+        PageHelper.startPage(pageNum,9);
         List<UserBasic> userBasicList = userService.selectUserBySearch(search);
 
         logger.info("userBasicSearchList======" + userBasicList);

@@ -116,7 +116,7 @@ function initPhotoUpload() {
         uploadUrl: contextPath + "usercenter/upload", // you must set a valid URL here else you will get an error
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         overwriteInitial: false,
-        maxFileSize: 2048,
+        maxFileSize: 1024*5,
         //maxFilesNum: 3,
         minFileCount: 1,
         maxFileCount: 8,
@@ -198,7 +198,7 @@ function initPhotoUpload() {
         uploadUrl: contextPath + "usercenter/photo", // you must set a valid URL here else you will get an error
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         overwriteInitial: false,
-        maxFileSize: 2048,
+        maxFileSize: 1024*5,
         maxFilesNum: 1,
         minFileCount: 1,
         maxFileCount: 1,

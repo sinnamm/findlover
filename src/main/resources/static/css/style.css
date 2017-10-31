@@ -102,6 +102,8 @@ img.zoom-img:hover {
     padding: 5px;
 }
 .box {
+    width: 240px;
+    margin-left: 20px;
     margin-bottom: 10px;
     float: left;
 
