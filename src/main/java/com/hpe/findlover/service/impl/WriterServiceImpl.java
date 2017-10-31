@@ -34,15 +34,11 @@ public class WriterServiceImpl extends BaseServiceImpl<Writer> implements Writer
     }
 
     @Override
-    public boolean insertWriterAndEssay(String filePath,String pseudonym,String title) {
+    public boolean insertWriterAndEssay(Writer writer,String filePath) {
         boolean result = false;
-        Writer writer = new Writer();
-        writer.setPseudonym(pseudonym);
-        writer.setRegTime(new Date());
         if(writerMapper.insertUseGeneratedKeys(writer)>0){
             Essay essay = new Essay();
             essay.setWriterId(writer.getId());
-            essay.setTitle(title);
             essay.setFilename(filePath);
             essay.setStatus(Essay.UNCHECKED_STATUS);
             result = essayMapper.insert(essay)>0;

@@ -1,21 +1,24 @@
 package com.hpe.findlover.contoller.front;
 
-import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.Essay;
 import com.hpe.findlover.model.Writer;
+import com.hpe.findlover.service.EssayService;
 import com.hpe.findlover.service.UploadService;
 import com.hpe.findlover.service.WriterService;
-import com.hpe.findlover.util.MD5Code;
+import com.hpe.findlover.token.CustomToken;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +27,7 @@ import java.util.Enumeration;
 
 /**
  * 专栏作家控制器
+ *
  * @author hgh
  */
 @Controller
@@ -34,11 +38,14 @@ public class WriterController {
     @Autowired
     private UploadService uploadService;
     @Autowired
+    private EssayService essayService;
+    @Autowired
     private WriterService writerService;
 
 
     /**
      * 跳转作者专栏申请文章发表页面
+     *
      * @return
      */
     @RequestMapping("essay")
@@ -48,67 +55,85 @@ public class WriterController {
 
     /**
      * 跳转作者专栏登录页面
+     *
      * @return
      */
     @GetMapping("login")
     public String writeLoginUI() {
         return "front/writer_login";
     }
+
     /**
      * 跳转作者专栏登录操作
+     *
      * @return
      */
     @PostMapping("login")
     public String login(HttpServletRequest request, Writer writer, RedirectAttributes redirectAttributes) {
         if (StringUtils.isEmpty(writer.getUsername()) || StringUtils.isEmpty(writer.getPassword())) {
-            redirectAttributes.addAttribute("message", "专栏作家名或密码不能为空！");
-            return "redirect:writer/login";
+            redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
+            return "redirect:login";
         }
-        UsernamePasswordToken token = new UsernamePasswordToken(writer.getUsername(), new MD5Code().getMD5ofStr(writer.getPassword()));
+        CustomToken token = new CustomToken(writer.getUsername(), writer.getPassword(), "writer");
         try {
             SecurityUtils.getSubject().login(token);
         } catch (UnknownAccountException uae) {
-            logger.error("对专栏作家[" + writer.getUsername() + "]进行登录验证..验证未通过,未知账户");
-            redirectAttributes.addAttribute("message", "专栏作家名不存在");
+            logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,未知账户");
+            redirectAttributes.addAttribute("message", "用户名不存在!");
         } catch (IncorrectCredentialsException ice) {
-            logger.error("对专栏作家[" + writer.getUsername() + "]进行登录验证..验证未通过,错误的凭证");
-            redirectAttributes.addAttribute("message", "密码不正确");
-        } catch (LockedAccountException ule){
-            logger.error("对专栏作家[" + writer.getUsername() + "]进行登录验证..验证未通过,专栏作家被锁定");
-            redirectAttributes.addAttribute("message", "专栏作家被锁定");
-        }catch (DisabledAccountException dae){
-            logger.error("对专栏作家[" + writer.getUsername() + "]进行登录验证..验证未通过,专栏作家未激活");
-            redirectAttributes.addAttribute("message", "专栏作家未激活");
+            logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,错误的凭证");
+            redirectAttributes.addAttribute("message", "密码不正确!");
+        } catch (LockedAccountException ule) {
+            logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,用户被锁定");
+            redirectAttributes.addAttribute("message", "用户被锁定!");
         }
+        logger.debug("SecurityUtils.getSubject()=" + SecurityUtils.getSubject());
+        logger.debug("SecurityUtils.getSubject().isAuthenticated()=" + SecurityUtils.getSubject().isAuthenticated());
         if (SecurityUtils.getSubject().isAuthenticated()) {
             HttpSession session = request.getSession();
+            session.setAttribute("writer", writerService.selectByUserName(writer.getUsername()));
             Enumeration<String> attributeNames = session.getAttributeNames();
-            while(attributeNames.hasMoreElements()){
+            while (attributeNames.hasMoreElements()) {
                 String name = attributeNames.nextElement();
-                logger.info(name+"="+session.getAttribute(name));
+                logger.info(name + "=" + session.getAttribute(name));
             }
-            return "redirect:writer/essay";
-        }else{
-            return "redirect:writer/login";
+            return "redirect:essay";
+        } else {
+            return "redirect:login";
         }
     }
 
     /**
      * 文章保存
+     *
      * @param essays
      * @throws Exception
      */
-    @RequestMapping("upload")
-    public Object uploadEssay(String essays,String pseudonym,String title, Model model) throws Exception {
-        if(essays!=null) {
+    @PostMapping("upload")
+    public Object uploadEssay(HttpSession session, String essays
+            , Essay essay, MultipartFile file, RedirectAttributes redirectAttributes) throws Exception {
+        Writer writer = (Writer) session.getAttribute("writer");
+        logger.debug("writer=" + writer);
+        if (essays != null && file != null && writer!=null) {
             logger.debug(essays);
             String filePath = uploadService.uploadFile(essays, "txt");
+            String photoPath = uploadService.uploadFile(file);
+            essay.setWriterId(writer.getId());
+            essay.setFilename(filePath);
+            essay.setStatus(Essay.UNCHECKED_STATUS);
+            essay.setPhoto(photoPath);
             //提交文章的同时生成文章并且生成该作家
-            logger.debug(filePath);
-            boolean result = writerService.insertWriterAndEssay(filePath, pseudonym, title);
-            model.addAttribute("msg", essays);
+            // logger.debug(filePath);
+            essayService.insert(essay);
+            redirectAttributes.addAttribute("msg", essays);
         }
         //return essays;
+        return "redirect:result";
+    }
+
+    @RequestMapping("result")
+    public String resultUI(String msg, Model model) {
+        model.addAttribute("msg", msg);
         return "front/result";
     }
 

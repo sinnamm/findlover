@@ -70,9 +70,11 @@ function setHeadPortrait(btnInstance) {
         async:false,
         success: function (data) {
             if (data== "true") {
+                location.reload();
+                history.go(0);
                 // swal("温馨提示", "设置成功！", "success");
-                $("#basicPanel").removeClass("active");
-                $("#photoPanel").addClass("active");
+                //$("#basicPanel").removeClass("active");
+                //$("#photoPanel").addClass("active");
             } else {
                 swal("温馨提示", "设置失败！", "error");
             }

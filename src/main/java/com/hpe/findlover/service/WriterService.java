@@ -9,7 +9,7 @@ public interface WriterService extends BaseService<Writer> {
      * 插入文章的同时生成作家
      * @return
      */
-    boolean insertWriterAndEssay(String filePath,String pseudonym,String title);
+    boolean insertWriterAndEssay(Writer writer,String filePath);
 
     /**
      * 按条件查询所有作家

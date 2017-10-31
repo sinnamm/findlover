@@ -7,20 +7,32 @@ $(function () {
 
 function initEssayForm() {
     $('#essay-form').validator({
-        rules:{
+        /*rules:{
             photo:[/^.*[^a][^b][^c]\.(?:png|jpg|bmp|gif|jpeg)$/,'请正确上传图片格式！']
-        },
+        },*/
         fields: {
-            'pseudonym': 'required;chinese;length(2~12)',
-            'photo': 'required;photo',
-            'title': 'required'
+            'photo': 'required;accept[png|jpg|bmp|gif|jpeg]',
+            'title': 'required;chinese',
+            'essays': 'required'
         },
         theme: 'bootstrap',
         timely: 2,
-        stopOnError: true,
+        stopOnError: true/*,
         valid: function (form) {
-            alert(11);
-        }
+            $.ajax({
+                url: contextPath + "writer/upload" + exturl,
+                data: $(form).serialize(),
+                type: "PUT",
+                dataType: "TEXT",
+                success: function (data) {
+                    if (data == "true") {
+                        swal("温馨提示", "修改成功", "success");
+                    } else {
+                        swal("温馨提示", "修改失败", "error");
+                    }
+                }
+            });
+        }*/
     });
 }
 
