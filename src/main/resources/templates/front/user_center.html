@@ -677,26 +677,26 @@
                 <div class="message_header">
                     <h3>身份认证</h3>
                 </div>
-                <div th:if="${session.user.confirm}" class="ident_auth">
+                <div th:if="${session.user.authenticated}" class="ident_auth">
                     <span  style="font-size: 25px"
                         class="col-md-12 text-center">您已经认证过！</span>
                 </div>
-                <div th:if="${!session.user.confirm}">
+                <div th:if="${!session.user.authenticated}">
                     <form class="more_message" id="form-user-comfirm">
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">真实姓名：</label>
                             <input type="hidden" name="id" th:value="${session.user.id}">
-                            <input th:disabled="${session.user.confirm==true}" id="comfirm_realname" name="realname"
+                            <input th:disabled="${session.user.authenticated}" id="comfirm_realname" name="realname"
                                    class="col-md-4 form-control message_main_input">
                         </div>
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">身份证号：</label>
-                            <input th:disabled="${session.user.confirm==true}" id="comfirm_cardnumber" name="cardnumber"
+                            <input th:disabled="${session.user.authenticated}" id="comfirm_cardnumber" name="cardnumber"
                                    class="col-md-4 form-control message_main_input">
                         </div>
                         <div class="form-group message_group ">
                             <div class="col-md-7 text-center">
-                                <input class="btn btn-primary" th:disabled="${session.user.confirm==true}" type="submit"
+                                <input class="btn btn-primary" th:disabled="${session.user.authenticated}" type="submit"
                                        value="提交" style="margin: 10px"/>
                             </div>
                         </div>

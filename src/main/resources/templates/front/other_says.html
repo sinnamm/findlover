@@ -158,7 +158,7 @@
                         <!-- 新鲜事儿 -->
                         <div role="tabpanel" class="tab-pane fade" id="news" aria-labelledby="news-tab">
                             <span class="button-dropdown button-dropdown-primary" data-buttons="dropdown">
-                                <button class="button button-primary button-large">
+                                <button class="button button-primary" style="margin: 10px 0 0 15px">
                                   <i class="fa fa-bars"></i> <span id = "sort-btn">排序</span>
                                 </button>
                                 <ul class="button-dropdown-list is-below">
@@ -166,7 +166,7 @@
                                   <li id="hot-li"><a><i class="fa fa-heart-o"></i>最热</a></li>
                                 </ul>
                             </span>
-
+                            <hr>
                             <div id="news-div">
 
                             </div>
@@ -286,7 +286,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <img th:src="@{'/upload/user/photo/'+${session.user.photo}}" class="pub-msg-img" src="">
+                        <img th:src="@{/file(path=${session.user.photo})}" class="pub-msg-img" src="">
                     </div>
                     <div class="col-md-8">
                         <textarea rows="10" cols="50" id="content"></textarea>

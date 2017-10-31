@@ -2314,8 +2314,7 @@ ul.login_details li a {
 
 ul.login_details1 {
     padding: 0;
-    margin: 0;
-    margin-top: 10px;
+    margin: 15px 0 0 0;
     list-style: none;
 }
 
@@ -2592,7 +2591,7 @@ span.m_1 {
 }
 
 .jobs_right {
-    margin-top: 10px;
+    /*margin-top: 50px;*/
     overflow: hidden;
 }
 
@@ -5024,7 +5023,13 @@ ul.feature_list.feature_list1 {
     float: left;
     margin-right: 20px;
 }
-
+.jobs-item .thumb1 img {
+    border-radius: 60px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    width: 60px;
+    height: 60px;
+}
 .jobs-item .thumb img {
     border-radius: 5px;
     margin-bottom: 10px;
@@ -5484,4 +5489,7 @@ h6.title a:hover{
 }
 .center-middle a:hover p{
     color: #e55b19;
+}
+.with-thumb{
+    cursor: pointer;
 }

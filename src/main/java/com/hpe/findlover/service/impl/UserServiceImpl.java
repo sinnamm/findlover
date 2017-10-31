@@ -67,7 +67,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 
 	@Override
 	public List<UserBasic> selectUserBySexualAndWorkProvince(Integer id, String sexual, String workProvince) {
-		return userBasicMapper.selectUserBySexualAndWorkProvince(id,sexual,workProvince);
+		return userBasicMapper.selectUserBySexualAndWorkProvince(id, sexual, workProvince);
 	}
 
 	@Override
@@ -94,8 +94,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 
 	//-----------------------------后台------------------------------
 	@Override
-	public List<UserBasic> selectAllByIdentity(String identity,String column,String keyword) {
-		return userBasicMapper.selectAllByIdentity(identity,column,keyword);
+	public List<UserBasic> selectAllByIdentity(String identity, String column, String keyword) {
+		return userBasicMapper.selectAllByIdentity(identity, column, keyword);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 			user.setStar(LoverUtil.getDiffOfHours(asset.getStarDeadline()) > 0);
 		}
 		if (detail != null) {
-			user.setAuthenticated(detail.getCardnumber() != null);
+			user.setAuthenticated(detail.getCardnumber() != null && detail.getRealname() != null);
 		}
 	}
 
@@ -123,10 +123,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 		String tmp = user.getPhoto();
 		user.setPhoto(photo.getPhoto());
 		photo.setPhoto(tmp);
-		if (!this.updateByPrimaryKey(user)){
+		if (!this.updateByPrimaryKey(user)) {
 			return false;
 		}
-		if (userPhotoMapper.updateByPrimaryKey(photo)<0){
+		if (userPhotoMapper.updateByPrimaryKey(photo) < 0) {
 			return false;
 		}
 		return true;

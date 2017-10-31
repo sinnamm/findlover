@@ -53,6 +53,7 @@ public class UserCenterController {
     public String userCenter(Model model, HttpSession session){
         //跳转前查询用资产
         UserBasic user = (UserBasic) session.getAttribute("user");
+        userService.userAttrHandler(user);
         UserAsset userAsset = userAssetService.selectByPrimaryKey(user.getId());
         UserPhoto userPhoto = new UserPhoto();
         userPhoto.setUserId(user.getId());
@@ -67,7 +68,7 @@ public class UserCenterController {
 
         session.setAttribute("user",user);
         logger.info("userAsset:"+userAsset);
-        logger.info("userAsset:"+user.isConfirm());
+        logger.info("userAuth:"+user.isAuthenticated());
         //剩余时间计算
         int vipDate=0, starDate=0,asset=0;
         if (userAsset!=null){
@@ -80,12 +81,11 @@ public class UserCenterController {
             if (userAsset.getAsset()!=null){
                 asset= userAsset.getAsset();
             }
-            logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+userAsset.getAsset());
         }
         logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+asset);
         model.addAttribute("photos",photos);
-        model.addAttribute("vipDate",vipDate);
-        model.addAttribute("starDate",starDate);
+        model.addAttribute("vipDate",Math.max(0,vipDate));
+        model.addAttribute("starDate",Math.max(0,starDate));
         model.addAttribute("asset",asset);
         return "front/user_center";
     }
@@ -402,7 +402,7 @@ public class UserCenterController {
         boolean result = false;
         result = userDetailService.updateByPrimaryKeySelective(userDetail);
         UserBasic user = (UserBasic)session.getAttribute("user");
-        user.setConfirm(true);
+        user.setAuthenticated(true);
         session.setAttribute("user",user);
         return result;
     }

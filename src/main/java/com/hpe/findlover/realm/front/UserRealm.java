@@ -60,22 +60,7 @@ public class UserRealm extends AuthorizingRealm {
 		} else if (userBasic.getStatus() == Constant.USER_DISABLED_STATUS) {
 			throw new DisabledAccountException("用户未激活");
 		}
-		UserAsset userAsset = userAssetService.selectByPrimaryKey(userBasic.getId());
-		//身份是否认证过
-		UserDetail userDetail = userDetailService.selectByPrimaryKey(userBasic.getId());
-		if(userDetail != null) {
-			userBasic.setConfirm(userDetailService.selectByPrimaryKey(userBasic.getId()).getCardnumber() != null);
-		}
-		if (userAsset == null || userAsset.getVipDeadline() == null) {
-			userBasic.setVip(false);
-		} else {
-			userBasic.setVip(!userAsset.getVipDeadline().before(new Date()));
-		}
-		if (userAsset == null || userAsset.getStarDeadline() == null) {
-			userBasic.setStar(false);
-		} else {
-			userBasic.setStar(!userAsset.getStarDeadline().before(new Date()));
-		}
+		userService.userAttrHandler(userBasic);
 		logger.info("用户验证通过，把数据存入Session");
 		SecurityUtils.getSubject().getSession().setAttribute("user", userBasic);
 		// userInfo.setPermissions(userService.findPermissions(user));

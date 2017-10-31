@@ -79,27 +79,27 @@
                             </div>
                             <div class="tab-pane fade in" id="followerPanel">
                                 <div class="jobs-item">
-                                    <div class="thumb_top">
-                                        <div class="thumb" style="width: 150px">
-                                            <a href="view_profile.html"><img src="../../static/images/p17.jpg"
-                                                                             class="img-responsive" alt=""/></a></div>
-                                        <div class="jobs_right">
-                                            <h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>
-                                            <ul class="login_details1">
-                                                <li>19岁 山东菏泽 大专 未婚 3000-5000</li>
-                                            </ul>
-                                            <ul class="login_details1">
-                                                <li>2017-10-12</li>
-                                            </ul>
-                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">取消关注</a>
-                                            </div>
-                                            <div class="thumb_but"><a href="view_profile.html" class="photo_view">Send
-                                                Mail</a>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <hr/>
+                                    <!--<div class="thumb_top">-->
+                                        <!--<div class="thumb" style="width: 150px">-->
+                                            <!--<a href="view_profile.html"><img src="../../static/images/p17.jpg"-->
+                                                                             <!--class="img-responsive" alt=""/></a></div>-->
+                                        <!--<div class="jobs_right">-->
+                                            <!--<h6 class="title"><a href="view_profile.html">Lorem (2547189)</a></h6>-->
+                                            <!--<ul class="login_details1">-->
+                                                <!--<li>19岁 山东菏泽 大专 未婚 3000-5000</li>-->
+                                            <!--</ul>-->
+                                            <!--<ul class="login_details1">-->
+                                                <!--<li>2017-10-12</li>-->
+                                            <!--</ul>-->
+                                            <!--<div class="thumb_but"><a href="view_profile.html" class="photo_view">取消关注</a>-->
+                                            <!--</div>-->
+                                            <!--<div class="thumb_but"><a href="view_profile.html" class="photo_view">Send-->
+                                                <!--Mail</a>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                    <!--</div>-->
+                                    <!--<hr/>-->
                                 </div>
                             </div>
                         </div>
@@ -154,57 +154,22 @@
                 <ul class="match_box">
                     <li><h4>新人抢先看</h4></li>
                     <hr/>
-                    <li>
-                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-                             class="jobs-item with-thumb">
+                    <li th:each="star:${stars}">
+                        <div class="jobs-item with-thumb">
                             <div class="thumb_top">
                                 <div class="thumb">
-                                    <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
-                                         alt=""/>
+                                    <img th:src="@{/file(path=${star.photo})}" style="width: 100px;height: 100px;" class="img-responsive"/>
                                 </div>
                                 <div class="jobs_right">
-                                    <h5>之夏</h5>
-                                    <p>18岁 高中及以下</p>
-                                    <span>3天前注册</span>
+                                    <h5 th:text="${star.nickname}"></h5>
+                                    <p th:inline="text">[[${star.age}]]岁&nbsp;[[${star.education}]]</p>
+                                    <span th:text="${star.workplace}"></span>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <hr/>
-                    <li>
-                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-                             class="jobs-item with-thumb">
-                            <div class="thumb_top">
-                                <div class="thumb">
-                                    <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
-                                         alt=""/>
-                                </div>
-                                <div class="jobs_right">
-                                    <h5>之夏</h5>
-                                    <p>18岁 高中及以下</p>
-                                    <span>3天前注册</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <hr/>
-                    <li>
-                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-                             class="jobs-item with-thumb">
-                            <div class="thumb_top">
-                                <div class="thumb">
-                                    <img src="../../static/images/p13.jpg" style="width: 100px" class="img-responsive"
-                                         alt=""/>
-                                </div>
-                                <div class="jobs_right">
-                                    <h5>之夏</h5>
-                                    <p>18岁 高中及以下</p>
-                                    <span>3天前注册</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <hr/>
+
                     <li><a href="view_profile.html" class="photo_view center-block "
                            style="color: white;text-align: center">想查看更多吗</a></li>
                 </ul>

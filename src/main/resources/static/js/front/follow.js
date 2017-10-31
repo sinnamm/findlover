@@ -38,10 +38,10 @@ function loadData(pageNum, type) {
                     '            </ul>\n' +
                     '            <ul class="login_details1">\n' +
                     '                <li>'+user.birthday+'</li>\n' +
-                    '            </ul>\n' + (type=='follower'?'':
+                    '            </ul>\n')) + (type=='follower'?'':
                     '            <div class="thumb_but"><a href="javascript:cancelFollowAndGoPage('+user.id+','+pageNum+')" class="photo_view"><i class="fa fa-heart-o"></i>&nbsp;取消关注</a>\n' +
-                    '            </div>\n') +
-                    '            <div class="thumb_but"><a href="'+contextPath+'letter?id='+user.id+'" class="photo_view"><i class="fa fa-envelope-o"></i>&nbsp;发私信</a>\n')) +
+                    '            </div>\n') + (user.authority != 1 ? '' :
+                    '            <div class="thumb_but"><a href="'+contextPath+'letter?id='+user.id+'" class="photo_view"><i class="fa fa-envelope-o"></i>&nbsp;发私信</a>\n') +
                 '        </div>\n' +
                 '        <div class="clearfix"></div>\n' +
                 '    </div>');

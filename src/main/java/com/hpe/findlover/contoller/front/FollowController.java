@@ -6,20 +6,22 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.Follow;
-import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.service.UserAssetService;
+import com.hpe.findlover.model.UserPick;
+import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.service.FollowService;
+import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -29,15 +31,21 @@ public class FollowController {
 	private Logger logger = LogManager.getLogger(FollowController.class);
 	private final FollowService followService;
 	private final UserService userService;
+	private final UserPickService userPickService;
 
 	@Autowired
-	public FollowController(FollowService followService, UserService userService) {
+	public FollowController(FollowService followService, UserService userService, UserPickService userPickService) {
 		this.followService = followService;
 		this.userService = userService;
+		this.userPickService = userPickService;
 	}
 
 	@GetMapping
-	public String index() {
+	public String index(Model model, HttpSession session) {
+		UserPick userPick = userPickService.selectByPrimaryKey(((UserBasic)session.getAttribute("user")).getId());
+		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPick, 4, userService);
+		userService.userAttrHandler(stars);
+		model.addAttribute("stars", stars);
 		return "front/follow";
 	}
 

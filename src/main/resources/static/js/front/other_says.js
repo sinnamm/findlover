@@ -31,7 +31,7 @@ function getMessage() {
                     "                                    <div class='clearfix'></div>" +
                     "                                </div>" +
                     "                                <div class='message_content' style='padding: 0px 10px 0 10px'>" +
-                    "                                    <p style='margin-bottom: 0px; font-size: medium '>" + list[i].content + "</p>" +
+                    "                                    <p style='margin-left: 25px; font-size: medium '>" + list[i].content + "</p>" +
                     "                                </div>" +
                     "                                <div class='row text-right'>" +
                     "                                    <div class='col-sm-7'></div>" +
