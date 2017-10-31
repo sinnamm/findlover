@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /***
  * @author  gss
@@ -39,6 +40,9 @@ public class OtherSayController {
 	private MessageLikeService messageLikeService;
 	@Autowired
 	private MessageReplyService messageReplyService;
+	@Autowired
+	private FollowService followService;
+
 	private Logger logger = LogManager.getLogger(this.getClass());
 	private final MessageService messageService;
 
@@ -69,6 +73,7 @@ public class OtherSayController {
 		logger.info("进行个人动态增加："+message);
 		return messageService.insert(message);
 	}
+
 	@GetMapping("/message")
 	@ResponseBody
 	public String message(@Param("pageNum")Integer pageNum,@Param("type")String type) throws JsonProcessingException {
@@ -89,6 +94,27 @@ public class OtherSayController {
 		PageInfo pageInfo = new PageInfo(list);
 		return JSON.toJSONStringWithDateFormat(pageInfo,"yyyy-MM-dd HH:mm:ss", SerializerFeature.DisableCircularReferenceDetect);
 	}
+
+	@GetMapping("/followMessage")
+	@ResponseBody
+	public String followMessage(@Param("pageNum")Integer pageNum,HttpServletRequest request) throws JsonProcessingException {
+		logger.info("pageNum=="+pageNum);
+		UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+		Set<Integer> followIds = followService.selectFollowIdByUserId(userBasic.getId());
+		followIds.forEach(logger::info);
+		PageHelper.startPage(pageNum,4,"pub_time desc");
+		List<Message> list = messageService.selectMessageByFollow(followIds);
+		for (int i=0;i<list.size();i++){
+			List<MessageReply> messageReplies = list.get(i).getReplies();
+			for (int j=0;j<messageReplies.size();j++){
+				messageReplies.get(j).setUserBasic(userService.selectByPrimaryKey(messageReplies.get(j).getUserId()));
+			}
+		}
+		list.forEach(logger::info);
+		PageInfo pageInfo = new PageInfo(list);
+		return JSON.toJSONStringWithDateFormat(pageInfo,"yyyy-MM-dd HH:mm:ss", SerializerFeature.DisableCircularReferenceDetect);
+	}
+
 
 	@GetMapping("/likeMessage/{messageId}")
 	@ResponseBody

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class FollowServiceImpl extends BaseServiceImpl<Follow> implements FollowService {
@@ -33,5 +34,10 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow> implements Follow
 	@Override
 	public List<UserBasic> selectAllFollower(int followId) {
 		return followMapper.selectAllFollower(followId);
+	}
+
+	@Override
+	public Set<Integer> selectFollowIdByUserId(int userId) {
+		return followMapper.selectFollowIdByUserId(userId);
 	}
 }

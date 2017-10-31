@@ -32,9 +32,11 @@
         FROM findlover.user_basic
         WHERE id = #{id}
     </select>
+
     <select id="selectList" resultMap="BaseResultMap">
         SELECT * FROM message
     </select>
+    
     <select id="selectMessageByColumn" resultMap="BackResultMap">
         SELECT message.*,user_basic.nickname
         FROM message
@@ -51,5 +53,14 @@
               AND message.content LIKE #{keyword}
             </if>
         </where>
+    </select>
+    
+    <select id="selectMessageByIds" resultMap="BaseResultMap">
+        SELECT  * from message
+        WHERE user_id IN 
+        <foreach collection="set" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+
     </select>
 </mapper>

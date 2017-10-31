@@ -174,12 +174,12 @@
 
                         <!-- 关注的ta们 -->
                         <div role="tabpanel" class="tab-pane fade" id="message" aria-labelledby="message-tab">
-                            <div id="news-follow-div">
-
+                            <div id="news-follow-div" style="padding-top: 10px">
+                                <span>暂时没有任何动态哟</span>
                             </div>
                         </div>
                         <!--分页-->
-                        <div class="row">
+                        <div class="row" id="divide-page">
                             <div class="col-md-12 text-right">
                                 <div id="pagetool">
                                     <ul class="pagination">
@@ -263,7 +263,7 @@
             </div>
             <div class="modal-body">
 
-               <textarea rows="5" cols="65" id="reply-content">说些什么吧...</textarea>
+               <textarea rows="5" cols="65" id="reply-content" placeholder="说点什么吧...."></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

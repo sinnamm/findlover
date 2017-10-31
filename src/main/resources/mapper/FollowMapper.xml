@@ -22,4 +22,7 @@
   <select id="selectAllFollower" resultType="UserBasic">
     SELECT ub.* FROM user_basic AS ub, follow AS f WHERE ub.id=f.user_id AND f.follow_id=#{followId} ORDER BY f.follow_time DESC
   </select>
+  <select id="selectFollowIdByUserId" resultType="int">
+    SELECT follow_id FROM follow WHERE user_id=#{userId}
+  </select>
 </mapper>
