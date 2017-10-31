@@ -7,6 +7,8 @@ import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EssayServiceImpl extends BaseServiceImpl<Essay> implements EssayService {
     private final EssayMapper essayMapper;
@@ -19,5 +21,10 @@ public class EssayServiceImpl extends BaseServiceImpl<Essay> implements EssaySer
     @Override
     public BaseTkMapper<Essay> getMapper() {
         return essayMapper;
+    }
+
+    @Override
+    public List<Essay> selectAllByIdentity(String identity, String column, String keyword) {
+        return essayMapper.selectAllByIdentity(identity,column,keyword);
     }
 }

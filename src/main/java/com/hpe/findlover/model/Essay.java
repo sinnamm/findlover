@@ -15,17 +15,42 @@ public class Essay {
 
     private String filename;
 
+    private String photo;
+
     @Column(name = "pub_time")
     private Date pubTime;
 
+    @Transient
+    private Writer writer;
+
     /**
-     * 发布状态默认值
+     * 下架
      */
-    public static Integer DEFAUlT_STATUS=0;
+    public static final Integer SOLD_OUT=0;
     /**
-     * 发布状态的发布状态值
+     * 审核通过
      */
-    public static Integer PUBLIC_STATUS=1;
+    public static final Integer CHECKED_STATUS=1;
+    /**
+     * 未审核
+     */
+    public static final Integer UNCHECKED_STATUS=2;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
+    }
 
     /**
      * 0：下架，1：审核通过，2：待审核
@@ -169,5 +194,22 @@ public class Essay {
      */
     public void setVisitCount(Integer visitCount) {
         this.visitCount = visitCount;
+    }
+
+    @Override
+    public String toString() {
+        return "Essay{" +
+                "id=" + id +
+                ", writerId=" + writerId +
+                ", title='" + title + '\'' +
+                ", filename='" + filename + '\'' +
+                ", photo='" + photo + '\'' +
+                ", pubTime=" + pubTime +
+                ", writer=" + writer +
+                ", status=" + status +
+                ", adminId=" + adminId +
+                ", likeCount=" + likeCount +
+                ", visitCount=" + visitCount +
+                '}';
     }
 }

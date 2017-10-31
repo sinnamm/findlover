@@ -11,39 +11,13 @@
             src="../../static/plugins/ueditor/ueditor.all.min.js"></script>
     <script th:src="@{/plugins/ueditor/lang/zh-cn/zh-cn.js}" type="text/javascript" charset="utf-8"
             src="../../static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script th:src="@{/js/front/writer.js}" type="text/javascript" charset="utf-8"
+            src="../../static/js/front/writer.js"></script>
 
     <script type="text/javascript">
 
         $(function () {
-            window.UEDITOR_HOME_URL = contextPath + "plugins/ueditor/";
-            //实例化编辑器
-            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-            var ue = UE.getEditor('editor');
-            UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-            UE.Editor.prototype.getActionUrl = function (action) {
-                if (action == 'uploadimage' || action == 'uploadscrawl') {
-                    return contextPath+'ueditor/uploadfile';
-                } else {
-                    return this._bkGetActionUrl.call(this, action);
-                }
-            }
-            $("#htmlbtn").click(function () {
-                var hcontent = UE.getEditor('editor').getContent();
-                alert(hcontent);
-                $.ajax({
-                    url: contextPath + "writer/upload",
-                    data: {"essays": hcontent},
-                    type: "POST",
-                    dataType: "JSON",
-                    success: function (data) {
-                        alert(data.msg);
-                       $("form").before($(data.msg));
-                    },
-                    error:function (error,msg) {
-                        alert(msg);
-                    }
-                });
-            });
+
         });
     </script>
 </head>
@@ -53,7 +27,8 @@
 <!--导航栏（th:remove)-->
 
 <div class="container grid_0">
-    <form th:action="@{/writer/upload}" th:method="post" class="form-horizontal">
+    <button id="htmlbtn">获取纯文本</button>
+    <form id="essay-form" th:action="@{/writer/upload}" th:method="post" class="form-horizontal">
         <div class="text-center" style="margin: 100px">
             <h1>文章申请发布</h1>
         </div>
@@ -62,6 +37,13 @@
             <label for="pseudonym" class="col-md-2 control-label">您的笔名</label>
             <div class="col-md-4">
                 <input id="pseudonym" name="pseudonym" type="text" class="form-control" placeholder="笔名">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="photo" class="col-md-2 control-label">文章配图</label>
+            <div class="col-md-4">
+                <input id="photo" name="photo" type="file" class="control-file" placeholder="笔名">
             </div>
         </div>
 

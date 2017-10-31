@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class WriterServiceImpl extends BaseServiceImpl<Writer> implements WriterService {
@@ -28,6 +29,11 @@ public class WriterServiceImpl extends BaseServiceImpl<Writer> implements Writer
     }
 
     @Override
+    public Writer selectByUserName(String username) {
+        return writerMapper.selectByUserName(username);
+    }
+
+    @Override
     public boolean insertWriterAndEssay(String filePath,String pseudonym,String title) {
         boolean result = false;
         Writer writer = new Writer();
@@ -38,9 +44,15 @@ public class WriterServiceImpl extends BaseServiceImpl<Writer> implements Writer
             essay.setWriterId(writer.getId());
             essay.setTitle(title);
             essay.setFilename(filePath);
-            essay.setStatus(Essay.DEFAUlT_STATUS);
+            essay.setStatus(Essay.UNCHECKED_STATUS);
             result = essayMapper.insert(essay)>0;
         }
         return result;
+    }
+
+    /*-------------------------------后台功能-----------------------------------*/
+    @Override
+    public List<Writer> selectAllByIdentity(String identity,String column, String keyword) {
+        return writerMapper.selectAllByIdentity(identity,column,keyword);
     }
 }

@@ -15,10 +15,40 @@
     <result column="like_count" property="likeCount" jdbcType="INTEGER" />
     <result column="visit_count" property="visitCount" jdbcType="INTEGER" />
   </resultMap>
+    <!-- 文章对应的作家映射 -->
+    <resultMap id="essayResultMap" type="Essay" extends="BaseResultMap">
+        <association property="writer" javaType="writer" column="wid" >
+            <id column="id" property="id" jdbcType="INTEGER" />
+            <result column="pseudonym" property="pseudonym" jdbcType="VARCHAR" />
+            <result column="username" property="username" jdbcType="VARCHAR" />
+            <result column="password" property="password" jdbcType="VARCHAR" />
+            <result column="photo" property="photo" jdbcType="VARCHAR" />
+            <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+            <result column="essay_count" property="essayCount" jdbcType="INTEGER" />
+            <result column="wstatus" property="status" jdbcType="INTEGER" />
+        </association>
+    </resultMap>
+
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbg.generated
     -->
-    id, writer_id, title, filename, pub_time, status, admin_id, like_count, visit_count
+    id, writer_id, title, filename, pub_time, status, admin_id, like_count, visit_count,photo
   </sql>
+    <select id="selectAllByIdentity" resultMap="essayResultMap">
+        SELECT e.id, e.writer_id, e.title, e.filename, e.pub_time, e.status, e.admin_id, e.like_count, e.visit_count,
+        w.id AS wid, w.pseudonym, w.reg_time, w.essay_count,w.username,w.password,w.status AS wstatus
+        FROM essay AS e LEFT OUTER JOIN writer as w ON e.writer_id=w.id
+        WHERE e.${column} LIKE #{keyword}
+        <if test="identity == 'unchecked'">
+            AND e.status=2
+        </if>
+        <if test="identity == 'checked'">
+            AND e.status=1
+        </if>
+        <if test="identity == 'soldout'">
+            AND e.status=0
+        </if>
+        ORDER BY e.pub_time DESC
+    </select>
 </mapper>

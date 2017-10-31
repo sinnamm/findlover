@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/writer_list.js}"></script>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">用户基本信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid" style="margin-bottom: 15px">
+                                <div class="btn-group" style="float: left">
+                                    <button id="writer-btn-all" type="button" class="btn btn-primary">全部</button>
+                                    <button id="writer-btn-locked" type="button" class="btn btn-danger">已锁定</button>
+                                    <button id="writer-btn-unlocked" type="button" class="btn btn-success">已激活</button>
+                                </div>
+                                <div class="search-user">
+                                    <div>
+                                        <select id="basic-search-sel" class="form-control">
+                                            <option value="id">ID</option>
+                                            <option value="pseudonym">笔名</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="basic-search-val" class="form-control">
+                                    </div>
+                                    <div>
+                                        <button id="writer-search-btn" type="button"
+                                                class="btn btn-primary dropdown-toggle" style="margin-bottom: 3px"><i
+                                                class="fa fa-search"></i>&nbsp;搜索
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="user-basic-table" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>账号</th>
+                                            <th>笔名</th>
+                                            <th>注册时间</th>
+                                            <th>发表文章（篇）</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                             <td>100001</td>
+                                             <td>没有草原却爱上野马</td>
+                                             <td>2017-11-11</td>
+                                             <td>5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="pagetool">
+                                <ul class="pagination">
+                                    <li class="head"><a href="#">首页</a></li>
+                                    <li class="lastpage"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li class="disabled morehead"><a>...</a></li>
+                                    <li class="page-4"><a></a></li>
+                                    <li class="page-3"><a></a></li>
+                                    <li class="page-2"><a></a></li>
+                                    <li class="page-1"><a></a></li>
+                                    <li class="currentpage active"><a>1</a></li>
+                                    <li class="page_1"><a></a></li>
+                                    <li class="page_2"><a></a></li>
+                                    <li class="page_3"><a></a></li>
+                                    <li class="page_4"><a></a></li>
+                                    <li class="disabled moretail"><a>...</a></li>
+                                    <li class="nextpage"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                    <li class="tail"><a href="#">尾页</a></li>
+                                </ul>
+                                <div style="float: right;margin: 28px;font-size: 15px;font-weight: 400;color: #666666;">
+                                    共
+                                    <span id="total"></span>
+                                    条数据，每页显示
+                                    <select id="pageSize-sel">
+                                    </select>
+                                    条
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="modifyPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">专栏作家密码修改</h4>
+            </div>
+            <form id="resetPwd" class="form-horizontal">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="pwd" class="col-md-3 control-label">当前ID：</label>
+                    <div class="col-md-6">
+                        <span id="writerid" class="form-control"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pwd" class="col-md-3 control-label">密码：</label>
+                    <div class="col-md-6">
+                        <input id="pwd" name="pwd" type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="repwd" class="col-md-3 control-label">确认密码：</label>
+                    <div class="col-md-6">
+                        <input id="repwd" name="password" type="password" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary">
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+</body>
+</html>

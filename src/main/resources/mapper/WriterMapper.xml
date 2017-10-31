@@ -7,13 +7,32 @@
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="pseudonym" property="pseudonym" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
     <result column="essay_count" property="essayCount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbg.generated
     -->
-    id, pseudonym, reg_time, essay_count
+    id, pseudonym, reg_time, essay_count,username,password,status
   </sql>
+  <select id="selectAllByIdentity" resultType="writer">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM writer
+    WHERE writer.${column} LIKE #{keyword}
+    <if test="identity == 'locked'">
+      AND status=0
+    </if>
+    <if test="identity == 'unlocked'">
+      AND status=1
+    </if>
+  </select>
+  <select id="selectByUserName" resultType="writer">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM writer
+    WHERE username = #{username}
+  </select>
 </mapper>

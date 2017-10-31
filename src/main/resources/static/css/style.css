@@ -66,6 +66,15 @@ img.zoom-img:hover {
     -o-background-size: cover;
 }
 
+.banner-writer-login {
+    background: url("../images/writer_login_bg.jpg") no-repeat center;
+    height: 450px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
 .banner-register {
     background: url("../images/register.png") no-repeat center;
     background-size: cover;
