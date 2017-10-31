@@ -14,6 +14,7 @@ import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,7 +66,7 @@ public class UserControllerBack {
 
 	@GetMapping("{type}/{id}")
 	@ResponseBody
-	@Cacheable(value = "user-cache")
+	@Cacheable(value = "user-cache", key = "#type+'-'+#id")
 	public Object userBasic(@PathVariable int id, @PathVariable String type) throws NoSuchFieldException, IllegalAccessException {
 		logger.debug("获取ID为" + id + "的User" + StringUtils.capitalize(type) + "数据...");
 		Field declaredField = this.getClass().getDeclaredField("user" + StringUtils.capitalize(type) + "Service");
@@ -97,6 +98,7 @@ public class UserControllerBack {
 
 	@PutMapping("basic/{id}")
 	@ResponseBody
+	@CachePut(value = "user-cache", key = "'basic-'+#id")
 	public boolean updateUser(@PathVariable int id, UserBasic userBasic) {
 		userBasic.setId(id);
 		return userBasicService.updateByPrimaryKeySelective(userBasic);
@@ -105,11 +107,7 @@ public class UserControllerBack {
 	@PostMapping("label")
 	@ResponseBody
 	public int addLabel(Label label) {
-		if (labelService.insertUseGeneratedKeys(label) > 0) {
-			return label.getId();
-		} else {
-			return 0;
-		}
+		return labelService.insertUseGeneratedKeys(label) > 0 ? label.getId() : 0;
 	}
 
 	@PostMapping("label/exists")

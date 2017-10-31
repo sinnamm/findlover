@@ -6,6 +6,7 @@ import com.hpe.findlover.service.LabelService;
 import com.hpe.findlover.service.UserLabelService;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.token.CustomToken;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.MD5Code;
@@ -14,6 +15,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -76,7 +79,8 @@ public class UserController {
 //		设置注册页面没有的必填信息
         String uuid = UUID.randomUUID().toString();
         user.setCode(uuid);
-        user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
         user.setAuthority(1);
         //暂时将状态码设置为1
         user.setStatus(1);
@@ -146,7 +150,8 @@ public class UserController {
 			redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
 			return "redirect:login";
 		}
-		UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), new MD5Code().getMD5ofStr(user.getPassword()));
+//		UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), new MD5Code().getMD5ofStr(user.getPassword()));
+		CustomToken token = new CustomToken(user.getEmail(), user.getPassword(),"user");
 		try {
 			SecurityUtils.getSubject().login(token);
 		} catch (UnknownAccountException uae) {
@@ -164,6 +169,7 @@ public class UserController {
 		}
 		if (SecurityUtils.getSubject().isAuthenticated()) {
 			HttpSession session = request.getSession();
+			session.setAttribute("user",userService.selectByEmail(user.getEmail()));
 			Enumeration<String> attributeNames = session.getAttributeNames();
 			while(attributeNames.hasMoreElements()){
 				String name = attributeNames.nextElement();

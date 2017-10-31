@@ -1,24 +1,19 @@
-package com.hpe.findlover.realm.front;
+package com.hpe.findlover.realm;
 
-import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserDetail;
 import com.hpe.findlover.service.UserAssetService;
 import com.hpe.findlover.service.UserDetailService;
 import com.hpe.findlover.service.UserService;
-import com.hpe.findlover.util.Constant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Date;
 
 public class UserRealm extends AuthorizingRealm {
 	private Logger logger = LogManager.getLogger(UserRealm.class);
@@ -28,14 +23,6 @@ public class UserRealm extends AuthorizingRealm {
 	public UserAssetService userAssetService;
 	@Autowired
 	public UserDetailService userDetailService;
-
-	public UserRealm() {
-		this(new AllowAllCredentialsMatcher());
-	}
-
-	public UserRealm(CredentialsMatcher matcher) {
-		super(matcher);
-	}
 
 	/**
 	 * 用户身份认证
@@ -53,19 +40,16 @@ public class UserRealm extends AuthorizingRealm {
 		UserBasic userBasic;
 		if ((userBasic = userService.selectByEmail(email)) == null) {
 			throw new UnknownAccountException("用户名不存在！");
-		} else if (!userBasic.getPassword().equals(new String((char[]) token.getCredentials()))) {
-			throw new IncorrectCredentialsException("用户名或密码错误");
-		} else if (userBasic.getStatus() == Constant.USER_LOCKED_STATUS) {
-			throw new LockedAccountException("用户被锁定");
-		} else if (userBasic.getStatus() == Constant.USER_DISABLED_STATUS) {
-			throw new DisabledAccountException("用户未激活");
 		}
-		userService.userAttrHandler(userBasic);
-		logger.info("用户验证通过，把数据存入Session");
-		SecurityUtils.getSubject().getSession().setAttribute("user", userBasic);
-		// userInfo.setPermissions(userService.findPermissions(user));
+//		} else if (!userBasic.getPassword().equals(new String((char[]) token.getCredentials()))) {
+//			throw new IncorrectCredentialsException("用户名或密码错误");
+//		} else if (userBasic.getStatus() == Constant.USER_LOCKED_STATUS) {
+//			throw new LockedAccountException("用户被锁定");
+//		} else if (userBasic.getStatus() == Constant.USER_DISABLED_STATUS) {
+//			throw new DisabledAccountException("用户未激活");
+//		}
 		// 加密交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
-		return new SimpleAuthenticationInfo(email, token.getCredentials(), null, "userRealm");
+		return new SimpleAuthenticationInfo(email, userBasic.getPassword(),ByteSource.Util.bytes(userBasic.getEmail()), getName());
 	}
 
 	@Override

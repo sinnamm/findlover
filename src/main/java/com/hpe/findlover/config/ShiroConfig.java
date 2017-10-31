@@ -1,9 +1,15 @@
 package com.hpe.findlover.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.hpe.findlover.realm.front.UserRealm;
+import com.hpe.findlover.authenticator.CustomModularRealmAuthenticator;
+import com.hpe.findlover.model.Writer;
+import com.hpe.findlover.realm.AdminRealm;
+import com.hpe.findlover.realm.UserRealm;
+import com.hpe.findlover.realm.WriterRealm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -17,6 +23,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -83,15 +90,14 @@ public class ShiroConfig {
 	 * 所以我们需要修改下doGetAuthenticationInfo中的代码; ）
 	 * @return
 	 **/
-	/**
 	@Bean
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+		logger.info("加载Bean: HashedCredentialsMatcher");
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
 		hashedCredentialsMatcher.setHashAlgorithmName("md5");// 散列算法:这里使用MD5算法;
 		hashedCredentialsMatcher.setHashIterations(1);// 散列的次数，比如散列两次，相当于md5(md5(""));
-		hashedCredentialsMatcher.setStoredCredentialsHexEncoded(true);
 		return hashedCredentialsMatcher;
-	}*/
+	}
 
 	/**
 	 * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
@@ -99,27 +105,61 @@ public class ShiroConfig {
 	 */
 	@Bean
 	@DependsOn("lifecycleBeanPostProcessor")
-	public UserRealm customRealm() {
-		return new UserRealm();
+	public UserRealm customUserRealm() {
+		UserRealm userRealm = new UserRealm();
+		userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+		userRealm.setName("userRealm");
+		return userRealm;
 	}
+	@Bean
+	@DependsOn("lifecycleBeanPostProcessor")
+	public WriterRealm customWriterRealm() {
+		WriterRealm writerRealm = new WriterRealm();
+		writerRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+		writerRealm.setName("writerRealm");
+		return writerRealm;
+	}
+	/*@Bean
+	@DependsOn("lifecycleBeanPostProcessor")
+	public AdminRealm customAdminRealm() {
+		AdminRealm adminRealm = new AdminRealm();
+		adminRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+		adminRealm.setName("adminRealm");
+		return adminRealm;
+	}*/
+
 	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		// 设置realm.
-		securityManager.setRealm(customRealm());
+		securityManager.setRealms(Arrays.asList(customUserRealm(),customWriterRealm()));
+		//验证器
+		securityManager.setAuthenticator(realmAuthenticator());
 		// 注入记住我管理器;
 		securityManager.setRememberMeManager(rememberMeManager());
 //		securityManager.setCacheManager(ehCacheManager());
 		return securityManager;
+	}
+
+	/**
+	 * 自定义验证器，可以实现指定特定Realm处理特定类型的验证
+	 * @return
+	 */
+	@Bean
+	public ModularRealmAuthenticator realmAuthenticator(){
+		logger.info("初始化Bean: CustomModularRealmAuthenticator");
+		CustomModularRealmAuthenticator realmAuthenticator = new CustomModularRealmAuthenticator();
+		realmAuthenticator.setRealms(Arrays.asList(customUserRealm(),customWriterRealm()));
+		return realmAuthenticator;
 	}
 	/**
 	 * DefaultAdvisorAutoProxyCreator，Spring的一个bean，由Advisor决定对哪些类的方法进行AOP代理。
 	 */
 	@Bean
 	public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
-		DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
-		daap.setProxyTargetClass(true);
-		return daap;
+		DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+		advisorAutoProxyCreator.setProxyTargetClass(true);
+		return advisorAutoProxyCreator;
 	}
 	/**
 	 * 开启shiro aop注解支持. 使用代理方式;所以需要开启代码支持;
