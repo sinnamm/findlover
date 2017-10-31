@@ -286,9 +286,7 @@
 
                                 </div>
                             </div>
-
-
-                            <div class="col-md-3" th:if="${session.user.vip==false}">
+                            <div class="col-md-4" th:if="${session.user.vip==false}">
                                 <a  style="margin-left: 5px;font-size: 1px"
                                    th:href="@{vip}">条件不够？开通VIP获得更精确搜索条件
                                 </a>
@@ -350,9 +348,9 @@
                                   style="width: 265px;height: 265px;" alt=""/>
                         </li>
                         <li class="profile_item-desc" style=" margin-left: 10px; margin-bottom: 10px">
-                            <h4 style="margin: 0px"
+                            <h4 style="margin: 0px;"
                                 th:text="${userBasicStar.id}+'             '+${userBasicStar.nickname}"></h4>
-                            <p style="color: white"><span th:text="${userBasicStar.age+'岁'}">21岁</span>&nbsp;
+                            <p style="color: grey; font-weight: 600"><span th:text="${userBasicStar.age+'岁'}">21岁</span>&nbsp;
                                 <span th:text="${userBasicStar.workplace}">山东</span>&nbsp;
                                 <span th:text="${userBasicStar.height+'cm'}">163cm</span>&nbsp;
                             </p>

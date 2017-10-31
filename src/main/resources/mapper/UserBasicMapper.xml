@@ -75,8 +75,12 @@
         ON ub.id=ua.id
         WHERE
         DATE(ua.star_deadline)>now()
-        AND ub.sex=#{sex}
-        AND ub.workplace LIKE #{workplace}
+        <if test="sex!=null">
+            AND ub.sex=#{sex}
+        </if>
+        <if test="sex!=null">
+            AND ub.workplace LIKE #{workProvince}
+        </if>
         AND ub.authority =1
         AND ub.id!=#{id}
     </select>
@@ -131,6 +135,9 @@
             AND authority =1
             <if test="sex != null">
               AND  sex=#{sex}
+            </if>
+            <if test="workplace !=null and workplace !='-1'">
+                AND workplace LIKE #{workplace}
             </if>
             <if test="workProvince !=null and workProvince !='-1'">
                 AND workplace LIKE '%${workProvince}%'

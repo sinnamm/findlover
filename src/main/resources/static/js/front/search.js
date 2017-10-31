@@ -283,7 +283,7 @@ function initPickUser(){
                 $(".paid_people").empty();
                 //每次清空后调用reload
                // $('#masonry').masonry('reload');
-                $('#masonry').masonry('destroy').empty();//返回到之前的初始化状态
+               // $('#masonry').masonry('destroy').empty();//返回到之前的初始化状态
             }
             if(data.message=="error"){
                 swal("提示","没有更多数据啦，扩大一下搜索条件试试？","error");
@@ -335,7 +335,7 @@ function loadMoreUser(url,data,type) {
                     "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
                     "                                    <span>"+list[i].marryStatus+"</span>" +
                     "                                </p>" +
-                    "                                <p>内心独白: "+(list[i].userDetail.signature.length >45? list[i].userDetail.signature.length.substring(0,45)+"...":list[i].userDetail.signature.length)+"</p>" +
+                    "                                <p>内心独白: "+(list[i].userDetail.signature.length >45? list[i].userDetail.signature.substring(0,45)+"...":list[i].userDetail.signature)+"</p>" +
                     "                            </li>" +
                     "                            <div class='clearfix'></div>" +
                     "                        </ul>" +
@@ -372,7 +372,7 @@ function loadUser(data){
             "                                    <span>"+list[i].workplace+"</span>&nbsp;" +
             "                                    <span>"+list[i].marryStatus+"</span>" +
             "                                </p>" +
-            "                                <p>内心独白: "+(list[i].userDetail.signature.length >45? list[i].userDetail.signature.length.substring(0,45)+"...":list[i].userDetail.signature.length)+"</p>" +
+            "                                <p>内心独白: "+(list[i].userDetail.signature.length >45? list[i].userDetail.signature.substring(0,45)+"...":list[i].userDetail.signature)+"</p>" +
             "                            </li>" +
             "                            <div class='clearfix'></div>" +
             "                        </ul>" +

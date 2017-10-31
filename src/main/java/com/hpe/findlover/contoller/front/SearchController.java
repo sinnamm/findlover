@@ -141,11 +141,11 @@ public class SearchController {
         if (!(userBasic.getVip())){
             formatPick(userPick);
         }
-        logger.info("userPick:"+userPick);
         userPick.setWorkplace("%"+userPick.getWorkplace()+"%");
         if (userPick.getBirthplace()!=null) {
             userPick.setBirthplace("%" + userPick.getBirthplace() + "%");
         }
+        logger.info("userPick:"+userPick);
         PageHelper.startPage(pageNum,9);
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
         logger.info("userBasicPickList======" + userBasicList);

@@ -1934,21 +1934,11 @@ ul.profile_item {
 }
 
 ul.profile_item li.profile_item-img {
-    width: 150px;
-    height: 150px;
-    display: inline-block;
+    width: 235px;
+    height: 190px;
     /*float: left;*/
     margin-right: 10px;
     margin-bottom: 10px;
-}
-ul.profile_item li.profile_item-img img {
-    width: 150px;
-    height: 150px;
-}
-li.profile_item-desc{
-    display: inline-block;
-    height: 150px;
-    width: 100px;
 }
 
 .view_profile h3 {

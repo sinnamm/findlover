@@ -61,14 +61,21 @@ public final class LoverUtil {
 	 * @return
 	 */
 	public static List<UserBasic> getRandomStarUser(UserPick userPick,int number,UserService userService){
-		userPick.setWorkProvince(userPick.getWorkplace().split("-")[0]);
+		userPick.setWorkProvince("%"+userPick.getWorkplace().split("-")[0]+"%");
+		logger.info("userPick:"+userPick);
 		List<UserBasic> userBasicStarList = userService.selectStarUser(userPick);
 		List<UserBasic> userBasicStarPick = null;
 		//如果用户数大于需要的人数则随机选四个用户显示
 		if(userBasicStarList.size()> number){
 			userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,number);
-		}else {
+			logger.info("用户条件的星级用户过多，需要随机选择");
+		}else if (userBasicStarList==null){
+			userBasicStarPick = LoverUtil.
+					getRandomUser(userService.selectStarUser(new UserPick()),number);
+			logger.info("用户条件的星级用户没有，从所有星级用户随机选择");
+		}else{
 			userBasicStarPick=userBasicStarList;
+			logger.info("用户条件的星级用户有");
 		}
 		for (UserBasic userbasic : userBasicStarPick) {
 			userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
