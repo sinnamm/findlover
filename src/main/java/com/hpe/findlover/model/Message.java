@@ -159,6 +159,7 @@ public class Message implements Serializable {
                 ", pubTime=" + pubTime +
                 ", likeCount=" + likeCount +
                 ", replyCount=" + replyCount +
+                ",reply:{"+replies+"}"+
                 '}';
     }
 }

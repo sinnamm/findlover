@@ -24,6 +24,43 @@ import java.util.concurrent.TimeUnit;
 public class MethodTest {
 
     @Test
+    public void getDate(){
+        int count=5,max=10,min=0;
+        int[] randoms = new int[count];
+        List<Integer> listRandom = new ArrayList<Integer>();
+
+        if( count > ( max - min + 1 )){
+            System.out.println("run");
+        }
+        // 将所有的可能出现的数字放进候选list
+        for(int i = min; i <= max; i++){
+            listRandom.add(i);
+        }
+        // 从候选list中取出放入数组，已经被选中的就从这个list中移除
+        for(int i = 0; i < count; i++){
+            int index = getRandom(0, listRandom.size()-1);
+            randoms[i] = listRandom.get(index);
+            listRandom.remove(index);
+        }
+
+        for (int mun :
+                randoms) {
+            System.out.println(mun);
+        }
+    }
+
+    /**
+     * 根据min和max随机生成一个范围在[min,max]的随机数，包括min和max
+     * @param min
+     * @param max
+     * @return int
+     */
+    public int getRandom(int min, int max){
+        Random random = new Random();
+        return random.nextInt( max - min + 1 ) + min;
+    }
+
+    @Test
     public void data() throws ParseException {
         SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");//如2016-08-10 20:40
         String fromDate = "2017-12-10 16:55:21";

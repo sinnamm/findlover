@@ -7,6 +7,7 @@ $(function () {
     btnClick();
 });
 function getMessage() {
+    $("#news-follow-div").empty();
     data = {"pageNum":pageNum,"type":type};
     $.ajax({
         url:contextPath+"other_says/message",
@@ -85,6 +86,7 @@ function loadMessage(div_id,data){
 }
 
 function followMessage() {
+    $("#news-div").empty();
     $.ajax({
         url:contextPath+"other_says/followMessage?pageNum="+pageNum,
         type:"get",
