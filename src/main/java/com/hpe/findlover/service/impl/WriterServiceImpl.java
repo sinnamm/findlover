@@ -4,7 +4,6 @@ import com.hpe.findlover.mapper.EssayMapper;
 import com.hpe.findlover.mapper.WriterMapper;
 import com.hpe.findlover.model.Essay;
 import com.hpe.findlover.model.Writer;
-import com.hpe.findlover.service.BaseServiceImpl;
 import com.hpe.findlover.service.WriterService;
 import com.hpe.util.BaseTkMapper;
 import org.springframework.beans.factory.annotation.Autowired;

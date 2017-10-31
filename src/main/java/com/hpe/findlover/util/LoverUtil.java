@@ -61,10 +61,8 @@ public final class LoverUtil {
 	 * @return
 	 */
 	public static List<UserBasic> getRandomStarUser(UserPick userPick,int number,UserService userService){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(System.currentTimeMillis());
-		String dateStr = dateFormat.format(date);
-		List<UserBasic> userBasicStarList = userService.selectStarUser(dateStr,userPick.getSex(),"%"+userPick.getWorkplace().substring(0,2)+"%");
+		userPick.setWorkProvince(userPick.getWorkplace().split("-")[0]);
+		List<UserBasic> userBasicStarList = userService.selectStarUser(userPick);
 		List<UserBasic> userBasicStarPick = null;
 		//如果用户数大于需要的人数则随机选四个用户显示
 		if(userBasicStarList.size()> number){

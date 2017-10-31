@@ -4,6 +4,9 @@
     <title>个人资料</title>
     <meta charset="utf-8">
     <th:block th:include="/front/common/common_resource :: resources"/>
+    <script th:inline="javascript">
+        userId = /*[[${session.user.id}]]*/'';
+    </script>
     <script th:src="@{/js/front/view_profile.js}"></script>
     <th:block th:remove="all">
         <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
@@ -21,7 +24,7 @@
 <body>
 <th:block th:include="/front/common/header::nav"/>
 <div class="grid_3">
-    <div class="container">
+    <div class="container" style="width: 90%">
         <div class="breadcrumb1">
             <ul>
                 <a href="index.html"><i class="fa fa-home home_1"></i></a>
@@ -32,15 +35,15 @@
 
         <div class="profile">
             <div class="col-md-8">
-            <div class="profile-no-auth" th:if="${code==0}">
-                <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
-                <span>该用户很害羞，个人资料不想被别人看到。。。试着跟Ta<a href="javascript:void(0)">打个招呼</a>？</span>
-            </div>
-            <div class="profile-no-auth" th:if="${code==2}">
-                <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
-                <span>该用户很高冷，个人资料只想让被自己关注的人看到。。。
+                <div class="profile-no-auth" th:if="${code==0}">
+                    <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
+                    <span>该用户很害羞，个人资料不想被别人看到。。。试着跟Ta<a href="javascript:void(0)">打个招呼</a>？</span>
+                </div>
+                <div class="profile-no-auth" th:if="${code==2}">
+                    <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
+                    <span>该用户很高冷，个人资料只想让被自己关注的人看到。。。
             向Ta<a href="javascript:void(0)">打招呼</a>，让Ta关注你吧！</span>
-            </div>
+                </div>
             </div>
             <div class="col-md-8 profile_left" th:if="${code==1}">
                 <h2 th:inline="text">
@@ -116,8 +119,10 @@
                         </table>
                     </div>
                     <div class="col-sm-6 row_3">
-                        <a class="search-btn" th:href="@{/letter(id=${basic.id})}"><i class="fa fa-envelope-o"></i>&nbsp;发私信</a>
-                        <button class="search-btn" id="follow-btn"><i class="fa fa-heart-o"></i>&nbsp;<span id="follow-info" th:text="${isFollow==true?'已关注':'关注'}">请先登录</span></button>
+                        <a class="search-btn" th:unless="${session.user.id==basic.id}"
+                           th:href="@{/letter(id=${basic.id})}"><i class="fa fa-envelope-o"></i>&nbsp;发私信</a>
+                        <button class="search-btn" id="follow-btn"><i class="fa fa-heart-o"></i>&nbsp;<span
+                                id="follow-info" th:text="${isFollow==true?'已关注':'关注'}">请先登录</span></button>
                         <button class="search-btn com-btn"><i class="fa fa-bell-o"></i>&nbsp;投诉</button>
                     </div>
                     <div class="clearfix">
@@ -373,7 +378,7 @@
                                                 </th:block>
                                             </tr>
                                             <tr>
-                                                <td class="day_label">婚姻状况：:</td>
+                                                <td class="day_label">婚姻状况：</td>
                                                 <td class="day_value" th:text="${pick.marryStatus}">未婚</td>
                                             </tr>
                                             <tr>
@@ -405,65 +410,71 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 profile_right">
+            <div class="col-md-4 profile_right" style="padding: 0">
                 <div class="newsletter">
                     <input id="id-input" type="text" size="30" placeholder="ID搜索">
                     <input id="id-btn" class="search-btn" type="button" value="搜索">
                 </div>
-                <div class="view_profile">
-                    <h3>相似会员</h3>
-                    <ul class="profile_item">
-                        <a href="#">
-                            <li class="profile_item-img">
-                                <img src="../../static/images/p5.jpg" class="img-responsive" alt=""/>
-                            </li>
-                            <li class="profile_item-desc">
-                                <h4>2458741</h4>
-                                <p>29 Yrs, 5Ft 5in Christian</p>
-                                <h5>View Full Profile</h5>
-                            </li>
-                            <div class="clearfix"></div>
-                        </a>
-                    </ul>
-                    <ul class="profile_item">
-                        <a href="#">
-                            <li class="profile_item-img">
-                                <img src="../../static/images/p6.jpg" class="img-responsive" alt=""/>
-                            </li>
-                            <li class="profile_item-desc">
-                                <h4>2458741</h4>
-                                <p>29 Yrs, 5Ft 5in Christian</p>
-                                <h5>View Full Profile</h5>
-                            </li>
-                            <div class="clearfix"></div>
-                        </a>
-                    </ul>
-                    <ul class="profile_item">
-                        <a href="#">
-                            <li class="profile_item-img">
-                                <img src="../../static/images/p7.jpg" class="img-responsive" alt=""/>
-                            </li>
-                            <li class="profile_item-desc">
-                                <h4>2458741</h4>
-                                <p>29 Yrs, 5Ft 5in Christian</p>
-                                <h5>View Full Profile</h5>
-                            </li>
-                            <div class="clearfix"></div>
-                        </a>
-                    </ul>
-                    <ul class="profile_item">
-                        <a href="#">
-                            <li class="profile_item-img">
-                                <img src="../../static/images/p8.jpg" class="img-responsive" alt=""/>
-                            </li>
-                            <li class="profile_item-desc">
-                                <h4>2458741</h4>
-                                <p>29 Yrs, 5Ft 5in Christian</p>
-                                <h5>View Full Profile</h5>
-                            </li>
-                            <div class="clearfix"></div>
-                        </a>
-                    </ul>
+                <div class="index-right">
+                    <a th:href="@{/vip}"><h1>寻爱服务</h1></a>
+                    <div class="heart-divider">
+                        <div>
+                            <span class="grey-line"></span>
+                            <i class="fa fa-heart pink-heart"></i>
+                            <i class="fa fa-heart grey-heart"></i>
+                            <span class="grey-line"></span>
+                        </div>
+                    </div>
+                    <div class="service-1">
+                        <div class="container-fluid">
+                            <div class="row" style="margin-bottom: 15px">
+                                <div class="col-md-3">
+                                    <a th:href="@{/vip}"><img th:src="@{/images/vip-s.gif}"
+                                                              src="../../static/images/vip-s.gif"></a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a th:href="@{/vip}"><h3>寻爱VIP</h3></a>
+                                    <p>免费看信、发信，15项特权助您快速找到心上人！</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a th:href="@{/vip}"><img th:src="@{/images/star-s.gif}"
+                                                              src="../../static/images/star-s.gif"/></a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a th:href="@{/vip}"><h3>星级用户</h3></a>
+                                    <p>搜索优先展示，助你寻爱！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="index-right">
+                    <a th:href="@{/search}"><h1>推荐用户</h1></a>
+                    <div class="heart-divider">
+                        <div>
+                            <span class="grey-line"></span>
+                            <i class="fa fa-heart pink-heart"></i>
+                            <i class="fa fa-heart grey-heart"></i>
+                            <span class="grey-line"></span>
+                        </div>
+                    </div>
+                    <div class="snap-1" th:each="star:${stars}" style="margin: 10px">
+                        <div>
+                            <a th:href="@{'/profile/'+${star.id}}"><img th:src="@{/file(path=${star.photo})}" class="snap-photo"/></a>
+                        </div>
+                        <div>
+                            <a th:href="@{'/profile/'+${star.id}}">
+                                <h3 th:text="${star.nickname}">奔跑的蜗牛</h3>
+                            </a>
+                            <img th:src="@{/images/star-0.png}" class="snap-flag" title="星级用户标识"/>
+                            <p th:text="${'ID:'+star.id}">ID:10000001</p>
+                            <p><span th:text="${star.age+'岁'}">20岁</span>&nbsp;&nbsp;&nbsp;
+                                <span th:text="${star.workplace}">山东</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span th:text="${star.height+'cm'}">177cm</span></p>
+                        </div>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>

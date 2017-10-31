@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("profile")
@@ -57,7 +58,8 @@ public class ProfileController {
 		model.addAttribute("basic", LoverUtil.prettyDisplay(basic,UserBasic.class));
 		model.addAttribute("detail", LoverUtil.prettyDisplay(userDetailService.selectByPrimaryKey(userId), UserDetail.class));
 		model.addAttribute("life", LoverUtil.prettyDisplay(userLifeService.selectByPrimaryKey(userId),UserLife.class));
-		model.addAttribute("pick", LoverUtil.prettyDisplay(userPickService.selectByPrimaryKey(userId),UserPick.class));
+		UserPick userPick = userPickService.selectByPrimaryKey(userId);
+		model.addAttribute("pick", userPick);
 		model.addAttribute("status", LoverUtil.prettyDisplay(userStatusService.selectByPrimaryKey(userId),UserStatus.class));
 		UserPhoto userPhoto = new UserPhoto();
 		userPhoto.setUserId(basic.getId());
@@ -67,6 +69,11 @@ public class ProfileController {
 		follow.setUserId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());
 		follow.setFollowId(basic.getId());
 		model.addAttribute("isFollow", followService.selectOne(follow) != null);
+		//随机推荐星级会员
+		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPick, 4, userBasicService);
+		userBasicService.userAttrHandler(stars);
+		logger.debug("stars: "+stars);
+		model.addAttribute("stars", stars);
 		return "front/view_profile";
 	}
 

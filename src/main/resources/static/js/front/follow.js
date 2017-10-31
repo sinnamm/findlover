@@ -1,4 +1,4 @@
-pageSize = 3;
+pageSize = 5;
 $(function () {
     follower(1);
     myfollow(1);
@@ -29,7 +29,7 @@ function loadData(pageNum, type) {
                 '                                             class="img-responsive"/></a>' +
                 '        </div>\n' +
                 '        <div class="jobs_right">\n' +
-                '            <h6 class="title"><a href="'+contextPath+'profile/'+user.id+'">'+user.nickname+'</a></h6>\n' +
+                '            <h6 class="title"><a href="'+contextPath+'profile/'+user.id+'">'+user.nickname+'</a>&nbsp;<img class="flag" title="VIP用户标识" src="'+contextPath+'images/vip'+(user.vip?'':'-grey')+'.png"></h6>\n' +
                 '            <ul class="login_details1">\n' +
                 '               <li>ID：' + user.id + '</li>\n' +
                 '            </ul>\n' + ((user.authority != 1) ? ('<ul class="login_details1"><li>该用户已隐藏个人资料</li></ul>') : (

@@ -74,10 +74,11 @@
         from user_basic as ub LEFT OUTER JOIN user_asset as ua
         ON ub.id=ua.id
         WHERE
-        DATE(ua.star_deadline)>DATE(#{date})
-        AND ub.sex=#{sexual}
+        DATE(ua.star_deadline)>now()
+        AND ub.sex=#{sex}
         AND ub.workplace LIKE #{workplace}
         AND ub.authority =1
+        AND ub.id!=#{id}
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">

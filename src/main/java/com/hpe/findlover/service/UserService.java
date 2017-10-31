@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserService extends BaseService<UserBasic> {
 	UserBasic selectByEmail(String email);
 
-	List<UserBasic> selectStarUser(String date,String sexual,String workspace);
+	List<UserBasic> selectStarUser(UserPick userPick);
 
 	List<UserBasic> selectUserBySearch(Search search);
 

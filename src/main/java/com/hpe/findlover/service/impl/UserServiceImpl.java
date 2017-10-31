@@ -51,8 +51,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	}
 
 	@Override
-	public List<UserBasic> selectStarUser(String date, String sexual, String workspace) {
-		return userBasicMapper.selectStarUser(date, sexual, workspace);
+	public List<UserBasic> selectStarUser(UserPick userPick) {
+		return userBasicMapper.selectStarUser(userPick);
 	}
 
 	@Override

@@ -1184,8 +1184,8 @@ input#submit-btn {
 .center-middle {
     vertical-align: middle;
     text-align: center;
-    margin: 10px 0 0 0;
     padding: 5px;
+    border-radius: 5px;
 }
 
 .center-middle img {
@@ -1195,7 +1195,7 @@ input#submit-btn {
 /*  wm  */
 .center-middle p {
     color: #5e5e5e;
-    font-family: 华文仿宋;
+    font-family: "Microsoft YaHei UI";
     margin-bottom: 5px;
 }
 
@@ -1934,11 +1934,21 @@ ul.profile_item {
 }
 
 ul.profile_item li.profile_item-img {
-    width: 265px;
-    height: 190px;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
     /*float: left;*/
     margin-right: 10px;
     margin-bottom: 10px;
+}
+ul.profile_item li.profile_item-img img {
+    width: 150px;
+    height: 150px;
+}
+li.profile_item-desc{
+    display: inline-block;
+    height: 150px;
+    width: 100px;
 }
 
 .view_profile h3 {
@@ -2586,9 +2596,9 @@ span.m_1 {
 
 .careMessage {
     background-color: white;
+    border-radius: 5px;
     margin: 0;
-    height: 900px;
-    padding: 5px 0 0 20px
+    padding: 10px 20px
 }
 
 .jobs_right {
@@ -2608,7 +2618,7 @@ span.m_1 {
 }
 
 h6.title {
-    font-size: 1.5em;
+    font-size: 18px;
 }
 
 h6.title a {
@@ -2671,6 +2681,7 @@ ol.terms_list li {
 
 .col_5 {
     padding-left: 0;
+    border-radius: 3px;
 }
 
 .col_5 img {
@@ -2696,11 +2707,11 @@ ul.match_box li {
     font-weight: 800;
 }
 
-ul.match_box li a {
+ul.match_box a {
     color: #555;
 }
 
-ul.match_box li a:hover {
+ul.match_box a:hover li {
     color: #c32143;
 }
 
@@ -5317,7 +5328,7 @@ ul.feature_list.feature_list1 {
 .pub-msg-img {
     width: 150px;
     height: 150px;
-    border-radius: 75px;
+    border-radius: 75px !important;
 }
 
 #photodiv {
@@ -5480,4 +5491,7 @@ h6.title a:hover{
 .nav-pills>li.active>a{
     background-color: #f28925 !important;
     color: white !important;
+}
+.center-middle a:hover p{
+    color: #e55b19;
 }

@@ -40,6 +40,10 @@ function searchById() {
 
 function initComplain() {
     $(".com-btn").click(function () {
+        if(userId==$("#obj").text()){
+            swal("不能与自己互动！", "", "warning");
+            return ;
+        }
         $.get(contextPath + "dicts/com_reason", {}, function (data) {
             $("#com-sel").find("option:gt(0)").remove();
             for (var x = 0; x < data.length; x++) {
@@ -71,6 +75,10 @@ function initComplain() {
 
 function initFollowBtn() {
     $("#follow-btn").click(function () {
+        if(userId==$("#obj").text()){
+            swal("不能与自己互动！", "", "warning");
+            return ;
+        }
         if ($("#follow-info").text() == "关注") {
             $.get(contextPath + "session/user", {}, function (userBasic) {
                 if(userBasic.authority!=1){
