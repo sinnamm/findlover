@@ -93,6 +93,11 @@ public class LetterServiceImpl extends BaseServiceImpl<Letter> implements Letter
     }
 
     @Override
+    public Integer selectUnreadCount(int userid) {
+        return letterMapper.selectUnreadCount(userid);
+    }
+
+    @Override
     public BaseTkMapper<Letter> getMapper() {
         return letterMapper;
     }

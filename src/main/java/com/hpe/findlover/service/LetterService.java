@@ -16,4 +16,6 @@ public interface LetterService extends BaseService<Letter> {
     Boolean updateVipLetterStatus( List<Letter> list , UserBasic user);
     Boolean readLetter(UserAsset userAsset,Letter letter);
     Boolean sendLetter(UserAsset userAsset,Letter letter);
+    Integer selectUnreadCount(int userid);
+
 }

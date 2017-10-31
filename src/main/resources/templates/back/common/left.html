@@ -44,6 +44,26 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span>消息中心管理</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active">
+                            <a th:href="@{/admin/user/follow}"><i class="fa fa-circle-o"></i>关注信息管理</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/user/detail}"><i class="fa fa-circle-o"></i>查询用户详情</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/user/label}"><i class="fa fa-circle-o"></i>标签管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-files-o"></i>
                         <span>他他说管理</span>
                         <span class="pull-right-container">

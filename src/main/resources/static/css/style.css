@@ -2314,7 +2314,7 @@ ul.login_details li a {
 
 ul.login_details1 {
     padding: 0;
-    margin: 15px 0 0 0;
+    margin: 17px 0 0 0;
     list-style: none;
 }
 
@@ -2596,13 +2596,19 @@ span.m_1 {
 }
 
 /* wm */
+.jobs_right h5 {
+    font-weight: 550;
+    font-size: 15px;
+}
 .jobs_right p {
     font-weight: 500;
+    font-size: 10px;
     color: #5e5e5e;
 }
 
 .jobs_right span {
     font-weight: 500;
+    color: #5e5e5e;
     font-size: 10px;
 }
 
@@ -5490,6 +5496,6 @@ h6.title a:hover{
 .center-middle a:hover p{
     color: #e55b19;
 }
-.with-thumb{
-    cursor: pointer;
+.jobs_right a:hover h5{
+    color: #e55b19;
 }

@@ -144,24 +144,26 @@
                 </div>
                 <!--消息菜单栏-->
                 <ul class="match_box message">
-                    <a th:href="@{/letter}"><li><i class="fa fa-comments-o"></i> 私信<span>(0)</span></li></a>
-                    <a th:href="@{/follow}"><li><i class="fa fa-heart"></i> 关注<span>(0)</span></li></a>
-                    <a href="visite_trace.html"><li><i class="fa fa-eye"></i> 访问记录<span>(0)</span></li></a>
-                    <a href="notice.html"><li><i class="fa fa-envelope-o"></i> 系统通知<span>(0)</span></li></a>
+                    <a th:href="@{/letter}"><li><i class="fa fa-comments-o"></i> 私信<span id="letter-count" th:inline="text">([[${letterCount}]])</span></li></a>
+                    <a th:href="@{/follow}"><li><i class="fa fa-heart"></i> 关注<span id="follow-count">(0)</span></li></a>
+                    <a href="visite_trace.html"><li><i class="fa fa-eye"></i> 访问记录<span id="record-count">(0)</span></li></a>
+                    <a href="notice.html"><li><i class="fa fa-envelope-o"></i> 系统通知<span id="notice-count">(0)</span></li></a>
                 </ul>
 
                 <!--广告栏-->
                 <ul class="match_box">
-                    <li><h4>新人抢先看</h4></li>
+                    <li><h4>猜你喜欢</h4></li>
                     <hr/>
                     <li th:each="star:${stars}">
                         <div class="jobs-item with-thumb">
                             <div class="thumb_top">
                                 <div class="thumb">
-                                    <img th:src="@{/file(path=${star.photo})}" style="width: 100px;height: 100px;" class="img-responsive"/>
+                                    <a th:href="@{'/profile/'+${star.id}}">
+                                        <img th:src="@{/file(path=${star.photo})}" style="width: 70px;height: 70px;" class="img-responsive"/>
+                                    </a>
                                 </div>
                                 <div class="jobs_right">
-                                    <h5 th:text="${star.nickname}"></h5>
+                                    <a th:href="@{'/profile/'+${star.id}}"><h5 th:text="${star.nickname}"></h5></a>
                                     <p th:inline="text">[[${star.age}]]岁&nbsp;[[${star.education}]]</p>
                                     <span th:text="${star.workplace}"></span>
                                 </div>
@@ -170,7 +172,7 @@
                     </li>
                     <hr/>
 
-                    <li><a href="view_profile.html" class="photo_view center-block "
+                    <li><a th:href="@{/search}" class="photo_view center-block "
                            style="color: white;text-align: center">想查看更多吗</a></li>
                 </ul>
                 <div class="clearfix"></div>

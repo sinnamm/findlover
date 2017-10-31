@@ -25,7 +25,7 @@ function loadData() {
             for (var x = 0; x < data.list.length; x++) {
                 var user = data.list[x];
                 var tr = $('<tr>\n' +
-                    '         <td><img src="' + contextPath + 'upload/user/photo/' + user.photo + '" class="photo"></td>\n' +
+                    '         <td><img src="' + contextPath + 'file?path=' + user.photo + '" class="photo"></td>\n' +
                     '         <td>' + user.id + '\n' +
                     '             <img src="' + contextPath + 'images/vip' + (user.vip ? '' : '-grey') + '.png" class="flag">\n' +
                     '             <img src="' + contextPath + 'images/star-0' + (user.star ? '' : '-grey') + '.png" class="flag">\n' +

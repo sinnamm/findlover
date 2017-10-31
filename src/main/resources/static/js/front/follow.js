@@ -20,6 +20,9 @@ function loadData(pageNum, type) {
     $.post(contextPath+"follow/"+type,{"pageNum":pageNum,"pageSize":pageSize},function (data) {
         var $items = $("#"+type+"Panel").find(">.jobs-item");
         $items.empty();
+        if(type == 'myfollow') {
+            $("#follow-count").text('('+data.total+')');
+        }
         $("#"+type+"-count").text(data.total);
         for(var x = 0; x < data.list.length; x++){
             var user = data.list[x];
@@ -34,10 +37,7 @@ function loadData(pageNum, type) {
                 '               <li>ID：' + user.id + '</li>\n' +
                 '            </ul>\n' + ((user.authority != 1) ? ('<ul class="login_details1"><li>该用户已隐藏个人资料</li></ul>') : (
                     '            <ul class="login_details1">\n' +
-                    '                <li>'+user.age+'岁 '+user.workplace+' '+user.education+' '+user.marryStatus+' '+user.salary+'</li>\n' +
-                    '            </ul>\n' +
-                    '            <ul class="login_details1">\n' +
-                    '                <li>'+user.birthday+'</li>\n' +
+                    '                <li>'+user.age+'岁 '+user.workplace+' '+user.education+' '+user.marryStatus+'</li>\n' +
                     '            </ul>\n')) + (type=='follower'?'':
                     '            <div class="thumb_but"><a href="javascript:cancelFollowAndGoPage('+user.id+','+pageNum+')" class="photo_view"><i class="fa fa-heart-o"></i>&nbsp;取消关注</a>\n' +
                     '            </div>\n') + (user.authority != 1 ? '' :

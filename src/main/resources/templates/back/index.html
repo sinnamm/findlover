@@ -8,8 +8,9 @@
 <div class="wrapper">
     <th:block th:include="/back/common/top :: top"/>
     <th:block th:include="/back/common/left :: left"/>
-    <div class="content-wrapper">
-        <iframe th:src="@{/admin/user/list}" name="content" frameborder="0" style="min-height: 550px" width="100%"></iframe>
+    <div class="content-wrapper" style="min-height: 100% !important">
+
+        <iframe th:src="@{/admin/user/list}" name="content" frameborder="0" style="min-height: 560px" width="100%"></iframe>
     </div>
 </div>
 </body>

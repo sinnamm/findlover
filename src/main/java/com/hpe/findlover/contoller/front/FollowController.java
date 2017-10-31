@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.Follow;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
+import com.hpe.findlover.service.LetterService;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.service.FollowService;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("follow")
@@ -32,20 +34,27 @@ public class FollowController {
 	private final FollowService followService;
 	private final UserService userService;
 	private final UserPickService userPickService;
+	private final LetterService letterService;
 
 	@Autowired
-	public FollowController(FollowService followService, UserService userService, UserPickService userPickService) {
+	public FollowController(FollowService followService, UserService userService, UserPickService userPickService, LetterService letterService) {
 		this.followService = followService;
 		this.userService = userService;
 		this.userPickService = userPickService;
+		this.letterService = letterService;
 	}
 
 	@GetMapping
 	public String index(Model model, HttpSession session) {
-		UserPick userPick = userPickService.selectByPrimaryKey(((UserBasic)session.getAttribute("user")).getId());
+		Integer userId = ((UserBasic) session.getAttribute("user")).getId();
+		UserPick userPick = userPickService.selectByPrimaryKey(userId);
 		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPick, 4, userService);
 		userService.userAttrHandler(stars);
 		model.addAttribute("stars", stars);
+		logger.debug("stars: " + stars);
+		//右侧信息条数
+		model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
+		// todo visit_record and notice count
 		return "front/follow";
 	}
 

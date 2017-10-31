@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">查询用户关注信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="f-content">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <span class="col-md-2 col-sm-5 col-xs-5 col-md-offset-1 title">请输入用户ID：</span>
+                                        <input id="id-input" type="text"
+                                               class="col-md-3 col-sm-6 col-xs-6 form-control f-inline" style="margin-top: 10px">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-offset-3 ">
+                                            <button class="button button-3d button-primary button-rounded" style="margin-top: 10px">
+                                                查询
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("button").click(function () {
+            var $idInput = $("#id-input");
+            if ($idInput.val() == "") {
+                swal("Error", "用户ID不能为空！", "error");
+            } else {
+                $.get(contextPath + "admin/user/basic/" + $idInput.val(), {}, function (data) {
+                    if (data != undefined && data != "") {
+                        window.location = contextPath + "admin/user/details/" + $idInput.val();
+                    } else {
+                        swal("Error", "用户ID不存在！", "error");
+                    }
+                }, "text");
+            }
+        });
+    })
+</script>
+</body>
+</html>

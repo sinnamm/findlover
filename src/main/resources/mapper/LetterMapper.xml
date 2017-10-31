@@ -64,5 +64,8 @@
         WHERE recieve_id = #{arg0} AND send_id=#{arg1}
         ORDER BY send_time DESC
     </select>
+    <select id="selectUnreadCount" resultType="int">
+        SELECT count(*) FROM letter WHERE recieve_id=#{id} AND status=0
+    </select>
 
 </mapper>

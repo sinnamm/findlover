@@ -48,6 +48,7 @@ public class ProfileController {
 
 	@GetMapping("{id}")
 	public String getProfileById(@PathVariable("id") int userId, Model model,HttpServletRequest request) {
+		Integer sessionUserId = SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId();
 		UserBasic basic = userBasicService.selectByPrimaryKey(userId);
 		if (basic.getAuthority() == 0) {
 			logger.debug("ID为" + basic.getId() + "的用户个人资料所有人不可见");
@@ -58,19 +59,18 @@ public class ProfileController {
 		model.addAttribute("basic", LoverUtil.prettyDisplay(basic,UserBasic.class));
 		model.addAttribute("detail", LoverUtil.prettyDisplay(userDetailService.selectByPrimaryKey(userId), UserDetail.class));
 		model.addAttribute("life", LoverUtil.prettyDisplay(userLifeService.selectByPrimaryKey(userId),UserLife.class));
-		UserPick userPick = userPickService.selectByPrimaryKey(userId);
-		model.addAttribute("pick", userPick);
+		model.addAttribute("pick", userPickService.selectByPrimaryKey(userId));
 		model.addAttribute("status", LoverUtil.prettyDisplay(userStatusService.selectByPrimaryKey(userId),UserStatus.class));
 		UserPhoto userPhoto = new UserPhoto();
 		userPhoto.setUserId(basic.getId());
 		model.addAttribute("userPhotos", userPhotoService.select(userPhoto));
 		model.addAttribute("code", basic.getAuthority());
 		Follow follow = new Follow();
-		follow.setUserId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());
+		follow.setUserId(sessionUserId);
 		follow.setFollowId(basic.getId());
 		model.addAttribute("isFollow", followService.selectOne(follow) != null);
 		//随机推荐星级会员
-		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPick, 4, userBasicService);
+		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPickService.selectByPrimaryKey(sessionUserId), 4, userBasicService);
 		userBasicService.userAttrHandler(stars);
 		logger.debug("stars: "+stars);
 		model.addAttribute("stars", stars);

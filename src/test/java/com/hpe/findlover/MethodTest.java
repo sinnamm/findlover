@@ -1,6 +1,8 @@
 package com.hpe.findlover;
 
 import com.hpe.findlover.util.LoverUtil;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -70,6 +72,11 @@ public class MethodTest {
         int days = (int) ((to - from)/(1000 * 60 * 60 * 24));
 
         System.out.println(days);
+    }
+    @Test
+    public void shiroMD5Test(){
+        Md5Hash hash = new Md5Hash("123", "gss");
+        System.out.println(hash.toString());
     }
 
     @Test
