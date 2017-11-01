@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,14 +34,15 @@ public class UeditorController {
     @Cacheable(value = "dict-cache")
     public String uploadConfig(){
         BufferedReader reader = null;
-        String laststr = "";
+        StringBuffer laststr = new StringBuffer();
         try{
-            InputStream stream = this.getClass().getClassLoader().getResourceAsStream("config.json");
-            InputStreamReader inputStreamReader = new InputStreamReader(stream, "UTF-8");
+            ClassPathResource resource = new ClassPathResource("static/plugins/ueditor/jsp/config.json");
+            //InputStream stream = this.getClass().getClassLoader().getResourceAsStream("config.json");
+            InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream(), "UTF-8");
             reader = new BufferedReader(inputStreamReader);
             String tempString = null;
             while((tempString = reader.readLine()) != null){
-                laststr += tempString;
+                laststr.append(tempString);
             }
             reader.close();
         }catch(IOException e){
@@ -55,7 +57,7 @@ public class UeditorController {
             }
         }
         logger.debug("返回的ueditor配置文件内容："+laststr);
-        return laststr;
+        return laststr.toString();
     }
 
     /**

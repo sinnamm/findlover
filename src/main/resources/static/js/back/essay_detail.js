@@ -15,7 +15,7 @@ function initCheckedAndDeleteBtn() {
     });
 }
 
-function deleteBtn() {
+function deleteBtn($btn) {
     swal({
         title: '确定要删除此文章吗？',
         icon: "warning",
@@ -28,15 +28,13 @@ function deleteBtn() {
                 dataType: "text",
                 success: function (data) {
                     //window.location.go(-1);
-                    alert("删除成功！");
-                    history.go(-1);
-                    location.reload();
-                   /* if (data === "true") {
+                    if (data === "true") {
                         $btn.addClass("disabled");
-                        swal("状态修改成功！", "", "success");
+                        history.go(-1);
+                        // location.reload();
                     } else {
                         swal("状态修改失败！", "", "error");
-                    }*/
+                    }
                 },
                 error: errorAlert
             });

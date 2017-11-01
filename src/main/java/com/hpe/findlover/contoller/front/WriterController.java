@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -111,13 +110,13 @@ public class WriterController {
      */
     @PostMapping("upload")
     public Object uploadEssay(HttpSession session, String essays
-            , Essay essay, MultipartFile file, RedirectAttributes redirectAttributes) throws Exception {
+            , Essay essay, MultipartFile ephoto, RedirectAttributes redirectAttributes) throws Exception {
         Writer writer = (Writer) session.getAttribute("writer");
         logger.debug("writer=" + writer);
-        if (essays != null && file != null && writer!=null) {
+        if (essays != null && ephoto != null && writer!=null) {
             logger.debug(essays);
             String filePath = uploadService.uploadFile(essays, "txt");
-            String photoPath = uploadService.uploadFile(file);
+            String photoPath = uploadService.uploadFile(ephoto);
             essay.setWriterId(writer.getId());
             essay.setFilename(filePath);
             essay.setStatus(Essay.UNCHECKED_STATUS);
