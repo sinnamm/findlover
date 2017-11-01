@@ -76,12 +76,19 @@
                         <li><a th:href="@{/admin/writer/list}"><i class="fa fa-circle-o"></i>专栏作家管理</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="pages/widgets.html"><i class="fa fa-th"></i><span>成功故事管理</span>
-                        <span class="pull-right-container">
-                            <small class="label pull-right bg-green">new</small>
-                        </span>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-th"></i>
+                        <span>成功故事管理</span>
+                        <!--<span class="pull-right-container">-->
+                            <!--<li>-->
+                                <!--<a th:href="@{/admin/success_story}"><i class="fa fa-circle-o"></i>成功故事管理</a>-->
+                            <!--</li>-->
+                        <!--</span>-->
                     </a>
+                    <ul class="treeview-menu">
+                        <li><a th:href="@{/admin/success_story}"><i class="fa fa-circle-o"></i>成功故事管理</a></li>
+                    </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">

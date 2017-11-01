@@ -16,13 +16,13 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserRealm extends AuthorizingRealm {
-	private Logger logger = LogManager.getLogger(UserRealm.class);
-	@Autowired
-	private UserService userService;
-	@Autowired
-	public UserAssetService userAssetService;
-	@Autowired
-	public UserDetailService userDetailService;
+    private Logger logger = LogManager.getLogger(UserRealm.class);
+    @Autowired
+    private UserService userService;
+    @Autowired
+    public UserAssetService userAssetService;
+    @Autowired
+    public UserDetailService userDetailService;
 
 	/**
 	 * 用户身份认证

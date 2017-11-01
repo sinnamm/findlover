@@ -36,7 +36,7 @@ public class UploadServiceImpl implements UploadService {
 	/**
 	 * 将一段字符串生成一个文件上传
 	 * @param content 文件内容
-	 * @param fileExtension
+	 * @param fileExtension 文件后缀名
 	 * @return
 	 */
 	@Override

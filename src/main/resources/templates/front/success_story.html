@@ -15,15 +15,6 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../static/jquery/jquery.min.js"></script>
-    <script src="../../static/js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-    <!----font-Awesome----->
-    <link href="../../static/css/font-awesome.css" rel="stylesheet">
-    <!----font-Awesome----->
     <script>
         $(document).ready(function () {
             $(".dropdown").hover(
@@ -42,81 +33,6 @@
 </head>
 <body>
 <th:block th:include="/front/common/header::nav"/>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-    <div class="navbar-inner">
-        <div class="container">
-
-            <a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>
-            <div class="pull-right">
-                <nav class="navbar nav_bottom" role="navigation">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                                data-target="#bs-megadropdown-tabs">Menu
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"></a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav nav_1">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="search.html">搜索</a></li>
-                            <li><a href="reserve/about.html">会员</a></li>
-                            <li><a href="s.html">成功故事</a></li>
-                            <li><a href="reserve/about.html">他她说</a></li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-envelope-o"></i><span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="search.html">私信</a></li>
-                                    <li><a href="reserve/profile.html">关注</a></li>
-                                    <li><a href="reserve/search-id.html">访问记录</a></li>
-                                    <li><a href="reserve/faq.html">系统通知</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-user"></i><span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="login.html">编辑资料</a></li>
-                                    <li><a href="register.html">身份认证</a></li>
-                                    <li><a href="index.html">修改密码</a></li>
-                                    <li><a href="index.html">退出</a></li>
-                                </ul>
-                            </li>
-                            <!--<li class="dropdown">-->
-                                <!--<div class="navigation">-->
-                                    <!--<nav class="colorNav" id="user_info">-->
-                                        <!--<ul>-->
-                                            <!--<li class="green">-->
-                                                <!--<a href="#" class="icon-home"></a>-->
-                                                <!--<ul>-->
-                                                    <!--<li><a href="login.html">编辑资料</a></li>-->
-                                                    <!--<li><a href="register.html">身份认证</a></li>-->
-                                                    <!--<li><a href="index.html">修改密码</a></li>-->
-                                                    <!--<li><a href="index.html">退出</a></li>-->
-                                                <!--</ul>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    <!--</nav>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
-            </div> <!-- end pull-right -->
-            <div class="clearfix"></div>
-        </div> <!-- end container -->
-    </div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
- <!--============================  Navigation End ============================-->
 <div class="grid_2">
     <div class="container">
         <h2>成功故事</h2>
@@ -134,7 +50,8 @@
                             <ul class="profile_item">
                                 <a href="success_story_info.html">
                                     <li class="profile_left-top">
-                                        <img width="320" height="320" src="../../static/images/8.jpg" class="img-responsive"
+
+                                        <img width="320" height="320" th:src="@{/images/8.jpg}" class="img-responsive"
                                              alt=""/>
                                     </li>
                                     <li class="profile_item-desc">
@@ -156,7 +73,7 @@
                             <ul class="profile_item">
                                 <a href="success_story_info.html">
                                     <li class="profile_left-top">
-                                        <img width="320" height="320" src="../../static/images/9.jpg" class="img-responsive"
+                                        <img width="320" height="320" th:src="@{/images/9.jpg}" class="img-responsive"
                                              alt=""/>
                                     </li>
                                     <li class="profile_item-desc">
@@ -181,7 +98,7 @@
                             <ul class="profile_item">
                                 <a href="success_story_info.html">
                                     <li class="profile_left-top">
-                                        <img width="320" height="320" src="../../static/images/10.jpg" class="img-responsive"
+                                        <img width="320" height="320" th:src="@{/images/10.jpg}" class="img-responsive"
                                              alt=""/>
                                     </li>
                                     <li class="profile_item-desc">
@@ -202,7 +119,7 @@
                             <ul class="profile_item ">
                                 <a href="success_story_info.html">
                                     <li class="profile_left-top">
-                                        <img width="320" height="320" src="../../static/images/11.jpg" class="img-responsive"
+                                        <img width="320" height="320" th:src="@{/images/11.jpg}" class="img-responsive"
                                              alt=""/>
                                     </li>
                                     <li class="profile_item-desc">
@@ -228,7 +145,7 @@
                             <ul class="profile_item">
                                 <a href="success_story_info.html">
                                     <li class="profile_left-top">
-                                        <img width="320" height="320" src="../../static/images/12.jpg" class="img-responsive"
+                                        <img width="320" height="320" th:src="@{/images/12.jpg}" class="img-responsive"
                                              alt=""/>
                                     </li>
                                     <li class="profile_item-desc">
@@ -249,7 +166,7 @@
                             <ul class="profile_item">
                                 <a href="success_story_info.html">
                                     <li class="profile_left-top">
-                                        <img width="320" height="320" src="../../static/images/13.jpg" class="img-responsive"
+                                        <img width="320" height="320" th:src="@{/images/13.jpg}" class="img-responsive"
                                              alt=""/>
                                     </li>
                                     <li class="profile_item-desc">
@@ -285,7 +202,7 @@
                                     suffered alteration in some form,.<a href="#" class="fa fa-heart pink-heart">围观幸福</a></p>
                             </div>
                         </div>
-                    </li>-->
+                                       </li>-->
 
                     <li>
                         <div class="col-sm-12">
@@ -303,6 +220,9 @@
 
         <!--===========================================================================-->
             <div class="col-md-4 row_1-right">
+                <div>
+                    <button class="btn btn-info" style="margin: 50px;" id="write">已经脱单了？发表成功故事吧</button>
+                </div>
                 <h3>News & Events</h3>
                 <div class="box_1">
                     <figure class="thumbnail1"><img width="170" height="155" src="../../static/images/14.jpg"

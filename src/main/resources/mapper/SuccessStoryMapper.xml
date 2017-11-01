@@ -10,7 +10,6 @@
     <result column="right_user" property="rightUser" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="success_time" property="successTime" jdbcType="TIMESTAMP" />
-    <result column="photo" property="photo" jdbcType="VARCHAR" />
     <result column="like_count" property="likeCount" jdbcType="INTEGER" />
     <result column="reply_count" property="replyCount" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -35,4 +34,12 @@
     -->
     content
   </sql>
+  <select id="selectByKeywordAndStatus" resultType="SuccessStory">
+    SELECT * FROM success_story
+    WHERE ${arg0} LIKE #{arg1} AND status=#{arg2}
+  </select>
+  <select id="selectByKeyword" resultType="SuccessStory">
+    SELECT * FROM success_story
+    WHERE ${arg0} LIKE #{arg1}
+  </select>
 </mapper>

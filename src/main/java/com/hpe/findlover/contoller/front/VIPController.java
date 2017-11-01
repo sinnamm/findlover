@@ -21,7 +21,7 @@ import java.util.*;
 @RequestMapping
 public class VIPController {
     @Autowired
-    UserAssetService userAssetService;
+    private UserAssetService userAssetService;
     private Logger logger = LogManager.getLogger(VIPController.class);
 
     @GetMapping("vip")

@@ -20,8 +20,6 @@ public class SuccessStory {
     @Column(name = "success_time")
     private Date successTime;
 
-    private String photo;
-
     @Column(name = "like_count")
     private Integer likeCount;
 
@@ -109,20 +107,6 @@ public class SuccessStory {
     }
 
     /**
-     * @return photo
-     */
-    public String getPhoto() {
-        return photo;
-    }
-
-    /**
-     * @param photo
-     */
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    /**
      * @return like_count
      */
     public Integer getLikeCount() {
@@ -194,5 +178,21 @@ public class SuccessStory {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "SuccessStory{" +
+                "id=" + id +
+                ", leftUser=" + leftUser +
+                ", rightUser=" + rightUser +
+                ", title='" + title + '\'' +
+                ", successTime=" + successTime +
+                ", likeCount=" + likeCount +
+                ", replyCount=" + replyCount +
+                ", status=" + status +
+                ", adminId=" + adminId +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

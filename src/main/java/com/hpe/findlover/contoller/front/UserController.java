@@ -29,10 +29,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author sinnamm
@@ -130,12 +130,28 @@ public class UserController {
 	@ResponseBody
 	public String checkEmail(@RequestParam("email")String email){
 		UserBasic userBasic = userService.selectByEmail(email);
-		if(userBasic!=null){
+		if (userBasic!=null){
 			return "{\"error\":\"该邮箱已被注册！\"}";
 		}else {
 			return "{\"ok\":\"此邮箱可用！\"}";
 		}
 	}
+
+	@RequestMapping("checkid")
+	@ResponseBody
+	public String checkid(@RequestParam("otherId")int otherId, HttpSession session){
+		logger.error("#################已经访问");
+		UserBasic userBasic = userService.selectByPrimaryKey(otherId);
+		UserBasic user= (UserBasic) session.getAttribute("user");
+		if (user.getId().equals(otherId)){
+			return "{\"error\":\"您不能和自己搞对象！\"}";
+		}else if(userBasic!=null){
+			return "{\"ok\":\"我们将会请ta验证该消息~\"}";
+		}else {
+			return "{\"error\":\"该id不存在！\"}";
+		}
+	}
+
 	@GetMapping("user/exists/{id}")
 	@ResponseBody
 	public boolean existsById(@PathVariable int id){

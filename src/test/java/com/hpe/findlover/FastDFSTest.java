@@ -24,7 +24,7 @@ public class FastDFSTest {
 	private UploadService uploadService;
 	@Test
 	public void test1(){
-		String url = "group1/M00/00/00/wKhvglntm1yAdSeuAACE4ckXuu0086.jpg";
+		String url = "group1/M00/00/00/rBEuvln2kYeAIqFWAABi5_Dq7YI357.jpg";
 		System.out.println(StorePath.praseFromUrl(url));
 	}
 	@Test

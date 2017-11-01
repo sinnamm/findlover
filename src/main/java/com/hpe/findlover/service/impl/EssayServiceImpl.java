@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class EssayServiceImpl extends BaseServiceImpl<Essay> implements EssayService {
+
     private final EssayMapper essayMapper;
 
     @Autowired

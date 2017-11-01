@@ -42,7 +42,6 @@ public class LetterServiceImpl extends BaseServiceImpl<Letter> implements Letter
         }
         num.add(sum);
         map.put("list",list);
-
         map.put("num",num);
         return map;
     }

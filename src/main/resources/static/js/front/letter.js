@@ -1,6 +1,6 @@
 var lineSize = 15;
 var currentPage = 1;
-var otherUserId;
+var otherUserId=0;
 $(function () {
     $("#notVipInput").val("");
     $("#vipInput").val("");
@@ -8,23 +8,34 @@ $(function () {
     var userid = $("#userid").val();
     var vip = $("#userVip").val();
     var myurl=GetQueryString("id");
-    if (myurl!==null){
-        addNewWindow(myurl);
-        addNewWindowClick(myurl,userid,vip);
-    }
-    addLetterUser(otherUserId, userid, vip);
-    addLetter(otherUserId, userid, vip);
-    sendLetter(otherUserId, vip);
-    loadMessage(otherUserId,userid,vip);
+    init(myurl,userid,vip);
+    addLetterUser( userid, vip);
+    addLetter( userid, vip);
+    sendLetter( vip);
+    loadMessage(userid,vip);
 })
+function init(myurl,userid,vip){
+    var idArr = [];
+    $("div[name='userLetter']").each(function () {
+        idArr.push(this.id);
+    });
+    if (myurl!==null){
+        if (idArr.indexOf(myurl)<0){
+            addNewWindow(myurl);
+            addNewWindowClick(myurl,userid,vip);
+        }else{
+            otherUserId=myurl;
+        }
+    }
+}
 function addNewWindowClick(myurl,userid,vip) {
     $("#newWindow").click(function () {
         otherUserId = myurl;
         currentPage = 1;
-        addLetter(otherUserId, userid, vip,currentPage);
+        addLetter(userid, vip);
     });
 }
-function  addNewWindow(myurl) {
+function addNewWindow(myurl) {
     if (myurl!==null){
         otherUserId=myurl;
         $.ajax({
@@ -37,7 +48,6 @@ function  addNewWindow(myurl) {
             async:false,
             success: function (data) {
                 if (data!==null){
-                    $("#"+otherUserId).parent().hide();
                     $("#hiddenInput").after(" <li>\n" +
                         "                                    <div style=\"cursor:pointer; height: 50px;\" name=\"newWindow\"\n" +
                         "                                         class=\"jobs-item with-thumb userLetter\" id='newWindow'>\n" +
@@ -54,7 +64,8 @@ function  addNewWindow(myurl) {
                         "                                            </div>\n" +
                         "                                        </div>\n" +
                         "                                    </div>\n" +
-                        "                                </li>\n")
+                        "                                </li>\n" +
+                        " <hr/>");
                 }else{
                     swal("警告","该用户不存在","error");
                 }
@@ -71,7 +82,7 @@ function GetQueryString(name)
     var r = window.location.search.substr(1).match(reg);
     if(r!=null)return  unescape(r[2]); return null;
 }
-function sendLetter(otherUserId,vip) {
+function sendLetter(vip) {
     var content = "";
     $("#inputSubmit").click(function () {
         if (vip === "true") {
@@ -108,15 +119,14 @@ function sendLetter(otherUserId,vip) {
     })
 }
 
-function addLetter(otherUserId, userid, vip) {
+function addLetter( userid, vip) {
     if(currentPage==1){
         $("#letterUl").empty();
-        $("#letterUl").append("  <p id=\"hiddenLi\" hidden=></p>");
+        $("#letterUl").append("  <p id=\"hiddenLi\" hidden></p>");
         $("#hiddenLi").after("<p id=\"hiddenLi1\" hidden></p>");
     }
     $.ajax({
         url: contextPath + "letter",
-        async:false,
         data: {
             otherUserId: otherUserId,
             lineSize: lineSize,
@@ -143,27 +153,25 @@ function addLetter(otherUserId, userid, vip) {
                     var x = this.id.split("-")[1];
                     readLetter(this, data[x]);
 
-                })
+                });
                 $('#letterUl').scrollTop(100000);
             }
         }
     });
 }
-function loadMessage(otherUserId,userid,vip) {
+function loadMessage(userid,vip) {
     $("#overloadOldLetter").click(function (){
         currentPage = currentPage + 1;
-        addLetter(otherUserId, userid, vip);
+        addLetter( userid, vip);
         $('#letterUl').scrollTop(0);
-
     });
 }
-function addLetterUser(otherUserId, userid, vip) {
+function addLetterUser(userid, vip) {
     $(".userLetter").click(function () {
         otherUserId = $(this).find("input").val();
         currentPage = 1;
-        addLetter(otherUserId, userid, vip,currentPage);
+        addLetter( userid, vip);
         $(this).find("div[class='redPoint']").hide();
-        // window.location.reload();
     });
 }
 
@@ -189,5 +197,4 @@ function readLetter(arg, letter) {
             swal("警告", "出现未知错误", "error");
         }
     });
-
 }
