@@ -50,7 +50,8 @@ public class OtherSaysController {
     public String getMessages(Page<Message> page,  @RequestParam String column, @RequestParam String keyword){
 
         logger.info("接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize() + ",column=" + column + ",keyword=" + keyword);
-        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+
+        PageHelper.startPage(page.getPageNum(), page.getPageSize(),"pub_time desc");
         List<Message> messages = messageService.selectMessageByColumn(column, "%" + keyword + "%");
 
         // 遍历list查出所有相对应的Asset和Detail数据

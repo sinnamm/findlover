@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hpe.findlover.model.Label;
-import com.hpe.findlover.model.UserAsset;
-import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserDetail;
+import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.BaseService;
 import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.LoverUtil;
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Gss
@@ -39,9 +37,10 @@ public class UserControllerBack {
 	private final UserStatusService userStatusService;
 	private final UserPickService userPickService;
 	private final LabelService labelService;
+	private final FollowService followService;
 
 	@Autowired
-	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService) {
+	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService,FollowService followService) {
 		this.userBasicService = userBasicService;
 		this.userAssetService = userAssetService;
 		this.userDetailService = userDetailService;
@@ -49,6 +48,7 @@ public class UserControllerBack {
 		this.userStatusService = userStatusService;
 		this.userPickService = userPickService;
 		this.labelService = labelService;
+		this.followService = followService;
 	}
 
 	@GetMapping("basic")
@@ -74,6 +74,28 @@ public class UserControllerBack {
 		return ((BaseService) declaredField.get(this)).selectByPrimaryKey(id);
 	}
 
+	@GetMapping("/follower")
+	@ResponseBody
+	public PageInfo follower(Page<UserBasic> page,@RequestParam("id") int id){
+		logger.info("关注我的人接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize());
+		PageHelper.startPage(page.getPageNum(),page.getPageSize());
+		List<Follow> followers = followService.selectFollower(id);
+		followers.forEach(logger::info);
+		PageInfo pageInfo = new PageInfo(followers);
+		return  pageInfo;
+	}
+
+	@GetMapping("/follow")
+	@ResponseBody
+	public PageInfo follow(Page<UserBasic> page,@RequestParam("id") int id){
+		logger.info("我关注的人接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize());
+		PageHelper.startPage(page.getPageNum(),page.getPageSize());
+		List<Follow> followers = followService.selectFollow(id);
+		followers.forEach(logger::info);
+		PageInfo pageInfo = new PageInfo(followers);
+		return  pageInfo;
+	}
+
 	@GetMapping("details/{id}")
 	public String userDetail(@ModelAttribute @PathVariable int id) {
 		return "back/user/user_detail";
@@ -90,12 +112,6 @@ public class UserControllerBack {
 	}
 
 
-	@GetMapping("label")
-	public String labelList(Model model) {
-		model.addAttribute("labels", labelService.selectAll());
-		return "back/user/label";
-	}
-
 	@PutMapping("basic/{id}")
 	@ResponseBody
 	@CachePut(value = "user-cache", key = "'basic-'+#id")
@@ -108,6 +124,12 @@ public class UserControllerBack {
 	@ResponseBody
 	public int addLabel(Label label) {
 		return labelService.insertUseGeneratedKeys(label) > 0 ? label.getId() : 0;
+	}
+
+	@GetMapping("label")
+	public String labelList(Model model) {
+		model.addAttribute("labels", labelService.selectAll());
+		return "back/user/label";
 	}
 
 	@PostMapping("label/exists")

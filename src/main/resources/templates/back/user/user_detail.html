@@ -35,6 +35,8 @@
                                     <li><a id="detail" href="#detail-pane" data-toggle="tab">详细信息</a></li>
                                     <li><a id="life" href="#life-pane" data-toggle="tab">工作生活</a></li>
                                     <li><a id="status" href="#status-pane" data-toggle="tab">个人与家庭情况</a></li>
+                                    <li><a id="photos" href="#photos-pane" data-toggle="tab">相册</a></li>
+                                    <li><a id="relation" href="#relation-pane" data-toggle="tab">用户关系</a></li>
                                 </ul>
                                 <div id="user-tab-content" class="tab-content">
                                     <div class="tab-pane fade in active" id="basic-pane">
@@ -76,6 +78,75 @@
                                         <div class="f-content">
                                             <div class="container-fluid">
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="photos-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="relation-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+                                                <div class="box-body">
+                                                    <div class="container-fluid" style="margin-bottom: 15px">
+                                                        <div id="relation-div" class="btn-group" style="float: left">
+                                                            <button id="follower-btn" type="button" class="btn btn-primary">谁关注我</button>
+                                                            <button id="follow-btn" type="button" class="btn btn-danger">我关注谁</button>
+                                                            <button id="tracer-btn" type="button" class="btn btn-warning">谁看过我</button>
+                                                            <button id="trace-btn" type="button" class="btn btn-info">我看过谁</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table id="user-follow-table" class="table table-bordered table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>头像</th>
+                                                                <th>ID</th>
+                                                                <th>昵称</th>
+                                                                <th>注册邮箱</th>
+                                                                <th>性别</th>
+                                                                <th>关注时间</th>
+                                                                <th>操作</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                        <p id="message" hidden="hidden">暂时没有任何数据</p>
+                                                    </div>
+                                                    <div id="pagetool">
+                                                        <ul class="pagination">
+                                                            <li class="head"><a href="#">首页</a></li>
+                                                            <li class="lastpage"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                                            <li class="disabled morehead"><a>...</a></li>
+                                                            <li class="page-4"><a></a></li>
+                                                            <li class="page-3"><a></a></li>
+                                                            <li class="page-2"><a></a></li>
+                                                            <li class="page-1"><a></a></li>
+                                                            <li class="currentpage active"><a>1</a></li>
+                                                            <li class="page_1"><a></a></li>
+                                                            <li class="page_2"><a></a></li>
+                                                            <li class="page_3"><a></a></li>
+                                                            <li class="page_4"><a></a></li>
+                                                            <li class="disabled moretail"><a>...</a></li>
+                                                            <li class="nextpage"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                                            <li class="tail"><a href="#">尾页</a></li>
+                                                        </ul>
+                                                        <div style="float: right;margin: 28px;font-size: 15px;font-weight: 400;color: #666666;">
+                                                            共
+                                                            <span id="total"></span>
+                                                            条数据，每页显示
+                                                            <select id="pageSize-sel">
+                                                            </select>
+                                                            条
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

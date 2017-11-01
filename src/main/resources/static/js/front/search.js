@@ -281,9 +281,6 @@ function initPickUser(){
         success:function (data) {
             if (pageNum==1) {
                 $(".paid_people").empty();
-                //每次清空后调用reload
-               // $('#masonry').masonry('reload');
-               // $('#masonry').masonry('destroy').empty();//返回到之前的初始化状态
             }
             if(data.message=="error"){
                 swal("提示","没有更多数据啦，扩大一下搜索条件试试？","error");

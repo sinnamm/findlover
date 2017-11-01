@@ -2,20 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hpe.findlover.mapper.FollowMapper" >
   <resultMap id="BaseResultMap" type="com.hpe.findlover.model.Follow" >
-    <!--
-      WARNING - @mbg.generated
-    -->
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="follow_id" property="followId" jdbcType="INTEGER" />
     <result column="follow_time" property="followTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <resultMap id="FollowResultMap" type="com.hpe.findlover.model.Follow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="follow_id" property="followId" jdbcType="INTEGER" />
+    <result column="follow_time" property="followTime" jdbcType="TIMESTAMP" />
+    <association property="userBasic" javaType="UserBasic" column="follow_id" select="selectUserById"/>
+  </resultMap>
+  <resultMap id="FollowerResultMap" type="com.hpe.findlover.model.Follow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="followId" jdbcType="INTEGER" />
+    <result column="follow_id" property="userId" jdbcType="INTEGER" />
+    <result column="follow_time" property="followTime" jdbcType="TIMESTAMP" />
+    <association property="userBasic" javaType="UserBasic" column="user_Id" select="selectUserById"/>
+  </resultMap>
   <sql id="Base_Column_List" >
-    <!--
-      WARNING - @mbg.generated
-    -->
     id, user_id, follow_id, follow_time
   </sql>
+  <select id="selectUserById" resultType="UserBasic">
+    SELECT * FROM user_basic WHERE id=#{id}
+  </select>
+
   <select id="selectAllFollow" resultType="UserBasic">
     SELECT ub.* FROM user_basic AS ub, follow AS f WHERE ub.id=f.follow_id AND f.user_id=#{userId} ORDER BY f.follow_time DESC
   </select>
@@ -24,5 +36,11 @@
   </select>
   <select id="selectFollowIdByUserId" resultType="int">
     SELECT follow_id FROM follow WHERE user_id=#{userId}
+  </select>
+  <select id="selectFollow" resultMap="FollowResultMap">
+    SELECT * FROM  follow AS f WHERE  f.user_id=#{userId} ORDER BY f.follow_time DESC
+  </select>
+  <select id="selectFollower" resultMap="FollowerResultMap">
+    SELECT * FROM follow AS f WHERE  f.follow_id=#{followId} ORDER BY f.follow_time DESC
   </select>
 </mapper>

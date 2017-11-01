@@ -1,6 +1,7 @@
 var pageNum = 1;
 var pageSize = 5;
 var pageSizeArray = [1, 3, 5, 8, 10];
+
 $(function () {
     getMessages();
     setPageSizeSel(pageSizeArray, pageSize);

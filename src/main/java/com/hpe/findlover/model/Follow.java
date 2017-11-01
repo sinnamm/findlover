@@ -17,6 +17,17 @@ public class Follow {
     @Column(name = "follow_time")
     private Date followTime;
 
+    @Transient
+    private UserBasic userBasic;
+
+    public UserBasic getUserBasic() {
+        return userBasic;
+    }
+
+    public void setUserBasic(UserBasic followUserBasic) {
+        this.userBasic = followUserBasic;
+    }
+
     /**
      * @return id
      */

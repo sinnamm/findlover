@@ -1,7 +1,54 @@
+var pageNum = 1;
+var pageSize = 5;
+var pageSizeArray = [1, 3, 5, 8, 10];
+var relationType = "follower";
 $(function () {
     loadUserData("basic");
     initUserTab();
 });
+
+function loadUserRelation(){
+    var data={"pageNum":pageNum,
+        "pageSize":pageSize,
+        "id":userId};
+    $.ajax({
+        url:contextPath+"admin/user/"+relationType,
+        type:"get",
+        data:data,
+        success:function (data) {
+            var $relationTableBody = $("#user-follow-table").find(">tbody");
+            $relationTableBody.empty();
+            var list = data.list;
+            if (list.length==0){
+                $("#user-follow-table").hide();
+                $("#pagetool").hide();
+                $("#message").show();
+                return;
+            }else {
+                $("#user-follow-table").show();
+                $("#pagetool").show();
+                $("#message").hide();
+            }
+            for(var i=0;i<list.length;i++){
+                var user = data.list[i].userBasic;
+                var tr = $('<tr>\n' +
+                    '         <td><img src="' + contextPath + 'file?path=' + user.photo + '" class="photo"></td>\n' +
+                    '         <td>' + user.id + '\n' +
+                    '             <img src="' + contextPath + 'images/vip' + (user.vip ? '' : '-grey') + '.png" class="flag">\n' +
+                    '             <img src="' + contextPath + 'images/star-0' + (user.star ? '' : '-grey') + '.png" class="flag">\n' +
+                    '         </td>\n' +
+                    '         <td>' + user.nickname + '</td>\n' +
+                    '         <td>' + user.email + '</td>\n' +
+                    '         <td>' + user.sex + '</td>\n' +
+                    '         <td>' + list[i].followTime + '</td>\n' +
+                    '    </tr>');
+                tr.append($('<td><a class="btn btn-sm btn-info" href="' + contextPath + 'admin/user/details/' + user.id + '"><i class="fa fa-edit"></i>&nbsp;查看详情</a></td>'));
+                $relationTableBody.append(tr);
+            }
+            setPage(data.pageNum,data.total, data.pages, "goPage");
+        }
+    })
+}
 
 function loadUserData(type) {
     $.get(contextPath + "admin/user/" + type + "/" + userId, {}, function (data) {
@@ -36,10 +83,35 @@ function loadUserData(type) {
 }
 
 function initUserTab() {
-    $("#user-tab a").click(function () {
+    $("#user-tab a:lt(6)").click(function () {
         loadUserData(this.id);
     });
+    $("#photos").click(function () {
+        
+    });
+    $("#relation").click(function () {
+        setPageSizeSel(pageSizeArray,pageSize);
+        initPageSizeSel();
+        loadUserRelation();
+    });
+
+    $("#relation-div button").click(function () {
+        relationType = this.id.split("-")[0];
+       loadUserRelation(relationType);
+    })
 }
+
+function initPageSizeSel() {
+    $("#pageSize-sel").change(function () {
+        pageSize = $(this).val();
+        goPage(1);
+    });
+};
+
+function goPage(_pageNum) {
+    pageNum = _pageNum;
+    loadUserRelation();
+};
 
 var colmap = {
     "basic": {

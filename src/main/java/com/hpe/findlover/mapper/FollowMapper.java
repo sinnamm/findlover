@@ -16,4 +16,8 @@ public interface FollowMapper extends BaseTkMapper<Follow> {
 	List<UserBasic> selectAllFollower(int followId);
 
 	Set<Integer> selectFollowIdByUserId(int UserId);
+
+	List<Follow> selectFollow(int userId);
+
+	List<Follow> selectFollower(int userId);
 }
