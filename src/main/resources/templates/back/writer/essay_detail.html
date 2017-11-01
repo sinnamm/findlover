@@ -30,6 +30,7 @@
                                     <li class="active">
                                         <a id="info" href="#info-pane" data-toggle="tab">文章详情</a>
                                     </li>
+                                    <li><a id="photo" href="#photo-pane" data-toggle="tab">配图详情</a></li>
                                 </ul>
                                 <div id="essay-tab-content" class="tab-content">
 
@@ -38,13 +39,21 @@
                                             <div class="container-fluid" style="height: auto">
                                                 <th:block th:utext="${essay}"></th:block>
                                                 <div class="row">
-                                                    <div class="col-md-6 text-right">
+                                                    <div th:if="${essayObj.status==2}" class="col-md-6 text-right">
                                                         <a id="checked-essay" class="btn btn-warning">审核</a>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <a id="delete-essay" class="btn btn-danger">删除</a>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="photo-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+                                                <img th:src="@{/file(path=${essayObj.photo})}" style="width: auto;height: 400px">
                                             </div>
                                         </div>
                                     </div>
