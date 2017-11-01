@@ -119,6 +119,8 @@ public class WriterController {
             String photoPath = uploadService.uploadFile(ephoto);
             essay.setWriterId(writer.getId());
             essay.setFilename(filePath);
+            essay.setLikeCount(0);
+            essay.setVisitCount(0);
             essay.setStatus(Essay.UNCHECKED_STATUS);
             essay.setPhoto(photoPath);
             //提交文章的同时生成文章并且生成该作家
