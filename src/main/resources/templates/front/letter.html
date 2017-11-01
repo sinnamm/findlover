@@ -8,7 +8,7 @@
     <script src="../../static/js/front/letter.js" th:src="@{/js/front/letter.js}"></script>
     <script th:inline="javascript">
         $(function () {
-            var photo = /*[[@{/file(path=${session.user.photo})}]]*/;
+            var photo =''/*[[@{/file(path=${session.user.photo})}]]*/;
             $(".chat-right").addClass("right-photo");
 
         })
@@ -144,13 +144,13 @@
 
                 <div class="center-middle" style="background-color: white">
                     <img  style="height: 100px;width: 100px;" th:src="@{/file(path=${session.user.getPhoto()})}" >
-                    <p style="font-size: 30px; font: '微软雅黑', serif;" th:text="${session.user.getNickname()}"></p>
+                    <p style="font-size: 30px; font-family: '微软雅黑', serif;" th:text="${session.user.getNickname()}"></p>
                 </div>
                 <!--消息菜单栏-->
                 <ul class="match_box message">
-                    <li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span th:text="${'('+map[num][#lists.size(map[num])-1]+')'}">(0)</span></li>
-                    <li><i class="fa fa-heart"></i><a href="follow.html"> 关注</a><span>(0)</span></li>
-                    <li><i class="fa fa-eye"></i><a href="visite_trace.html"> 访问记录</a><span>(0)</span></li>
+                    <li><i class="fa fa-comments-o"></i><a th:href="@{/letter}"> 私信</a><span th:text="${'('+map[num][#lists.size(map[num])-1]+')'}">(0)</span></li>
+                    <li><i class="fa fa-heart"></i><a th:href="@{/follow}"> 关注</a><span>(0)</span></li>
+                    <li><i class="fa fa-eye"></i><a th:href="@{/visit_trace}"> 访问记录</a><span>(0)</span></li>
                     <li><i class="fa fa-envelope-o"></i><a href="notice.html"> 系统通知</a><span>(0)</span></li>
                 </ul>
                 <!--广告栏-->

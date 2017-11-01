@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.VisitTrace;
+import com.hpe.findlover.service.LetterService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.service.VisitTraceService;
 import com.hpe.findlover.util.Constant;
@@ -11,6 +12,7 @@ import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,15 +37,21 @@ public class VisitTraceController {
    private VisitTraceService visitTraceService;
    @Autowired
    private UserService userService;
+   @Autowired
+   private LetterService letterService;
 
    private Logger logger = LogManager.getLogger(VisitTraceController.class);
 
    @GetMapping
-   public String visitTrace(Model model){
-       List<UserBasic> userBasics = LoverUtil.getRandomUser(userService.selectAll(),4);
+   public String visitTrace(Model model, HttpServletRequest request){
+       int userId = SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId();
+       PageHelper.startPage(1,4,"reg_time desc");
+       List<UserBasic> userBasics = userService.selectAll();
        for(UserBasic userBasicl:userBasics){
            userBasicl.setAge(LoverUtil.getAge(userBasicl.getBirthday()));
        }
+       //右侧信息条数
+       model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
        model.addAttribute("users",userBasics);
        return "front/visit_trace";
    }
