@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -28,11 +29,10 @@ public class SuccessStoryController {
     @Autowired
     private UploadService uploadService;
     Logger logger = LoggerFactory.getLogger(SuccessStoryController.class);
-    @PostMapping("upload_essay")
+    @PostMapping("write_story")
     @ResponseBody
-    public String uploadEssay(HttpSession session, String essays, int otherId, String title){
-//        0：下架，1：审核通过，2：待右手审核，3：待管理员审核
-        logger.error("SuccessStoryController#################uploadEssay");
+    public String uploadEssay(HttpSession session, String essays, int otherId, String title,
+                              MultipartFile ephoto, String tcontent) throws Exception{
         SuccessStory successStory=new SuccessStory();
         UserBasic user= (UserBasic) session.getAttribute("user");
         successStory.setLeftUser(user.getId());
@@ -41,6 +41,8 @@ public class SuccessStoryController {
         successStory.setStatus(2);
         successStory.setSuccessTime(new Date());
         successStory.setContent(uploadService.uploadFile(essays,"txt"));
+        successStory.setPhoto(uploadService.uploadFile(ephoto));
+        successStory.setBrief(tcontent);
         successStory.setLikeCount(0);
         successStory.setReplyCount(0);
         if (successStoryService.insert(successStory)){

@@ -370,13 +370,9 @@ public class UserCenterController {
 			}
 			logger.error(userBasic);
 			result = userService.updateUserBasicAndUserLabel(userBasic);
-			//result = userService.updateByPrimaryKeySelective(userBasic);
-			//如果用户修改权限之后更新session中user值
-			if (userBasic.getAuthority() != null) {
-				UserBasic ubInSession = (UserBasic) session.getAttribute("user");
-				ubInSession.setAuthority(userBasic.getAuthority());
-				session.setAttribute("user", ubInSession);
-			}
+			userBasic = userService.selectByPrimaryKey(userBasic.getId());
+			userService.userAttrHandler(userBasic);
+			session.setAttribute("user", userBasic);
 		}
 		return result;
 	}

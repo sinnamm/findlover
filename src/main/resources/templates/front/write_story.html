@@ -16,8 +16,14 @@
 <!--导航栏（th:remove)-->
 
 <div class="container grid_0">
-    <form id="storyForm" th:action="@{/success_story/write_story}" th:method="post" class="form-horizontal" >
+    <form id="storyForm" th:action="@{/success_story/write_story}" th:method="post" class="form-horizontal" enctype="multipart/form-data">
         <div class="form-group" style="margin-top:50px ;">
+            <label for="ephoto" class="col-md-3 control-label">文章配图</label>
+            <div class="col-md-5">
+                <input id="ephoto" name="ephoto" type="file" class="control-file" >
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:50px ; margin-bottom: 50px;">
             <label  class=" col-md-3 control-label " style="align:right;">id</label>
             <div class="col-md-5" align="left">
                 <input id="otherId" name="otherId" class="form-control" type="text" style="align:left;" placeholder="请输入ta的id">
@@ -29,9 +35,11 @@
                 <input id="title" name="title" class="form-control" type="text" style="align:left;" placeholder="请输入您文章的标题">
             </div>
             <div class="col-md-2 text-right" >
-                <button class="btn btn-primary" id="submitStory" >提交</button>
+                <button class="btn btn-primary" id="submitStory" type="submit" >提交</button>
             </div>
         </div>
+        <input name="tcontent" id="tcontent" type="hidden"/>
+        <input name="essays" id="essays" type="hidden"/>
         <div id="test-editormd" align="center" style="margin: 30px">
             <textarea id="editor" name="test-editormd-markdown-doc" style="height: 600px;width: 95%"></textarea>
         </div>

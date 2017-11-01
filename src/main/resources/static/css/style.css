@@ -2542,6 +2542,7 @@ ul.pagination_1 > li > a {
 .jobs-item {
     position: relative;
     margin-bottom: 1em;
+    margin-left: 10px;
 }
 
 .jobs-item .thumb {
@@ -2634,7 +2635,7 @@ a.read-more {
 }
 
 .thumb_bottom {
-    margin: 1.5em 0 0 0;
+    margin: 1em 0 0 0;
 }
 
 a.photo_view {
@@ -5048,7 +5049,7 @@ ul.feature_list.feature_list1 {
 .jobs-item .thumb img {
     border-radius: 5px;
     margin-bottom: 10px;
-    margin-left: 30px;
+    margin-left: 0px;
     width: 100px;
     height: 100px;
 }

@@ -58,7 +58,7 @@
                                          class="jobs-item with-thumb userLetter">
                                         <input th:value="${letterUser.id}" id="otherUserId" hidden/>
                                         <div class="thumb_top">
-                                            <div class="thumb">
+                                            <div class="thumb"   style="width: 50px ; margin-right:0 ; height: 40px;">
                                                 <img th:src="@{/file(path=${letterUser.photo})}"
                                                      style="width: 40px ;height: 40px;"
                                                      class="img-responsive" alt=""/>
@@ -73,7 +73,7 @@
                                             </div>
                                             <th:block th:if="${map[num].get(iterStat.index)>0 && iterStat.index>0}">
                                                 <div class="redPoint">
-                                                    <span style="color: #FFFFFF;font-size: 5px;line-height: 20px; position:relative;top:-70%;" th:text="${map[num].get(iterStat.index) }"></span>
+                                                    <span style="color: #FFFFFF;font-size: 5px;line-height: 20px; position:relative;top:-2px;" th:text="${map[num].get(iterStat.index) }"></span>
                                                 </div>
                                             </th:block>
                                         </div>

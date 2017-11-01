@@ -1,6 +1,9 @@
 package com.hpe.findlover.contoller.back;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hpe.findlover.model.Essay;
+import com.hpe.findlover.model.SuccessStory;
 import com.hpe.findlover.service.SuccessStoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +37,7 @@ public class SuccessStorysController {
 		PageHelper.startPage(pageNum,pageSize);
 		List list = null;
 		list=successStoryService.selectByKeywordAndStatus(column,keyword,status);
-		return list ;
+		PageInfo<SuccessStory> pageInfo = new PageInfo<>(list);
+		return pageInfo ;
 	}
 }

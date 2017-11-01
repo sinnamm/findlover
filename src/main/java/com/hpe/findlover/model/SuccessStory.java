@@ -17,6 +17,10 @@ public class SuccessStory {
 
     private String title;
 
+    private String brief;
+
+    private String photo;
+
     @Column(name = "success_time")
     private Date successTime;
 
@@ -152,6 +156,22 @@ public class SuccessStory {
         this.status = status;
     }
 
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     /**
      * @return admin_id
      */
@@ -187,6 +207,8 @@ public class SuccessStory {
                 ", leftUser=" + leftUser +
                 ", rightUser=" + rightUser +
                 ", title='" + title + '\'' +
+                ", brief='" + brief + '\'' +
+                ", photo='" + photo + '\'' +
                 ", successTime=" + successTime +
                 ", likeCount=" + likeCount +
                 ", replyCount=" + replyCount +

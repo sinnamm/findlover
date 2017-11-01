@@ -8,6 +8,7 @@ $(function () {
     initPageSizeSel();
     initIdentityBtn();
     initSearchBtn();
+    // initEditStoryStatusBtn();
 });
 function loadMessage() {
     var column=$("#story-search-sel").val();
@@ -25,8 +26,8 @@ function loadMessage() {
         dataType: "JSON",
         success:function (data) {
             $("#body").empty();
-            for(var i=0;i<data.length;i++){
-                var story=data[i];
+            for(var i=0;i<data.list.length;i++){
+                var story=data.list[i];
                 var tr=$("  <tr>\n" +
                     '         <td>' + story.id + '</td>\n'+
                     '         <td>' + story.leftUser+'&'+ story.rightUser+ '</td>\n' +
@@ -34,20 +35,20 @@ function loadMessage() {
                     ' <td>' + story.successTime+ '</td>\n');
                 switch (story.status){
                     case 0:
-                        tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;未审核</button></td>");
-                        tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;未上架</button></td>");
+                        tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;已审核</button></td>");
+                        tr.append("<td><button id = 'story-status\"+ story.id+\"-0' class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i>&nbsp;已下架</button></td>");
                         break;
                     case 1:
                         tr.append("<td><button class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i>&nbsp;已审核</button></td>");
-                        tr.append("<td><button class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i>&nbsp;已上架</button></td>");
+                        tr.append("<td><button id = 'story-status"+ story.id+"-1' class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i>&nbsp;已上架</button></td>");
                         break;
                     case 2:
                         tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;待右手审核</button></td>");
-                        tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;未上架</button></td>");
+                        tr.append("<td><button id = 'story-status\"+ story.id+\"-2' class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;未上架</button></td>");
                         break;
                     case 3:
                         tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;待审核</button></td>");
-                        tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;未上架</button></td>");
+                        tr.append("<td><button id = 'story-status\"+ story.id+\"-3' class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;未上架</button></td>");
                         break;
                 }
                 tr.append("<td><button class=\"btn btn-sm btn-success\">&nbsp;预览</button></td>");
@@ -58,6 +59,54 @@ function loadMessage() {
         }
     })
 }
+
+// function initEditStoryStatusBtn() {
+//     $("button[id^='story-status']").click(function () {
+//         var storyId = this.id.split("-")[3];
+//         var status = this.id.split("-")[4];
+//         var dbstatus = this.value;
+//         if(dbstatus == 2||dbstatus==3){
+//             swal("温馨提醒","请查看详情进行审核后，再上架！", "warning");
+//             return;
+//         }
+//         var text = status !== "0" ? "下架ID为" + storyId + "的文章？" : "上架ID为" + storyId + "的文章？";
+//         var $btn = $(this);
+//         swal({
+//             title: text,
+//             icon: "warning",
+//             buttons: ["取消", "确定"]
+//         }).then(result => {
+//             if (result) {
+//                 $.ajax({
+//                     url: contextPath + "admin/success_story/" + essayId,
+//                     type: "put",
+//                     data: {"status": status ^ 1},
+//                     dataType: "text",
+//                     success: function (data) {
+//                         if (data === "true") {
+//                             swal("状态修改成功！", "", "success");
+//                             if (status === "1") {
+//                                 $btn.removeClass("btn-success");
+//                                 $btn.addClass("btn-warning");
+//                                 $btn.html('<i class="fa fa-times"></i>&nbsp;未上架');
+//                                 $btn.attr("id", "edit-user-status-" + essayId + "-" + (status ^ 1))
+//                             } else {
+//                                 $btn.removeClass("btn-warning");
+//                                 $btn.addClass("btn-success");
+//                                 $btn.html("已下架");
+//                                 $btn.html('<i class="fa fa-check"></i>&nbsp;已上架');
+//                                 $btn.attr("id", "edit-user-status-" + essayId + "-" + (status ^ 1))
+//                             }
+//                         } else {
+//                             swal("状态修改失败！", "", "error");
+//                         }
+//                     },
+//                     error: errorAlert
+//                 });
+//             }
+//         });
+//     })
+// }
 function goPage(_pageNum) {
     pageNum = _pageNum;
     loadMessage();
@@ -69,16 +118,6 @@ function initPageSizeSel() {
         goPage(1);
     });
 };
-function checkAll(inputlist){
-    var arr = [];
-    var num = inputlist.length;
-    for(var i = 0; i < num; i++){
-        if(inputlist.eq(i).is(":checked")){
-            arr.push(inputlist.eq(i).val());
-        }
-    }
-    return arr;
-}
 function initIdentityBtn() {
     $("#story-btn-all").click(function () {
         status=-1;

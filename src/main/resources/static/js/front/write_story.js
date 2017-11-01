@@ -19,33 +19,42 @@ function initUeditor() {
 function niceValidator() {
     $("#storyForm").validator({
         fields: {
-            'otherId': 'required;length(3~16);remote['+contextPath+'checkid, otherId]'
+            'otherId': 'required;length(3~16);remote['+contextPath+'checkid, otherId]',
+            'photo': 'required;accept[png|jpg|bmp|gif|jpeg]'
         },
         valid:  function(form){
-        var otherId=$("#otherId").val();
-        var title=$("#title").val();
-        var  content = UE.getEditor('editor').getContent();
-        $.ajax({
-            url: contextPath + "success_story/upload_essay",
-            data: {
-                essays: content,
-                otherId:otherId,
-                title:title
-            },
-            type: "POST",
-            dataType: "text",
-            success: function (data) {
-                if (data === 'error'){
-                    swal("错误","遇到未知错误","error");
-                }else{
-                    swal("温馨提示","上传已成功","success");
-                }
-            },
-            error:function () {
-                swal("错误","遇到未知错误","error");
-            }
-        });
-    },
+            $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,100));
+            $("#essays").val(UE.getEditor('editor').getContent());
+            form.submit();
+            // var otherId=$("#otherId").val();
+            // var title=$("#title").val();
+            // var content = UE.getEditor('editor').getContent();
+            // var tcontent = UE.getEditor('editor').getContentTxt().substring(0,100);
+            // var photo = $("#photo").val();
+            // alert(photo);
+            // $.ajax({
+            //         url: contextPath + "success_story/upload_essay",
+            //         data: {
+            //             essays: content,
+            //             otherId:otherId,
+            //             title:title,
+            //             tcontent:tcontent,
+            //
+            //         },
+            //         type: "POST",
+            //         dataType: "text",
+            //         success: function (data) {
+            //             if (data === 'error'){
+            //                 swal("错误","遇到未知错误","error");
+            //             }else{
+            //                 swal("温馨提示","上传已成功","success");
+            //             }
+            //         },
+            //         error:function () {
+            //         swal("错误","遇到未知错误","error");
+            //     }
+            // });
+        },
         theme:'bootstrap',
         timely:2,
         stopOnError:true

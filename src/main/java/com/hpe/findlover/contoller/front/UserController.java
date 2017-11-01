@@ -185,7 +185,9 @@ public class UserController {
 		}
 		if (SecurityUtils.getSubject().isAuthenticated()) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user",userService.selectByEmail(user.getEmail()));
+			UserBasic userBasic = userService.selectByEmail(user.getEmail());
+			userService.userAttrHandler(userBasic);
+			session.setAttribute("user", userBasic);
 			Enumeration<String> attributeNames = session.getAttributeNames();
 			while(attributeNames.hasMoreElements()){
 				String name = attributeNames.nextElement();
