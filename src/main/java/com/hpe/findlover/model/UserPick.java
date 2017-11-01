@@ -58,8 +58,9 @@ public class UserPick {
     public UserPick() {
     }
 
-    public UserPick(Integer id) {
+    public UserPick(Integer id,String sex) {
         this.id =id;
+        this.sex =sex;
     }
 
 
