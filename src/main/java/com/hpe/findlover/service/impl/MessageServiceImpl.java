@@ -41,8 +41,8 @@ public class MessageServiceImpl extends BaseServiceImpl<Message> implements Mess
 	}
 
 	@Override
-	public List<Message> selectMessageByFollow(Set<Integer> followIds) {
-		List<Message> messages = messageMapper.selectMessageByIds(followIds);
+	public List<Message> selectMessageByFollow(int userId) {
+		List<Message> messages = messageMapper.selectMessageByIds(userId);
 		return messages;
 	}
 

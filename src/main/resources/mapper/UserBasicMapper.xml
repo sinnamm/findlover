@@ -171,12 +171,6 @@
             <if test="birthplace != null and birthplace !='-1'">
                 AND birthplace LIKE #{birthplace}
             </if>
-            <if test="drink != null and drink !='-1'">
-                AND drink LIKE #{drink}
-            </if>
-            <if test="smoke != null and smoke !='-1'">
-                AND smoke LIKE #{smoke}
-            </if>
             <if test="ageLow != null and ageLow !='-1'">
                 AND YEAR(NOW())-YEAR(birthday) >= #{ageLow}
             </if>

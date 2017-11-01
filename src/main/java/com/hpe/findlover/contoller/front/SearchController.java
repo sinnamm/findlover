@@ -141,7 +141,9 @@ public class SearchController {
         if (!(userBasic.getVip())){
             formatPick(userPick);
         }
-        userPick.setWorkplace("%"+userPick.getWorkplace()+"%");
+        if (userPick.getWorkplace()!=null) {
+            userPick.setWorkplace("%" + userPick.getWorkplace() + "%");
+        }
         if (userPick.getBirthplace()!=null) {
             userPick.setBirthplace("%" + userPick.getBirthplace() + "%");
         }

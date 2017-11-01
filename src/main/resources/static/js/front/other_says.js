@@ -93,6 +93,7 @@ function followMessage() {
         dataType:"json",
         success:function (data) {
             if (data.list.length==0){
+                swal("暂时没有数据哟","Error");
                 $("#divide-page").hide();
                 return;
             }

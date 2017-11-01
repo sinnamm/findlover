@@ -56,11 +56,9 @@
     </select>
     
     <select id="selectMessageByIds" resultMap="BaseResultMap">
-        SELECT  * from message
-        WHERE user_id IN 
-        <foreach collection="set" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
+       SELECT  * from message
+        WHERE user_id IN
+        (SELECT follow_id FROM follow WHERE user_id=#{userId});
 
     </select>
 </mapper>

@@ -12,6 +12,7 @@ public class UserPick {
     private String workProvince;
     @Transient
     private String workCity;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -56,6 +57,11 @@ public class UserPick {
 
     public UserPick() {
     }
+
+    public UserPick(Integer id) {
+        this.id =id;
+    }
+
 
     public UserPick(Integer id,String sex, Integer ageLow, Integer ageHigh, String workplace, String birthplace, String marryStatus, String education, Double salaryLow, Double salaryHigh, Integer heightLow, Integer heightHigh, String job, Integer drink, Integer smoke) {
         this.id=id;

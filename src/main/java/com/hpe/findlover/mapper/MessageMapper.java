@@ -14,5 +14,5 @@ public interface MessageMapper extends BaseTkMapper<Message> {
 
 	List<Message> selectMessageByColumn(@Param("column")String column,@Param("keyword")String keyword);
 
-	List<Message> selectMessageByIds(@Param("set") Set<Integer> ids);
+	List<Message> selectMessageByIds(int userId);
 }

@@ -12,6 +12,6 @@ public interface MessageService extends BaseService<Message>{
 
 	List<Message> selectMessageByColumn(String column,String keyword);
 
-	List<Message> selectMessageByFollow(Set<Integer> followId);
+	List<Message> selectMessageByFollow(int userId);
 
 }

@@ -100,10 +100,8 @@ public class OtherSayController {
 	public String followMessage(@Param("pageNum")Integer pageNum,HttpServletRequest request) throws JsonProcessingException {
 		logger.info("pageNum=="+pageNum);
 		UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
-		Set<Integer> followIds = followService.selectFollowIdByUserId(userBasic.getId());
-		followIds.forEach(logger::info);
 		PageHelper.startPage(pageNum,4,"pub_time desc");
-		List<Message> list = messageService.selectMessageByFollow(followIds);
+		List<Message> list = messageService.selectMessageByFollow(userBasic.getId());
 		for (int i=0;i<list.size();i++){
 			List<MessageReply> messageReplies = list.get(i).getReplies();
 			for (int j=0;j<messageReplies.size();j++){
