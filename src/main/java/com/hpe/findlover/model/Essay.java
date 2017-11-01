@@ -17,11 +17,14 @@ public class Essay {
 
     private String photo;
 
+    private String brief;
+
     @Column(name = "pub_time")
     private Date pubTime;
 
     @Transient
     private Writer writer;
+
 
     /**
      * 下架
@@ -35,6 +38,14 @@ public class Essay {
      * 未审核
      */
     public static final Integer UNCHECKED_STATUS=2;
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
 
     public String getPhoto() {
         return photo;
@@ -204,6 +215,7 @@ public class Essay {
                 ", title='" + title + '\'' +
                 ", filename='" + filename + '\'' +
                 ", photo='" + photo + '\'' +
+                ", brief='" + brief + '\'' +
                 ", pubTime=" + pubTime +
                 ", writer=" + writer +
                 ", status=" + status +

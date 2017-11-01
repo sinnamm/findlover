@@ -28,4 +28,19 @@ public class EssayServiceImpl extends BaseServiceImpl<Essay> implements EssaySer
     public List<Essay> selectAllByIdentity(String identity, String column, String keyword) {
         return essayMapper.selectAllByIdentity(identity,column,keyword);
     }
+
+    @Override
+    public List<Essay> selectAllByPutaway() {
+        return essayMapper.selectAllByPutaway();
+    }
+
+    @Override
+    public Essay selectEssayAndWriter(Integer id) {
+        return essayMapper.selectEssayAndWriter(id);
+    }
+
+    @Override
+    public List<Essay> selectHotEssay() {
+        return essayMapper.selectHotEssay();
+    }
 }

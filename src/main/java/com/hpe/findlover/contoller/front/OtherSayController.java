@@ -1,8 +1,10 @@
 package com.hpe.findlover.contoller.front;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.*;
@@ -20,9 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
 
 /***
  * @author  gss
@@ -42,6 +43,10 @@ public class OtherSayController {
 	private MessageReplyService messageReplyService;
 	@Autowired
 	private FollowService followService;
+	@Autowired
+	private EssayService essayService;
+	@Autowired
+	private UploadService uploadService;
 
 	private Logger logger = LogManager.getLogger(this.getClass());
 	private final MessageService messageService;
@@ -136,6 +141,75 @@ public class OtherSayController {
 			return "error";
 		}
 	}
+
+
+    /**
+     * 加载文章详情内容
+     * @param id 文章id
+     * @param model
+     * @return
+     */
+	@GetMapping("essaydetail/{id}")
+	public String essayDetailUI(@PathVariable Integer id,Model model){
+        Essay essayObj = essayService.selectEssayAndWriter(id);
+        essayObj.setVisitCount(essayObj.getVisitCount()+1);
+        essayService.updateByPrimaryKeySelective(essayObj);
+        byte[] bytes = uploadService.downloadFile(essayObj.getFilename());
+        try {
+            String essay = new String(bytes, "utf-8");
+            model.addAttribute("essay",essay);
+            model.addAttribute("essayObj",essayObj);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            //跳转错误页面
+            return "front/other_says_detail";
+        }
+		return "front/other_says_detail";
+	}
+
+    /**
+     * 分页加载文章内容
+     * @param page
+     * @return
+     */
+	@GetMapping("essays")
+	@ResponseBody
+	public PageInfo<Essay> essayList(Page<Essay> page) {
+		logger.info("接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize());
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Essay> essays = essayService.selectAllByPutaway();
+		PageInfo<Essay> pageInfo = new PageInfo<>(essays);
+		logger.info(JSONObject.toJSON(pageInfo));
+		return pageInfo;
+	}
+
+    /**
+     * 加载5条访问量大的文章
+     * @return
+     */
+	@GetMapping("hot_essays")
+	@ResponseBody
+	public Object hotEssayList() {
+        List<Essay> essays = essayService.selectHotEssay();
+		return essays;
+	}
+
+    /**
+     * 加载5条访问量大的文章
+     * @return
+     */
+	@GetMapping("like/{id}")
+    @ResponseBody
+	public Object likeEssay(@PathVariable Integer id) {
+        Essay essay = essayService.selectByPrimaryKey(id);
+        essay.setLikeCount(essay.getLikeCount()+1);
+        boolean result = essayService.updateByPrimaryKeySelective(essay);
+        Integer likeCount = essay.getLikeCount();
+        Map<String, Object> map = new HashMap<>();
+        map.put("likeCount",likeCount);
+        map.put("result",result);
+        return map;
+    }
 
 	public void formatMessage(List<Message> list,Integer userId){
 		for (int i=0;i<list.size();i++){

@@ -110,7 +110,7 @@ public class WriterController {
      */
     @PostMapping("upload")
     public Object uploadEssay(HttpSession session, String essays
-            , Essay essay, MultipartFile ephoto, RedirectAttributes redirectAttributes) throws Exception {
+            , Essay essay, MultipartFile ephoto,Model model) throws Exception {
         Writer writer = (Writer) session.getAttribute("writer");
         logger.debug("writer=" + writer);
         if (essays != null && ephoto != null && writer!=null) {
@@ -124,10 +124,10 @@ public class WriterController {
             //提交文章的同时生成文章并且生成该作家
             // logger.debug(filePath);
             essayService.insert(essay);
-            redirectAttributes.addAttribute("msg", essays);
+            model.addAttribute("msg", essays);
         }
         //return essays;
-        return "redirect:result";
+        return "front/result";
     }
 
     @RequestMapping("result")

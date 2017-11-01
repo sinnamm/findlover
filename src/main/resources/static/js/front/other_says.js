@@ -1,10 +1,12 @@
 var pageNum = 1;
 var type = "new";
-var tab = "message";
+var tab = "essay";
 var msgId = 0;
 
 $(function () {
     btnClick();
+    loadEssayData();
+    loadHotEssayData();
 });
 function getMessage() {
     $("#news-follow-div").empty();
@@ -168,14 +170,21 @@ function btnClick() {
     })
 
     $("#essay-btn").click(function () {
+        $("#divide-page").show();
+        tab="essay";
+        pageNum=1;
+        loadEssayData();
     });
 
     $("#news-btn").click(function () {
+        $("#divide-page").show();
         type="new";
         tab="message";
+        pageNum=1;
         getMessage();
     });
     $("#new-li").click(function () {
+        $("#divide-page").show();
         type="new";
         tab="message";
         pageNum=1;
@@ -184,14 +193,16 @@ function btnClick() {
     });
 
     $("#hot-li").click(function () {
+        $("#divide-page").show();
         type="hot";
         tab="message";
         pageNum=1;
-        $("#sort-btn").html("最热")
+        $("#sort-btn").html("最热");
         getMessage();
     });
 
     $("#follow-btn").click(function () {
+        $("#divide-page").show();
         pageNum=1;
         tab="follow-message";
         followMessage();
@@ -202,9 +213,60 @@ function goPage(_pageNum) {
     pageNum = _pageNum;
     if (tab=="message"){
         getMessage();
-    }else {
+    }else if(tab=="follow-message"){
         followMessage();
     }
+    else if(tab=="essay"){
+        loadEssayData();
+    }
+}
 
+//加载文章列表
+function loadEssayData() {
+    $.get(contextPath + "other_says/essays",
+        {
+            "pageNum": pageNum,
+            "pageSize": 5,
+        }, function (data) {
+            var $essaysDiv = $('#essay-list');
+            $essaysDiv.empty();
+            for (var x = 0; x < data.list.length; x++) {
+                var essay = data.list[x];
+                var $essay = $('<div class="jobs-item with-thumb">\n' +
+                    '               <div class="thumb_top">\n' +
+                    '                   <a href="'+contextPath+'other_says/essaydetail/'+essay.id+'" class="thumb">\n' +
+                    '                       <img src="'+contextPath+'file?path='+essay.photo+'" \n' +
+                    '                            class="img-responsive" alt=""/></a>\n' +
+                    '                   </a>\n' +
+                    '                   <div class="jobs_right">\n' +
+                    '                       <a href="'+contextPath+'other_says/essaydetail/'+essay.id+'"><h6 class="title">'+essay.title+'</h6></a>\n' +
+                    '                       <ul class="login_details1">\n' +
+                    '                           <li><span class="m_1">'+essay.pubTime+'</span> | <span\n' +
+                    '                                   class="m_1">阅读量('+essay.visitCount+')</span> | <span class="m_1">点赞量('+essay.likeCount+')</span>\n' +
+                    '                           </li>\n' +
+                    '                       </ul>\n' +
+                    '                       <p class="description">'+essay.brief+'<br></p>\n' +
+                    '                   </div>\n' +
+                    '                   <div class="clearfix"></div>\n' +
+                    '               </div>\n' +
+                    '           </div>\n' +
+                    '           <hr/>');
+                $essaysDiv.append($essay);
+            }
+            setPage(data.pageNum,data.total, data.pages, "goPage");
+        }, "json");
+}
+
+//加载好文推荐
+function loadHotEssayData() {
+    $.get(contextPath + "other_says/hot_essays", {}, function (data) {
+        var $hotEssaysUl = $('#hot-essay');
+        $hotEssaysUl.find('li:gt(0)').remove();
+        for (var x = 0; x < data.length; x++) {
+            var essay = data[x];
+            var $essay = $('<li><a href="' + contextPath + 'other_says/essaydetail/' + essay.id + '">' + essay.title + '</a></li>');
+            $hotEssaysUl.append($essay);
+        }
+    }, "json");
 }
 

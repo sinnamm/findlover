@@ -17,22 +17,12 @@ function initEssayForm() {
         },
         theme: 'bootstrap',
         timely: 2,
-        stopOnError: true/*,
+        stopOnError: true,
         valid: function (form) {
-            $.ajax({
-                url: contextPath + "writer/upload" + exturl,
-                data: $(form).serialize(),
-                type: "PUT",
-                dataType: "TEXT",
-                success: function (data) {
-                    if (data == "true") {
-                        swal("温馨提示", "修改成功", "success");
-                    } else {
-                        swal("温馨提示", "修改失败", "error");
-                    }
-                }
-            });
-        }*/
+            var tcontent = UE.getEditor('editor').getContentTxt();
+            $('#brief').val(tcontent.substring(0,50)+'...');
+            form.submit();
+        }
     });
 }
 

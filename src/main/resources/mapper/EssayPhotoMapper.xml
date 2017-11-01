@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hpe.findlover.mapper.EssayPhotoMapper" >
+  <resultMap id="BaseResultMap" type="com.hpe.findlover.model.EssayPhoto" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="essay_id" property="essayId" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, essay_id, photo
+  </sql>
+
+</mapper>

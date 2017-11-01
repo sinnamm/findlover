@@ -1,5 +1,7 @@
 package com.hpe.findlover.contoller;
 
+import com.hpe.findlover.model.EssayPhoto;
+import com.hpe.findlover.service.EssayPhotoService;
 import com.hpe.findlover.service.UploadService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +27,8 @@ public class UeditorController {
 
     @Autowired
     private UploadService uploadService;
+    @Autowired
+    private EssayPhotoService essayPhotoService;
     /**
      * ueditor返回的配置文件，该config.json文件从资源目录下读取
      * @return
@@ -78,6 +82,9 @@ public class UeditorController {
             logger.debug("文件大小" + upfile.getSize());
             logger.debug("源文件名称" + upfile.getOriginalFilename());
             logger.error("上传路径" + uploadPhotoPath);
+            EssayPhoto essayPhoto = new EssayPhoto();
+            essayPhoto.setPhoto(uploadPhotoPath);
+            essayPhotoService.insert(essayPhoto);
         }
         logger.error("上传路径" + uploadPhotoPath);
         Map<String, Object> map = new HashMap<>();

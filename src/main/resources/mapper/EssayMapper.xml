@@ -9,6 +9,7 @@
     <result column="writer_id" property="writerId" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="brief" property="brief" jdbcType="VARCHAR" />
     <result column="pub_time" property="pubTime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="admin_id" property="adminId" jdbcType="INTEGER" />
@@ -33,10 +34,10 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, writer_id, title, filename, pub_time, status, admin_id, like_count, visit_count,photo
+    id, writer_id, title, filename, pub_time, status, admin_id, like_count, visit_count,photo,brief
   </sql>
     <select id="selectAllByIdentity" resultMap="essayResultMap">
-        SELECT e.id, e.writer_id, e.title, e.filename, e.pub_time, e.status, e.admin_id, e.like_count, e.visit_count,
+        SELECT e.id, e.writer_id, e.title, e.filename, e.pub_time, e.status, e.admin_id, e.like_count, e.visit_count,e.brief,
         w.id AS wid, w.pseudonym, w.reg_time, w.essay_count,w.username,w.password,w.status AS wstatus
         FROM essay AS e LEFT OUTER JOIN writer as w ON e.writer_id=w.id
         WHERE e.${column} LIKE #{keyword}
@@ -50,5 +51,27 @@
             AND e.status=0
         </if>
         ORDER BY e.pub_time DESC
+    </select>
+    
+    <select id="selectAllByPutaway" resultType="essay">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM essay
+        WHERE status=1
+        ORDER BY pub_time DESC
+    </select>
+
+    <select id="selectEssayAndWriter" resultMap="essayResultMap">
+        SELECT e.id, e.writer_id, e.title, e.filename, e.pub_time, e.status, e.admin_id, e.like_count, e.visit_count,e.brief,
+        w.id AS wid, w.pseudonym, w.reg_time, w.essay_count,w.username,w.password,w.status AS wstatus
+        FROM essay AS e LEFT OUTER JOIN writer as w ON e.writer_id=w.id
+        WHERE e.id=#{id}
+    </select>
+
+    <select id="selectHotEssay" resultType="essay">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM essay
+        WHERE status=1
+        ORDER BY visit_count DESC
+        LIMIT 5
     </select>
 </mapper>
