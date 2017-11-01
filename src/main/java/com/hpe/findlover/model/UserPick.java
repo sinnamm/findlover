@@ -320,6 +320,8 @@ public class UserPick {
                 ", ageLow=" + ageLow +
                 ", ageHigh=" + ageHigh +
                 ", workplace='" + workplace + '\'' +
+                ", workProvince='" + workProvince + '\'' +
+                ", workCity='" + workCity + '\'' +
                 ", birthplace='" + birthplace + '\'' +
                 ", marryStatus='" + marryStatus + '\'' +
                 ", education='" + education + '\'' +

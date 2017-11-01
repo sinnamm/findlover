@@ -78,7 +78,7 @@
         <if test="sex!=null">
             AND ub.sex=#{sex}
         </if>
-        <if test="sex!=null">
+        <if test="workProvince!=null">
             AND ub.workplace LIKE #{workProvince}
         </if>
         AND ub.authority =1
