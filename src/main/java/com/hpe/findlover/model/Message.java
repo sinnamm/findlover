@@ -25,6 +25,9 @@ public class Message implements Serializable {
     private Integer replyCount;
 
     @Transient
+    private boolean isLike;
+
+    @Transient
     private List<MessageLike> likes;
 
     @Transient
@@ -41,6 +44,13 @@ public class Message implements Serializable {
         this.likeCount = likeCount;
     }
 
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
 
     public UserBasic getUserBasic() {
         return userBasic;

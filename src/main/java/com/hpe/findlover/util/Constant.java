@@ -10,6 +10,8 @@ public class Constant {
      */
     public static final int INDEX_SHOW_USER_NUMBER=16;
 
+
+
     public static final String INIT_SIGNATURE="哇哦，该用户很懒，没有留下任何东西";
     /**
      * 广告位固定显示星级用户个数

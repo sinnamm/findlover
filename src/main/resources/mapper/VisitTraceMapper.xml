@@ -2,18 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hpe.findlover.mapper.VisitTraceMapper" >
   <resultMap id="BaseResultMap" type="com.hpe.findlover.model.VisitTrace" >
-    <!--
-      WARNING - @mbg.generated
-    -->
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="interviewee_id" property="intervieweeId" jdbcType="INTEGER" />
     <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <resultMap id="visitTraceMap" type="com.hpe.findlover.model.VisitTrace" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="interviewee_id" property="intervieweeId" jdbcType="INTEGER" />
+    <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+    <association property="userBasic" javaType="UserBasic" column="interviewee_id" select="selectUserById"/>
+  </resultMap>
+  <resultMap id="visitTracerMap" type="com.hpe.findlover.model.VisitTrace" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="intervieweeId" jdbcType="INTEGER" />
+    <result column="interviewee_id" property="userId" jdbcType="INTEGER" />
+    <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+    <association property="userBasic" javaType="UserBasic" column="user_id" select="selectUserById"/>
+  </resultMap>
   <sql id="Base_Column_List" >
-    <!--
-      WARNING - @mbg.generated
-    -->
     id, user_id, interviewee_id, visit_time
   </sql>
+  <select id="selectUserById" resultType="UserBasic">
+    SELECT * from findlover.user_basic WHERE id=#{id}
+  </select>
+  <select id="selectVisitTrace" resultMap="visitTraceMap">
+    SELECT * from visit_trace WHERE user_id = #{id} ORDER  BY visit_time desc
+  </select>
+  <select id="selectVisitTracer" resultMap="visitTracerMap">
+    SELECT * from visit_trace WHERE interviewee_id = #{id} ORDER  BY visit_time desc
+  </select>
 </mapper>

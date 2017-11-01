@@ -43,8 +43,8 @@ function loadMessage(div_id,data){
             "                                </div>" +
             "                                <div class='row text-right'>" +
             "                                    <div class='col-sm-7'></div>" +
-            "                                    <div class='col-sm-2'>" +
-            "                                       <div onclick='likeMessage(" + list[i].id + ")' style='cursor: pointer'  class='fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up'></div>("
+            "                                    <div class='col-sm-2' style='color: "+(list[i].like? 'red':'')+"'>" +
+            "                                       <div onclick='likeMessage(" + list[i].id + ")' style='cursor: pointer; color: "+(list[i].like? 'red':'')+"'   class='fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up'></div>("
             + list[i].likeCount + ")" +
             "                                   </div>" +
             "                                    <div class='col-sm-2'>" +

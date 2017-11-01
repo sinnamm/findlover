@@ -31,9 +31,10 @@ public class ProfileController {
 	private final LabelService labelService;
 	private final ComplainService complainService;
 	private final FollowService followService;
+	private final VisitTraceService visitTraceService;
 
 	@Autowired
-	public ProfileController(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, UserPhotoService userPhotoService, LabelService labelService, ComplainService complainService, FollowService followService) {
+	public ProfileController(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, UserPhotoService userPhotoService, LabelService labelService, ComplainService complainService, FollowService followService,VisitTraceService visitTraceService) {
 		this.userBasicService = userBasicService;
 		this.userAssetService = userAssetService;
 		this.userDetailService = userDetailService;
@@ -44,11 +45,17 @@ public class ProfileController {
 		this.labelService = labelService;
 		this.complainService = complainService;
 		this.followService = followService;
+		this.visitTraceService = visitTraceService;
 	}
 
 	@GetMapping("{id}")
 	public String getProfileById(@PathVariable("id") int userId, Model model,HttpServletRequest request) {
 		Integer sessionUserId = SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId();
+		//增加访问记录
+		if (sessionUserId!=userId) {
+			visitTraceService.insert(new VisitTrace(sessionUserId, userId, new Date()));
+		}
+
 		UserBasic basic = userBasicService.selectByPrimaryKey(userId);
 		if (basic.getAuthority() == 0) {
 			logger.debug("ID为" + basic.getId() + "的用户个人资料所有人不可见");

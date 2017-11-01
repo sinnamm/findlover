@@ -18,6 +18,26 @@ public class VisitTrace {
     @Column(name = "visit_time")
     private Date visitTime;
 
+    @Transient
+    private UserBasic userBasic;
+
+    public VisitTrace() {
+    }
+
+    public VisitTrace(Integer userId, Integer intervieweeId, Date visitTime) {
+        this.userId = userId;
+        this.intervieweeId = intervieweeId;
+        this.visitTime = visitTime;
+    }
+
+    public UserBasic getUserBasic() {
+        return userBasic;
+    }
+
+    public void setUserBasic(UserBasic userBasic) {
+        this.userBasic = userBasic;
+    }
+
     /**
      * @return id
      */
@@ -72,5 +92,16 @@ public class VisitTrace {
      */
     public void setVisitTime(Date visitTime) {
         this.visitTime = visitTime;
+    }
+
+    @Override
+    public String toString() {
+        return "VisitTrace{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", intervieweeId=" + intervieweeId +
+                ", visitTime=" + visitTime +
+                ", userBasic=" + userBasic +
+                '}';
     }
 }

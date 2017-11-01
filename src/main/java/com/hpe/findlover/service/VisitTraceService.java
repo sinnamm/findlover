@@ -1,13 +1,15 @@
-package com.hpe.findlover.mapper;
+package com.hpe.findlover.service;
 
 import com.hpe.findlover.model.VisitTrace;
-import com.hpe.util.BaseTkMapper;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface VisitTraceMapper extends BaseTkMapper<VisitTrace> {
+/**
+ * @author sinnamm
+ * @Date Create in  2017/11/1.
+ */
+public interface VisitTraceService extends BaseService<VisitTrace> {
+
     /**
      * 我看过谁
      * @param userId

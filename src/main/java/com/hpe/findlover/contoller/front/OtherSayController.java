@@ -76,20 +76,16 @@ public class OtherSayController {
 
 	@GetMapping("/message")
 	@ResponseBody
-	public String message(@Param("pageNum")Integer pageNum,@Param("type")String type) throws JsonProcessingException {
+	public String message(@Param("pageNum")Integer pageNum,@Param("type")String type,HttpServletRequest request) throws JsonProcessingException {
 		logger.info("pageNum=="+pageNum+"......type=="+type);
+		Integer userId = SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId();
 		if(Constant.HOT.equals(type)){
 			PageHelper.startPage(pageNum,4,"reply_count desc,like_count desc");
 		}else if(Constant.NEW.equals(type)){
 			PageHelper.startPage(pageNum,4,"pub_time desc");
 		}
 		List<Message> list = messageService.selectList();
-		for (int i=0;i<list.size();i++){
-			List<MessageReply> messageReplies = list.get(i).getReplies();
-			for (int j=0;j<messageReplies.size();j++){
-				messageReplies.get(j).setUserBasic(userService.selectByPrimaryKey(messageReplies.get(j).getUserId()));
-			}
-		}
+		formatMessage(list,userId);
 		list.forEach(logger::info);
 		PageInfo pageInfo = new PageInfo(list);
 		return JSON.toJSONStringWithDateFormat(pageInfo,"yyyy-MM-dd HH:mm:ss", SerializerFeature.DisableCircularReferenceDetect);
@@ -102,12 +98,7 @@ public class OtherSayController {
 		UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
 		PageHelper.startPage(pageNum,4,"pub_time desc");
 		List<Message> list = messageService.selectMessageByFollow(userBasic.getId());
-		for (int i=0;i<list.size();i++){
-			List<MessageReply> messageReplies = list.get(i).getReplies();
-			for (int j=0;j<messageReplies.size();j++){
-				messageReplies.get(j).setUserBasic(userService.selectByPrimaryKey(messageReplies.get(j).getUserId()));
-			}
-		}
+		formatMessage(list,userBasic.getId());
 		list.forEach(logger::info);
 		PageInfo pageInfo = new PageInfo(list);
 		return JSON.toJSONStringWithDateFormat(pageInfo,"yyyy-MM-dd HH:mm:ss", SerializerFeature.DisableCircularReferenceDetect);
@@ -143,6 +134,23 @@ public class OtherSayController {
 			return "success";
 		}else {
 			return "error";
+		}
+	}
+
+	public void formatMessage(List<Message> list,Integer userId){
+		for (int i=0;i<list.size();i++){
+			List<MessageReply> messageReplies = list.get(i).getReplies();
+			List<MessageLike> messageLikes = list.get(i).getLikes();
+			boolean flag = false;
+			for (int j=0;j<messageReplies.size();j++){
+				messageReplies.get(j).setUserBasic(userService.selectByPrimaryKey(messageReplies.get(j).getUserId()));
+			}
+			for (int x=0;x<messageLikes.size();x++){
+				if (userId.equals(messageLikes.get(x).getUserId())) {
+					flag=true;
+				}
+			}
+			list.get(i).setLike(flag);
 		}
 	}
 }

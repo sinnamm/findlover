@@ -210,17 +210,5 @@ public class UserController {
 	public UserBasic getSessionUser(HttpServletRequest request){
 		return SessionUtils.getSessionAttr(request, "user", UserBasic.class);
 	}
-	@GetMapping("otherSays")
-    public String otherSays(){
-        return "front/otherSays";
-    }
-    @GetMapping("visiteTrace")
-    public String visiteTrace(){
-        return "front/visiteTrace";
-    }
-    @GetMapping("notice")
-    public String notice(){
-        return "front/notice";
-    }
 
 }
