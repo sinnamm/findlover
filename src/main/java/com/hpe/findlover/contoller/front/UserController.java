@@ -146,7 +146,6 @@ public class UserController {
 	@RequestMapping("checkid")
 	@ResponseBody
 	public String checkid(@RequestParam("otherId")int otherId, HttpSession session){
-		logger.error("#################已经访问");
 		UserBasic userBasic = userService.selectByPrimaryKey(otherId);
 		UserBasic user= (UserBasic) session.getAttribute("user");
 		if (user.getId().equals(otherId)){

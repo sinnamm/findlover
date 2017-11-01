@@ -575,12 +575,12 @@
                                 style="color: orangered">头像上传
                         </button>
                     </div>
-                    <div id="max-upload" class="col-md-2 text-left" th:hidden="${#lists.size(photos) lt 8}">
+                    <div id="max-upload" class="col-md-2 text-left" th:hidden="${#lists.size(photos) lt 9}">
                         <button class="btn btn-default" disabled
                                 style="color: orangered">最大上传8张
                         </button>
                     </div>
-                    <div id="min-upload" class="col-md-2 text-left" th:hidden="${#lists.size(photos) ge 8}">
+                    <div id="min-upload" class="col-md-2 text-left" th:hidden="${#lists.size(photos) ge 9}">
                         <button class="btn btn-default" data-toggle="modal" data-target="#myModal"
                                 style="color: orangered">图片上传
                         </button>
@@ -589,7 +589,7 @@
                 <div id="photodiv" class="row">
                     <section id="gallery">
                         <div class="container-fluid">
-                            <div class="row" style="padding: 30px">
+                            <div  style="padding: 60px">
                                 <!-- 一行3张图片 等大小 -->
                                 <div th:each="photo,pStat:${photos}" class="photo-single" th:id="${'photo-single-'+photo.id}">
                                     <a th:href="@{/file(path=${photo.photo})}"

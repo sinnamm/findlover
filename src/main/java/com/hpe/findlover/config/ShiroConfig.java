@@ -91,6 +91,8 @@ public class ShiroConfig {
 		filterChainMap.put("/jquery/**", "anon");
 		filterChainMap.put("/json/**", "anon");
 		filterChainMap.put("/plugins/**", "anon");
+		filterChainMap.put("/ueditor/**", "anon");
+		filterChainMap.put("/file/**", "anon");
 
 		//管理员配置
 //		filterChainMap.put("/admin/**", "adminAuth");

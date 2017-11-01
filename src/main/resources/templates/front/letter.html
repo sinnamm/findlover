@@ -8,7 +8,7 @@
     <script src="../../static/js/front/letter.js" th:src="@{/js/front/letter.js}"></script>
     <script th:inline="javascript">
         $(function () {
-            var photo =''/*[[@{/file(path=${session.user.photo})}]]*/;
+//            var photo =''/*[[@{/file(path=${session.user.photo})}]]*/;
             $(".chat-right").addClass("right-photo");
 
         })
@@ -155,63 +155,27 @@
                 </ul>
                 <!--广告栏-->
                 <ul class="match_box">
-                    <li><h4>新人抢先看</h4></li>
+                    <li><h4>猜你喜欢</h4></li>
                     <hr/>
-                    <li>
-                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-                             class="jobs-item with-thumb">
+                    <li th:each="star:${stars}">
+                        <div class="jobs-item with-thumb">
                             <div class="thumb_top">
                                 <div class="thumb">
-                                    <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
-                                         style="width: 100px" class="img-responsive"
-                                         alt=""/></a>
+                                    <a th:href="@{'/profile/'+${star.id}}">
+                                        <img th:src="@{/file(path=${star.photo})}" style="width: 70px;height: 70px;" class="img-responsive"/>
+                                    </a>
                                 </div>
                                 <div class="jobs_right">
-                                    <h5>之夏</h5>
-                                    <p>18岁 高中及以下</p>
-                                    <span>3天前注册</span>
+                                    <a th:href="@{'/profile/'+${star.id}}"><h5 th:text="${star.nickname}"></h5></a>
+                                    <p th:inline="text">[[${star.age}]]岁&nbsp;[[${star.education}]]</p>
+                                    <span th:text="${star.workplace}"></span>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <hr/>
-                    <li>
-                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-                             class="jobs-item with-thumb">
-                            <div class="thumb_top">
-                                <div class="thumb">
-                                    <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
-                                         style="width: 100px" class="img-responsive"
-                                         alt=""/></a>
-                                </div>
-                                <div class="jobs_right">
-                                    <h5>之夏</h5>
-                                    <p>18岁 高中及以下</p>
-                                    <span>3天前注册</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <hr/>
-                    <li>
-                        <div onclick="window.open('view_profile.html')" style="cursor:pointer;"
-                             class="jobs-item with-thumb">
-                            <div class="thumb_top">
-                                <div class="thumb">
-                                    <img th:src="@{/images/p13.jpg}" src="../../static/images/p13.jpg"
-                                         style="width: 100px" class="img-responsive"
-                                         alt=""/></a>
-                                </div>
-                                <div class="jobs_right">
-                                    <h5>之夏</h5>
-                                    <p>18岁 高中及以下</p>
-                                    <span>3天前注册</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <hr/>
-                    <li><a href="view_profile.html" class="photo_view center-block "
+
+                    <li><a th:href="@{/search}" class="photo_view center-block "
                            style="color: white;text-align: center">想查看更多吗</a></li>
                 </ul>
                 <div class="clearfix"></div>

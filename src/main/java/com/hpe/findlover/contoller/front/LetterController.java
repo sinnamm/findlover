@@ -4,8 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.hpe.findlover.model.Letter;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.UserPick;
 import com.hpe.findlover.service.LetterService;
 import com.hpe.findlover.service.UserAssetService;
+import com.hpe.findlover.service.UserPickService;
+import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.util.LoverUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +34,27 @@ public class LetterController {
     private LetterService letterService;
     @Autowired
     private UserAssetService userAssetService;
-
+    @Autowired
+    private UserService userService;
+    @Autowired
+    UserPickService userPickService;
     @GetMapping("letter")
     public String letter(HttpSession session, Model model) throws Exception {
         UserBasic userBasic = (UserBasic) session.getAttribute("user");
         Map<String,Object> map= letterService.selectOther(userBasic.getId());
         model.addAttribute("map", map);
         logger.debug("查询结果："+map);
+        Integer userId = ((UserBasic) session.getAttribute("user")).getId();
+        UserPick userPick = userPickService.selectByPrimaryKey(userId);
+        List<UserBasic> stars = LoverUtil.getRandomStarUser(userPick, 4, userService);
+        userService.userAttrHandler(stars);
+        model.addAttribute("stars", stars);
+        logger.debug("stars: " + stars);
+        //右侧信息条数
+        model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
         return "front/letter";
     }
+
 
     @PostMapping("letter")
     @ResponseBody

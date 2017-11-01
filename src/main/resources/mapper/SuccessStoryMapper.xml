@@ -9,11 +9,14 @@
     <result column="left_user" property="leftUser" jdbcType="INTEGER" />
     <result column="right_user" property="rightUser" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="success_time" property="successTime" jdbcType="TIMESTAMP" />
     <result column="like_count" property="likeCount" jdbcType="INTEGER" />
     <result column="reply_count" property="replyCount" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="brief" property="brief" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.hpe.findlover.model.SuccessStory" extends="BaseResultMap" >
     <!--
@@ -25,8 +28,8 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, left_user, right_user, title, success_time, photo, like_count, reply_count, status, 
-    admin_id
+    id, left_user, right_user, title, content,success_time, like_count, reply_count, status,
+    admin_id,brief,photo
   </sql>
   <sql id="Blob_Column_List" >
     <!--

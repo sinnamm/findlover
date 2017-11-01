@@ -49,8 +49,6 @@ public class WriterController {
      */
     @RequestMapping({"","index"})
     public String writeUI() {
-        SecurityUtils.getSubject().logout();
-        logger.error("Writer Subject: "+SecurityUtils.getSubject().getPrincipal().toString());
         return "front/writer";
     }
 

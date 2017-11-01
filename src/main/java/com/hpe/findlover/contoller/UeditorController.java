@@ -35,7 +35,6 @@ public class UeditorController {
      */
     @RequestMapping("uploadconfig")
     @ResponseBody
-    @Cacheable(value = "dict-cache")
     public String uploadConfig(){
         BufferedReader reader = null;
         StringBuilder laststr = new StringBuilder();

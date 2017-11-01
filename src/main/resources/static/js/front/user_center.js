@@ -187,8 +187,8 @@ function initPhotoUpload() {
             }
             swal("温馨提示","上传成功！","success");
         }else {
-            alert(JSON.stringify(data.response));
-            alert(data.response.result);
+            // alert(JSON.stringify(data.response));
+            // alert(data.response.result);
             swal("温馨提示","不能超过八张","error");
         }
     });
