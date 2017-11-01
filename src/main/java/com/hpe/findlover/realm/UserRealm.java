@@ -4,6 +4,7 @@ import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.UserAssetService;
 import com.hpe.findlover.service.UserDetailService;
 import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.util.Constant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.*;
@@ -34,22 +35,19 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// 获取用户的输入的账号.
-		String email = (String) token.getPrincipal();
+		String username = (String) token.getPrincipal();
 		// 通过username从数据库中查找 User对象，如果找到，没找到.
 		// 这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
 		UserBasic userBasic;
-		if ((userBasic = userService.selectByEmail(email)) == null) {
-			throw new UnknownAccountException("用户名不存在！");
+		if ((userBasic = userService.selectByEmail(username)) == null) {
+			throw new UnknownAccountException();
+		} else if (userBasic.getStatus() == Constant.USER_LOCKED_STATUS) {
+			throw new LockedAccountException();
+		} else if (userBasic.getStatus() == Constant.USER_DISABLED_STATUS) {
+			throw new DisabledAccountException();
 		}
-//		} else if (!userBasic.getPassword().equals(new String((char[]) token.getCredentials()))) {
-//			throw new IncorrectCredentialsException("用户名或密码错误");
-//		} else if (userBasic.getStatus() == Constant.USER_LOCKED_STATUS) {
-//			throw new LockedAccountException("用户被锁定");
-//		} else if (userBasic.getStatus() == Constant.USER_DISABLED_STATUS) {
-//			throw new DisabledAccountException("用户未激活");
-//		}
-		// 加密交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
-		return new SimpleAuthenticationInfo(email, userBasic.getPassword(),ByteSource.Util.bytes(userBasic.getEmail()), getName());
+		// 加密交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，盐值为当前用户用户名
+		return new SimpleAuthenticationInfo(username, userBasic.getPassword(),ByteSource.Util.bytes(userBasic.getEmail()), getName());
 	}
 
 	@Override

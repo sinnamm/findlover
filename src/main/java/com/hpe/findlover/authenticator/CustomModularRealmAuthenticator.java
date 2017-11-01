@@ -21,6 +21,7 @@ public class CustomModularRealmAuthenticator extends ModularRealmAuthenticator {
 
 	@Override
 	protected AuthenticationInfo doAuthenticate(AuthenticationToken authenticationToken) throws AuthenticationException {
+		logger.info("Token ClassName = "+ authenticationToken.getClass().getSimpleName());
 		CustomToken customToken = (CustomToken) authenticationToken;
 		for (Realm realm : getRealms()) {
 			logger.info("RealmName=" + realm.getName() + ",type=" + customToken.getType());

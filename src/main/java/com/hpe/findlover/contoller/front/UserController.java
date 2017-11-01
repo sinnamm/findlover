@@ -29,10 +29,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author sinnamm
@@ -56,6 +56,12 @@ public class UserController {
 	@GetMapping("login")
 	public String login() {
 		return "front/login";
+	}
+	@GetMapping("logout")
+	public String logout(){
+		SecurityUtils.getSubject().logout();
+		SecurityUtils.getSubject().getSession().removeAttribute("user");
+		return "redirect:login";
 	}
 
 	@GetMapping("register")
@@ -161,13 +167,14 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public String login(HttpServletRequest request,UserBasic user, RedirectAttributes redirectAttributes) {
+	public String login(HttpServletRequest request,UserBasic user,boolean rememberMe, RedirectAttributes redirectAttributes) {
 		if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {
 			redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
 			return "redirect:login";
 		}
-//		UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), new MD5Code().getMD5ofStr(user.getPassword()));
 		CustomToken token = new CustomToken(user.getEmail(), user.getPassword(),"user");
+		logger.info("rememberMe: " + rememberMe);
+		token.setRememberMe(rememberMe);
 		try {
 			SecurityUtils.getSubject().login(token);
 		} catch (UnknownAccountException uae) {

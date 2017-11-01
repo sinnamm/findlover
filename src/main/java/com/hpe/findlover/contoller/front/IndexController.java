@@ -13,6 +13,7 @@ import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,6 @@ import java.util.List;
  * @Date Create in  2017/10/17.
  */
 @Controller
-@RequestMapping("index")
 public class IndexController {
 
     @Autowired
@@ -52,8 +52,10 @@ public class IndexController {
      * 5、谁看过我
      * @Date Create in  15:35 2017/10/17
      **/
-    @GetMapping
+    @GetMapping(value = {"","index"})
     public String index(Model model, HttpServletRequest request) throws Exception {
+        logger.error("User Subject: "+ SecurityUtils.getSubject().getPrincipal().toString());
+
         //1.用户信息，基本信息可以从session中直接获取，消费信息需要我们查询数据库
         UserBasic user = (UserBasic)request.getSession().getAttribute("user");
         user.setAge(LoverUtil.getAge(user.getBirthday()));
@@ -88,15 +90,14 @@ public class IndexController {
         return "front/index";
     }
 
-    @GetMapping("/initSearch")
+    @GetMapping("index/initSearch")
     @ResponseBody
     public UserPick initSearch(HttpServletRequest request){
         UserBasic user = (UserBasic)request.getSession().getAttribute("user");
-        UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
-        return userPick;
+        return userPickService.selectByPrimaryKey(user.getId());
     }
 
-    @PostMapping("/getSearchUser")
+    @PostMapping("index/getSearchUser")
     @ResponseBody
     public List<UserBasic> getSearchUser(UserPick userPick,HttpServletRequest request){
         UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
@@ -109,7 +110,7 @@ public class IndexController {
      * @param userPick
      * @return
      */
-    public List<UserBasic> getDayLovers(UserPick userPick,UserBasic user){
+    private List<UserBasic> getDayLovers(UserPick userPick, UserBasic user){
         userPick.setId(user.getId());
         logger.info("userPick..."+userPick);
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
@@ -117,8 +118,7 @@ public class IndexController {
 
         if (userBasicList.size()> Constant.INDEX_SHOW_USER_NUMBER){
             logger.info("根据择偶条件选出来的用户大于16，需要随机选取");
-            List<UserBasic> userBasics = LoverUtil.getRandomUser(userBasicList,Constant.INDEX_SHOW_USER_NUMBER);
-            return userBasics;
+            return LoverUtil.getRandomUser(userBasicList,Constant.INDEX_SHOW_USER_NUMBER);
         }else {
             logger.info("根据择偶条件选出来的用户小于16，需要从数据库随机获取");
             int size = Constant.INDEX_SHOW_USER_NUMBER-userBasicList.size();
@@ -131,9 +131,7 @@ public class IndexController {
             }
             LoverUtil.formatUserInfo(userBasics);
             List<UserBasic> allUsers = LoverUtil.getRandomUser(userBasics,size);
-            for (int i=0;i<allUsers.size();i++){
-                userBasicList.add(allUsers.get(i));
-            }
+            userBasicList.addAll(allUsers);
             userBasicList.forEach(logger::info);
             return userBasicList;
         }

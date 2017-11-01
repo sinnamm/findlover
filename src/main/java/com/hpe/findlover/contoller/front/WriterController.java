@@ -47,8 +47,10 @@ public class WriterController {
      *
      * @return
      */
-    @RequestMapping("essay")
+    @RequestMapping({"","index"})
     public String writeUI() {
+        SecurityUtils.getSubject().logout();
+        logger.error("Writer Subject: "+SecurityUtils.getSubject().getPrincipal().toString());
         return "front/writer";
     }
 
@@ -86,8 +88,6 @@ public class WriterController {
             logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,用户被锁定");
             redirectAttributes.addAttribute("message", "用户被锁定!");
         }
-        logger.debug("SecurityUtils.getSubject()=" + SecurityUtils.getSubject());
-        logger.debug("SecurityUtils.getSubject().isAuthenticated()=" + SecurityUtils.getSubject().isAuthenticated());
         if (SecurityUtils.getSubject().isAuthenticated()) {
             HttpSession session = request.getSession();
             session.setAttribute("writer", writerService.selectByUserName(writer.getUsername()));
@@ -96,7 +96,7 @@ public class WriterController {
                 String name = attributeNames.nextElement();
                 logger.info(name + "=" + session.getAttribute(name));
             }
-            return "redirect:essay";
+            return "redirect:index";
         } else {
             return "redirect:login";
         }

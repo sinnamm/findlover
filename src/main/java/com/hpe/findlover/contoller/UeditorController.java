@@ -38,10 +38,9 @@ public class UeditorController {
     @Cacheable(value = "dict-cache")
     public String uploadConfig(){
         BufferedReader reader = null;
-        StringBuffer laststr = new StringBuffer();
+        StringBuilder laststr = new StringBuilder();
         try{
             ClassPathResource resource = new ClassPathResource("static/plugins/ueditor/jsp/config.json");
-            //InputStream stream = this.getClass().getClassLoader().getResourceAsStream("config.json");
             InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream(), "UTF-8");
             reader = new BufferedReader(inputStreamReader);
             String tempString = null;

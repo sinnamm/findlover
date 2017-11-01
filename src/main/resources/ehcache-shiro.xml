@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache name="ec-spring">
+<ehcache name="ec-shiro">
 
     <!--
        name:缓存名称。
@@ -30,22 +30,4 @@
             diskExpiryThreadIntervalSeconds="120"
     />
 
-    <!-- 登录记录缓存锁定10分钟 -->
-    <cache name="user-cache"
-           maxElementsInMemory="10000"
-           eternal="false"
-           timeToIdleSeconds="120"
-           timeToLiveSeconds="120"
-           overflowToDisk="false"
-           diskPersistent="false"
-           diskExpiryThreadIntervalSeconds="120"/>
-    <!--数据字典缓存-->
-    <cache name="dict-cache"
-           maxElementsInMemory="10000"
-           eternal="false"
-           timeToIdleSeconds="7200"
-           timeToLiveSeconds="10800"
-           overflowToDisk="false"
-           diskPersistent="false"
-           diskExpiryThreadIntervalSeconds="120"/>
 </ehcache>

@@ -2,8 +2,7 @@ package com.hpe.findlover.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.hpe.findlover.authenticator.CustomModularRealmAuthenticator;
-import com.hpe.findlover.model.Writer;
-import com.hpe.findlover.realm.AdminRealm;
+import com.hpe.findlover.filter.IdentityFilter;
 import com.hpe.findlover.realm.UserRealm;
 import com.hpe.findlover.realm.WriterRealm;
 import org.apache.logging.log4j.LogManager;
@@ -11,19 +10,28 @@ import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.filter.authc.LogoutFilter;
+import org.apache.shiro.web.filter.authc.UserFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import javax.servlet.Filter;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -56,35 +64,51 @@ public class ShiroConfig {
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+
 		// 必须设置 SecurityManager
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
-		// 拦截器.
-		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-		// 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
-		filterChainDefinitionMap.put("/logout", "logout");
-		// 配置资源文件访问
-		filterChainDefinitionMap.put("/js/**", "anon");
-		filterChainDefinitionMap.put("/css/**", "anon");
-		filterChainDefinitionMap.put("/images/**", "anon");
-		filterChainDefinitionMap.put("/fonts/**", "anon");
-		filterChainDefinitionMap.put("/jquery/**", "anon");
-		filterChainDefinitionMap.put("/json/**", "anon");
-//		filterChainDefinitionMap.put("/login", "anon");
-		// 配置记住我或认证通过可以访问的地址
-		// filterChainDefinitionMap.put("/index", "user");
-		// filterChainDefinitionMap.put("/", "user");
-		// <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
-		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-//		filterChainDefinitionMap.put("/**", "authc");
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		// 登录成功后要跳转的链接
-//		shiroFilterFactoryBean.setSuccessUrl("/index");
-		// 未授权界面;
+
+		// 设置filters，让不同的用户身份使用不同的filters
+		Map<String, Filter> filterMap = new LinkedHashMap<>(3);
+
+		filterMap.put("userAuth",  new IdentityFilter("user"));
+		filterMap.put("adminAuth",  new IdentityFilter("admin"));
+		filterMap.put("writerAuth", new IdentityFilter("writer"));
+
+		shiroFilterFactoryBean.setFilters(filterMap);
+
+		
+		// 配置路径过滤链.
+		Map<String, String> filterChainMap = new LinkedHashMap<>();
+		// 配置注销路径
+//		filterChainMap.put("/logout", "logout");
+
+		// 配置公共资源文件过滤路径
+		filterChainMap.put("/js/**", "anon");
+		filterChainMap.put("/css/**", "anon");
+		filterChainMap.put("/images/**", "anon");
+		filterChainMap.put("/fonts/**", "anon");
+		filterChainMap.put("/jquery/**", "anon");
+		filterChainMap.put("/json/**", "anon");
+		filterChainMap.put("/plugins/**", "anon");
+
+		//管理员配置
+//		filterChainMap.put("/admin/**", "adminAuth");
+
+		//作家配置
+		filterChainMap.put("/writer/**", "writerAuth");
+
+		//用户配置
+		filterChainMap.put("/logout", "anon"); // 手动注销实现
+		filterChainMap.put("/**", "userAuth");
+
+		// 未授权界面
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
-		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainMap);
 		return shiroFilterFactoryBean;
 	}
+
 	/**
 	 * 凭证匹配器 （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了
 	 * 所以我们需要修改下doGetAuthenticationInfo中的代码; ）
@@ -100,7 +124,7 @@ public class ShiroConfig {
 	}
 
 	/**
-	 * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
+	 * 身份认证realm
 	 * @return
 	 */
 	@Bean
@@ -137,7 +161,7 @@ public class ShiroConfig {
 		securityManager.setAuthenticator(realmAuthenticator());
 		// 注入记住我管理器;
 		securityManager.setRememberMeManager(rememberMeManager());
-//		securityManager.setCacheManager(ehCacheManager());
+		securityManager.setCacheManager(ehCacheManager());
 		return securityManager;
 	}
 
@@ -147,7 +171,6 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public ModularRealmAuthenticator realmAuthenticator(){
-		logger.info("初始化Bean: CustomModularRealmAuthenticator");
 		CustomModularRealmAuthenticator realmAuthenticator = new CustomModularRealmAuthenticator();
 		realmAuthenticator.setRealms(Arrays.asList(customUserRealm(),customWriterRealm()));
 		return realmAuthenticator;
@@ -181,6 +204,7 @@ public class ShiroConfig {
 		// 这个参数是cookie的名称，对应前端的checkbox 的name = rememberMe
 		SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
 		// <!-- 记住我cookie生效时间30天 ,单位秒;-->
+		simpleCookie.setHttpOnly(true);
 		simpleCookie.setMaxAge(259200);
 		return simpleCookie;
 	}
@@ -192,6 +216,7 @@ public class ShiroConfig {
 	public CookieRememberMeManager rememberMeManager() {
 		CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
 		cookieRememberMeManager.setCookie(rememberMeCookie());
+		cookieRememberMeManager.setCipherKey(Base64.decode("RmluZExvdmVy"));
 		return cookieRememberMeManager;
 	}
 	/**
@@ -201,13 +226,12 @@ public class ShiroConfig {
 	 * 可见securityManager是整个shiro的核心；
 	 * @return
 	 */
-	/*@Bean
+	@Bean
 	public EhCacheManager ehCacheManager(){
-		logger.debug("初始化Ehcache缓存");
 		EhCacheManager cacheManager = new EhCacheManager();
-		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+		cacheManager.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
 		return cacheManager;
-	}*/
+	}
 	/**
 	 * ShiroDialect，为了在thymeleaf里使用shiro的标签的bean
 	 * @return
