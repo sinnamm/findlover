@@ -89,8 +89,13 @@ function initIndexSearch() {
         typ:"get",
         dataType:"json",
         success:function (data) {
-            var arr = data.workplace.split("-");
-            initWorkplaceDropdown(null,"province-select","city-select",arr[0], arr.length > 1 ? arr[1] : -1);
+            if (data.workplace!=null) {
+                var arr = data.workplace.split("-");
+                initWorkplaceDropdown(null,"province-select","city-select",arr[0], arr.length > 1 ? arr[1] : -1);
+            }else {
+                initWorkplaceDropdown(null,"province-select","city-select",-1,-1);
+
+            }
             initAgeDropdown(null,data.ageLow,data.ageHigh);
             initHeightDropdown(null,data.heightLow,data.heightHigh)
         }

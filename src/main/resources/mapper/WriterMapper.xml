@@ -33,6 +33,6 @@
   <select id="selectByUserName" resultType="writer">
     SELECT <include refid="Base_Column_List"></include>
     FROM writer
-    WHERE username = #{username} AND status=1
+    WHERE username = #{username}
   </select>
 </mapper>

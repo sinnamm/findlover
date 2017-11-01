@@ -4,7 +4,6 @@
     <title>FindLover</title>
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
-    <script src="../../static/js/front/write_story.js"  th:src="@{/js/front/write_story.js}" type="text/javascript" ></script>
     <!--ueditor引入-->
     <script th:src="@{/plugins/ueditor/ueditor.config.js}" type="text/javascript" charset="utf-8"
             src="../../static/plugins/ueditor/ueditor.config.js"></script>
@@ -15,20 +14,35 @@
     <script th:src="@{/js/front/writer.js}" type="text/javascript" charset="utf-8"
             src="../../static/js/front/writer.js"></script>
 
-    <script type="text/javascript">
-
-        $(function () {
-
-        });
-    </script>
 </head>
 <body>
 <!-- 导航栏 -->
-<th:block th:include="/front/common/header::nav"/>
-<!--导航栏（th:remove)-->
+<div class="navbar navbar-inverse-blue navbar">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container"><a class="brand" href="index.html">
+            <img th:src="@{/images/logo.png}" src="../../static/images/logo.png" alt="logo"></a>
+            <div class="pull-right">
+                <nav class="navbar nav_bottom" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a></div>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav nav_1">
+                            <li><a th:href="@{/writer/logout}">登出</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div> <!-- end pull-right -->
+            <div class="clearfix"></div>
+        </div> <!-- end container -->
+    </div> <!-- end navbar-inner -->
+</div> <!-- end navbar-inverse-blue -->
 
 <div class="container grid_0">
-    <button id="htmlbtn">获取纯文本</button>
     <form id="essay-form" th:action="@{/writer/upload}" th:method="post" class="form-horizontal" enctype="multipart/form-data">
         <div class="text-center" style="margin: 100px">
             <h1>文章申请发布</h1>

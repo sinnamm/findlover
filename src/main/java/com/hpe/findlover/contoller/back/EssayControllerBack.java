@@ -108,7 +108,7 @@ public class EssayControllerBack {
     }
 
     /**
-     * 修改专栏作家状态、修改作家密码
+     * 删除文章
      *
      * @param id    作家ID
      * @param essay 作家对象
@@ -119,15 +119,13 @@ public class EssayControllerBack {
     public Object deleteEssay(@PathVariable("id") int id, Essay essay) {
         essay.setId(id);
         logger.debug(essay);
-       /* Essay resultEssay = essayService.selectByPrimaryKey(id);
+        Essay resultEssay = essayService.selectByPrimaryKey(id);
         //删除txt文件
         boolean result1 = uploadService.deleteFile(resultEssay.getFilename());
         //删除文章列表配图
         boolean result2 = uploadService.deleteFile(resultEssay.getPhoto());
-        //return essayService.updateByPrimaryKeySelective(essay);*/
-
-        return true;
-                //result1 && result2 && essayService.deleteByPrimaryKey(id)>0;
+        //return essayService.updateByPrimaryKeySelective(essay);
+        return result1 && result2 && essayService.deleteByPrimaryKey(id)>0;
     }
 
 }

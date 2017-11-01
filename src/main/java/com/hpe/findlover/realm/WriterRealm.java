@@ -38,6 +38,8 @@ public class WriterRealm extends AuthorizingRealm {
         Writer writer;
         if ((writer = writerService.selectByUserName(username)) == null) {
             throw new UnknownAccountException("专栏作家用户名不存在！");
+        }else if(writer.getStatus()==0){
+            throw new LockedAccountException("专栏作家账户已被锁定！");
         }
         return new SimpleAuthenticationInfo(username, writer.getPassword(), ByteSource.Util.bytes(username), "writerRealm");
     }

@@ -369,6 +369,10 @@ public class UserCenterController {
 				userBasic.setPassword(new MD5Code().getMD5ofStr(userBasic.getPassword()));
 			}
 			logger.error(userBasic);
+			UserPick userPick = new UserPick();
+			userPick.setId(userBasic.getId());
+			userPick.setSex(userBasic.getSexual());
+			userPickService.updateByPrimaryKeySelective(userPick);
 			result = userService.updateUserBasicAndUserLabel(userBasic);
 			userBasic = userService.selectByPrimaryKey(userBasic.getId());
 			userService.userAttrHandler(userBasic);

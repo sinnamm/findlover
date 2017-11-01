@@ -63,6 +63,18 @@ public class WriterController {
     }
 
     /**
+     * 跳转作者专栏登录页面
+     *
+     * @return
+     */
+    @GetMapping("logout")
+    public String writeLogoutUI() {
+        SecurityUtils.getSubject().logout();
+        SecurityUtils.getSubject().getSession().getAttribute("writer");
+        return "front/writer_login";
+    }
+
+    /**
      * 跳转作者专栏登录操作
      *
      * @return
