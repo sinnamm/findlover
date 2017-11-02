@@ -240,8 +240,6 @@ function initLabelUser() {
         success:function (data) {
             if (pageNum==1) {
                 $(".paid_people").empty();
-                //每次清空后调用reload
-               // $('#masonry').masonry('reload');
                 $('#masonry').masonry('destroy').empty();//返回到之前的初始化状态
 
             }

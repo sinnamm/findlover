@@ -11,12 +11,12 @@ function loadVisit() {
         data:data,
         type:"get",
         success:function (data) {
+            $("#visitors").empty();
             var list = data.list;
             if (list.length==0){
                 swal("暂时没有数据哟");
                 return;
             }
-            $("#visitors").empty();
             for (var i = 0;i<list.length;i++){
                 var user = list[i].userBasic;
                 $("#visitors").append("<div class='jobs-item with-thumb'>" +

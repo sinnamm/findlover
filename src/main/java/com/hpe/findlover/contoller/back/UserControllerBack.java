@@ -38,9 +38,10 @@ public class UserControllerBack {
 	private final UserPickService userPickService;
 	private final LabelService labelService;
 	private final FollowService followService;
+	private final VisitTraceService visitTraceService;
 
 	@Autowired
-	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService,FollowService followService) {
+	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService,FollowService followService,VisitTraceService visitTraceService) {
 		this.userBasicService = userBasicService;
 		this.userAssetService = userAssetService;
 		this.userDetailService = userDetailService;
@@ -49,6 +50,7 @@ public class UserControllerBack {
 		this.userPickService = userPickService;
 		this.labelService = labelService;
 		this.followService = followService;
+		this.visitTraceService = visitTraceService;
 	}
 
 	@GetMapping("basic")
@@ -91,6 +93,28 @@ public class UserControllerBack {
 		logger.info("我关注的人接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize());
 		PageHelper.startPage(page.getPageNum(),page.getPageSize());
 		List<Follow> followers = followService.selectFollow(id);
+		followers.forEach(logger::info);
+		PageInfo pageInfo = new PageInfo(followers);
+		return  pageInfo;
+	}
+
+	@GetMapping("/trace")
+	@ResponseBody
+	public PageInfo trace(Page<UserBasic> page,@RequestParam("id") int id){
+		logger.info("我看过的人接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize());
+		PageHelper.startPage(page.getPageNum(),page.getPageSize());
+		List<VisitTrace> followers = visitTraceService.selectVisitTrace(id);
+		followers.forEach(logger::info);
+		PageInfo pageInfo = new PageInfo(followers);
+		return  pageInfo;
+	}
+
+	@GetMapping("/tracer")
+	@ResponseBody
+	public PageInfo tracer(Page<UserBasic> page,@RequestParam("id") int id){
+		logger.info("看过我的人接收参数：pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize());
+		PageHelper.startPage(page.getPageNum(),page.getPageSize());
+		List<VisitTrace> followers = visitTraceService.selectVisitTracer(id);
 		followers.forEach(logger::info);
 		PageInfo pageInfo = new PageInfo(followers);
 		return  pageInfo;

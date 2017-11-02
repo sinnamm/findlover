@@ -40,8 +40,13 @@ function loadUserRelation(){
                     '         <td>' + user.nickname + '</td>\n' +
                     '         <td>' + user.email + '</td>\n' +
                     '         <td>' + user.sex + '</td>\n' +
-                    '         <td>' + list[i].followTime + '</td>\n' +
                     '    </tr>');
+                if (relationType=="follow"||relationType=="follower")
+                    tr.append(' <td>' + list[i].followTime + '</td>\n' );
+                if (relationType=="trace"||relationType=="tracer")
+                    tr.append(' <td>' + list[i].visitTime + '</td>\n' )
+
+
                 tr.append($('<td><a class="btn btn-sm btn-info" href="' + contextPath + 'admin/user/details/' + user.id + '"><i class="fa fa-edit"></i>&nbsp;查看详情</a></td>'));
                 $relationTableBody.append(tr);
             }
