@@ -107,6 +107,7 @@ public final class LoverUtil {
 	 */
 	public static void formatUserInfo(List<UserBasic> userBasicList){
 		for (UserBasic userBasic:userBasicList) {
+			userBasic.setAge(LoverUtil.getAge(userBasic.getBirthday()));
 			if (userBasic.getUserAsset() != null) {
 				userBasic.setVip(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getVipDeadline())>0);
 				userBasic.setStar(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getStarDeadline())>0);

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,7 +94,7 @@ public class SearchController {
 
     @GetMapping("/getLabelUser")
     @ResponseBody
-    public UserInfo getLabelUser(@Param("labelId") Integer labelId, @Param("pageNum") Integer pageNum) {
+    public UserInfo getLabelUser(@Param("labelId") Integer labelId, @Param("pageNum") Integer pageNum,HttpServletRequest request) {
         logger.info("labelId==" + labelId + "....pageNum==" + pageNum);
         List<UserLabel> userLabelList = userLabelService.select(new UserLabel(null, labelId));
         logger.info("userLabelList======" + userLabelList.toString());
@@ -108,11 +109,19 @@ public class SearchController {
         logger.info("more users ids.length="+ids.length);
         PageHelper.startPage(pageNum, 6);
         List<UserBasic> userBasicList = userService.selectUserByIds(ids);
-        if (userBasicList.size()>0) {
-            userBasicList.forEach(logger::info);
+
+        List<UserBasic> labelUser = new ArrayList<>();
+        UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        for (UserBasic userBasic:userBasicList){
+            if (userBasic.getSex().equals(user.getSexual())){
+                labelUser.add(userBasic);
+            }
+        }
+        if (labelUser.size()>0) {
+            labelUser.forEach(logger::info);
             //封装用户数据
-            LoverUtil.formatUserInfo(userBasicList);
-            PageInfo page = new PageInfo(userBasicList);
+            LoverUtil.formatUserInfo(labelUser);
+            PageInfo page = new PageInfo(labelUser);
             return new UserInfo("success", page);
         }else {
             return new UserInfo("error", null);

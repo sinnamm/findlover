@@ -66,10 +66,10 @@ public class IndexController {
         int vipDate=0, starDate=0,asset=0;
         if (userAsset!=null){
             if (userAsset.getVipDeadline()!=null){
-                vipDate = LoverUtil.getDiffOfHours(userAsset.getVipDeadline());
+                vipDate = LoverUtil.getDiffOfDays(userAsset.getVipDeadline());
             }
             if (userAsset.getStarDeadline()!=null){
-                starDate = LoverUtil.getDiffOfHours(userAsset.getStarDeadline());
+                starDate = LoverUtil.getDiffOfDays(userAsset.getStarDeadline());
             }
             if (userAsset.getAsset()!=null){
                asset= userAsset.getAsset();
@@ -123,11 +123,11 @@ public class IndexController {
             logger.info("根据择偶条件选出来的用户小于16，需要从数据库随机获取");
             int size = Constant.INDEX_SHOW_USER_NUMBER-userBasicList.size();
             List<UserBasic> userBasics = userService.
-                    selectUserBySexualAndWorkProvince(user.getId(),user.getSexual(),user.getWorkplace().substring(0,2));
+                    selectUserBySexualAndWorkProvince(user.getId(),userPick.getSex(),user.getWorkplace().substring(0,2));
             if (userBasics==null||userBasics.size()<size){
                 logger.info("根据性取向和工作最地选出来的用户小于16，只选取性取向对应的用户");
                 userBasics =userService.
-                        selectUserBySexualAndWorkProvince(user.getId(),user.getSexual(),null);
+                        selectUserBySexualAndWorkProvince(user.getId(),userPick.getSex(),null);
             }
             LoverUtil.formatUserInfo(userBasics);
             List<UserBasic> allUsers = LoverUtil.getRandomUser(userBasics,size);

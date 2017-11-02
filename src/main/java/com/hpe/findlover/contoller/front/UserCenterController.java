@@ -60,7 +60,7 @@ public class UserCenterController {
 	 * 跳转到用户中心界面
 	 */
 	@GetMapping
-	public String userCenter(Model model, HttpSession session) {
+	public String userCenter(Model model, HttpSession session,@RequestParam(required = false) String type) {
 		//跳转前查询用资产
 		UserBasic user = (UserBasic) session.getAttribute("user");
 		userService.userAttrHandler(user);
@@ -97,6 +97,7 @@ public class UserCenterController {
 		model.addAttribute("vipDate", Math.max(0, vipDate));
 		model.addAttribute("starDate", Math.max(0, starDate));
 		model.addAttribute("asset", asset);
+		model.addAttribute("type", type);
 		return "front/user_center";
 	}
 
@@ -369,10 +370,12 @@ public class UserCenterController {
 				userBasic.setPassword(new MD5Code().getMD5ofStr(userBasic.getPassword()));
 			}
 			logger.error(userBasic);
-			UserPick userPick = new UserPick();
-			userPick.setId(userBasic.getId());
-			userPick.setSex(userBasic.getSexual());
-			userPickService.updateByPrimaryKeySelective(userPick);
+			if(userBasic.getSexual()!=null) {
+				UserPick userPick = new UserPick();
+				userPick.setId(userBasic.getId());
+				userPick.setSex(userBasic.getSexual());
+				userPickService.updateByPrimaryKeySelective(userPick);
+			}
 			result = userService.updateUserBasicAndUserLabel(userBasic);
 			userBasic = userService.selectByPrimaryKey(userBasic.getId());
 			userService.userAttrHandler(userBasic);

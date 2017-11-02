@@ -13,7 +13,9 @@
     <!--<script src="../../static/js/front/search.js" th:src="@{/js/front/search.js}"></script>-->
     <!-- 相册js引入 -->
     <script src="../../static/jquery/ekko-lightbox.min.js" th:src="@{/jquery/ekko-lightbox.min.js}"></script>
-
+    <script th:inline="javascript">
+        var type = /*[[${type}]]*/'';
+    </script>
     <!-- 引入bootstrap fileinput -->
     <link th:href="@{/plugins/fileinput/css/fileinput.css}" href="../../static/plugins/fileinput/css/fileinput.css"
           rel="stylesheet"/>
@@ -41,7 +43,7 @@
                         <img id="head-sculpture" th:src="@{/file(path=${session.user.photo})}" class="img-circle"  src="../../static/images/1.jpg">
                     </div>
                     <div class="short-message">
-                        <a href="#" th:text="${session.user.nickname}">看云水漂流</a>
+                        <a th:href="@{'/profile/'+${session.user.id}}" th:text="${session.user.nickname}">看云水漂流</a>
                         <!-- 开通vip之后显示一下页面 -->
                         <img th:hidden="${vipDate==null ||  vipDate==0}" th:src="@{/images/vip.png}"
                              src="../../static/images/vip.png" data-toolbar="vip-toolbar" data-toolbar-animation="grow"
@@ -681,6 +683,7 @@
                     <span  style="font-size: 25px"
                         class="col-md-12 text-center">您已经认证过！</span>
                 </div>
+
                 <div th:if="${!session.user.authenticated}">
                     <form class="more_message" id="form-user-comfirm">
                         <div class="form-group message_group">

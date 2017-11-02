@@ -15,7 +15,7 @@
                     <img th:src="@{/images/admin.jpg}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>管理员用户</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -39,26 +39,6 @@
                         </li>
                         <li>
                             <a th:href="@{/admin/user/label}"><i class="fa fa-circle-o"></i>标签管理</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-envelope"></i>
-                        <span>消息中心管理</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active">
-                            <a th:href="@{/admin/user/follow}"><i class="fa fa-circle-o"></i>用户私信管理</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/user/detail}"><i class="fa fa-circle-o"></i>用户关注管理</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/admin/user/detail}"><i class="fa fa-circle-o"></i>用户访问记录管理</a>
                         </li>
                     </ul>
                 </li>
@@ -103,16 +83,22 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a th:href="@{/admin/users/basic}" target="content"><i class="fa fa-circle-o"></i>发通知</a></li>
-                        <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i>通知列表</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i>通知列表</a></li>
 
                     </ul>
                 </li>
-                <li>
-                    <a href="pages/widgets.html"><i class="fa fa-th"></i><span>投诉管理</span>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bell"></i>
+                        <span>投诉管理</span>
                         <span class="pull-right-container">
-                            <small class="label pull-right bg-green">new</small>
+                          <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i>审核</a></li>
+
+                    </ul>
                 </li>
 
                 <!--<li class="header">LABELS</li>-->

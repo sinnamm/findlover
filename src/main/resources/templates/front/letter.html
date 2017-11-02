@@ -55,7 +55,7 @@
                             <th:block th:each="letterUser,iterStat : ${map[list]}">
                                 <li>
                                     <div style="cursor:pointer; height: 50px;" name="userLetter" th:id="${letterUser.id}"
-                                         class="jobs-item with-thumb userLetter">
+                                         class="jobs-item with-thumb userLetter oldUserLetter">
                                         <input th:value="${letterUser.id}" id="otherUserId" hidden/>
                                         <div class="thumb_top">
                                             <div class="thumb"   style="width: 50px ; margin-right:0 ; height: 40px;">

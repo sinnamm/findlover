@@ -95,13 +95,13 @@ public class ShiroConfig {
 		filterChainMap.put("/file/**", "anon");
 
 		//管理员配置
-//		filterChainMap.put("/admin/**", "adminAuth");
+		filterChainMap.put("/admin/**", "anon");
 
 		//作家配置
 		filterChainMap.put("/writer/**", "writerAuth");
 
 		//用户配置
-		filterChainMap.put("/logout", "anon"); // 手动注销实现
+		filterChainMap.put("/logout", "anon");
 		filterChainMap.put("/**", "userAuth");
 
 		// 未授权界面

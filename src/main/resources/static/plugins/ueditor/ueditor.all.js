@@ -8024,7 +8024,6 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
             if(!serverUrl && imageUrl) {
                 serverUrl = imageUrl.replace(/^(.*[\/]).+([\.].+)$/, '$1controller$2');
             }
-
             if(serverUrl) {
                 serverUrl = serverUrl + (serverUrl.indexOf('?') == -1 ? '?':'&') + 'action=' + (actionName || '');
                 return utils.formatUrl(serverUrl);
@@ -8078,13 +8077,11 @@ UE.Editor.defaultOptions = function(editor){
         setTimeout(function(){
             try{
                 me.options.imageUrl && me.setOpt('serverUrl', me.options.imageUrl.replace(/^(.*[\/]).+([\.].+)$/, '$1controller$2'));
-
                 var configUrl = me.getActionUrl('config'),
                     isJsonp = utils.isCrossDomainUrl(configUrl);
 
                 /* 发出ajax请求 */
                 me._serverConfigLoaded = false;
-
                 configUrl && UE.ajax.request(configUrl,{
                     'method': 'GET',
                     'dataType': isJsonp ? 'jsonp':'',

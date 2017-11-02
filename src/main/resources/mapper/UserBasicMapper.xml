@@ -35,6 +35,7 @@
         <result column="height" property="height" jdbcType="INTEGER" />
         <result column="workplace" property="workplace" jdbcType="VARCHAR" />
         <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
         <result column="salary" property="salary"/>
         <!--用户详细信息-->
         <result column="signature" property="userDetail.signature"/>
@@ -86,7 +87,7 @@
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,
+        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,
         signature,
         vip_deadline,star_deadline
         FROM user_basic
@@ -102,7 +103,7 @@
     </select>
     
     <select id="selectUserBySexualAndWorkProvince" resultMap="userSearch">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,
+        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline
@@ -118,11 +119,11 @@
             </if>
             AND user_basic.id != #{id}
         </where>
-
     </select>
 
+
     <select id="selectUserByUserPick" resultMap="userSearch" >
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,birthday,
+        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,birthday,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline
@@ -186,7 +187,7 @@
     </select>
 
     <select id="selectUserBySearch" resultMap="userSearch">
-        SELECT height,user_basic.id userId,nickname,photo,workplace,birthday,marry_status,salary,birthday,
+        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,birthday,
         YEAR(NOW())-YEAR(birthday) age,
         signature,
         vip_deadline,star_deadline

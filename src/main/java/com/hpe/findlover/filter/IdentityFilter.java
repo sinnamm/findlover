@@ -27,10 +27,12 @@ public class IdentityFilter extends UserFilter {
 
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-//		logger.info("Session中身份：" + identity + "=" + getSubject(request, response).getSession().getAttribute(identity));
+		logger.info("Session中身份：" + identity + "=" + getSubject(request, response).getSession().getAttribute(identity));
 		if (isLoginRequest(request, response)) {
+			logger.info("loginRequest!");
 			if(getSubject(request, response).getSession().getAttribute(identity) != null){
 				try {
+					logger.info("redirect to index");
 					((HttpServletResponse) response).sendRedirect("index");
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -38,6 +40,7 @@ public class IdentityFilter extends UserFilter {
 			}
 			return true;
 		}else {
+			logger.info("Is not loginRequest!");
 			return getSubject(request, response).getSession().getAttribute(identity) != null;
 		}
 	}

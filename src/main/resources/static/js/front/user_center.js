@@ -1,4 +1,5 @@
 $(function () {
+    setPanel();
     initSetPhotoBtn();
     niceBaseCofig();
     initUserBasicValidator();
@@ -41,6 +42,16 @@ $(function () {
     initAgeDropdown(undefined);
     selectUserBasic1();
 });
+function setPanel() {
+    var $panels = $("div[id$='Panel']");
+    $panels.removeClass("active");
+    if(type == null || type == ""){
+        $("#basicPanel").addClass("active");
+    }else{
+        $("#"+type+"Panel").addClass("active");
+    }
+
+}
 // 设置设为头像按钮的显示
 function initSetPhotoBtn() {
     $("div[id^='photo-single']").each(function () {
@@ -70,8 +81,7 @@ function setHeadPortrait(btnInstance) {
         async:false,
         success: function (data) {
             if (data== "true") {
-                location.reload();
-                history.go(0);
+                location.replace(contextPath+"usercenter?type=photo");
                 // swal("温馨提示", "设置成功！", "success");
                 //$("#basicPanel").removeClass("active");
                 //$("#photoPanel").addClass("active");
