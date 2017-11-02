@@ -44,6 +44,7 @@ public class UserCenterController {
 	private final UploadService uploadService;
 	private final UserPhotoService userPhotoService;
 
+
 	@Autowired
 	public UserCenterController(UserService userService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, UserAssetService userAssetService, UploadService uploadService, UserPhotoService userPhotoService) {
 		this.userService = userService;

@@ -188,7 +188,6 @@ function btnClick() {
         type="new";
         tab="message";
         pageNum=1;
-        $("#sort-btn").html("最新")
         getMessage();
     });
 
@@ -197,7 +196,6 @@ function btnClick() {
         type="hot";
         tab="message";
         pageNum=1;
-        $("#sort-btn").html("最热");
         getMessage();
     });
 

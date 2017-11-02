@@ -483,7 +483,7 @@
         </div>
         <!--谁看过我-->
         <div class="index-right">
-            <a href=""><h1>谁看过我</h1></a>
+            <a th:href="@{/visit_trace}"><h1>谁看过我</h1></a>
             <div class="heart-divider">
                 <div>
                     <span class="grey-line"></span>
@@ -494,36 +494,13 @@
             </div>
             <div class="record-1">
                 <ul>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic1.jpg}" src="../../static/images/pic1.jpg"/>
-                            <span>奔跑的小猪</span>
+                    <li th:each="visitor:${visitTraces}">
+                        <a th:href="@{'/profile/'+${visitor.userBasic.id}}">
+                            <img th:src="@{'/file?path='+${visitor.userBasic.photo}}" src="../../static/images/pic1.jpg"/>
+                            <span th:text="${visitor.userBasic.nickname}">奔跑的小猪</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic2.jpg}" src="../../static/images/pic2.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic3.jpg}" src="../../static/images/pic3.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic4.jpg}" src="../../static/images/pic4.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic5.jpg}" src="../../static/images/pic5.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </div>

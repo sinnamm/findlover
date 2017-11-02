@@ -91,15 +91,17 @@ public final class LoverUtil {
 	 * @param num 随机挑选的个数
 	 * @return
 	 */
-	public static List<UserBasic> getRandomUser(List<UserBasic> userBasicList, int num)
+	public static <T> List<T> getRandomUser(List<T> userBasicList, int num)
 	{
 		int[] nums = getRandoms(0,userBasicList.size()-1,num);
-		List<UserBasic> userBasics = new ArrayList<>();
+		List<T> userBasics = new ArrayList<>();
 		for (int i=0;i<nums.length;i++){
 			userBasics.add(userBasicList.get(nums[i]));
 		}
 		return userBasics;
 	}
+
+
 
 	/**
 	 * 格式化userBasic的值，设置是否是VIP或者星级用户，设置默认的内心独白

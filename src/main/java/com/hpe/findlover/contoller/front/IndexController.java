@@ -1,13 +1,7 @@
 package com.hpe.findlover.contoller.front;
 
-import com.hpe.findlover.model.Dict;
-import com.hpe.findlover.model.UserAsset;
-import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.DictService;
-import com.hpe.findlover.service.UserAssetService;
-import com.hpe.findlover.service.UserPickService;
-import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.model.*;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
@@ -40,6 +34,8 @@ public class IndexController {
     private DictService dictService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private VisitTraceService visitTraceService;
 
     private Logger logger = LogManager.getLogger(IndexController.class);
     /**
@@ -87,6 +83,12 @@ public class IndexController {
         List<Dict> jobList = dictService.selectDictByType("job");
         model.addAttribute("userPick",userPick);
         model.addAttribute("jobList",jobList);
+        //  * 5、谁看过我
+        List<VisitTrace> visitTraces = visitTraceService.selectVisitTracer(user.getId());
+        if (visitTraces.size()>Constant.SHOW_NUMBER){
+            visitTraces = LoverUtil.getRandomUser(visitTraces,5);
+        }
+        model.addAttribute("visitTraces",visitTraces);
         return "front/index";
     }
 
