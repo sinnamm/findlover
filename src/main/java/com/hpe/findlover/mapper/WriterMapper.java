@@ -1,5 +1,6 @@
 package com.hpe.findlover.mapper;
 
+import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.Writer;
 import com.hpe.util.BaseTkMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,4 +26,8 @@ public interface WriterMapper extends BaseTkMapper<Writer> {
      * @return
      */
     Writer selectByUserName(String username);
+
+    Writer selectByPseudonym(String pseudonym);
+
+    Writer selectByUsername(String username);
 }

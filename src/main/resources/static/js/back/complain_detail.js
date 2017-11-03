@@ -19,13 +19,13 @@ function initCheckedAndDeleteBtn() {
 
 function warningBtn($btn) {
     swal({
-        title: '确定要警告被告用户吗？',
+        title: '确定要警告ID为'+comObjId+'用户吗？',
         icon: "warning",
         buttons: ["取消", "确定"]
     }).then(result => {
         if (result) {
             $.ajax({
-                url: contextPath + "admin/notice/warning_notice/" + complainId,
+                url: contextPath + "admin/notice/warning_notice/"+complainId,
                 type: "POST",
                 data:{
                     "title":"你最近行为不当，被其他用户举报！",
@@ -37,7 +37,7 @@ function warningBtn($btn) {
                     //window.location.go(-1);
                     if (data === "true") {
                         $('a[id$="-complain"]').addClass("disabled");
-                        swal("状态修改失败！", "", "error");
+                        swal("状态修改成功！", "", "success");
                     } else {
                         swal("状态修改失败！", "", "error");
                     }

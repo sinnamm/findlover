@@ -2,7 +2,10 @@ package com.hpe.findlover;
 
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.hpe.findlover.contoller.FastDFSController;
+import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.UploadService;
+import com.hpe.findlover.service.UserService;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +17,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FastDFSTest {
+
+	@Autowired
+	UserService userService;
 	@Autowired
 	private FastDFSController controller;
 	@Autowired
@@ -27,6 +34,16 @@ public class FastDFSTest {
 		String url = "group1/M00/00/00/rBEuvln2kYeAIqFWAABi5_Dq7YI357.jpg";
 		System.out.println(StorePath.praseFromUrl(url));
 	}
+
+	@Test
+	public void modifyAllUserPwd2Md5(){
+		List<UserBasic> users = userService.selectAll();
+		for(UserBasic user: users){
+			user.setPassword(new Md5Hash("123",user.getEmail()).toString());
+			userService.updateByPrimaryKey(user);
+		}
+	}
+
 	@Test
 	public void test2(){
 		String url = "group1/M00/00/01/rBEuvln4Ow-AB5akAAAf3o02Ok8940.jpg";

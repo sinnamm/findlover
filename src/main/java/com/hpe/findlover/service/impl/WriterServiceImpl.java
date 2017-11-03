@@ -3,6 +3,7 @@ package com.hpe.findlover.service.impl;
 import com.hpe.findlover.mapper.EssayMapper;
 import com.hpe.findlover.mapper.WriterMapper;
 import com.hpe.findlover.model.Essay;
+import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.Writer;
 import com.hpe.findlover.service.WriterService;
 import com.hpe.util.BaseTkMapper;
@@ -50,5 +51,15 @@ public class WriterServiceImpl extends BaseServiceImpl<Writer> implements Writer
     @Override
     public List<Writer> selectAllByIdentity(String identity,String column, String keyword) {
         return writerMapper.selectAllByIdentity(identity,column,keyword);
+    }
+
+    @Override
+    public Writer selectByPseudonym(String pseudonym) {
+        return writerMapper.selectByPseudonym(pseudonym);
+    }
+
+    @Override
+    public Writer selectByUsername(String username) {
+        return writerMapper.selectByUsername(username);
     }
 }

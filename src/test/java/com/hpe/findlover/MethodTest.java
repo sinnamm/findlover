@@ -1,11 +1,14 @@
 package com.hpe.findlover;
 
+import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.LoverUtil;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.beans.PropertyDescriptor;
@@ -25,6 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 //@SpringBootTest
 public class MethodTest {
+
 
     @Test
     public void getDate(){
@@ -74,11 +78,16 @@ public class MethodTest {
 
         System.out.println(days);
     }
+
+
+
+
     @Test
     public void shiroMD5Test(){
         Md5Hash hash = new Md5Hash("123", "sinna@163.com");
         System.out.println(hash.toString());
     }
+
     @Test
     public void shiroBase64Test(){
         System.out.println(new String(Base64.encode("FindLover".getBytes())));
