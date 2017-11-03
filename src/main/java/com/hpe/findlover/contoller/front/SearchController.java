@@ -74,7 +74,7 @@ public class SearchController {
         model.addAttribute("animalList",animalList);
         model.addAttribute("religionList",religionList);
         /*2、搜索位用户择偶条件信息和标签信息*/
-        UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
         UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
         logger.info("userPick.."+userPick);
         model.addAttribute("userPick",userPick);
@@ -111,7 +111,7 @@ public class SearchController {
         List<UserBasic> userBasicList = userService.selectUserByIds(ids);
 
         List<UserBasic> labelUser = new ArrayList<>();
-        UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
         for (UserBasic userBasic:userBasicList){
             if (userBasic.getSex().equals(user.getSexual())){
                 labelUser.add(userBasic);
@@ -132,7 +132,7 @@ public class SearchController {
     @GetMapping("/initUserPick")
     @ResponseBody
     public UserPick initUserPick(HttpServletRequest request) throws Exception {
-        UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
         UserPick userPick = null;
         if (user!=null) {
             userPick = userPickService.selectByPrimaryKey(user.getId());
@@ -144,7 +144,7 @@ public class SearchController {
     @ResponseBody
     public UserInfo initSearchUser(@Param("pageNum")Integer pageNum,HttpServletRequest request) {
         logger.info("pageNum......" + pageNum);
-        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
         logger.info("userBasic===="+userBasic);
         UserPick userPick = userPickService.selectByPrimaryKey(userBasic.getId());
         if (!(userBasic.getVip())){
@@ -173,7 +173,7 @@ public class SearchController {
     @RequestMapping("/getSearchUser")
     @ResponseBody
     public UserInfo getSearchUser(HttpServletRequest request,Search search, @Param("pageNum")Integer pageNum) {
-        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
         search.setId(userBasic.getId());
         if (!(userBasic.getVip())){
             formatSearch(search);

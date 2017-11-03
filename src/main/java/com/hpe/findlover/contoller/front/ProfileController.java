@@ -4,10 +4,12 @@ import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.*;
 import com.hpe.findlover.service.ComplainService;
 import com.hpe.findlover.service.FollowService;
+import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,16 +52,16 @@ public class ProfileController {
 
 	@GetMapping("{id}")
 	public String getProfileById(@PathVariable("id") int userId, Model model,HttpServletRequest request) {
-		Integer sessionUserId = SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId();
+		Integer sessionUserId = SessionUtils.getSessionAttr( "user", UserBasic.class).getId();
 		//增加访问记录
 		if (sessionUserId!=userId) {
 			visitTraceService.insert(new VisitTrace(sessionUserId, userId, new Date()));
 		}
 
 		UserBasic basic = userBasicService.selectByPrimaryKey(userId);
-		if (basic.getAuthority() == 0) {
+		if (basic.getAuthority() == Constant.PROFILE_AUTH_NONE) {
 			logger.debug("ID为" + basic.getId() + "的用户个人资料所有人不可见");
-		} else if (basic.getAuthority() == 2) {
+		} else if (basic.getAuthority() == Constant.PROFILE_AUTH_FOLLOW) {
 			logger.debug("ID为" + basic.getId() + "的用户个人资料仅关注可见");
 		}
 		userBasicService.userAttrHandler(basic);
@@ -87,7 +89,7 @@ public class ProfileController {
 	@PostMapping("complain")
 	@ResponseBody
 	public boolean complain(Complain complain, HttpServletRequest request) {
-		complain.setUserId(SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId());
+		complain.setUserId(SessionUtils.getSessionAttr("user", UserBasic.class).getId());
 		complain.setComTime(new Date());
 		complain.setStatus(0);
 		return complainService.insert(complain);

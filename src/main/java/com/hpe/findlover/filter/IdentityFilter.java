@@ -1,5 +1,6 @@
 package com.hpe.findlover.filter;
 
+import com.hpe.findlover.util.Identity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,24 +16,28 @@ import java.io.IOException;
  */
 public class IdentityFilter extends UserFilter {
 	private final Logger logger = LogManager.getLogger(IdentityFilter.class);
-	private String identity;
+	private Identity identity;
 
-	public IdentityFilter(String identity) {
+	public IdentityFilter(Identity identity) {
 		this.identity = identity;
-		setLoginUrl("user".equals(identity) ? "/login" : "admin".equals(identity) ? "/admin/login" : "/writer/login");
+		if(Identity.USER.equals(identity)){
+			setLoginUrl("/login");
+		} else if (Identity.ADMIN.equals(identity)) {
+			setLoginUrl("/admin/login");
+		}else if(Identity.WRITER.equals(identity)){
+			setLoginUrl("/writer/login");
+		}
 		if (getLoginUrl().equals(DEFAULT_LOGIN_URL)) {
-			throw new AuthenticationException("未知的身份：" + identity);
+			throw new AuthenticationException("未知的身份：" + identity.getValue());
 		}
 	}
 
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-		logger.info("Session中身份：" + identity + "=" + getSubject(request, response).getSession().getAttribute(identity));
+		logger.info("Session中身份：" + identity.getValue() + "=" + getSubject(request, response).getSession().getAttribute(identity.getValue()));
 		if (isLoginRequest(request, response)) {
-			logger.info("loginRequest!");
-			if(getSubject(request, response).getSession().getAttribute(identity) != null){
+			if(getSubject(request, response).getSession().getAttribute(identity.getValue()) != null){
 				try {
-					logger.info("redirect to index");
 					((HttpServletResponse) response).sendRedirect("index");
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -41,7 +46,7 @@ public class IdentityFilter extends UserFilter {
 			return true;
 		}else {
 			logger.info("Is not loginRequest!");
-			return getSubject(request, response).getSession().getAttribute(identity) != null;
+			return getSubject(request, response).getSession().getAttribute(identity.getValue()) != null;
 		}
 	}
 }

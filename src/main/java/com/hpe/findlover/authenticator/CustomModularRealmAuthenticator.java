@@ -12,20 +12,18 @@ import org.apache.shiro.realm.Realm;
 /**
  * 自定义验证器
  * 分别定义Realm时，对应Realm的name必须包含对应token中的type，如UserRealm必须包含user
+ * @author Gss
  */
 public class CustomModularRealmAuthenticator extends ModularRealmAuthenticator {
 	private final Logger logger = LogManager.getLogger(CustomModularRealmAuthenticator.class);
-	public CustomModularRealmAuthenticator() {
-		logger.info("Bean Constructor: CustomModularRealmAuthenticator");
-	}
 
 	@Override
 	protected AuthenticationInfo doAuthenticate(AuthenticationToken authenticationToken) throws AuthenticationException {
 		logger.info("Token ClassName = "+ authenticationToken.getClass().getSimpleName());
 		CustomToken customToken = (CustomToken) authenticationToken;
 		for (Realm realm : getRealms()) {
-			logger.info("RealmName=" + realm.getName() + ",type=" + customToken.getType());
-			if (realm.getName().contains(customToken.getType())) {
+			logger.info("RealmName=" + realm.getName() + ",type=" + customToken.getType().getValue());
+			if (realm.getName().contains(customToken.getType().getValue())) {
 				return doSingleRealmAuthentication(realm, customToken);
 			}
 		}
