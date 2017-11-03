@@ -50,10 +50,10 @@
 
   <!-- 光荣脱单榜结果映射 -->
   <resultMap id="notSingleResultMap" type="com.hpe.findlover.model.SuccessStory" extends="BaseResultMap">
-    <result column="uid" property="user.id"></result>
-    <result column="reg_time" property="user.regTime"></result>
-    <result column="nickname" property="user.nickname"></result>
-    <result column="photo" property="user.photo"></result>
+    <result column="uid" property="userLeft.id"></result>
+    <result column="reg_time" property="userLeft.regTime"></result>
+    <result column="nickname" property="userLeft.nickname"></result>
+    <result column="photo" property="userLeft.photo"></result>
   </resultMap>
   
   <select id="selectNotSingle" resultMap="notSingleResultMap">

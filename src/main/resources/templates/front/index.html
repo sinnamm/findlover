@@ -189,91 +189,17 @@
                 </div>
                 <div class="suceess_story">
                     <ul>
-                        <li>
+                        <li th:each="success_story:${successStories}">
                             <div class="suceess_story-date">
-                                <span class="entry-1">Dec 20, 2015</span>
+                                <span th:text="${success_story.successTime}" class="entry-1">Dec 20, 2015</span>
                             </div>
                             <div class="suceess_story-content-container">
                                 <figure class="suceess_story-content-featured-image">
-                                    <img th:src="@{/images/7.jpg}" width="75" height="75"
-                                         src="../../static/images/7.jpg" class="img-responsive"/>
+                                    <img th:src="@{/file(path=${success_story.photo})}" width="75" height="75" class="img-responsive"/>
                                 </figure>
                                 <div class="suceess_story-content-info">
-                                    <h4><a href="#">奔跑的小猪&nbsp;&amp;&nbsp;晴儿</a></h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form,.<a href="#">More...</a></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="suceess_story-date">
-                                <span class="entry-1">Dec 20, 2015</span>
-                            </div>
-                            <div class="suceess_story-content-container">
-                                <figure class="suceess_story-content-featured-image">
-                                    <img th:src="@{/images/8.jpg}" width="75" height="75"
-                                         src="../../static/images/8.jpg" class="img-responsive"/>
-                                </figure>
-                                <div class="suceess_story-content-info">
-                                    <h4><a href="#">奔跑的小猪&nbsp;&amp;&nbsp;晴儿</a></h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form,.<a href="#">More...</a></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="suceess_story-date">
-                                <span class="entry-1">Dec 20, 2015</span>
-                            </div>
-                            <div class="suceess_story-content-container">
-                                <figure class="suceess_story-content-featured-image">
-                                    <img th:src="@{/images/9.jpg}" width="75" height="75"
-                                         src="../../static/images/9.jpg" class="img-responsive"
-                                         alt=""/>
-                                </figure>
-                                <div class="suceess_story-content-info">
-                                    <h4><a href="#">奔跑的小猪&nbsp;&amp;&nbsp;晴儿</a></h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form,.<a href="#">More...</a></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="suceess_story-date">
-                                <span class="entry-1">Dec 20, 2015</span>
-                            </div>
-                            <div class="suceess_story-content-container">
-                                <figure class="suceess_story-content-featured-image">
-                                    <img th:src="@{/images/10.jpg}" width="75" height="75"
-                                         src="../../static/images/10.jpg" class="img-responsive"
-                                         alt=""/>
-                                </figure>
-                                <div class="suceess_story-content-info">
-                                    <h4><a href="#">奔跑的小猪&nbsp;&amp;&nbsp;晴儿</a></h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form,.<a href="#">More...</a></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="suceess_story-date">
-                                <span class="entry-1">Dec 20, 2015</span>
-                            </div>
-                            <div class="suceess_story-content-container">
-                                <figure class="suceess_story-content-featured-image">
-                                    <img th:src="@{/images/11.jpg}" width="75" height="75"
-                                         src="../../static/images/11.jpg" class="img-responsive"
-                                         alt=""/>
-                                </figure>
-                                <div class="suceess_story-content-info">
-                                    <h4><a href="#">奔跑的小猪&nbsp;&amp;&nbsp;晴儿</a></h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form,.<a href="#">More...</a></p>
+                                    <h4><a href="#">[[${success_story.userLeft.nickname}]]&nbsp;&amp;&nbsp;[[${success_story.userRight.nickname}]]</a></h4>
+                                    <p>[[${success_story.brief}]]<a href="#">More...</a></p>
                                 </div>
                             </div>
                         </li>

@@ -46,7 +46,7 @@ public class SuccessStoryController {
         successStory.setLikeCount(0);
         successStory.setReplyCount(0);
         model.addAttribute("msg", essays);
-        if (successStoryService.insert(successStory)){
+        if (successStoryService.insertStory(successStory)){
             return "front/story_view";
         }
         return "front/error";

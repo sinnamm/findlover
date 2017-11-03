@@ -41,14 +41,25 @@ public class SuccessStory {
     private String content;
 
     @Transient
-    private UserBasic user;
+    private UserBasic userLeft;
 
-    public UserBasic getUser() {
-        return user;
+    @Transient
+    private UserBasic userRight;
+
+    public UserBasic getUserLeft() {
+        return userLeft;
     }
 
-    public void setUser(UserBasic user) {
-        this.user = user;
+    public void setUserLeft(UserBasic userLeft) {
+        this.userLeft = userLeft;
+    }
+
+    public UserBasic getUserRight() {
+        return userRight;
+    }
+
+    public void setUserRight(UserBasic userRight) {
+        this.userRight = userRight;
     }
 
     /**
@@ -226,7 +237,7 @@ public class SuccessStory {
                 ", status=" + status +
                 ", adminId=" + adminId +
                 ", content='" + content + '\'' +
-                ", user=" + user +
+                ", user=" + userLeft +
                 '}';
     }
 }

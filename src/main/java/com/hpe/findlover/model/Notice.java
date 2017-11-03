@@ -24,6 +24,18 @@ public class Notice {
     @Column(name = "pub_obj")
     private Integer pubObj;
 
+
+    public Notice() {
+    }
+
+    public Notice(Integer adminId, String title, String content, Date pubTime, Integer pubObj) {
+        this.adminId = adminId;
+        this.title = title;
+        this.content = content;
+        this.pubTime = pubTime;
+        this.pubObj = pubObj;
+    }
+
     /**
      * @return id
      */

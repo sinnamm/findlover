@@ -20,4 +20,9 @@ public interface SuccessStoryService extends BaseService<SuccessStory> {
      * @return
      */
     Map<UserBasic, Integer> selectVipNotSingle();
+
+    /**
+     * 插入成功故事并发通知
+     */
+    boolean insertStory(SuccessStory successStory);
 }

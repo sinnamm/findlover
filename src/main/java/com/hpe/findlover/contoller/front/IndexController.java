@@ -47,6 +47,7 @@ public class IndexController {
     @Autowired
     private SuccessStoryService successStoryService;
 
+
     private Logger logger = LogManager.getLogger(IndexController.class);
     /**
      * @Author sinnamm
@@ -101,6 +102,14 @@ public class IndexController {
         PageHelper.startPage(1,5,"visit_time desc");
         List<VisitTrace> visitTraces = visitTraceService.selectIndexVisitTracer(user.getId());
         model.addAttribute("visitTraces",visitTraces);
+        // * 4、成功故事
+        PageHelper.startPage(1,5,"success_time desc");
+        List<SuccessStory> successStories = successStoryService.selectAll();
+        for (SuccessStory success : successStories) {
+            success.setUserLeft(userService.selectByPrimaryKey(success.getLeftUser()));
+            success.setUserRight(userService.selectByPrimaryKey(success.getRightUser()));
+        }
+        model.addAttribute("successStories",successStories);
         return "front/index";
     }
 
