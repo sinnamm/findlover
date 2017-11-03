@@ -50,4 +50,9 @@ public class FollowServiceImpl extends BaseServiceImpl<Follow> implements Follow
 	public List<Follow> selectFollower(int userId) {
 		return followMapper.selectFollower(userId);
 	}
+
+	@Override
+	public int selectFollowCount(int userId) {
+		return followMapper.selectFollowCount(userId);
+	}
 }

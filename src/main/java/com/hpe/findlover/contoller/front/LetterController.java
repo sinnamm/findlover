@@ -5,10 +5,7 @@ import com.hpe.findlover.model.Letter;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.LetterService;
-import com.hpe.findlover.service.UserAssetService;
-import com.hpe.findlover.service.UserPickService;
-import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.LoverUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +34,10 @@ public class LetterController {
     @Autowired
     private UserService userService;
     @Autowired
-    UserPickService userPickService;
+    private UserPickService userPickService;
+    @Autowired
+    private FollowService followService;
+
     @GetMapping("letter")
     public String letter(HttpSession session, Model model) throws Exception {
         UserBasic userBasic = (UserBasic) session.getAttribute("user");
@@ -52,6 +52,7 @@ public class LetterController {
         logger.debug("stars: " + stars);
         //右侧信息条数
         model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
+        model.addAttribute("followCount", followService.selectFollowCount(userId));
         return "front/letter";
     }
 

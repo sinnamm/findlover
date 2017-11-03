@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.VisitTrace;
+import com.hpe.findlover.service.FollowService;
 import com.hpe.findlover.service.LetterService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.service.VisitTraceService;
@@ -40,6 +41,9 @@ public class VisitTraceController {
    @Autowired
    private LetterService letterService;
 
+    @Autowired
+    private FollowService followService;
+
    private Logger logger = LogManager.getLogger(VisitTraceController.class);
 
    @GetMapping
@@ -52,6 +56,7 @@ public class VisitTraceController {
        }
        //右侧信息条数
        model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
+       model.addAttribute("followCount", followService.selectFollowCount(userId));
        model.addAttribute("users",userBasics);
        return "front/visit_trace";
    }

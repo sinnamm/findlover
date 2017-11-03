@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +31,8 @@ public class SuccessStoryController {
     private UploadService uploadService;
     Logger logger = LoggerFactory.getLogger(SuccessStoryController.class);
     @PostMapping("write_story")
-    @ResponseBody
     public String uploadEssay(HttpSession session, String essays, int otherId, String title,
-                              MultipartFile ephoto, String tcontent) throws Exception{
+                              MultipartFile ephoto, String tcontent,Model model) throws Exception{
         SuccessStory successStory=new SuccessStory();
         UserBasic user= (UserBasic) session.getAttribute("user");
         successStory.setLeftUser(user.getId());
@@ -45,10 +45,11 @@ public class SuccessStoryController {
         successStory.setBrief(tcontent);
         successStory.setLikeCount(0);
         successStory.setReplyCount(0);
+        model.addAttribute("msg", essays);
         if (successStoryService.insert(successStory)){
-            return "success";
+            return "front/story_view";
         }
-        return "error";
+        return "front/error";
     }
     @GetMapping("write_story")
     public String writeStory(){
@@ -62,5 +63,10 @@ public class SuccessStoryController {
     @GetMapping("/success_story_info")
     public String successStoryInfo(){
         return "front/success_story_info";
+    }
+
+    @GetMapping("/story_view")
+    public String successStoryView() {
+        return "front/story_view";
     }
 }

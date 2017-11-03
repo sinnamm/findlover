@@ -43,4 +43,7 @@
   <select id="selectFollower" resultMap="FollowerResultMap">
     SELECT * FROM follow AS f WHERE  f.follow_id=#{followId} ORDER BY f.follow_time DESC
   </select>
+  <select id="selectFollowCount" resultType="int">
+    SELECT count(*) from follow where user_id=#{userId}
+  </select>
 </mapper>

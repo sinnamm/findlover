@@ -17,4 +17,6 @@ public interface FollowService extends BaseService<Follow> {
 	List<Follow> selectFollow(int userId);
 
 	List<Follow> selectFollower(int userId);
+
+	int selectFollowCount(int userId);
 }

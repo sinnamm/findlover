@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/success_story_detail.js}"></script>
+    <th:block th:remove= "all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+    <script th:inline="javascript">
+        var successStoryId = /*[[${id}]]*/'';
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">成功故事详情</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid">
+                                <ul id="essay-tab" class="nav nav-tabs">
+                                    <li class="active">
+                                        <a id="info" href="#info-pane" data-toggle="tab">文章详情</a>
+                                    </li>
+                                    <li><a id="photo" href="#photo-pane" data-toggle="tab">配图详情</a></li>
+                                </ul>
+                                <div id="essay-tab-content text-center" class="tab-content">
+
+                                    <div class="tab-pane fade in active " id="info-pane">
+                                        <div class="f-content " >
+                                            <div class="container-fluid " style="height: auto">
+                                                <th:block th:utext="${successStory}"></th:block>
+                                                <div class="row">
+                                                    <div th:if="${successStoryObj.status==3}" class="col-md-6 text-right">
+                                                        <a id="checked-essay" class="btn btn-warning">审核</a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <a id="delete-essay" class="btn btn-danger">删除</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade text-center" id="photo-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid text-center">
+                                                <img th:src="@{/file(path=${successStoryObj.photo})}" style="width: auto;height: 400px">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>
