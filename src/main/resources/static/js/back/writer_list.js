@@ -16,6 +16,7 @@ $(function () {
 
 //初始化表单验证
 function initFormValidator() {
+    //初始化修改作家密码表单验证
     $("#resetPwd").validator({
         fields: {
             'pwd': '密码:required;password',
@@ -42,6 +43,61 @@ function initFormValidator() {
             });
         }
     });
+    //初始化新增作家表单验证
+    $("#add-writer-form").validator({
+        rules: {
+            nickname: [/^([\u4E00-\u9FA5]|[a-z0-9]{1,2}){2,6}$/, "昵称应为4-12位字符"]
+        },
+        fields: {
+            'pseudonym': 'required;nickname,remote['+contextPath+'admin/writer/checkPseudonym, pseudonym]',
+            'username': 'required;username,remote['+contextPath+'admin/writer/checkUsername, username]',
+            'wpwd': '密码:required;password',
+            'password': 'required;match(wpwd)'
+        },
+        theme:'bootstrap',
+        timely:2,
+        stopOnError:true,
+        valid: function (form) {
+            var $form = $(form);
+            $.ajax({
+                url:contextPath+'admin/writer/add',
+                data:$form.serialize()+'&identity=all&pageNum='+pageNum+'&pageSize='+pageSize+'&column=id&keyword=',
+                type:"post",
+                dataType:'json',
+                success:function (data) {
+                    if(data.result){
+                        $('#addWriter').modal('hide');
+                        swal("温馨提示","添加成功！",'success');
+                        var page = data.page;
+                        var $userBasicTBody = $("#user-basic-table").find(">tbody");
+                        $userBasicTBody.empty();
+                        for (var x = 0; x < page.list.length; x++) {
+                            var writer = page.list[x];
+                            var tr = $(' <tr>\n' +
+                                '             <td>'+writer.id+'</td>\n' +
+                                '             <td>'+writer.username+'</td>\n' +
+                                '             <td>'+writer.pseudonym+'</td>\n' +
+                                '             <td>'+writer.regTime+'</td>\n' +
+                                '             <td>'+writer.essayCount+'</td>\n' +
+                                '        </tr>');
+                            if (writer.status === 0) {
+                                tr.append($('<td><button id="edit-writer-status-' + writer.id + '-0" class="btn btn-sm btn-danger"><i class="fa fa-times"></i>&nbsp;已锁定</button></td>'));
+                            } else {
+                                tr.append($('<td><button id="edit-writer-status-' + writer.id + '-1" class="btn btn-sm btn-success"><i class="fa fa-check"></i>&nbsp;已激活</button></td>'));
+                            }
+                            tr.append($('<td><a id="update-'+writer.id+'" class="btn btn-sm btn-info"><i class="fa fa-edit"></i>&nbsp;修改密码</a></td>'));
+                            $userBasicTBody.append(tr);
+                        }
+                        initRePwdBtn();
+                        initEditUserStatusBtn();
+                        setPage(page.pageNum,page.total, page.pages, "goPage");
+                    }else {
+                        swal("温馨提示","添加失败！",'error');
+                    }
+                }
+            });
+        }
+    });
 }
 
 //初始化修改密码按钮
@@ -51,7 +107,12 @@ function initRePwdBtn() {
         $('#writerid').text(id);
         $('#modifyPwd').modal('show');
     });
+    $('#add-writer').click(function () {
+        $('#addWriter').modal('show');
+        $("#add-writer-form")[0].reset();
+    });
 }
+
 function loadData() {
     $.get(contextPath + "admin/writer/info",
         {
@@ -156,54 +217,3 @@ function initSearchBtn() {
 }
 
 
-/*
-{
-  "pageNum": 2, //页码
-  "pageSize": 3, //每页要显示的条数
-  "size": 3, //本页条数
-  "startRow": 4,
-  "endRow": 6,
-  "total": 7, //总记录数
-  "pages": 3, //总页数
-  "list": [
-    {
-      "age": 0,
-      "id": 100000,
-      "email": "gss@qq.com",
-      "password": "202CB962AC59075B964B07152D234B70",
-      "nickname": "gsssss",
-      "tel": "123",
-      "sex": "男",
-      "birthday": 869241600000,
-      "photo": "p7.jpg",
-      "marryStatus": "未婚",
-      "height": 175,
-      "sexual": "男",
-      "education": "大学本科",
-      "workplace": "山东-济南",
-      "salary": 8000.0,
-      "liveCondition": 0,
-      "authority": 1,
-      "status": 1,
-      "code": null,
-      "regTime": 1508245373000,
-      "star": true,
-      "vip": true,
-      "authenticated":false
-    }
-  ],
-  "prePage": 1,
-  "nextPage": 3,
-  "isFirstPage": false,
-  "isLastPage": false,
-  "hasPreviousPage": true,
-  "hasNextPage": true,
-  "navigatePages": 8,
-  "navigatepageNums": [
-  ],
-  "navigateFirstPage": 1,
-  "navigateLastPage": 3,
-  "lastPage": 3,
-  "firstPage": 1
-}
-*/

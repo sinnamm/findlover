@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hpe.findlover.model.Admin;
 import com.hpe.findlover.model.Complain;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.ComplainService;
 import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +84,8 @@ public class ComplainControllerBack {
     @PutMapping("info/{id}")
     @ResponseBody
     public Object complainList(@PathVariable("id") int id, Complain complain) {
+        Admin admin = SessionUtils.getSessionAttr("admin",Admin.class);
+        complain.setAdminId(admin.getId());
         complain.setId(id);
         logger.debug(complain);
         return complainService.updateByPrimaryKeySelective(complain);
@@ -97,6 +101,8 @@ public class ComplainControllerBack {
     @PutMapping("seal/{id}")
     @ResponseBody
     public Object sealComObj(@PathVariable("id") int comId, Complain complain) {
+        Admin admin = SessionUtils.getSessionAttr("admin",Admin.class);
+        complain.setAdminId(admin.getId());
         return complainService.updateUserStatusAndComplainStatus(comId,complain);
     }
 

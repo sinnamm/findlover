@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hpe.findlover.model.Admin;
 import com.hpe.findlover.model.Essay;
 import com.hpe.findlover.service.EssayService;
 import com.hpe.findlover.service.UploadService;
+import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,12 +83,6 @@ public class EssayControllerBack {
         return "back/writer/essay_detail";
     }
 
-    /*@GetMapping("detail/{id}")
-    @ResponseBody
-    public Object essayDetailShow(@ModelAttribute @PathVariable int id) {
-        return "back/writer/essay_detail";
-    }*/
-
     /**
      * 修改专栏作家文章审核状态
      *
@@ -102,6 +98,8 @@ public class EssayControllerBack {
         Essay resultEssay = essayService.selectByPrimaryKey(id);
         //修改专栏作家审核状态时，生成发布时间
         if(resultEssay.getPubTime()==null){
+            Admin admin = SessionUtils.getSessionAttr("admin",Admin.class);
+            essay.setAdminId(admin.getId());
             essay.setPubTime(new Date());
         }
         return essayService.updateByPrimaryKeySelective(essay);

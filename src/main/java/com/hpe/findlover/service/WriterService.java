@@ -1,5 +1,6 @@
 package com.hpe.findlover.service;
 
+import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.Writer;
 
 import java.util.List;
@@ -26,4 +27,8 @@ public interface WriterService extends BaseService<Writer> {
      * @return
      */
     Writer selectByUserName(String username);
+
+    Writer selectByPseudonym(String pseudonym);
+
+    Writer selectByUsername(String username);
 }

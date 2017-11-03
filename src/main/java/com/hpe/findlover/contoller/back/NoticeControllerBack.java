@@ -3,11 +3,17 @@ package com.hpe.findlover.contoller.back;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hpe.findlover.model.Admin;
+import com.hpe.findlover.model.Complain;
 import com.hpe.findlover.model.Notice;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.service.ComplainService;
 import com.hpe.findlover.service.NoticeService;
+import com.hpe.findlover.util.LoverUtil;
+import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +33,8 @@ public class NoticeControllerBack {
 
     @Autowired
     private NoticeService noticeService;
+    @Autowired
+    private ComplainService complainService;
     private Logger logger = LogManager.getLogger(NoticeControllerBack.class);
 
     @GetMapping("send_notice")
@@ -52,13 +60,22 @@ public class NoticeControllerBack {
 
     }
 
-    @PostMapping("warning_notice")
+    @PostMapping("warning_notice/{complainId}")
     @ResponseBody
-    public boolean sentNoticeP(Notice notice){
+    public boolean sentNoticeP(@PathVariable("complainId")Integer complainId, Notice notice){
+        Admin admin = SessionUtils.getSessionAttr("admin",Admin.class);
+        notice.setAdminId(admin.getId());
         notice.setPubTime(new Date());
-        logger.info(notice);
+        logger.debug(notice);
+        Complain complain = new Complain();
+        complain.setId(complainId);
+        //警告状态
+        complain.setStatus(2);
+        //管理员ID
+        complain.setAdminId(admin.getId());
+        boolean b = complainService.updateByPrimaryKeySelective(complain);
         boolean result = noticeService.insert(notice);
-        if (result){
+        if (result && b){
             return true;
         }else {
             return false;
