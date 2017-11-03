@@ -114,7 +114,7 @@ public class IndexController {
     @PostMapping("index/getSearchUser")
     @ResponseBody
     public List<UserBasic> getSearchUser(UserPick userPick,HttpServletRequest request){
-        UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
         return getDayLovers(userPick,user);
     }
 

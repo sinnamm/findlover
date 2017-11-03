@@ -48,7 +48,7 @@ public class VisitTraceController {
 
    @GetMapping
    public String visitTrace(Model model, HttpServletRequest request){
-       int userId = SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId();
+       int userId = SessionUtils.getSessionAttr("user",UserBasic.class).getId();
        PageHelper.startPage(1,4,"reg_time desc");
        List<UserBasic> userBasics = userService.selectAll();
        for(UserBasic userBasicl:userBasics){
@@ -66,7 +66,7 @@ public class VisitTraceController {
     @ResponseBody
     public PageInfo getVisitTrace(HttpServletRequest request,@RequestParam("pageNum")int pageNum){
         logger.info("我看过谁");
-       Integer userId = SessionUtils.getSessionAttr(request,"user", UserBasic.class).getId();
+       Integer userId = SessionUtils.getSessionAttr("user", UserBasic.class).getId();
         PageHelper.startPage(pageNum,6);
         List<VisitTrace> visitTraces = visitTraceService.selectVisitTrace(userId);
        for(VisitTrace visitTrace:visitTraces){
@@ -80,7 +80,7 @@ public class VisitTraceController {
     @ResponseBody
     public PageInfo getVisitTracer(HttpServletRequest request,@RequestParam("pageNum")int pageNum){
         logger.info("谁看过我");
-        Integer userId = SessionUtils.getSessionAttr(request,"user", UserBasic.class).getId();
+        Integer userId = SessionUtils.getSessionAttr("user", UserBasic.class).getId();
         PageHelper.startPage(pageNum, 5);
         List<VisitTrace> visitTraces = visitTraceService.selectVisitTracer(userId);
         for(VisitTrace visitTrace:visitTraces){

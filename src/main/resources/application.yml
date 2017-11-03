@@ -32,7 +32,7 @@ spring:
     multipart:
       enabled: true
       max-file-size: 5MB
-      max-request-size: 25MB
+      max-request-size: 40MB
   cache:
     type: ehcache
     ehcache:
@@ -68,4 +68,4 @@ fdfs:
   thumbImage:             #缩略图生成参数
     width: 150
     height: 150
-  trackerList: 172.17.46.190:22122  #tracker路径，TrackerList参数,支持多个
+  trackerList: 172.17.46.190:22122

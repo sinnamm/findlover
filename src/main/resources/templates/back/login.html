@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>FindLover-Admin Login</title>
+        <link th:href="@{/css/bootstrap-3.1.1.min.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/plugins/supersized/supersized.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/css/admin-login.css}" rel="stylesheet" type="text/css"/>
+
+        <script th:src="@{/jquery/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/plugins/supersized/supersized.3.2.7.min.js}"></script>
+        <script th:src="@{/js/back/login.js}"></script>
+    </head>
+
+    <body>
+        <div class="page-container">
+            <h1>寻爱网&nbsp;-&nbsp;后台管理系统</h1>
+            <form th:action="@{/admin/login}" method="post">
+                <input type="text" name="username" class="username" placeholder="Username">
+                <input type="password" name="password" class="password" placeholder="Password">
+                <button type="submit">登录</button>
+                <div class="error"><span>+</span></div>
+            </form>
+            <div class="connect">
+                <p>FindLover</p>
+            </div>
+        </div>
+    </body>
+
+</html>
+

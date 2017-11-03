@@ -7,12 +7,7 @@ import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
-import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.MD5Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +38,6 @@ public class DaoTest {
 	@Test
 	public void getDatasource() {
 		System.out.println(dataSource.getClass());
-	}
-	@Test
-	public void getMD5(){
-		System.out.println(new MD5Code().getMD5ofStr("123"));
 	}
 	@Test
 	public void testMapper(){

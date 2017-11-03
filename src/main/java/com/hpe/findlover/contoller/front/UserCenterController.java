@@ -1,17 +1,16 @@
 package com.hpe.findlover.contoller.front;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.MD5Code;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -207,6 +206,8 @@ public class UserCenterController {
 		}
 		String uploadPhotoPath = null;
 		UserBasic userBasic = (UserBasic) session.getAttribute("user");
+		UserPhoto userPhoto = null;
+
 		try {
 			//上传之前删除原来头像
 			if (userBasic.getPhoto() != null
@@ -227,12 +228,19 @@ public class UserCenterController {
 			logger.error("上传完成!");
 			logger.error("==================================");
 
+			userPhoto = new UserPhoto();
+			userPhoto.setId(0);
+			userPhoto.setPhoto(uploadPhotoPath);
+			userPhoto.setUserId(userBasic.getId());
 		} catch (Exception e) {
 			//如果出错先删除刚刚上传的图片
 			uploadService.deleteFile(uploadPhotoPath);
 			e.printStackTrace();
 		}
-		return "{\"result\":\"true\",\"path\":\"" + uploadPhotoPath + "\"}";
+		JSONObject obj = new JSONObject();
+		obj.put("result", true);
+		obj.put("photo",userPhoto);
+		return obj;
 	}
 
 	/**
@@ -368,7 +376,7 @@ public class UserCenterController {
 				userBasic.setWorkplace(work_province);
 			}
 			if (userBasic.getPassword() != null) {
-				userBasic.setPassword(new MD5Code().getMD5ofStr(userBasic.getPassword()));
+				userBasic.setPassword(new Md5Hash(userBasic.getPassword(),userBasic.getEmail()).toString());
 			}
 			logger.error(userBasic);
 			if(userBasic.getSexual()!=null) {

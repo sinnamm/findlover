@@ -61,7 +61,7 @@ public class OtherSayController {
 
 	@GetMapping
 	public String otherSays(HttpServletRequest request,Model model) {
-		UserBasic user = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+		UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
 		UserPick userPick = userPickService.selectByPrimaryKey(user.getId());
 		List<UserBasic> userBasicStarPick = LoverUtil.getRandomStarUser(userPick,Constant.SEARCH_SHOW_STAR_USER_NUMBER,userService);
 		userBasicStarPick.forEach(logger::info);
@@ -72,7 +72,7 @@ public class OtherSayController {
 	@PostMapping("/message")
 	@ResponseBody
 	public boolean insert(Message message, HttpServletRequest request) throws Exception {
-		UserBasic user = SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+		UserBasic user = SessionUtils.getSessionAttr("user", UserBasic.class);
 		assert user != null;
 		message.setUserId(user.getId());
 		message.setLikeCount(0);
@@ -86,7 +86,7 @@ public class OtherSayController {
 	@ResponseBody
 	public String message(@Param("pageNum")Integer pageNum,@Param("type")String type,HttpServletRequest request) throws JsonProcessingException {
 		logger.info("pageNum=="+pageNum+"......type=="+type);
-		Integer userId = SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId();
+		Integer userId = SessionUtils.getSessionAttr("user",UserBasic.class).getId();
 		if(Constant.HOT.equals(type)){
 			PageHelper.startPage(pageNum,4,"reply_count desc,like_count desc");
 		}else if(Constant.NEW.equals(type)){
@@ -103,7 +103,7 @@ public class OtherSayController {
 	@ResponseBody
 	public String followMessage(@Param("pageNum")Integer pageNum,HttpServletRequest request) throws JsonProcessingException {
 		logger.info("pageNum=="+pageNum);
-		UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+		UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
 		PageHelper.startPage(pageNum,4,"pub_time desc");
 		List<Message> list = messageService.selectMessageByFollow(userBasic.getId());
 		formatMessage(list,userBasic.getId());
@@ -116,7 +116,7 @@ public class OtherSayController {
 	@GetMapping("/likeMessage/{messageId}")
 	@ResponseBody
 	public String likeMessage(@PathVariable("messageId") Integer messageId,HttpServletRequest request){
-		Integer userId = SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId();
+		Integer userId = SessionUtils.getSessionAttr("user",UserBasic.class).getId();
 
 		MessageLike old = messageLikeService.selectOne(new MessageLike(messageId,userId,null));
 		if (old!=null){
@@ -135,7 +135,7 @@ public class OtherSayController {
 	@ResponseBody
 	public String replyMessage(@Param("reply")String reply,@Param("messageId")Integer messageId, HttpServletRequest request){
 		logger.info("reply=="+reply+"messageId=="+messageId);
-		Integer userId = SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId();
+		Integer userId = SessionUtils.getSessionAttr("user",UserBasic.class).getId();
 		MessageReply messageReply = new MessageReply(messageId,userId,reply,new Date());
 		boolean result = messageReplyService.insertSelective(messageReply);
 		if (result) {
@@ -157,7 +157,7 @@ public class OtherSayController {
         Essay essayObj = essayService.selectEssayAndWriter(id);
         essayObj.setVisitCount(essayObj.getVisitCount()+1);
         essayService.updateByPrimaryKeySelective(essayObj);
-        UserBasic user = SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+        UserBasic user = SessionUtils.getSessionAttr( "user", UserBasic.class);
         WriterEssayLike writerEssayLike = new WriterEssayLike();
         writerEssayLike.setUserId(user.getId());
         writerEssayLike.setEssayId(id);
@@ -215,7 +215,7 @@ public class OtherSayController {
     @ResponseBody
 	public Object likeEssay(@PathVariable Integer essayId, HttpServletRequest request) {
         boolean result =false;
-        UserBasic user = SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+        UserBasic user = SessionUtils.getSessionAttr( "user", UserBasic.class);
         WriterEssayLike writerEssayLike = new WriterEssayLike();
         writerEssayLike.setUserId(user.getId());
         writerEssayLike.setEssayId(essayId);

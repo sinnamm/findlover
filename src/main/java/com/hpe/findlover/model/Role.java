@@ -9,7 +9,7 @@ public class Role {
 
     private String name;
 
-    private String note;
+    private String value;
 
     /**
      * @return id
@@ -32,24 +32,15 @@ public class Role {
         return name;
     }
 
-    /**
-     * @param name
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return note
-     */
-    public String getNote() {
-        return note;
+    public String getValue() {
+        return value;
     }
 
-    /**
-     * @param note
-     */
-    public void setNote(String note) {
-        this.note = note;
+    public void setValue(String value) {
+        this.value = value;
     }
 }

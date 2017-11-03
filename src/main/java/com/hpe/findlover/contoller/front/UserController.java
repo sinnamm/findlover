@@ -1,22 +1,25 @@
 package com.hpe.findlover.contoller.front;
 
-import com.alibaba.fastjson.JSONObject;
-import com.hpe.findlover.model.*;
+import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.UserPick;
 import com.hpe.findlover.service.LabelService;
 import com.hpe.findlover.service.UserLabelService;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.token.CustomToken;
 import com.hpe.findlover.util.Constant;
+import com.hpe.findlover.util.Identity;
 import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.MD5Code;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -25,14 +28,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
-
-import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 /**
  * @author sinnamm
@@ -85,8 +86,7 @@ public class UserController {
 //		设置注册页面没有的必填信息
         String uuid = UUID.randomUUID().toString();
         user.setCode(uuid);
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
-		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
+		user.setPassword(new Md5Hash(user.getPassword(), ByteSource.Util.bytes(user.getEmail())).toString());
         user.setAuthority(1);
         //暂时将状态码设置为1
         user.setStatus(1);
@@ -124,7 +124,7 @@ public class UserController {
     @PutMapping("user")
 	@ResponseBody
 	public boolean updateUser(UserBasic userBasic,HttpServletRequest request){
-		userBasic.setId(SessionUtils.getSessionAttr(request,"user",UserBasic.class).getId());
+		userBasic.setId(SessionUtils.getSessionAttr("user",UserBasic.class).getId());
 		if(userService.updateByPrimaryKeySelective(userBasic)){
 			request.getSession().setAttribute("user",userService.selectByPrimaryKey(userBasic.getId()));
 			return true;
@@ -171,7 +171,7 @@ public class UserController {
 			redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
 			return "redirect:login";
 		}
-		CustomToken token = new CustomToken(user.getEmail(), user.getPassword(),"user");
+		CustomToken token = new CustomToken(user.getEmail(), user.getPassword(), Identity.USER);
 		logger.info("rememberMe: " + rememberMe);
 		token.setRememberMe(rememberMe);
 		try {
@@ -214,7 +214,7 @@ public class UserController {
 	@GetMapping("session/user")
 	@ResponseBody
 	public UserBasic getSessionUser(HttpServletRequest request){
-		return SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+		return SessionUtils.getSessionAttr("user", UserBasic.class);
 	}
 
 }

@@ -63,7 +63,7 @@ public class FollowController {
 	public boolean checkFollow(@PathVariable int followId, HttpServletRequest request) {
 		Follow follow = new Follow();
 		follow.setFollowId(followId);
-		follow.setUserId(SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId());
+		follow.setUserId(SessionUtils.getSessionAttr("user", UserBasic.class).getId());
 		return followService.selectOne(follow) != null;
 	}
 
@@ -71,9 +71,9 @@ public class FollowController {
 	@PostMapping
 	@ResponseBody
 	public boolean newFollow(Follow follow, HttpServletRequest request) {
-		follow.setUserId(SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId());
+		follow.setUserId(SessionUtils.getSessionAttr("user", UserBasic.class).getId());
 		logger.info("添加新关注：" + follow);
-		if (followService.selectOne(follow) != null || SessionUtils.getSessionAttr(request, "user", UserBasic.class).getAuthority() != 1) {
+		if (followService.selectOne(follow) != null || SessionUtils.getSessionAttr("user", UserBasic.class).getAuthority() != 1) {
 			logger.debug("已关注或隐藏资料，关注失败！");
 			return false;
 		}
@@ -86,7 +86,7 @@ public class FollowController {
 	public boolean cancelFollow(@RequestParam int followId, HttpServletRequest request) {
 		Follow follow = new Follow();
 		follow.setFollowId(followId);
-		follow.setUserId(SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId());
+		follow.setUserId(SessionUtils.getSessionAttr( "user", UserBasic.class).getId());
 		logger.info("取消关注：" + follow);
 		return followService.delete(follow) > 0;
 	}
@@ -95,7 +95,7 @@ public class FollowController {
 	@ResponseBody
 	public String myFollowList(Page<UserBasic> page, HttpServletRequest request) {
 		PageHelper.startPage(page.getPageNum(), page.getPageSize(), "follow_time desc");
-		List<UserBasic> follows = followService.selectAllFollow(SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId());
+		List<UserBasic> follows = followService.selectAllFollow(SessionUtils.getSessionAttr( "user", UserBasic.class).getId());
 		PageInfo<UserBasic> pageInfo = new PageInfo<>(follows);
 		userService.userAttrHandler(follows);
 		logger.debug("MyFollow: " + JSON.toJSONString(pageInfo));
@@ -106,7 +106,7 @@ public class FollowController {
 	@ResponseBody
 	public String follower(Page<UserBasic> page, HttpServletRequest request) {
 		PageHelper.startPage(page.getPageNum(), page.getPageSize(), "follow_time desc");
-		List<UserBasic> followers = followService.selectAllFollower(SessionUtils.getSessionAttr(request, "user", UserBasic.class).getId());
+		List<UserBasic> followers = followService.selectAllFollower(SessionUtils.getSessionAttr( "user", UserBasic.class).getId());
 		PageInfo<UserBasic> pageInfo = new PageInfo<>(followers);
 		userService.userAttrHandler(followers);
 		return JSON.toJSONStringWithDateFormat(pageInfo, "yyyy-MM-dd", SerializerFeature.WriteDateUseDateFormat);

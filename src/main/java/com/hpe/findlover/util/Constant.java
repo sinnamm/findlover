@@ -1,6 +1,7 @@
 package com.hpe.findlover.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Constant {
@@ -51,19 +52,12 @@ public class Constant {
     public static final String PURCHASED_HOUSE = "已购房";
     public static final String GOVERNMENT = "政府机构";
     public static final String COMPUTER_INTERNET = "计算机/互联网";
-    public static List<String> education =null;
+    public static List<String> education = Arrays.asList("大学本科","硕士","博士");
 
     /**
      * 默认用户那女头像
      */
     public static final String MALE_PHOTO = "group1/M00/00/00/rBEuvlnxjMuAQiedAABzD4s1V58372.png";
     public static final String FEMALE_PHOTO = "group1/M00/00/00/rBEuvlnxjQqAIjfAAAB54pr6RHc334.png";
-
-    static {
-        education =  new ArrayList<>();
-        education.add("大学本科");
-        education.add("硕士");
-        education.add("博士");
-    }
 
 }

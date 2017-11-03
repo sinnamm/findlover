@@ -6,6 +6,7 @@ import com.hpe.findlover.service.EssayService;
 import com.hpe.findlover.service.UploadService;
 import com.hpe.findlover.service.WriterService;
 import com.hpe.findlover.token.CustomToken;
+import com.hpe.findlover.util.Identity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -85,7 +86,7 @@ public class WriterController {
             redirectAttributes.addAttribute("message", "用户名或密码不能为空！");
             return "redirect:login";
         }
-        CustomToken token = new CustomToken(writer.getUsername(), writer.getPassword(), "writer");
+        CustomToken token = new CustomToken(writer.getUsername(), writer.getPassword(), Identity.WRITER);
         try {
             SecurityUtils.getSubject().login(token);
         } catch (UnknownAccountException uae) {
