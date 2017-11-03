@@ -49,7 +49,8 @@ public class VisitTraceController {
        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
        int userId = userBasic.getId();
        PageHelper.startPage(1,4,"reg_time desc");
-       List<UserBasic> userBasics = userService.selectAll();
+       //性取向对应的新注册用户
+       List<UserBasic> userBasics = userService.select(new UserBasic(userBasic.getSexual()));
        for(UserBasic userBasicl:userBasics){
            userBasicl.setAge(LoverUtil.getAge(userBasicl.getBirthday()));
        }
@@ -58,6 +59,7 @@ public class VisitTraceController {
        model.addAttribute("followCount", followService.selectFollowCount(userId));
        model.addAttribute("noticeCount", noticeService.selectUnReadNotice(userBasic).size());
        model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
+      //广告位
        model.addAttribute("users",userBasics);
        return "front/visit_trace";
    }
@@ -76,6 +78,7 @@ public class VisitTraceController {
         PageInfo pageInfo = new PageInfo(visitTraces);
         return pageInfo;
     }
+
     @GetMapping("tracer")
     @ResponseBody
     public PageInfo getVisitTracer(HttpServletRequest request,@RequestParam("pageNum")int pageNum){

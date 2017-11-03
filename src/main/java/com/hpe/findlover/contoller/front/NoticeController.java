@@ -7,6 +7,7 @@ import com.hpe.findlover.model.Notice;
 import com.hpe.findlover.model.NoticeUser;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.service.*;
+import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,12 +37,20 @@ public class NoticeController {
     private LetterService letterService;
     @Autowired
     private VisitTraceService visitTraceService;
+    @Autowired
+    private UserService userService;
 
     private Logger logger = LogManager.getLogger(NoticeController.class);
 
     @GetMapping
     public String notice(Model model,HttpServletRequest request){
         UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
+        //性取向对应的新注册用户
+        PageHelper.startPage(1,4,"reg_time desc");
+        List<UserBasic> userBasics = userService.select(new UserBasic(userBasic.getSexual()));
+        for(UserBasic userBasicl:userBasics){
+            userBasicl.setAge(LoverUtil.getAge(userBasicl.getBirthday()));
+        }
         int userId = userBasic.getId();
         List<Notice> notices = noticeService.selectUnReadNotice(userBasic);
         List<Notice> notices1 = noticeService.selectReadNotice(userBasic);
@@ -50,6 +59,8 @@ public class NoticeController {
         model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
         model.addAttribute("noticeCount", notices.size());
         model.addAttribute("readNotice",notices1.size());
+        //广告位
+        model.addAttribute("users",userBasics);
         return "front/notice";
     }
 

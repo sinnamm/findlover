@@ -27,6 +27,8 @@ public class VisitTrace {
     public VisitTrace() {
     }
 
+
+
     public VisitTrace(Integer id,Integer userId, Integer intervieweeId, Date visitTime,Integer status) {
         this.id = id;
         this.userId = userId;

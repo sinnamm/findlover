@@ -1,5 +1,5 @@
 var pageNum = 1;
-var tab = "unReadNotice";
+var tab = "readNotice";
 $(function () {
     loadNotice();
     clickFun();
