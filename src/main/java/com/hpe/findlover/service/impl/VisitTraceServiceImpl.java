@@ -32,8 +32,15 @@ public class VisitTraceServiceImpl extends BaseServiceImpl<VisitTrace> implement
     public List<VisitTrace> selectVisitTracer(int userId) {
         List<VisitTrace> visitTraces = visitTraceMapper.selectVisitTracer(userId);
         for(VisitTrace visitTrace:visitTraces){
-                visitTrace.setStatus(1);
+            visitTraceMapper.updateByPrimaryKeySelective(
+                    new VisitTrace(visitTrace.getId(),null,null,null,1));
         }
+        return visitTraces;
+    }
+
+    @Override
+    public List<VisitTrace> selectIndexVisitTracer(int userId) {
+        List<VisitTrace> visitTraces = visitTraceMapper.selectVisitTracer(userId);
         return visitTraces;
     }
 

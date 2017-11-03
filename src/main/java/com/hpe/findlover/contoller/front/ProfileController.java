@@ -55,7 +55,7 @@ public class ProfileController {
 		Integer sessionUserId = SessionUtils.getSessionAttr( "user", UserBasic.class).getId();
 		//增加访问记录
 		if (sessionUserId!=userId) {
-			visitTraceService.insert(new VisitTrace(sessionUserId, userId, new Date()));
+			visitTraceService.insert(new VisitTrace(null,sessionUserId, userId, new Date(),0));
 		}
 
 		UserBasic basic = userBasicService.selectByPrimaryKey(userId);

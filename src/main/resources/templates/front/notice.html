@@ -31,8 +31,8 @@
 				<div class="careMessage">
 					<div class="row">
 						<ul class="nav nav-pills">
-							<li id="un_read_notice" role="presentation" class="active"><a style="cursor: pointer">未读([[${readCount}]])</a></li>
-							<li id="read_notice" role="presentation"><a style="cursor: pointer">已读([[${unREadCount}]])</a></li>
+							<li id="un_read_notice" role="presentation" class="active"><a style="cursor: pointer">未读([[${noticeCount}]])</a></li>
+							<li id="read_notice" role="presentation"><a style="cursor: pointer">已读([[${readNotice}]])</a></li>
 						</ul>
 					</div>
 					<hr/>
@@ -61,29 +61,21 @@
 						</ul>
 					</div>
 				</div>
-
 			</div>
 
 			<!--右侧导航栏-->
 			<div class="col-md-3 col_5">
-				<div class="breadcrumb1">
-					<ul>
-						<a href="index.html"><i class="fa fa-home home_1"></i></a>
-						<span class="divider">&nbsp;|&nbsp;</span>
-						<li class="current-page">消息中心</li>
-					</ul>
-				</div>
-
 				<div class="center-middle" style="background-color: white">
-					<img src="../../static/images/13.jpg">
-					<p>会员107627885</p>
+					<a th:href="@{'/profile/'+${session.user.id}}"><img th:src="@{/file(path=${session.user.photo})}" class="pub-msg-img"/>
+						<p th:text="${session.user.nickname}"></p></a>
+					<p th:inline="text">ID:&nbsp;[[${session.user.id}]]</p>
 				</div>
 				<!--消息菜单栏-->
 				<ul class="match_box message">
-					<li><i class="fa fa-comments-o"></i><a href="letter.html"> 私信</a><span>(0)</span></li>
-					<li><i class="fa fa-heart"></i><a href="follow.html"> 关注</a><span>(0)</span></li>
-					<li><i class="fa fa-eye"></i><a href="visit_trace.html"> 访问记录</a><span>(0)</span></li>
-					<li><i class="fa fa-envelope-o"></i><a href="notice.html"> 系统通知</a><span>(0)</span></li>
+					<a th:href="@{/letter}"><li><i class="fa fa-comments-o"></i> 私信<span id="letter-count" th:inline="text">([[${letterCount}]])</span></li></a>
+					<a th:href="@{/follow}"><li><i class="fa fa-heart"></i> 关注<span id="follow-count">([[${followCount}]])</span></li></a>
+					<a th:href="@{/visit_trace}"><li><i class="fa fa-eye"></i> 访问记录<span id="record-count">([[${visitTraceCount}]])</span></li></a>
+					<a th:href="@{/notice}"><li><i class="fa fa-envelope-o"></i> 系统通知<span id="notice-count">([[${noticeCount}]])</span></li></a>
 				</ul>
 				<!--广告栏-->
 				<ul class="match_box">

@@ -27,10 +27,12 @@ public class VisitTrace {
     public VisitTrace() {
     }
 
-    public VisitTrace(Integer userId, Integer intervieweeId, Date visitTime) {
+    public VisitTrace(Integer id,Integer userId, Integer intervieweeId, Date visitTime,Integer status) {
+        this.id = id;
         this.userId = userId;
         this.intervieweeId = intervieweeId;
         this.visitTime = visitTime;
+        this.status = status;
     }
 
     public UserBasic getUserBasic() {

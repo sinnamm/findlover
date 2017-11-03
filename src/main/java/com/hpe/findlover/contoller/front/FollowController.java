@@ -8,10 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.Follow;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.LetterService;
-import com.hpe.findlover.service.UserPickService;
-import com.hpe.findlover.service.UserService;
-import com.hpe.findlover.service.FollowService;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
@@ -35,18 +32,23 @@ public class FollowController {
 	private final UserService userService;
 	private final UserPickService userPickService;
 	private final LetterService letterService;
+	private final NoticeService noticeService;
+	private final VisitTraceService visitTraceService;
 
 	@Autowired
-	public FollowController(FollowService followService, UserService userService, UserPickService userPickService, LetterService letterService) {
+	public FollowController(FollowService followService, UserService userService, UserPickService userPickService, LetterService letterService,VisitTraceService visitTraceService,NoticeService noticeService) {
 		this.followService = followService;
 		this.userService = userService;
 		this.userPickService = userPickService;
 		this.letterService = letterService;
+		this.visitTraceService = visitTraceService;
+		this.noticeService = noticeService;
 	}
 
 	@GetMapping
 	public String index(Model model, HttpSession session) {
-		Integer userId = ((UserBasic) session.getAttribute("user")).getId();
+		UserBasic userBasic = ((UserBasic) session.getAttribute("user"));
+		int userId = userBasic.getId();
 		UserPick userPick = userPickService.selectByPrimaryKey(userId);
 		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPick, 4, userService);
 		userService.userAttrHandler(stars);
@@ -54,6 +56,9 @@ public class FollowController {
 		logger.debug("stars: " + stars);
 		//右侧信息条数
 		model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
+		model.addAttribute("followCount", followService.selectFollowCount(userId));
+		model.addAttribute("noticeCount", noticeService.selectUnReadNotice(userBasic).size());
+		model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
 		// todo visit_record and notice count
 		return "front/follow";
 	}

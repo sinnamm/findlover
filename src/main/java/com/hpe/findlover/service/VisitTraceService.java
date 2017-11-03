@@ -25,4 +25,6 @@ public interface VisitTraceService extends BaseService<VisitTrace> {
     List<VisitTrace> selectVisitTracer(int userId);
 
     Integer selectUnreadCount(int userid);
+
+    List<VisitTrace> selectIndexVisitTracer(int userId);
 }

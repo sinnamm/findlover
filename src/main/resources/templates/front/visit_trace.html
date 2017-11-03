@@ -31,8 +31,8 @@
 				<div  class="careMessage">
 					<div class="row">
 						<ul class="nav nav-pills">
-							<li id="trace" role="presentation" class="active"><a  style="cursor: pointer">我看过谁</a></li>
-							<li id="tracer" role="presentation"><a  style="cursor: pointer">谁看过我</a></li>
+							<li id="tracer" role="presentation" class="active"><a  style="cursor: pointer">谁看过我</a></li>
+							<li id="trace" role="presentation" ><a  style="cursor: pointer">我看过谁</a></li>
 						</ul>
 					</div>
 					<hr/>
@@ -80,7 +80,7 @@
 					<a th:href="@{/letter}"><li><i class="fa fa-comments-o"></i> 私信<span id="letter-count" th:inline="text">([[${letterCount}]])</span></li></a>
 					<a th:href="@{/follow}"><li><i class="fa fa-heart"></i> 关注<span id="follow-count">([[${followCount}]])</span></li></a>
 					<a th:href="@{/visit_trace}"><li><i class="fa fa-eye"></i> 访问记录<span id="record-count">([[${visitTraceCount}]])</span></li></a>
-					<a href="@{/notice}"><li><i class="fa fa-envelope-o"></i> 系统通知<span id="notice-count">([[${}]])</span></li></a>
+					<a th:href="@{/notice}"><li><i class="fa fa-envelope-o"></i> 系统通知<span id="notice-count">([[${noticeCount}]])</span></li></a>
 				</ul>
 
 				<!--广告栏-->

@@ -4,10 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.VisitTrace;
-import com.hpe.findlover.service.FollowService;
-import com.hpe.findlover.service.LetterService;
-import com.hpe.findlover.service.UserService;
-import com.hpe.findlover.service.VisitTraceService;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
@@ -40,15 +37,17 @@ public class VisitTraceController {
    private UserService userService;
    @Autowired
    private LetterService letterService;
-
-    @Autowired
-    private FollowService followService;
+   @Autowired
+   private FollowService followService;
+   @Autowired
+   private NoticeService noticeService;
 
    private Logger logger = LogManager.getLogger(VisitTraceController.class);
 
    @GetMapping
    public String visitTrace(Model model, HttpServletRequest request){
-       int userId = SessionUtils.getSessionAttr("user",UserBasic.class).getId();
+       UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
+       int userId = userBasic.getId();
        PageHelper.startPage(1,4,"reg_time desc");
        List<UserBasic> userBasics = userService.selectAll();
        for(UserBasic userBasicl:userBasics){
@@ -57,6 +56,7 @@ public class VisitTraceController {
        //右侧信息条数
        model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
        model.addAttribute("followCount", followService.selectFollowCount(userId));
+       model.addAttribute("noticeCount", noticeService.selectUnReadNotice(userBasic).size());
        model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
        model.addAttribute("users",userBasics);
        return "front/visit_trace";

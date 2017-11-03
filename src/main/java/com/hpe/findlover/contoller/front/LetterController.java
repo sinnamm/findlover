@@ -37,6 +37,10 @@ public class LetterController {
     private UserPickService userPickService;
     @Autowired
     private FollowService followService;
+    @Autowired
+    private NoticeService noticeService;
+    @Autowired
+    private VisitTraceService visitTraceService;
 
     @GetMapping("letter")
     public String letter(HttpSession session, Model model) throws Exception {
@@ -53,6 +57,8 @@ public class LetterController {
         //右侧信息条数
         model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
         model.addAttribute("followCount", followService.selectFollowCount(userId));
+        model.addAttribute("noticeCount", noticeService.selectUnReadNotice(userBasic).size());
+        model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
         return "front/letter";
     }
 

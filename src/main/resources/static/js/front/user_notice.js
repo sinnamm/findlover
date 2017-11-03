@@ -16,7 +16,6 @@ function loadNotice() {
             var list = data.list;
             if (list.length==0){
                 $("#pagetool").hide();
-                swal("暂时没有数据","Error");
                 return;
             }
             for (var i=0;i<list.length;i++){
@@ -33,10 +32,10 @@ function loadModel(id) {
         url:contextPath+"notice/read/"+id,
         type:"get",
         success:function (data) {
-            loadNotice();
             $("#notice-title").html(data.title);
             $("#notice-content").html(data.content);
             $('#notice-model').modal('show');
+            loadNotice();
         }
     })
 

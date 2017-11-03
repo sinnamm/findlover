@@ -6,8 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.Notice;
 import com.hpe.findlover.model.NoticeUser;
 import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.service.NoticeService;
-import com.hpe.findlover.service.NoticeUserService;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,23 +30,33 @@ public class NoticeController {
     private NoticeService noticeService;
     @Autowired
     private NoticeUserService noticeUserService;
+    @Autowired
+    private FollowService followService;
+    @Autowired
+    private LetterService letterService;
+    @Autowired
+    private VisitTraceService visitTraceService;
 
     private Logger logger = LogManager.getLogger(NoticeController.class);
 
     @GetMapping
     public String notice(Model model,HttpServletRequest request){
-        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
+        int userId = userBasic.getId();
         List<Notice> notices = noticeService.selectUnReadNotice(userBasic);
         List<Notice> notices1 = noticeService.selectReadNotice(userBasic);
-        model.addAttribute("readCount",notices.size());
-        model.addAttribute("unReadCount",notices.size());
+        model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
+        model.addAttribute("followCount", followService.selectFollowCount(userId));
+        model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
+        model.addAttribute("noticeCount", notices.size());
+        model.addAttribute("readNotice",notices1.size());
         return "front/notice";
     }
 
     @GetMapping("unReadNotice")
     @ResponseBody
     public PageInfo getUnReadNotice(@RequestParam("pageNum")int pageNum, HttpServletRequest request){
-        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
         logger.info("未读通知页数:"+pageNum);
         PageHelper.startPage(pageNum,10,"pub_time desc");
         List<Notice> notices = noticeService.selectUnReadNotice(userBasic);
@@ -59,7 +68,7 @@ public class NoticeController {
     @GetMapping("readNotice")
     @ResponseBody
     public PageInfo getReadNotice(@RequestParam("pageNum")int pageNum, HttpServletRequest request){
-        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
         logger.info("已读通知页数:"+pageNum);
         PageHelper.startPage(pageNum,10,"pub_time desc");
         List<Notice> noticeUsers = noticeService.selectReadNotice(userBasic);
@@ -72,7 +81,7 @@ public class NoticeController {
     @ResponseBody
     public Notice read(@PathVariable("id")int id,HttpServletRequest request){
         logger.info("读取数据："+id);
-        UserBasic userBasic = SessionUtils.getSessionAttr(request,"user",UserBasic.class);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
         NoticeUser noticeUser = noticeUserService.selectOne(new NoticeUser(id,userBasic.getId(),null));
         if (noticeUser==null) {
             noticeUserService.insert(new NoticeUser(id, userBasic.getId(), new Date()));

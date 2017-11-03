@@ -1,5 +1,7 @@
 package com.hpe.findlover.contoller.front;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.Dict;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
@@ -96,10 +98,8 @@ public class IndexController {
         model.addAttribute("vipNotSingles",vipNotSingles);
         logger.error(vipNotSingles);
         //  * 5、谁看过我
-        List<VisitTrace> visitTraces = visitTraceService.selectVisitTracer(user.getId());
-        if (visitTraces.size()>Constant.SHOW_NUMBER){
-            visitTraces = LoverUtil.getRandomUser(visitTraces,5);
-        }
+        PageHelper.startPage(1,5,"visit_time desc");
+        List<VisitTrace> visitTraces = visitTraceService.selectIndexVisitTracer(user.getId());
         model.addAttribute("visitTraces",visitTraces);
         return "front/index";
     }

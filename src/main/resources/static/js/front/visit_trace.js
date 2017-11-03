@@ -1,5 +1,5 @@
 var pageNum =1;
-var type ="trace";
+var type ="tracer";
 $(function () {
     loadVisit();
     btnClick();
