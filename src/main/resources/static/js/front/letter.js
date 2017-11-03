@@ -158,6 +158,7 @@ function addLetter( userid, vip) {
                 }else{
                     $('#letterUl').scrollTop(0);
                 }
+
             }
         }
     });

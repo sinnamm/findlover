@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
@@ -47,6 +48,8 @@ public class OtherSayController {
 	private EssayService essayService;
 	@Autowired
 	private UploadService uploadService;
+	@Autowired
+	private WriterEssayLikeService writerEssayLikeService;
 
 	private Logger logger = LogManager.getLogger(this.getClass());
 	private final MessageService messageService;
@@ -150,10 +153,20 @@ public class OtherSayController {
      * @return
      */
 	@GetMapping("essaydetail/{id}")
-	public String essayDetailUI(@PathVariable Integer id,Model model){
+	public String essayDetailUI(@PathVariable Integer id,Model model,HttpServletRequest request){
         Essay essayObj = essayService.selectEssayAndWriter(id);
         essayObj.setVisitCount(essayObj.getVisitCount()+1);
         essayService.updateByPrimaryKeySelective(essayObj);
+        UserBasic user = SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+        WriterEssayLike writerEssayLike = new WriterEssayLike();
+        writerEssayLike.setUserId(user.getId());
+        writerEssayLike.setEssayId(id);
+        List<WriterEssayLike> select = writerEssayLikeService.select(writerEssayLike);
+        if (select.size()==0){
+            model.addAttribute("like",true);
+        }else {
+            model.addAttribute("like",false);
+        }
         byte[] bytes = uploadService.downloadFile(essayObj.getFilename());
         try {
             String essay = new String(bytes, "utf-8");
@@ -195,15 +208,22 @@ public class OtherSayController {
 	}
 
     /**
-     * 加载5条访问量大的文章
+     * 文章点赞
      * @return
      */
-	@GetMapping("like/{id}")
+	@GetMapping("like/{essayId}")
     @ResponseBody
-	public Object likeEssay(@PathVariable Integer id) {
-        Essay essay = essayService.selectByPrimaryKey(id);
-        essay.setLikeCount(essay.getLikeCount()+1);
-        boolean result = essayService.updateByPrimaryKeySelective(essay);
+	public Object likeEssay(@PathVariable Integer essayId, HttpServletRequest request) {
+        boolean result =false;
+        UserBasic user = SessionUtils.getSessionAttr(request, "user", UserBasic.class);
+        WriterEssayLike writerEssayLike = new WriterEssayLike();
+        writerEssayLike.setUserId(user.getId());
+        writerEssayLike.setEssayId(essayId);
+        if(writerEssayLikeService.select(writerEssayLike).size()==0){
+            writerEssayLike.setLikeTime(new Date());
+            result = writerEssayLikeService.insert(writerEssayLike);
+        }
+		Essay essay = essayService.selectByPrimaryKey(essayId);
         Integer likeCount = essay.getLikeCount();
         Map<String, Object> map = new HashMap<>();
         map.put("likeCount",likeCount);

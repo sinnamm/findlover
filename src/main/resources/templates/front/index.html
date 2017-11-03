@@ -352,17 +352,17 @@
                     <img th:src="@{/images/loading.gif}" class="ri-loading-image"
                          src="../../static/images/loading.gif"/>
                     <ul>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic1.jpg}" src="../../static/images/pic1.jpg"/>
+                        <li th:each="notSingle :${vipNotSingles}">
+                            <a th:href="@{'profile/'+${notSingle.key.id}}">
+                                <img th:src="@{'/file?path='+${notSingle.key.photo}}" src="../../static/images/pic1.jpg"/>
                                 <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
+                                    <h3 th:text="${notSingle.key.nickname}">奔跑的小猪</h3>
+                                    <p th:text="${'历时'+notSingle.value+'天'}">历时1个月</p>
                                     <p>找到真爱</p>
                                 </div>
                             </a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="#">
                                 <img th:src="@{/images/pic2.jpg}" src="../../static/images/pic2.jpg"/>
                                 <div class="desc">
@@ -471,7 +471,8 @@
                                     <p>找到真爱</p>
                                 </div>
                             </a>
-                        </li>
+                        </li>-->
+
                     </ul>
                 </div>
             </div>
@@ -483,7 +484,7 @@
         </div>
         <!--谁看过我-->
         <div class="index-right">
-            <a href=""><h1>谁看过我</h1></a>
+            <a th:href="@{/visit_trace}"><h1>谁看过我</h1></a>
             <div class="heart-divider">
                 <div>
                     <span class="grey-line"></span>
@@ -494,36 +495,13 @@
             </div>
             <div class="record-1">
                 <ul>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic1.jpg}" src="../../static/images/pic1.jpg"/>
-                            <span>奔跑的小猪</span>
+                    <li th:each="visitor:${visitTraces}">
+                        <a th:href="@{'/profile/'+${visitor.userBasic.id}}">
+                            <img th:src="@{'/file?path='+${visitor.userBasic.photo}}" src="../../static/images/pic1.jpg"/>
+                            <span th:text="${visitor.userBasic.nickname}">奔跑的小猪</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic2.jpg}" src="../../static/images/pic2.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic3.jpg}" src="../../static/images/pic3.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic4.jpg}" src="../../static/images/pic4.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img th:src="@{/images/pic5.jpg}" src="../../static/images/pic5.jpg"/>
-                            <span>奔跑的小猪</span>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </div>

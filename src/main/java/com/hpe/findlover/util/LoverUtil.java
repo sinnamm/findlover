@@ -23,7 +23,8 @@ public final class LoverUtil {
 	/**
 	 * 有关用户的pojo对象的漂亮显示，传入一个pojo类和这个类的Class对象，
 	 * 返回和这个类各属性和值等价的的Map集合，自动处理null对象和null属性
-	 * @param obj
+	 *
+     * @param obj
 	 * @param clazz
 	 * @return
 	 */
@@ -91,15 +92,17 @@ public final class LoverUtil {
 	 * @param num 随机挑选的个数
 	 * @return
 	 */
-	public static List<UserBasic> getRandomUser(List<UserBasic> userBasicList, int num)
+	public static <T> List<T> getRandomUser(List<T> userBasicList, int num)
 	{
 		int[] nums = getRandoms(0,userBasicList.size()-1,num);
-		List<UserBasic> userBasics = new ArrayList<>();
+		List<T> userBasics = new ArrayList<>();
 		for (int i=0;i<nums.length;i++){
 			userBasics.add(userBasicList.get(nums[i]));
 		}
 		return userBasics;
 	}
+
+
 
 	/**
 	 * 格式化userBasic的值，设置是否是VIP或者星级用户，设置默认的内心独白
@@ -213,17 +216,22 @@ public final class LoverUtil {
 		return getDiff(TimeUnit.DAYS, deadline);
 	}
 
+	public static int getDiffOfDays(Date start ,Date deadline) {
+		return getDiff(TimeUnit.DAYS,start, deadline);
+	}
+
 	/**
 	 * @Author gss
 	 * @Describtion: 计算当前日期与指定日期的时间差，单位由unit参数决定
 	 **/
-	public static int getDiff(TimeUnit unit, Date deadline) {
-		if (deadline == null) {
+	public static int getDiff(TimeUnit unit,Date end) {
+		return getDiff(unit,new Date(),end);
+	}
+	public static int getDiff(TimeUnit unit,Date start ,Date end) {
+		if (end.before(start)) {
 			return 0;
 		}
-		long now = unit.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
-		long dead = unit.convert(deadline.getTime(), TimeUnit.MILLISECONDS);
-		return (int) (dead - now);
+		return (int) (unit.convert(end.getTime()-start.getTime(), TimeUnit.MILLISECONDS));
 	}
 
 	public static String getBasePath(HttpServletRequest request) {

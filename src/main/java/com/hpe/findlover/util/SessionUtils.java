@@ -1,6 +1,5 @@
 package com.hpe.findlover.util;
 
-import com.hpe.findlover.model.UserBasic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

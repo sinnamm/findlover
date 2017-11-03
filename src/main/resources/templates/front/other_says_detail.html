@@ -54,11 +54,11 @@
                     <div id="myTabContent" class="tab-content">
                         </p>
                         <h2 th:text="${essayObj.title}"></h2></p>
-                        <div th:utext="${essay}" style="background-color: white;padding: 30px;">
+                        <div th:utext="${essay}" style="background-color: white;padding: 30px;margin-bottom: 30px">
 
                         </div>
                         <h2 class="col-md-9">关于作者</h2>
-                        <div id="like-essay" th:value="${essayObj.id}" style='cursor: pointer' th:text="${'('+essayObj.likeCount+')'}" class='fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up col-md-3'></div>
+                        <div id="like-essay" th:style="${like?'cursor: pointer':'cursor: pointer;color:red'}" th:value="${essayObj.id}"  th:text="${'('+essayObj.likeCount+')'}" class='fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up col-md-3'></div>
                         <p/>
                         <p>Edit By <a href="#" th:text="${essayObj.writer.pseudonym}">MaHua</a></p>
                     </div>

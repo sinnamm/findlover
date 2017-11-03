@@ -20,6 +20,19 @@ public class UserBasic implements Serializable {
     private UserDetail userDetail;
     @Transient
     private UserAsset userAsset;
+
+    /**
+     * 用户未激活状态
+     */
+    public static final Integer UNACTIVATE_STATUS = 2;
+    /**
+     * 用户已激活状态
+     */
+    public static final Integer ACTIVATE_STATUS = 1;
+    /**
+     * 用户锁定状态
+     */
+    public static final Integer LOCKED_STATUS = 0;
     //----------------以上为自己添加的属性，数据库中不存在--------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -432,6 +445,21 @@ public class UserBasic implements Serializable {
 
     public void setUserAsset(UserAsset userAsset) {
         this.userAsset = userAsset;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserBasic userBasic = (UserBasic) o;
+
+        return id.equals(userBasic.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     @Override

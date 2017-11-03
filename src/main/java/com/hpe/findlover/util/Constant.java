@@ -18,6 +18,8 @@ public class Constant {
      */
     public static final int SEARCH_SHOW_STAR_USER_NUMBER=4;
 
+    public static final int SHOW_NUMBER = 5;
+
     /**
      * 用户动态的分类
      */

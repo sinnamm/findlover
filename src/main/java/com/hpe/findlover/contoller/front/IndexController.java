@@ -4,10 +4,9 @@ import com.hpe.findlover.model.Dict;
 import com.hpe.findlover.model.UserAsset;
 import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.DictService;
-import com.hpe.findlover.service.UserAssetService;
-import com.hpe.findlover.service.UserPickService;
-import com.hpe.findlover.service.UserService;
+import com.hpe.findlover.service.*;
+import com.hpe.findlover.model.*;
+import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.Constant;
 import com.hpe.findlover.util.LoverUtil;
 import com.hpe.findlover.util.SessionUtils;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author sinnamm
@@ -40,6 +40,10 @@ public class IndexController {
     private DictService dictService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private VisitTraceService visitTraceService;
+    @Autowired
+    private SuccessStoryService successStoryService;
 
     private Logger logger = LogManager.getLogger(IndexController.class);
     /**
@@ -56,6 +60,8 @@ public class IndexController {
     public String index(Model model, HttpServletRequest request) throws Exception {
         logger.error("User Subject: "+ SecurityUtils.getSubject().getPrincipal().toString());
 
+        //获取光荣脱单榜
+        Map<UserBasic, Integer> vipNotSingles = successStoryService.selectVipNotSingle();
         //1.用户信息，基本信息可以从session中直接获取，消费信息需要我们查询数据库
         UserBasic user = (UserBasic)request.getSession().getAttribute("user");
         user.setAge(LoverUtil.getAge(user.getBirthday()));
@@ -87,6 +93,14 @@ public class IndexController {
         List<Dict> jobList = dictService.selectDictByType("job");
         model.addAttribute("userPick",userPick);
         model.addAttribute("jobList",jobList);
+        model.addAttribute("vipNotSingles",vipNotSingles);
+        logger.error(vipNotSingles);
+        //  * 5、谁看过我
+        List<VisitTrace> visitTraces = visitTraceService.selectVisitTracer(user.getId());
+        if (visitTraces.size()>Constant.SHOW_NUMBER){
+            visitTraces = LoverUtil.getRandomUser(visitTraces,5);
+        }
+        model.addAttribute("visitTraces",visitTraces);
         return "front/index";
     }
 

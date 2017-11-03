@@ -158,14 +158,11 @@
 
                         <!-- 新鲜事儿 -->
                         <div role="tabpanel" class="tab-pane fade" id="news" aria-labelledby="news-tab">
-                            <span class="button-dropdown button-dropdown-primary" data-buttons="dropdown">
-                                <button class="button button-primary" style="margin: 10px 0 0 15px">
-                                  <i class="fa fa-bars"></i> <span id = "sort-btn">排序</span>
-                                </button>
-                                <ul class="button-dropdown-list is-below">
-                                  <li id="new-li"><a><i class="fa fa-heart-o"></i> 最新</a></li>
-                                  <li id="hot-li"><a><i class="fa fa-heart-o"></i>最热</a></li>
-                                </ul>
+                            <span>
+                                <ol class="breadcrumb"  style="background-color: white">
+                                    <li id="new-li"><a style="cursor: pointer"><i class="fa fa-heart-o"></i> 最新</a></li>
+                                    <li id="hot-li"><a style="cursor: pointer"><i class="fa fa-heart-o"></i>最热</a></li>
+                                </ol>
                             </span>
                             <hr>
                             <div id="news-div">

@@ -11,8 +11,9 @@ function initLikeEssay() {
             if(data.result){
                 $likeDiv.text('('+data.likeCount+')');
                 swal("温馨提示","点赞成功！","success");
+                $('#like-essay').css("color","red");
             }else {
-                swal("温馨提示","点赞失败！","error");
+                swal("温馨提示","您已经为该文章点过赞了！","warning");
             }
         }, "json");
     });
