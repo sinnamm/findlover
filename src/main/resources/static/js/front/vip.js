@@ -77,7 +77,7 @@ $(function () {
                 return;
             }
             //计算购买金额
-            $("#starBuyMoney").val(($(this).val() * 52).toFixed(2));
+            $("#starBuyMoney").val(($(this).val() * 52));
         }
     });
 

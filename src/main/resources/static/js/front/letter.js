@@ -153,7 +153,11 @@ function addLetter( userid, vip) {
                     readLetter(this, data[x]);
 
                 });
-                $('#letterUl').scrollTop(100000);
+                if(currentPage===1){
+                    $('#letterUl').scrollTop(100000);
+                }else{
+                    $('#letterUl').scrollTop(0);
+                }
             }
         }
     });

@@ -590,7 +590,7 @@
                 <div id="photodiv" class="row">
                     <section id="gallery">
                         <div class="container-fluid">
-                            <div  style="padding: 60px">
+                            <div id="photoContent" style="padding: 60px">
                                 <!-- 一行3张图片 等大小 -->
                                 <div th:each="photo,pStat:${photos}" class="photo-single" th:id="${'photo-single-'+photo.id}">
                                     <a th:href="@{/file(path=${photo.photo})}"
@@ -609,65 +609,6 @@
                                     </div>
                                 </div>
 
-
-                               <!-- <a th:href="@{/images/2.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 02"
-                                   data-footer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non nunc dictum.">
-                                    <img th:src="@{/images/2.jpg}" alt="第2张"
-                                         class="img-fluid sigmapad"></a>
-
-                                <a th:href="@{/images/2.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 03">
-                                    <img th:src="@{/images/2.jpg}" alt="第3张"
-                                         class="img-fluid sigmapad"></a>-->
-
-                                <!--&lt;!&ndash; 一行3张图片左边的最大 &ndash;&gt;
-                                <a th:href="@{/images/5.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 04"
-                                   data-footer="Aenean et tortor nec odio tempor volutpat nec in dui. Etiam libero turpis, accumsan nec.">
-                                    <img th:src="@{/images/4.jpg}" alt="第4张"
-                                         class="img-fluid sigmapad"></a>
-
-                                <a th:href="@{/images/5.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 05">
-                                    <img th:src="@{/images/5.jpg}" alt="第5张"
-                                         class="img-fluid sigmapad col-lg-4 col-md-4 col-sm-6"></a>
-
-                                <a th:href="@{/images/6.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 06">
-                                    <img th:src="@{/images/6.jpg}" alt="第6张" class="img-fluid sigmapad col-lg-4" title="Bicycle"></a>
-
-                                &lt;!&ndash; 一行2张图片 等大小 &ndash;&gt;
-                                <a th:href="@{/images/7.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 07">
-                                    <img th:src="@{/images/7.jpg}" alt="第7张" class="img-fluid sigmapad col-sm-6" title="Walking"></a>
-
-                                <a th:href="@{/images/8.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 08">
-                                    <img th:src="@{/images/8.jpg}" alt="第8张" class="img-fluid sigmapad col-sm-6" title="Camera"></a>
-                                 -->
-
-                                <!-- 一行4张图片 等大小
-                                <a th:href="@{/images/1.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 09">
-                                    <img th:src="@{/images/1.jpg}" alt="Image 9"
-                                         class="img-fluid sigmapad col-lg-3 col-md-8 col-sm-12"></a>
-
-
-                                <a th:href="@{/images/2.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 10">
-                                    <img th:src="@{/images/2.jpg}" alt="Image 10"
-                                         class="img-fluid sigmapad col-lg-3 col-md-4 col-sm-6"></a>
-
-                                <a th:href="@{/images/3.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 11">
-                                    <img th:src="@{/images/3.jpg}" alt="Image 11"
-                                         class="img-fluid sigmapad col-lg-3 col-md-4 col-sm-6"></a>
-
-                                <a th:href="@{/images/5.jpg}" data-toggle="lightbox" data-gallery="sigma-gallery"
-                                   data-title="Image Title 12">
-                                    <img th:src="@{/images/5.jpg}" alt="Image 12" class="img-fluid sigmapad col-lg-3 col-sm-12"></a>
-                                -->
                             </div>
                         </div>
                     </section>

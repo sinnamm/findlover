@@ -71,7 +71,7 @@ public final class LoverUtil {
 		if(userBasicStarList.size()> number){
 			userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,number);
 			logger.info("用户条件的星级用户过多，需要随机选择");
-		}else if (userBasicStarList==null||userBasicStarList.size()==0){
+		}else if (userBasicStarList.size() == 0){
 			userBasicStarPick = LoverUtil.
 					getRandomUser(userService.selectStarUser(new UserPick(userPick.getId(),userPick.getSex())),number);
 			logger.info("用户条件的星级用户没有，从所有星级用户随机选择");

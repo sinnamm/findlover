@@ -224,9 +224,25 @@ function initPhotoUpload() {
     //头像异步上传成功回调
     $("#img").on("fileuploaded", function (event, data, previewId, index) {
         $("#myImg").modal("hide");
-        if(data.response.result=="true"){
-            $("#head-sculpture").attr("src",contextPath+"file?path="+data.response.path);
+        if(data.response.result){
+            var photo = data.response.photo;
+            $("#head-sculpture").attr("src",contextPath+"file?path="+photo.photo);
             swal("温馨提示","上传成功！","success");
+            var photoDiv="<div class='photo-single' id='photo-single-"+photo.id+"'>" +
+                "             <a href='"+contextPath+"file?path="+photo.photo+"'" +
+                "                data-toggle='lightbox' data-gallery='sigma-gallery'" +
+                "                data-title='Image Title 01'>" +
+                "                 <img src='"+contextPath+"file?path="+photo.photo+"'" +
+                "                      alt='第1张'" +
+                "                      class='img-fluid sigmapad'>" +
+                "             </a>" +
+                "             <div class='submit inline-block'>" +
+                "                 <button id='photo-btn-"+photo.id+"' class='hvr-wobble-vertical set-photo-btn'>当前头像</button>" +
+                "             </div>" +
+                "         </div>";
+            $("div[class='photo-single']:first").remove();
+            $("#photoContent").prepend($(photoDiv));
+            initSetPhotoBtn();
         }else{
             swal("温馨提示","上传失败！","error");
         }
