@@ -52,6 +52,7 @@ public class VisitTraceController {
        }
        //右侧信息条数
        model.addAttribute("letterCount", letterService.selectUnreadCount(userId));
+       model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
        model.addAttribute("users",userBasics);
        return "front/visit_trace";
    }

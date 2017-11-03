@@ -111,4 +111,16 @@ public class Notice {
     public void setPubObj(Integer pubObj) {
         this.pubObj = pubObj;
     }
+
+    @Override
+    public String toString() {
+        return "Notice{" +
+                "id=" + id +
+                ", adminId=" + adminId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", pubTime=" + pubTime +
+                ", pubObj=" + pubObj +
+                '}';
+    }
 }

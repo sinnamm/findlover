@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/notice.js}"></script>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">通知列表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid" style="margin-bottom: 15px">
+                                <div class="btn-group" style="float: left">
+                                    <button id="notice-btn-all" type="button" class="btn btn-primary">全部</button>
+                                    <button id="notice-btn-vip" type="button" class="btn btn-info">VIP</button>
+                                    <button id="notice-btn-star" type="button" class="btn btn-warning">Star</button>
+                                </div>
+                                <div class="search-user">
+                                    <div>
+                                        <select id="notice-search-sel" class="form-control">
+                                            <option value="id">ID</option>
+                                            <option value="admin_id">管理员ID</option>
+                                            <option value="title">标题</option>
+                                            <option value="content">内容</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="notice-search-val" class="form-control">
+                                    </div>
+                                    <div>
+                                        <button id="notice-search-btn" type="button"
+                                                class="btn btn-primary dropdown-toggle" style="margin-bottom: 3px"><i
+                                                class="fa fa-search"></i>&nbsp;搜索
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="notice-table" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>发布者</th>
+                                        <th>标题</th>
+                                        <th>内容</th>
+                                        <th>时间</th>
+                                        <th>通知对象</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="pagetool">
+                                <ul class="pagination">
+                                    <li class="head"><a href="#">首页</a></li>
+                                    <li class="lastpage"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li class="disabled morehead"><a>...</a></li>
+                                    <li class="page-4"><a></a></li>
+                                    <li class="page-3"><a></a></li>
+                                    <li class="page-2"><a></a></li>
+                                    <li class="page-1"><a></a></li>
+                                    <li class="currentpage active"><a>1</a></li>
+                                    <li class="page_1"><a></a></li>
+                                    <li class="page_2"><a></a></li>
+                                    <li class="page_3"><a></a></li>
+                                    <li class="page_4"><a></a></li>
+                                    <li class="disabled moretail"><a>...</a></li>
+                                    <li class="nextpage"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                    <li class="tail"><a href="#">尾页</a></li>
+                                </ul>
+                                <div style="float: right;margin: 28px;font-size: 15px;font-weight: 400;color: #666666;">
+                                    共
+                                    <span id="total"></span>
+                                    条数据，每页显示
+                                    <select id="pageSize-sel">
+                                    </select>
+                                    条
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

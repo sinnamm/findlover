@@ -30,7 +30,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("admin/other_says")
-public class OtherSaysController {
+public class OtherSaysControllerBack {
 
     @Autowired
     private MessageService messageService;

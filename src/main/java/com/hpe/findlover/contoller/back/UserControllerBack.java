@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.List;
@@ -177,5 +178,17 @@ public class UserControllerBack {
 	public boolean updateLabel(@PathVariable int id, Label label) {
 		label.setId(id);
 		return labelService.updateByPrimaryKey(label);
+	}
+
+	@RequestMapping("check_id")
+	@ResponseBody
+	public String checkid(@RequestParam("userId")int userId){
+		logger.info("验证用户id");
+		UserBasic user= userBasicService.selectByPrimaryKey(userId);
+		 if(user!=null){
+			return "{\"ok\":\"\"}";
+		}else {
+			return "{\"error\":\"该id不存在！\"}";
+		}
 	}
 }

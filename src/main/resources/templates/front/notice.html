@@ -4,108 +4,12 @@
 	<title>系统消息</title>
 	<!--公共css与js文件-->
 	<th:block th:include="/front/common/common_resource::resources"/>
-	<!--在使用模板解析时会自动删除-->
-	<th:block th:remove="all">
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        } </script>
-	<link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="../../static/jquery/jquery.min.js"></script>
-	<script src="../../static/js/bootstrap.min.js"></script>
-	<!-- Custom Theme files -->
-	<link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-
-	<!----font-Awesome----->
-	<link href="../../static/css/font-awesome.css" rel="stylesheet"/>
-	<!----font-Awesome----->
-	<script>
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown(100);
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp(100);
-                    $(this).toggleClass('open');
-                }
-            );
-        });
-	</script>
-	</th:block>
+	<script th:src="@{js/front/user_notice.js}"></script>
+	<script th:src="@{/js/pagetool.js}"></script>
 </head>
 
 <body>
 <th:block th:include="/front/common/header::nav"/>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">
-	<!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-	<div class="navbar-inner">
-		<div class="container">
-
-			<a class="brand" href="index.html"><img src="../../static/images/logo.png" alt="logo"></a>
-			<div class="pull-right">
-				<nav class="navbar nav_bottom" role="navigation">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-								data-target="#bs-megadropdown-tabs">Menu
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#"></a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav nav_1">
-							<li><a href="index.html">首页</a></li>
-							<li><a href="search.html">搜索</a></li>
-							<li><a href="reserve/about.html">会员</a></li>
-							<li><a href="success_story.html">成功故事</a></li>
-							<li><a href="other_says.html">他她说</a></li>
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-										class="fa fa-lg fa-envelope-o"></i><span
-										class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="letter.html">私信</a></li>
-									<li><a href="follow.html">关注</a></li>
-									<li><a href="visit_trace.html">访问记录</a></li>
-									<li><a href="notice.html">系统通知</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-										class="fa fa-lg fa-user"></i><span
-										class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="login.html">编辑资料</a></li>
-									<li><a href="register.html">身份认证</a></li>
-									<li><a href="index.html">修改密码</a></li>
-									<li><a href="index.html">退出</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div><!-- /.navbar-collapse -->
-				</nav>
-			</div> <!-- end pull-right -->
-			<div class="clearfix"></div>
-		</div> <!-- end container -->
-	</div> <!-- end navbar-inner -->
-</div> <!-- end navbar-inverse-blue -->
-<!--============================  Navigation End ============================-->
-
 
 <div class="grid_3">
 	<div class="container">
@@ -127,19 +31,34 @@
 				<div class="careMessage">
 					<div class="row">
 						<ul class="nav nav-pills">
-							<li role="presentation" class="active"><a href="#">已读（8）</a></li>
-							<li role="presentation"><a href="#">未读</a></li>
+							<li id="un_read_notice" role="presentation" class="active"><a style="cursor: pointer">未读([[${readCount}]])</a></li>
+							<li id="read_notice" role="presentation"><a style="cursor: pointer">已读([[${unREadCount}]])</a></li>
 						</ul>
 					</div>
 					<hr/>
 					<div class="row">
-						<div class="list-group" style="margin: 0 20px 0 0">
-							<a href="#" class="list-group-item list-group-item-info"><span class="fa fa-bell-o"></span>  Cras justo odio</a>
-							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Dapibus ac facilisis in</a>
-							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Morbi leo risus</a>
-							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Porta ac consectetur ac</a>
-							<a href="#" class="list-group-item"><span class="fa fa-bell-o"></span> Vestibulum at eros</a>
+						<div id="notice_div" class="list-group" style="margin: 0 20px 0 0">
+
 						</div>
+					</div>
+					<div id="pagetool">
+						<ul class="pagination">
+							<li class="head"><a href="#">首页</a></li>
+							<li class="lastpage"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+							<li class="disabled morehead"><a>...</a></li>
+							<li class="page-4"><a></a></li>
+							<li class="page-3"><a></a></li>
+							<li class="page-2"><a></a></li>
+							<li class="page-1"><a></a></li>
+							<li class="currentpage active"><a>1</a></li>
+							<li class="page_1"><a></a></li>
+							<li class="page_2"><a></a></li>
+							<li class="page_3"><a></a></li>
+							<li class="page_4"><a></a></li>
+							<li class="disabled moretail"><a>...</a></li>
+							<li class="nextpage"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+							<li class="tail"><a href="#">尾页</a></li>
+						</ul>
 					</div>
 				</div>
 
@@ -226,13 +145,27 @@
 				</ul>
 				<div class="clearfix"></div>
 			</div>
-
 			<div class="clearfix"></div>
 		</div>
 
 	</div>
 </div>
-
+<div id="notice-model" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 id="notice-title" class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p id="notice-content">One fine body&hellip;</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!--页面尾部-->
 <th:block th:include="/front/common/footer::foot"/>

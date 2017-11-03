@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("admin/message")
-public class MessageController {
+public class MessageControllerBack {
 	@GetMapping
 	public String index(){
 

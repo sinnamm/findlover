@@ -296,15 +296,15 @@
                         <a th:href="@{'profile/'+${session.user.id}}">
                             <h3 th:text="${session.user.nickname}">奔跑的蜗牛</h3>
                         </a>
-                        <img th:if="${vipDate>0}" th:src="@{/images/vip.png}" src="../../static/images/vip.png"
+                        <img th:if="${session.user.vip}" th:src="@{/images/vip.png}" src="../../static/images/vip.png"
                              data-toolbar="vip-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:if="${vipDate==0}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+                        <img th:if="${!session.user.vip}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
 
-                        <img th:if="${starDate>0}" th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
+                        <img th:if="${session.user.star}" th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
                              data-toolbar="star-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:if="${starDate==0}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
+                        <img th:if="${!session.user.star}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
 
                         <img th:if="${asset>0}" th:src="@{/images/coin.jpg}" src="../../static/images/coin.jpg"
                              data-toolbar="asset-toolbar"

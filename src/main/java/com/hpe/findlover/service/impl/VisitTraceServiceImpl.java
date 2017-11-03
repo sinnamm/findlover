@@ -30,6 +30,15 @@ public class VisitTraceServiceImpl extends BaseServiceImpl<VisitTrace> implement
 
     @Override
     public List<VisitTrace> selectVisitTracer(int userId) {
-        return visitTraceMapper.selectVisitTracer(userId);
+        List<VisitTrace> visitTraces = visitTraceMapper.selectVisitTracer(userId);
+        for(VisitTrace visitTrace:visitTraces){
+                visitTrace.setStatus(1);
+        }
+        return visitTraces;
+    }
+
+    @Override
+    public Integer selectUnreadCount(int userid) {
+        return visitTraceMapper.selectUnreadCount(userid);
     }
 }

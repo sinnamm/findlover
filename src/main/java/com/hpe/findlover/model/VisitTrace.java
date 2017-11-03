@@ -18,6 +18,9 @@ public class VisitTrace {
     @Column(name = "visit_time")
     private Date visitTime;
 
+    @Column(name = "status")
+    private Integer status;
+
     @Transient
     private UserBasic userBasic;
 
@@ -36,6 +39,14 @@ public class VisitTrace {
 
     public void setUserBasic(UserBasic userBasic) {
         this.userBasic = userBasic;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     /**
@@ -101,6 +112,7 @@ public class VisitTrace {
                 ", userId=" + userId +
                 ", intervieweeId=" + intervieweeId +
                 ", visitTime=" + visitTime +
+                ", status=" + status +
                 ", userBasic=" + userBasic +
                 '}';
     }

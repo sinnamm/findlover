@@ -18,4 +18,45 @@
     -->
     id, admin_id, title, content, pub_time, pub_obj
   </sql>
+  
+  <select id="selectAllByIdentity" resultType="Notice">
+    SELECT * FROM findlover.notice
+    WHERE ${column} LIKE #{keyword}
+    <if test="identity == 'vip'">
+      AND pub_obj=1
+    </if>
+    <if test="identity == 'star'">
+      AND pub_obj=2
+    </if>
+  </select>
+  
+  <select id="selectUnReadNotice" resultType="Notice">
+    SELECT notice.* FROM findlover.notice
+    <where>
+      ( pub_obj = 0
+      <if test="vip">
+       or pub_obj = 1
+      </if>
+      <if test="star">
+        or pub_obj = 2
+      </if>
+      OR pub_obj=#{id})
+      AND id NOT IN (SELECT notice_id FROM notice_user WHERE user_id=#{id})
+    </where>
+  </select>
+
+  <select id="selectReadNotice" resultType="Notice">
+    SELECT notice.* FROM findlover.notice
+    <where>
+      ( pub_obj = 0
+      <if test="vip">
+        or pub_obj = 1
+      </if>
+      <if test="star">
+        or pub_obj = 2
+      </if>
+      OR pub_obj=#{id})
+      AND id IN (SELECT notice_id FROM notice_user WHERE user_id=#{id})
+    </where>
+  </select>
 </mapper>

@@ -21,4 +21,6 @@ public interface VisitTraceMapper extends BaseTkMapper<VisitTrace> {
      * @return
      */
     List<VisitTrace> selectVisitTracer(int userId);
+
+    Integer selectUnreadCount(int userid);
 }

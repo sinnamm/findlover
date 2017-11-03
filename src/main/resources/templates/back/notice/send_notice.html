@@ -1,0 +1,77 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body>
+<div>
+    <div class="row col-md-offset-1">
+        <h3>发布通知</h3>
+    </div>
+    <div class="col-md-offset-1">
+        <form id="notice-form" class="form-horizontal" method="post" action="/admin/notice/send_notice">
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">标题</label>
+                <div class="col-sm-5">
+                    <input type="text" name="title" class="form-control"  placeholder="标题">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">接收者</label>
+                <div class="col-sm-3">
+                    <select id="receive" class="form-control" name="pubObj">
+                        <option value="0" selected>所有用户</option>
+                        <option  value="1">VIP用户</option>
+                        <option  value="2">星级用户</option>
+                        <option  value="3">个人</option>
+                    </select>
+                </div>
+            </div>
+            <div id="userId" class="form-group" hidden="hidden">
+                <label class="col-sm-2 control-label">接收者id</label>
+                <div class="col-sm-3">
+                    <input type="text" name="userId" class="form-control"  placeholder="用户id">
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-2 control-label">内容</label>
+                <div class="col-sm-8">
+                    <textarea  name="content" class="form-control" rows="3"  placeholder="内容"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">发布</button>
+                    <span th:text = "${message}"></span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#notice-form").validator({
+            fields:{
+                title:'required;',
+                content:'required;',
+                userId:'remote['+contextPath+'admin/user/check_id, userId]'
+            }
+        });
+        $("#receive").change(function () {
+            var value = this.value;
+            if (value==3){
+                $("#userId").show();
+            }
+
+        })
+    })
+</script>
+</body>
+</html>

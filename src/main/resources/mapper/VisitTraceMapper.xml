@@ -30,7 +30,13 @@
   <select id="selectVisitTrace" resultMap="visitTraceMap">
     SELECT * from visit_trace WHERE user_id = #{id} ORDER  BY visit_time desc
   </select>
+
   <select id="selectVisitTracer" resultMap="visitTracerMap">
     SELECT * from visit_trace WHERE interviewee_id = #{id} ORDER  BY visit_time desc
   </select>
+  
+  <select id="selectUnreadCount"  resultType="int">
+    SELECT count(*) from visit_trace WHERE interviewee_id = #{id} and status = 0
+  </select>
+
 </mapper>
