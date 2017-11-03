@@ -40,6 +40,17 @@ public class SuccessStory {
 
     private String content;
 
+    @Transient
+    private UserBasic user;
+
+    public UserBasic getUser() {
+        return user;
+    }
+
+    public void setUser(UserBasic user) {
+        this.user = user;
+    }
+
     /**
      * @return id
      */
@@ -215,6 +226,7 @@ public class SuccessStory {
                 ", status=" + status +
                 ", adminId=" + adminId +
                 ", content='" + content + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

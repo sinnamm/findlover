@@ -20,4 +20,16 @@
     -->
     id, user_id, com_obj, reason, content, com_time, status, admin_id
   </sql>
+
+  <select id="selectAllByIdentity" resultType="complain">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM complain
+    WHERE complain.${column} LIKE #{keyword}
+    <if test="identity == 'unchecked'">
+      AND status=0
+    </if>
+    <if test="identity == 'checked'">
+      AND status in (1,2,3)
+    </if>
+  </select>
 </mapper>

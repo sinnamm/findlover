@@ -10,4 +10,10 @@ import java.util.List;
 public interface SuccessStoryMapper extends BaseTkMapper<SuccessStory> {
     List<SuccessStory> selectByKeywordAndStatus(String column, String keyword, int status);
     List<SuccessStory> selectByKeyword(String column, String keyword);
+
+    /**
+     * 查找出成功故事用户
+     * @return
+     */
+    List<SuccessStory> selectNotSingle();
 }
