@@ -24,6 +24,7 @@
     -->
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbg.generated
@@ -45,4 +46,20 @@
     SELECT * FROM success_story
     WHERE ${arg0} LIKE #{arg1}
   </select>
+
+
+  <!-- 光荣脱单榜结果映射 -->
+  <resultMap id="notSingleResultMap" type="com.hpe.findlover.model.SuccessStory" extends="BaseResultMap">
+    <result column="uid" property="user.id"></result>
+    <result column="reg_time" property="user.regTime"></result>
+    <result column="nickname" property="user.nickname"></result>
+    <result column="photo" property="user.photo"></result>
+  </resultMap>
+  
+  <select id="selectNotSingle" resultMap="notSingleResultMap">
+    SELECT st.id, st.left_user, st.success_time,ub.id AS uid,ub.nickname,ub.reg_time,ub.photo
+    FROM success_story AS st LEFT OUTER JOIN user_basic AS ub
+    ON st.left_user = ub.id WHERE st.status=1 ORDER BY st.success_time DESC LIMIT 32
+  </select>
+
 </mapper>
