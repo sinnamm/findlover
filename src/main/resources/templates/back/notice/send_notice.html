@@ -59,8 +59,8 @@
     $(function () {
         $("#notice-form").validator({
             fields:{
-                title:'required;',
-                content:'required;',
+                title:'required;length[~20]',
+                content:'required;length[~255]',
                 userId:'remote['+contextPath+'admin/user/check_id, userId]'
             }
         });

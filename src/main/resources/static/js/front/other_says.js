@@ -131,6 +131,10 @@ function replyMessage(messageId) {
 function btnClick() {
     //发布动态按钮
     $("#msgSubBtn").click(function () {
+        if ($("#content").val().length>255){
+            swal("发布失败！内容超过250个字符", "error");
+            return;
+        }
         $.post(contextPath + "other_says/message", {content: $("#content").val()}, function (data) {
             if (data == "true") {
                 $("#pubMsgModal").modal("hide");
@@ -146,6 +150,10 @@ function btnClick() {
     //回复模态框评论提交按钮
     $("#reply-submit-btn").click(function () {
         var reply = $("#reply-content").val();
+        if (reply.length>255){
+            swal("发布失败！内容超过250个字符", "error");
+            return;
+        }
         var data = {"reply":reply,"messageId":msgId};
         $.ajax({
             url:contextPath+"other_says/replyMessage",
