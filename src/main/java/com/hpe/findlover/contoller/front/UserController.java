@@ -7,10 +7,7 @@ import com.hpe.findlover.service.UserLabelService;
 import com.hpe.findlover.service.UserPickService;
 import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.token.CustomToken;
-import com.hpe.findlover.util.Constant;
-import com.hpe.findlover.util.Identity;
-import com.hpe.findlover.util.LoverUtil;
-import com.hpe.findlover.util.SessionUtils;
+import com.hpe.findlover.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -190,15 +187,11 @@ public class UserController {
 			redirectAttributes.addAttribute("message", "用户未激活");
 		}
 		if (SecurityUtils.getSubject().isAuthenticated()) {
+			ShiroHelper.flushSession();
 			HttpSession session = request.getSession();
 			UserBasic userBasic = userService.selectByEmail(user.getEmail());
 			userService.userAttrHandler(userBasic);
 			session.setAttribute("user", userBasic);
-			Enumeration<String> attributeNames = session.getAttributeNames();
-			while(attributeNames.hasMoreElements()){
-				String name = attributeNames.nextElement();
-				logger.info(name+"="+session.getAttribute(name));
-			}
 			return "redirect:index";
 		}
 		else{

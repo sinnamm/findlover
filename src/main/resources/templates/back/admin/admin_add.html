@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/admin_add.js}"></script>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">创建管理员账户</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid" style="margin-bottom: 20px">
+                                <div class="col-md-5">
+                                    <form th:action="@{/admin/admins}" role="form" id="admin-reg-form" method="post">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label for="username">用户名：</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                       placeholder="请输入用户名">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group" style="margin-bottom: 0">
+                                                <label for="username">拥有角色：</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-6" th:each="role:${roles}">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="rid" th:value="${role.id}">
+                                                    <span th:text="${role.name}"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label for="password">密码：</label>
+                                                <input type="password" class="form-control" id="password" name="password"
+                                                       placeholder="请输入密码">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label for="confpassword">确认密码：</label>
+                                                <input type="password" class="form-control" id="confpassword" name="confpassword"
+                                                       placeholder="请确认密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="modal fade" id="edit-admin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="fa fa-edit"></span>
+                    <strong>管理员详情</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label>管理员ID：</label>
+                        <label id="admin-id-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>拥有角色：</label>
+                        <table border="0" cellpadding="10" id="role-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="admin-sub-btn" class="btn btn-primary">提交修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>

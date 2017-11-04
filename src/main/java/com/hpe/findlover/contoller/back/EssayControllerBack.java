@@ -11,6 +11,7 @@ import com.hpe.findlover.service.UploadService;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import java.util.List;
  * @author hgh
  */
 @Controller
+@RequiresRoles("stage")
 @RequestMapping("admin/essay")
 public class EssayControllerBack {
     private Logger logger = LogManager.getLogger(EssayControllerBack.class);

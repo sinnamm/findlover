@@ -119,8 +119,7 @@
                         </table>
                     </div>
                     <div class="col-sm-6 row_3">
-                        <a class="search-btn" th:unless="${session.user.id==basic.id}"
-                           th:href="@{/letter(id=${basic.id})}"><i class="fa fa-envelope-o"></i>&nbsp;发私信</a>
+                        <button class="search-btn" th:id="'letter-btn-'+${basic.id}"><i class="fa fa-envelope-o"></i>&nbsp;发私信</button>
                         <button class="search-btn" id="follow-btn"><i class="fa fa-heart-o"></i>&nbsp;<span
                                 id="follow-info" th:text="${isFollow==true?'已关注':'关注'}">请先登录</span></button>
                         <button class="search-btn com-btn"><i class="fa fa-bell-o"></i>&nbsp;投诉</button>

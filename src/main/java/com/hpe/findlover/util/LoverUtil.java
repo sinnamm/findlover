@@ -7,8 +7,8 @@ import com.hpe.findlover.model.UserPick;
 import com.hpe.findlover.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
@@ -19,6 +19,10 @@ import java.util.concurrent.TimeUnit;
 
 public final class LoverUtil {
 	private static Logger logger = LogManager.getLogger(LoverUtil.class);
+
+	public static String getMd5Password(String password,String salt) {
+		return new Md5Hash(password,salt).toString();
+	}
 
 	/**
 	 * 有关用户的pojo对象的漂亮显示，传入一个pojo类和这个类的Class对象，
@@ -96,6 +100,10 @@ public final class LoverUtil {
 	{
 		int[] nums = getRandoms(0,userBasicList.size()-1,num);
 		List<T> userBasics = new ArrayList<>();
+		if(nums == null){
+			return userBasics;
+		}
+		logger.debug("nums="+nums);
 		for (int i=0;i<nums.length;i++){
 			userBasics.add(userBasicList.get(nums[i]));
 		}

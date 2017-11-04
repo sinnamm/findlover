@@ -18,4 +18,7 @@
     -->
     id, username, password, flag, create_time, last_login
   </sql>
+  <select id="selectByKeyword" resultType="Admin">
+    SELECT * FROM admin WHERE ${column} LIKE #{keyword} AND flag = 1
+  </select>
 </mapper>

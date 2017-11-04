@@ -15,4 +15,7 @@
     -->
     id, name, note
   </sql>
+  <select id="selectAllByAdminId" resultType="Role">
+    SELECT r.* FROM admin_role ar,role r WHERE ar.role_id=r.id AND ar.admin_id=#{adminId}
+  </select>
 </mapper>

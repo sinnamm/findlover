@@ -19,6 +19,7 @@ $(function () {
     searchById();
     initComplain();
     initFollowBtn();
+    initLetterBtn();
 });
 
 function searchById() {
@@ -140,6 +141,44 @@ function initFollowBtn() {
                     });
                 }
             });
+        }
+    });
+}
+function initLetterBtn() {
+    $("button[id^='letter-btn-']").click(function () {
+        var id = this.id.split("-")[2];
+        if(userId==$("#obj").text()){
+            swal("不能与自己互动！", "", "warning");
+        }else {
+            $.get(contextPath + "session/user", {}, function (userBasic) {
+                if(userBasic.authority!=1){
+                    swal({
+                        title:"提示",
+                        text:"您已隐藏资料，无法发起互动！",
+                        icon:"warning",
+                        buttons: ["取消", "公开我的资料"]
+                    }).then(result=>{
+                        if(result){
+                            $.ajax({
+                                url:contextPath+"user",
+                                type:"put",
+                                data:{"authority":1},
+                                dataType:"text",
+                                success:function (data) {
+                                    if(data=="true"){
+                                        swal("提示", "资料已公开", "success");
+                                    }else{
+                                        errorAlert();
+                                    }
+                                },
+                                error:errorAlert
+                            });
+                        }
+                    });
+                }else{
+                    window.open(contextPath + "profile/" + id);
+                }
+            }, "json");
         }
     });
 }

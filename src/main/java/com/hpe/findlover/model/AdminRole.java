@@ -10,6 +10,14 @@ public class AdminRole {
     @Column(name = "role_id")
     private Integer roleId;
 
+    public AdminRole() {
+    }
+
+    public AdminRole(Integer adminId, Integer roleId) {
+        this.adminId = adminId;
+        this.roleId = roleId;
+    }
+
     /**
      * @return admin_id
      */

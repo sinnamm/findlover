@@ -12,6 +12,8 @@ import com.hpe.findlover.service.UserService;
 import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,7 @@ import java.util.List;
  * @author hgh
  */
 @Controller
+@RequiresRoles("complain")
 @RequestMapping("admin/complain")
 public class ComplainControllerBack {
     private Logger logger = LogManager.getLogger(ComplainControllerBack.class);
@@ -34,6 +37,7 @@ public class ComplainControllerBack {
     private UserService userService;
 
     @GetMapping("list")
+    @RequiresPermissions("complain:select")
     public String userList() {
         return "back/complain/complain_list";
     }
@@ -48,6 +52,7 @@ public class ComplainControllerBack {
      * @return
      */
     @GetMapping("info")
+    @RequiresPermissions("complain:select")
     @ResponseBody
     public Object complainList(Page<Complain> page, @RequestParam String identity, @RequestParam String column, @RequestParam String keyword) {
         logger.info("接收参数：pageNum=" + page.getPageNum()
@@ -67,6 +72,7 @@ public class ComplainControllerBack {
      * @return
      */
     @GetMapping("detail/{id}")
+    @RequiresPermissions("complain:select")
     public Object complainDetail(@PathVariable int id, Model model) {
         Complain complain = complainService.selectByPrimaryKey(id);
         model.addAttribute("complain", complain);
@@ -82,6 +88,7 @@ public class ComplainControllerBack {
      * @return
      */
     @PutMapping("info/{id}")
+    @RequiresPermissions("complain:authenticate")
     @ResponseBody
     public Object complainList(@PathVariable("id") int id, Complain complain) {
         Admin admin = SessionUtils.getSessionAttr("admin",Admin.class);
@@ -99,6 +106,7 @@ public class ComplainControllerBack {
      * @return
      */
     @PutMapping("seal/{id}")
+    @RequiresPermissions("complain:authenticate")
     @ResponseBody
     public Object sealComObj(@PathVariable("id") int comId, Complain complain) {
         Admin admin = SessionUtils.getSessionAttr("admin",Admin.class);

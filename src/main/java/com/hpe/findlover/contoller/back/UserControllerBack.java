@@ -10,6 +10,7 @@ import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -28,6 +29,7 @@ import java.util.Set;
  * @author Gss
  */
 @Controller
+@RequiresRoles("user")
 @RequestMapping("admin/user")
 public class UserControllerBack {
 	private Logger logger = LogManager.getLogger(UserControllerBack.class);

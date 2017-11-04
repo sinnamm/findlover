@@ -1,6 +1,7 @@
 package com.hpe.findlover.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 public class Admin {
@@ -23,6 +24,8 @@ public class Admin {
     @Column(name = "last_login")
     private Date lastLogin;
 
+    @Transient
+    private List<Role> roles;
     /**
      * @return id
      */
@@ -109,5 +112,26 @@ public class Admin {
      */
     public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", flag=" + flag +
+                ", createTime=" + createTime +
+                ", lastLogin=" + lastLogin +
+                ", roles=" + roles +
+                '}';
     }
 }

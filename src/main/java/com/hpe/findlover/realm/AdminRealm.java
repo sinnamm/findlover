@@ -2,19 +2,32 @@ package com.hpe.findlover.realm;
 
 import com.hpe.findlover.model.Admin;
 import com.hpe.findlover.service.AdminService;
+import com.hpe.findlover.service.PermissionService;
+import com.hpe.findlover.service.RoleService;
+import com.hpe.findlover.util.Identity;
+import com.hpe.findlover.util.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class AdminRealm extends AuthorizingRealm {
 	private Logger logger = LogManager.getLogger(AdminRealm.class);
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private RoleService roleService;
+	@Autowired
+	private PermissionService permissionService;
 
 
 	/**
@@ -42,7 +55,13 @@ public class AdminRealm extends AuthorizingRealm {
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
-		return null;
+		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+		Set<String> roles = new HashSet<>();
+		roleService.selectAllByAdminId(SessionUtils.getSessionAttr(Identity.ADMIN.getValue(),Admin.class).getId()).forEach(v -> roles.add(v.getValue()));
+		authorizationInfo.setRoles(roles);
+		Set<String> permissions = new HashSet<>();
+		permissionService.selectAllByAdminId(SessionUtils.getSessionAttr(Identity.ADMIN.getValue(),Admin.class).getId()).forEach(v -> permissions.add(v.getValue()));
+		authorizationInfo.setStringPermissions(permissions);
+		return authorizationInfo;
 	}
 }

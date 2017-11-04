@@ -10,6 +10,14 @@ public class RolePermission {
     @Column(name = "permission_id")
     private Integer permissionId;
 
+    public RolePermission() {
+    }
+
+    public RolePermission(Integer roleId, Integer permissionId) {
+        this.roleId = roleId;
+        this.permissionId = permissionId;
+    }
+
     /**
      * @return role_id
      */

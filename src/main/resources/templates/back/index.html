@@ -3,6 +3,7 @@
 <head>
     <th:block th:include="/back/common/common_resource :: resources"/>
     <title>findlover后台管理系统</title>
+    <script th:src="@{/js/back/top.js}"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
@@ -10,8 +11,58 @@
     <th:block th:include="/back/common/left :: left"/>
     <div class="content-wrapper" style="min-height: 100% !important">
 
-        <iframe th:src="@{/admin/user/list}" name="content" frameborder="0" style="min-height: 560px" width="100%"></iframe>
+        <iframe th:src="@{/admin/user/list}" name="content" frameborder="0" style="min-height: 560px"
+                width="100%"></iframe>
     </div>
+</div>
+
+<div class="modal fade" id="admin-pwd-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modalLabel">
+                    <span class="fa fa-edit"></span>
+                    <strong>修改密码</strong></h4>
+            </div>
+            <form th:action="@{/admin/admins}" role="form" id="update-pwd-form" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="oldpwd">原密码：</label>
+                                    <input type="password" class="form-control" id="oldpwd" name="oldpwd"
+                                           placeholder="请输入原密码">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="newpwd">新密码：</label>
+                                    <input type="password" class="form-control" id="newpwd" name="newpwd"
+                                           placeholder="请输入新密码">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" style="margin-bottom: 0">
+                                    <label for="confpwd">确认密码：</label>
+                                    <input type="password" class="form-control" id="confpwd" name="confpwd"
+                                           placeholder="请确认密码">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 </body>
 </html>

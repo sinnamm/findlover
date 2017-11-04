@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <link href="/static/css/font-awesome.css">
 </head>
@@ -15,14 +15,14 @@
                     <img th:src="@{/images/admin.jpg}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>管理员用户</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p th:text="${session.admin.username}"></p>
+                    <a href="javascript:void(0)"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header"></li>
-                <li class="active treeview menu-open">
+                <li class="active treeview menu-open" shiro:hasRole="user">
                     <a href="#">
                         <i class="fa fa-user"></i>
                         <span>用户管理</span>
@@ -42,7 +42,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" shiro:hasRole="stage">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
                         <span>他他说管理</span>
@@ -56,24 +56,19 @@
                         <li><a th:href="@{/admin/writer/list}"><i class="fa fa-circle-o"></i>专栏作家管理</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" shiro:hasRole="successStory">
                     <a href="#">
                         <i class="fa fa-th"></i>
                         <span>成功故事管理</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
-                        <!--<span class="pull-right-container">-->
-                            <!--<li>-->
-                                <!--<a th:href="@{/admin/success_story}"><i class="fa fa-circle-o"></i>成功故事管理</a>-->
-                            <!--</li>-->
-                        <!--</span>-->
                     </a>
                     <ul class="treeview-menu">
                         <li><a th:href="@{/admin/success_story}"><i class="fa fa-circle-o"></i>成功故事管理</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" shiro:hasRole="notice">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
                         <span>通知管理</span>
@@ -87,7 +82,7 @@
 
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" shiro:hasRole="complain">
                     <a href="#">
                         <i class="fa fa-bell"></i>
                         <span>投诉管理</span>
@@ -100,11 +95,32 @@
 
                     </ul>
                 </li>
-
-                <!--<li class="header">LABELS</li>-->
-                <!--<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>-->
-                <!--<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>-->
-                <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
+                <li class="treeview" shiro:hasRole="admin">
+                    <a href="#">
+                        <i class="fa fa-user-md"></i>
+                        <span>管理员管理</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a th:href="@{/admin/admins/page(type='list')}"><i class="fa fa-circle-o"></i>管理员用户列表</a></li>
+                        <li><a th:href="@{/admin/admins/page(type='add')}"><i class="fa fa-circle-o"></i>添加新管理员</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" shiro:hasRole="permission">
+                    <a href="#">
+                        <i class="fa fa-user-md"></i>
+                        <span>权限管理</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a th:href="@{/admin/perm/roles}"><i class="fa fa-circle-o"></i>角色管理</a></li>
+                        <li><a th:href="@{/admin/perm/permission}"><i class="fa fa-circle-o"></i>权限管理</a></li>
+                    </ul>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->

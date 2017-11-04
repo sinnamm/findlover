@@ -8,6 +8,7 @@ import com.hpe.findlover.model.Writer;
 import com.hpe.findlover.service.WriterService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.Map;
  * @author hgh
  */
 @Controller
+@RequiresRoles("stage")
 @RequestMapping("admin/writer")
 public class WriterControllerBack {
     private Logger logger= LogManager.getLogger(WriterControllerBack.class);

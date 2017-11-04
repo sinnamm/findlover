@@ -7,6 +7,7 @@ import com.hpe.findlover.service.UploadService;
 import com.hpe.findlover.service.WriterService;
 import com.hpe.findlover.token.CustomToken;
 import com.hpe.findlover.util.Identity;
+import com.hpe.findlover.util.ShiroHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -100,13 +101,9 @@ public class WriterController {
             redirectAttributes.addAttribute("message", "用户被锁定!");
         }
         if (SecurityUtils.getSubject().isAuthenticated()) {
+            ShiroHelper.flushSession();
             HttpSession session = request.getSession();
             session.setAttribute("writer", writerService.selectByUserName(writer.getUsername()));
-            Enumeration<String> attributeNames = session.getAttributeNames();
-            while (attributeNames.hasMoreElements()) {
-                String name = attributeNames.nextElement();
-                logger.info(name + "=" + session.getAttribute(name));
-            }
             return "redirect:index";
         } else {
             return "redirect:login";

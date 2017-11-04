@@ -15,4 +15,16 @@
     -->
     id, name, value
   </sql>
+  <select id="selectAllByRoleId" resultType="Permission">
+    SELECT p.id FROM permission p,role_permission rp WHERE p.id = rp.permission_id AND rp.role_id=#{roleId}
+  </select>
+  <select id="selectAllByAdminId" resultType="Permission">
+    SELECT *
+    FROM permission
+    WHERE id IN (
+      SELECT permission_id FROM role_permission WHERE role_id IN (
+        SELECT role_id FROM admin_role WHERE admin_id=#{adminId}
+      )
+    )
+  </select>
 </mapper>

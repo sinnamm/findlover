@@ -84,7 +84,7 @@ public class MethodTest {
 
     @Test
     public void shiroMD5Test(){
-        Md5Hash hash = new Md5Hash("123", "sinna@163.com");
+        Md5Hash hash = new Md5Hash("123", "admin");
         System.out.println(hash.toString());
     }
 

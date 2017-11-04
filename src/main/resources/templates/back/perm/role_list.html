@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <script th:src="@{/js/back/role_list.js}"></script>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">角色列表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid" style="margin-bottom: 15px">
+                                <div class="col-md-8">
+                                    <div class="box-tools">
+                                        <button id="role-add-btn"
+                                                class="button button-small button-3d button-highlight button-rounded"
+                                                style="font-size: 15px">添加角色
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table id="role-table" class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>描述</th>
+                                                <th>内容</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="role:${roles}" th:id="'tr-'+${role.id}">
+                                                <td th:text="${role.id}"></td>
+                                                <td th:text="${role.name}"></td>
+                                                <td th:text="${role.value}"></td>
+                                                <td>
+                                                    <button th:id="'btn-'+${role.id}" class="btn btn-sm btn-info"><i
+                                                            class="fa fa-edit"></i>&nbsp;权限分配
+                                                    </button>
+                                                    <button th:id="'del-'+${role.id}" class="btn btn-sm btn-danger"><i
+                                                            class="fa fa-trash-o"></i>&nbsp;删除
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="modal fade" id="edit-role-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="fa fa-edit"></span>
+                    <strong>分配权限</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label>角色ID：</label>
+                        <label id="role-id-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>拥有权限：</label>
+                        <table border="0" cellpadding="10" id="perm-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="role-sub-btn" class="btn btn-primary">提交修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="add-role-modal" tabindex="-1" role="dialog" aria-labelledby="addRoleLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addRoleLabel">
+                    <span class="fa fa-edit"></span>
+                    <strong>添加角色</strong></h4>
+            </div>
+            <form th:action="@{/admin/perm/role}" role="form" id="add-role-form" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="name">角色描述：</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="请输入角色描述">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" style="margin-bottom: 0">
+                            <label for="value">角色内容：</label>
+                            <input type="text" class="form-control" id="value" name="value"
+                                   placeholder="请输入角色内容">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" style="margin-bottom: 0">
+                            <label for="value">拥有权限：</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" th:each="perm:${perms}">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="pid" th:value="${perm.id}">
+                                    <span th:text="${perm.name}"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="add-role-sub-btn" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>
