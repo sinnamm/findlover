@@ -46,6 +46,9 @@
     SELECT * FROM success_story
     WHERE ${arg0} LIKE #{arg1}
   </select>
+  <select id="selectAllByStatus" resultType="SuccessStory">
+    SELECT  * FROM success_story WHERE  status=1 ORDER BY success_time DESC ;
+  </select>
 
 
   <!-- 光荣脱单榜结果映射 -->

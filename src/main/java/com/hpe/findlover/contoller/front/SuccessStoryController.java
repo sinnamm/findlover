@@ -69,7 +69,7 @@ public class SuccessStoryController {
     @GetMapping
     public String successStory(Model model){
         PageHelper.startPage(1,8,"success_time desc");
-        List<SuccessStory> list= successStoryService.selectAll();
+        List<SuccessStory> list= successStoryService.selectAllByStatus();
         model.addAttribute("list",list);
         return"front/success_story";
     }
@@ -77,7 +77,7 @@ public class SuccessStoryController {
     @ResponseBody
     public Object loadMore(int lineSize,int currentPage){
         PageHelper.startPage(currentPage,lineSize,"success_time desc");
-        PageInfo<SuccessStory> pageInfo= new PageInfo<>(successStoryService.selectAll());
+        PageInfo<SuccessStory> pageInfo= new PageInfo<>(successStoryService.selectAllByStatus());
         return pageInfo;
     }
     @PostMapping("story_reply/load_more")

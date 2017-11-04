@@ -25,4 +25,5 @@ public interface SuccessStoryService extends BaseService<SuccessStory> {
      * 插入成功故事并发通知
      */
     boolean insertStory(SuccessStory successStory);
+    List<SuccessStory> selectAllByStatus();
 }

@@ -52,7 +52,7 @@
                     </div>
                 </th:block>
             </div>
-            <div class="col-sm-12" >
+            <div class="col-sm-12" th:if="${list.total gt 8}">
                 <br/>
                 <button id="loadmore" type="button" class="btn btn-danger btn-lg btn-block">加载更多...
                 </button>

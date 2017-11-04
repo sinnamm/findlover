@@ -79,4 +79,9 @@ public class SuccessStoryServiceImpl extends BaseServiceImpl<SuccessStory> imple
            return false;
        }
     }
+
+    @Override
+    public List<SuccessStory> selectAllByStatus() {
+        return successStoryMapper.selectAllByStatus();
+    }
 }
