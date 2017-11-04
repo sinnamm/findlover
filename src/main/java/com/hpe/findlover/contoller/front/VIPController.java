@@ -60,7 +60,7 @@ public class VIPController {
             cld.add(Calendar.MONTH, Integer.parseInt(vipBuyDay));
             userAsset.setVipDeadline(cld.getTime());
             userAsset.setCost(Double.parseDouble(vipBuyMoney.substring(1)));
-            if (userAssetService.insert(userAsset)) {
+            if (userAssetService.insertSelective(userAsset)) {
                 list.add("VIP购买成功");
                 user.setVip(true);
                 session.setAttribute("user",user);
@@ -119,7 +119,7 @@ public class VIPController {
                 userAsset.setId(userBasic.getId());
                 userAsset.setStarDeadline(LoverUtil.addDay(new Date(), starBuyDay));
                 userAsset.setCost(starBuyMoney);
-                if (userAssetService.insert(userAsset)) {
+                if (userAssetService.insertSelective(userAsset)) {
                     list.add("星级会员购买成功");
                     userBasic.setStar(true);
                     session.setAttribute("user",userBasic);

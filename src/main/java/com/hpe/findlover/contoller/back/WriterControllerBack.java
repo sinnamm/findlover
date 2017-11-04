@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hpe.findlover.model.UserBasic;
 import com.hpe.findlover.model.Writer;
 import com.hpe.findlover.service.WriterService;
 import org.apache.logging.log4j.LogManager;

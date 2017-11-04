@@ -168,9 +168,9 @@
                 <div class="fixed_message">
                     <span><strong>您的固定信息：</strong></span><br>
                     <span id="userfixed">您是一位男士，您的出生日期为1997-11-11，未婚，178CM</span><br>
-                    <a role="tab" href="#identityPanel" id="ridentity-tab"
+                    <!--<a role="tab" href="#identityPanel" id="ridentity-tab"
                        data-toggle="tab"
-                       aria-controls="identityPanel">申请修改信息</a>
+                       aria-controls="identityPanel">申请修改信息</a>-->
                 </div>
                 <div class="message_main" style="height: auto;">
                     <form id="form-user-basic" class="basic_message_form">
@@ -199,7 +199,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group message_group">
+                       <!-- <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">身高：</label>
                             <div class="col-md-4" style="padding: 0px">
                                 <select name="height" id="height" class="form-control select-control">
@@ -213,7 +213,7 @@
                                     <option value="博士生及以上">博士生及以上</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">性取向：</label>
                             <div class="col-md-4" style="padding: 0px">
@@ -281,19 +281,11 @@
                 </div>
                 <div class="message_main">
                     <form class="more_message" id="form-user-detail">
-                        <!--<div class="form-group message_group">
-                            <label class="col-md-3 control-label message-lable text-right">真实姓名：</label>
-                            <input type="hidden" name="id" th:value="${session.user.id}">
-                            <input id="realname" name="realname" class="col-md-4 form-control message_main_input" >
-                        </div>-->
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">体重：</label>
+                            <input type="hidden" name="id" th:value="${session.user.id}">
                             <input id="weight" name="weight" class="col-md-4 form-control message_main_input">
                         </div>
-                        <!-- <div class="form-group message_group">
-                             <label class="col-md-3 control-label message-lable text-right">身份证号：</label>
-                             <input id="cardnumber" name="cardnumber"  class="col-md-4 form-control message_main_input" >
-                         </div>-->
                         <div class="form-group message_group">
                             <label class="col-md-3 control-label message-lable text-right">星座：</label>
                             <div class="col-md-4" style="padding: 0px">

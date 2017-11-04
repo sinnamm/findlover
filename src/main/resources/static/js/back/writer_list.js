@@ -46,7 +46,7 @@ function initFormValidator() {
     //初始化新增作家表单验证
     $("#add-writer-form").validator({
         rules: {
-            nickname: [/^([\u4E00-\u9FA5]|[a-z0-9]{1,2}){2,6}$/, "昵称应为4-12位字符"]
+            nickname: [/^([\u4E00-\u9FA5]|[a-z0-9]{1,2}){2,6}$/, "笔名应为4-12位字符"]
         },
         fields: {
             'pseudonym': 'required;nickname,remote['+contextPath+'admin/writer/checkPseudonym, pseudonym]',

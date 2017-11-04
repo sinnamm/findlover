@@ -39,7 +39,7 @@ public class FastDFSTest {
 	public void modifyAllUserPwd2Md5(){
 		List<UserBasic> users = userService.selectAll();
 		for(UserBasic user: users){
-			user.setPassword(new Md5Hash("123",user.getEmail()).toString());
+			user.setPassword(new Md5Hash("123456",user.getEmail()).toString());
 			userService.updateByPrimaryKey(user);
 		}
 	}

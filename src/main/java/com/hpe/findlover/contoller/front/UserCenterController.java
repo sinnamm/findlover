@@ -418,7 +418,7 @@ public class UserCenterController {
 		if (userDetailService.selectByPrimaryKey(userDetail) != null) {
 			result = userDetailService.updateByPrimaryKey(userDetail);
 		} else {
-			result = userDetailService.insert(userDetail);
+			result = userDetailService.insertSelective(userDetail);
 		}
 		return result;
 	}
@@ -471,7 +471,7 @@ public class UserCenterController {
 		if (userStatusService.selectByPrimaryKey(userStatus) != null) {
 			result = userStatusService.updateByPrimaryKey(userStatus);
 		} else {
-			result = userStatusService.insert(userStatus);
+			result = userStatusService.insertSelective(userStatus);
 		}
 		return result;
 	}
@@ -501,7 +501,7 @@ public class UserCenterController {
 		if (userPickService.selectByPrimaryKey(userPick) != null) {
 			result = userPickService.updateByPrimaryKey(userPick);
 		} else {
-			result = userPickService.insert(userPick);
+			result = userPickService.insertSelective(userPick);
 		}
 		return result;
 	}

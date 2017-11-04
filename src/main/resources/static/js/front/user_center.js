@@ -253,9 +253,6 @@ function initPhotoUpload() {
 function initResetPwd() {
     //alert($("#form-reset-pwd").serialize());
     $("#form-reset-pwd").validator({
-        rules: {
-            password: [/^[\S]{3,16}$/, "请填写3-16位字符，不能包含空格"],
-        },
         fields: {
             'newpwd': '密码:required;password',
             'password': 'required;match(newpwd)'
@@ -288,7 +285,7 @@ function initResetAuth() {
 function initRechargeValidator() {
     $("#recharge").validator({
         fields: {
-            'cost': 'digits'
+            'cost': 'required;digits'
         },
         theme: 'bootstrap',
         timely: 2,
@@ -319,14 +316,13 @@ function initUserBasicValidator() {
             // 使用正则表达式定义规则
             mobile: [/^1[3-9]\d{9}$/, "请填写有效的手机号"],
             password: [/^[\S]{3,16}$/, "请填写3-16位字符，不能包含空格"],
-            nickname: [/^([\u4E00-\u9FA5]|[a-z0-9]{1,2}){2,6}$/, "昵称应为4-12位字符"]
+            nickname: [/^([\u4E00-\u9FA5]|\w{1,2}){2,6}$/, "昵称应为4-12位字符"]
         },
         fields: {
             'nickname': 'required;nickname',
             'tel': 'required;mobile',
             'email': 'required;email',
             'salary': 'required',
-            'height': 'required',
             'sexual': 'required',
             'education': 'required',
             'work_province': 'required',
@@ -346,7 +342,25 @@ function initUserBasicValidator() {
 function initUserDetailValidator() {
     $("#form-user-detail").validator({
         fields: {
-            'weight': 'digits'
+            'weight': 'digits;range(40~120)',
+            'hobby': 'length(~140)',
+            'signature': 'length(~140)'
+        },
+        theme: 'bootstrap',
+        timely: 2,
+        stopOnError: true,
+        valid: function (form) {
+            resetUser(form, "detail");
+        }
+    });
+}
+//用户详情资料验证
+function initUserDetailValidator() {
+    $("#form-user-detail").validator({
+        fields: {
+            'weight': 'digits;range(40~120)',
+            'hobby': 'length(~140)',
+            'signature': 'length(~140)'
         },
         theme: 'bootstrap',
         timely: 2,
@@ -357,14 +371,44 @@ function initUserDetailValidator() {
     });
 }
 
+//用户工作生活验证
+function initUserLifeValidator() {
+    $("#form-user-life").validator({
+        fields: {
+            'character': 'length(~140)',
+            'jobBrief': 'length(~140)'
+        },
+        theme: 'bootstrap',
+        timely: 2,
+        stopOnError: true,
+        valid: function (form) {
+            resetUser(form, "life");
+        }
+    });
+}
+//用户婚姻观验证
+function initUserStatusValidator() {
+    $("#form-user-status").validator({
+        fields: {
+            'familyBrief': 'length(~140)'
+        },
+        theme: 'bootstrap',
+        timely: 2,
+        stopOnError: true,
+        valid: function (form) {
+            resetUser(form, "status");
+        }
+    });
+}
+
 //用户身份认证
 function initUserComfirmValidator() {
     $("#form-user-comfirm").validator({
         rules: {
-            chinese: [/^[\u4E00-\u9FA5A-Za-z0-9_]+$/, "昵称不能包含特殊字符"]
+            chinese: [/^[\u4E00-\u9FA5\w·]+$/, "名字不能包含特殊字符"]
         },
         fields: {
-            'realname': 'chinese;length(2~8)',
+            'realname': 'chinese;length(2~20)',
             'cardnumber': 'IDcard'
         },
         theme: 'bootstrap',
@@ -379,29 +423,8 @@ function initUserComfirmValidator() {
     });
 }
 
-//用户工作生活验证
-function initUserLifeValidator() {
-    $("#form-user-life").validator({
-        theme: 'bootstrap',
-        timely: 2,
-        stopOnError: true,
-        valid: function (form) {
-            resetUser(form, "life");
-        }
-    });
-}
 
-//用户工作生活验证
-function initUserStatusValidator() {
-    $("#form-user-status").validator({
-        theme: 'bootstrap',
-        timely: 2,
-        stopOnError: true,
-        valid: function (form) {
-            resetUser(form, "status");
-        }
-    });
-}
+
 
 //用户择偶条件验证
 function initUserPickValidator() {
