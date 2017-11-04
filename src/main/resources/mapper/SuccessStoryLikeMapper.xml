@@ -16,4 +16,10 @@
     -->
     id, success_story_id, user_id, like_time
   </sql>
+  <select id="selectByStoryIdAndUserId" resultType="SuccessStoryLike">
+    SELECT * FROM success_story_like WHERE success_story_id=#{arg0} AND user_id=#{arg1}
+  </select>
+  <select id="selectCountByStoryId" resultType="int">
+    SELECT COUNT(*) FROM success_story_like WHERE success_story_id=#{arg0}
+  </select>
 </mapper>

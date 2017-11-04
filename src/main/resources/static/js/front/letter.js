@@ -13,7 +13,7 @@ $(function () {
     addLetter( userid, vip);
     sendLetter( vip);
     loadMessage(userid,vip);
-})
+});
 function init(myurl,userid,vip){
     var idArr = [];
     $("div[name='userLetter']").each(function () {

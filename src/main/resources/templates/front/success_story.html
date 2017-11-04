@@ -4,34 +4,8 @@
     <title>Home</title>
     <!--公共css与js文件-->
     <th:block th:include="/front/common/common_resource::resources"/>
-    <script src="../../static/js/front/success_story.js" th:src="@{/js/front/success_story.js}"
-            type="text/javascript"></script>
-    <!--在使用模板解析时会自动删除-->
-    <th:block th:remove="all">
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <script type="application/x-javascript"> addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        } </script>
-        <script>
-            $(document).ready(function () {
-                $(".dropdown").hover(
-                    function () {
-                        $('.dropdown-menu', this).stop(true, true).slideDown(100);
-                        $(this).toggleClass('open');
-                    },
-                    function () {
-                        $('.dropdown-menu', this).stop(true, true).slideUp(100);
-                        $(this).toggleClass('open');
-                    }
-                );
-            });
-        </script>
-    </th:block>
+    <script th:src="@{/js/front/success_story.js}"></script>
+    <script th:src="@{/js/masonry-docs.min.js}"></script>
 </head>
 <body>
 <th:block th:include="/front/common/header::nav"/>
@@ -44,311 +18,46 @@
             <i class="fa fa-heart grey-heart"></i>
             <span class="grey-line"></span>
         </div>
+        <div class="text-right">
+            <a style="margin: 30px; width: 300px; border-radius: 8px" th:href="@{/success_story/write_story}"
+            class=" button button-3d  button-caution">已经脱单了？发表成功故事吧</a>
+        </div>
         <!--===========================================================================-->
-        <div class="col-md-8 suceess_story">
-            <ul>
-                <li>
-                    <div class="col-sm-6 paid_people-left">
+        <div class=" suceess_story">
+            <div id="masonry" class="container-fluid">
+                <th:block th:each="successStory,iterStat:${list}">
+                    <div class="box paid_people-left">
                         <ul class="profile_item">
-                            <a href="success_story_info.html">
-                                <li class="profile_left-top">
-
-                                    <img width="320" height="320" th:src="@{/images/8.jpg}" class="img-responsive"
+                            <a th:href="@{'/success_story/success_story_info/'+${successStory.id}}">
+                                <li class="profile_left-top" style="padding: 0px">
+                                    <img width="320" height="auto" th:src="@{/file(path=${successStory.photo})}" class="img-responsive"
                                          alt=""/>
                                 </li>
                                 <li class="profile_item-desc">
                                     <div class="suceess_story-date">
-                                        <span class="entry-1">Dec 20, 2015</span>
+                                        <span class="entry-1" th:text="${#dates.format(successStory.successTime,'yyyy-MM-dd')}"></span>
                                     </div>
                                     <div class="suceess_story-content-info">
-                                        <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                        <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...
+                                        <h4><a th:href="@{'/success_story/success_story_info/'+${successStory.id}}" th:text="${successStory.leftUser+' & '+successStory.rightUser}"></a></h4>
+                                        <p th:text="${successStory.brief}">
                                         </p>
                                     </div>
-                                    <div class="text-right"><a th:href="@{/success_story_info}"
-                                                               href="success_story_info.html"
+                                    <div class="text-left"><a th:href="@{'/success_story/success_story_info/'+${successStory.id}}"
                                                                class="fa fa-heart grey-heart btn btn-default"
-                                                               style="font-size: 15px">围观幸福</a></div>
+                                                               style="font-size: 15px;margin-left: 5px;">围观幸福</a></div>
                                 </li>
                                 <div class="clearfix"></div>
                             </a>
                         </ul>
                     </div>
-                    <div class="col-sm-6 paid_people-left">
-                        <ul class="profile_item">
-                            <a href="success_story_info.html">
-                                <li class="profile_left-top">
-                                    <img width="320" height="320" th:src="@{/images/9.jpg}" class="img-responsive"
-                                         alt=""/>
-                                </li>
-                                <li class="profile_item-desc">
-                                    <div class="suceess_story-date">
-                                        <span class="entry-1">Dec 20, 2015</span>
-                                    </div>
-                                    <div class="suceess_story-content-info">
-                                        <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                        <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...</p>
-                                    </div>
-                                    <div class="text-right"><a href="success_story_info.html"
-                                                               class="fa fa-heart grey-heart btn btn-default"
-                                                               style="font-size: 15px">围观幸福</a></div>
-                                </li>
-                                <div class="clearfix"></div>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-
-                <li>
-                    <div class="col-sm-6 paid_people-left">
-                        <ul class="profile_item">
-                            <a href="success_story_info.html">
-                                <li class="profile_left-top">
-                                    <img width="320" height="320" th:src="@{/images/10.jpg}" class="img-responsive"
-                                         alt=""/>
-                                </li>
-                                <li class="profile_item-desc">
-                                    <div class="suceess_story-date">
-                                        <span class="entry-1">Dec 20, 2015</span>
-                                    </div>
-                                    <div class="suceess_story-content-info">
-                                        <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                        <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...</p>
-                                    </div>
-                                    <div class="text-right"><a href="success_story_info.html"
-                                                               class="fa fa-heart grey-heart btn btn-default"
-                                                               style="font-size: 15px">围观幸福</a></div>
-                                </li>
-                                <div class="clearfix"></div>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 paid_people-left">
-                        <ul class="profile_item ">
-                            <a href="success_story_info.html">
-                                <li class="profile_left-top">
-                                    <img width="320" height="320" th:src="@{/images/11.jpg}" class="img-responsive"
-                                         alt=""/>
-                                </li>
-                                <li class="profile_item-desc">
-                                    <div class="suceess_story-date">
-                                        <span class="entry-1">Dec 20, 2015</span>
-                                    </div>
-                                    <div class="suceess_story-content-info">
-                                        <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                        <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...</p>
-                                    </div>
-                                    <div class="text-right"><a href="success_story_info.html"
-                                                               class="fa fa-heart grey-heart btn btn-default"
-                                                               style="font-size: 15px">围观幸福</a></div>
-                                </li>
-                                <div class="clearfix"></div>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-
-
-                <li>
-                    <div class="col-sm-6 paid_people-left">
-                        <ul class="profile_item">
-                            <a href="success_story_info.html">
-                                <li class="profile_left-top">
-                                    <img width="320" height="320" th:src="@{/images/12.jpg}" class="img-responsive"
-                                         alt=""/>
-                                </li>
-                                <li class="profile_item-desc">
-                                    <div class="suceess_story-date">
-                                        <span class="entry-1">Dec 20, 2015</span>
-                                    </div>
-                                    <div class="suceess_story-content-info">
-                                        <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                        <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...</p>
-                                    </div>
-                                    <div class="text-right"><a href="success_story_info.html"
-                                                               class="fa fa-heart grey-heart btn btn-default"
-                                                               style="font-size: 15px">围观幸福</a></div>
-                                </li>
-                                <div class="clearfix"></div>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 paid_people-left">
-                        <ul class="profile_item">
-                            <a href="success_story_info.html">
-                                <li class="profile_left-top">
-                                    <img width="320" height="320" th:src="@{/images/13.jpg}" class="img-responsive"
-                                         alt=""/>
-                                </li>
-                                <li class="profile_item-desc">
-                                    <div class="suceess_story-date">
-                                        <span class="entry-1">Dec 20, 2015</span>
-                                    </div>
-                                    <div class="suceess_story-content-info">
-                                        <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                        <p>因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还...</p>
-                                    </div>
-                                    <div class="text-right"><a href="success_story_info.html"
-                                                               class="fa fa-heart grey-heart btn btn-default"
-                                                               style="font-size: 15px">围观幸福</a></div>
-                                </li>
-                                <div class="clearfix"></div>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-
-
-                <!--     <li>
-                         <div class="suceess_story-date">
-                             <span class="entry-1">Dec 20, 2015</span>
-                         </div>
-                         <div class="suceess_story-content-container">
-                             <figure class="suceess_story-content-featured-image">
-                                 <img width="320" height="320" src="../../static/images/8.jpg" class="img-responsive"
-                                      alt=""/>
-                             </figure>
-                             <div class="suceess_story-content-info">
-                                 <h4><a href="#">明月 & 密斯特祝</a></h4>
-                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                     suffered alteration in some form,.<a href="#" class="fa fa-heart pink-heart">围观幸福</a></p>
-                             </div>
-                         </div>
-                                        </li>-->
-
-                <li>
-                    <div class="col-sm-12">
-                        <br/>
-                        <button id="loadmore" type="button" class="btn btn-danger btn-lg btn-block"
-                                onclick="javascript:getMore();">加载更多...
-                        </button>
-                    </div>
-                </li>
-
-
-            </ul>
-        </div>
-
-        <!--===========================================================================-->
-        <div class="col-md-4 row_1-right">
-            <div>
-                <!--<button class="btn btn-danger" style="margin: 50px;" id="write"><a th:href="@{/success_story/write_story}">已经脱单了？发表成功故事吧</a></button>-->
-
-                <a style="margin: 30px; width: 300px;" th:href="@{/success_story/write_story}"
-                   class=" button button-3d  button-caution">已经脱单了？发表成功故事吧</a>
+                </th:block>
             </div>
-            <h3>News & Events</h3>
-            <div class="box_1">
-                <figure class="thumbnail1"><img width="170" height="155" th:src="@{/images/14.jpg}"
-                                                class="img-responsive" alt=""/></figure>
-                <div class="extra-wrap">
-                    <div class="post-meta">
-					<span class="day">
-					<time datetime="2014-05-25T10:15:43+00:00">25</time>
-					</span>
-                        <span class="month">
-					<time datetime="2014-05-25T10:11:51+00:00">May</time>
-					</span>
-                    </div>
-                    <h4 class="post-title"><a href="#">There are many variations of passages</a></h4>
-                    <div class="clearfix"></div>
-                    <div class="post-content">The standard chunk of Lorem Ipsum used since the 1500s..</div>
-                    <a href="#" class="vertical">Read More</a>
-                </div>
-            </div>
-            <div class="box_1">
-                <figure class="thumbnail1"><img width="170" height="155" th:src="@{/images/15.jpg}"
-                                                class="img-responsive" alt=""/></figure>
-                <div class="extra-wrap">
-                    <div class="post-meta">
-					<span class="day">
-					<time datetime="2014-05-25T10:15:43+00:00">25</time>
-					</span>
-                        <span class="month">
-					<time datetime="2014-05-25T10:11:51+00:00">May</time>
-					</span>
-                    </div>
-                    <h4 class="post-title"><a href="#">There are many variations of passages</a></h4>
-                    <div class="clearfix"></div>
-                    <div class="post-content">The standard chunk of Lorem Ipsum used since the 1500s..</div>
-                    <a href="#" class="vertical">Read More</a>
-                </div>
-            </div>
-            <div class="box_2">
-                <figure class="thumbnail1"><img width="170" height="155" th:src="@{/images/1.jpg}"
-                                                class="img-responsive" alt=""/></figure>
-                <div class="extra-wrap">
-                    <div class="post-meta">
-					<span class="day">
-					<time datetime="2014-05-25T10:15:43+00:00">25</time>
-					</span>
-                        <span class="month">
-					<time datetime="2014-05-25T10:11:51+00:00">May</time>
-					</span>
-                    </div>
-                    <h4 class="post-title"><a href="#">There are many variations of passages</a></h4>
-                    <div class="clearfix"></div>
-                    <div class="post-content">The standard chunk of Lorem Ipsum used since the 1500s..</div>
-                    <a href="#" class="vertical">Read More</a>
-                </div>
-            </div>
-            <div class="religion">
-                <div class="religion_1-title">Religion :</div>
-                <a href="#" target="_blank" class="religion_1" title="Hindu Matrimonial"
-                   style="padding-left:0px !important;">Hindu</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Muslim Matrimonial">Muslim</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Christian Matrimonial">Christian</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Sikh Matrimonial">Sikh</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Inter Religion Matrimonial">Inter
-                Religion</a>
-            </div>
-            <div class="religion">
-                <div class="religion_1-title">Country :</div>
-                <a href="#" target="_blank" class="religion_1" title="Hindu Matrimonial"
-                   style="padding-left:0px !important;">India</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Muslim Matrimonial">Australia</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Christian Matrimonial">Russia</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Sikh Matrimonial">India</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Inter Religion Matrimonial">Kuwait</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Inter Religion Matrimonial">Uk</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Inter Religion Matrimonial">View
-                All</a>
-            </div>
-            <div class="religion">
-                <div class="religion_1-title">Caste :</div>
-                <a href="#" target="_blank" class="religion_1" title="Hindu Matrimonial"
-                   style="padding-left:0px !important;">Brahmin</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Muslim Matrimonial">Kapu</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Christian Matrimonial">Kamma</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Sikh Matrimonial">Padmasali</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Inter Religion Matrimonial">Reddy</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Inter Religion Matrimonial">View
-                All</a>
-            </div>
-            <div class="religion">
-                <div class="religion_1-title">Regional :</div>
-                <a href="#" target="_blank" class="religion_1" title="Hindu Matrimonial"
-                   style="padding-left:0px !important;">Urdu</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Muslim Matrimonial">Hindi</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Christian Matrimonial">Telugu</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Sikh Matrimonial">Marwadi</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1"
-                                 title="Inter Religion Matrimonial">Oriya</a>
-                <span>|</span><a href="#" target="_blank" class="religion_1" title="Inter Religion Matrimonial">View
-                All</a>
+            <div class="col-sm-12" >
+                <br/>
+                <button id="loadmore" type="button" class="btn btn-danger btn-lg btn-block">加载更多...
+                </button>
             </div>
         </div>
-        <div class="clearfix"></div>
     </div>
 </div>
 

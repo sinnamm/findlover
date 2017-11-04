@@ -1,270 +1,100 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Viewed-not_contacted</title>
+    <title>Viewed-not_contacted</title>
     <th:block th:include="/front/common/common_resource::resources"/>
-    <!--在使用模板解析时会自动删除-->
-    <th:block th:remove="all">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <script type="application/x-javascript"> addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
+    <script th:src="@{/js/front/success_story_info.js}"></script>
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        } </script>
-        <link href="../../static/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css'/>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../../static/jquery/jquery.min.js"></script>
-        <script src="../../static/js/bootstrap.min.js"></script>
-        <!-- Custom Theme files -->
-        <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-
-        <!----font-Awesome----->
-        <link href="../../static/css/font-awesome.css" rel="stylesheet"/>
-        <!----font-Awesome----->
-
-        <script>
-            $(document).ready(function () {
-                $(".dropdown").hover(
-                    function () {
-                        $('.dropdown-menu', this).stop(true, true).slideDown(100);
-                        $(this).toggleClass('open');
-                    },
-                    function () {
-                        $('.dropdown-menu', this).stop(true, true).slideUp(100);
-                        $(this).toggleClass('open');
-                    }
-                );
-            });
-        </script>
-    </th:block>
 </head>
 <body>
 <th:block th:include="/front/common/header::nav"/>
-<!-- ============================  Navigation Start =========================== -->
-<div class="navbar navbar-inverse-blue navbar" th:remove="all">    <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
-    <div class="navbar-inner">
-        <div class="container"><a class="brand" href="index.html"><img src="../../static/images/logo.png"
-                                                                       alt="logo"></a>
-            <div class="pull-right">
-                <nav class="navbar nav_bottom" role="navigation">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                                data-target="#bs-megadropdown-tabs">Menu <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"></a></div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav nav_1">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="reserve/about.html">搜索</a></li>
-                            <li><a href="reserve/about.html">会员</a></li>
-                            <li><a href="reserve/about.html">成功故事</a></li>
-                            <li><a href="reserve/about.html">他她说</a></li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                    class="fa fa-lg fa-envelope-o"></i><span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="search.html">私信</a></li>
-                                    <li><a href="reserve/profile.html">关注</a></li>
-                                    <li><a href="reserve/search-id.html">访问记录</a></li>
-                                    <li><a href="reserve/faq.html">系统通知</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                    class="fa fa-lg fa-user"></i><span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="login.html">编辑资料</a></li>
-                                    <li><a href="register.html">身份认证</a></li>
-                                    <li><a href="index.html">修改密码</a></li>
-                                    <li><a href="index.html">退出</a></li>
-                                </ul>
-                            </li>
-                            <!--<li class="dropdown">-->
-                            <!--<div class="navigation">-->
-                            <!--<nav class="colorNav" id="user_info">-->
-                            <!--<ul>-->
-                            <!--<li class="green">-->
-                            <!--<a href="#" class="icon-home"></a>-->
-                            <!--<ul>-->
-                            <!--<li><a href="login.html">编辑资料</a></li>-->
-                            <!--<li><a href="register.html">身份认证</a></li>-->
-                            <!--<li><a href="index.html">修改密码</a></li>-->
-                            <!--<li><a href="index.html">退出</a></li>-->
-                            <!--</ul>-->                                            <!--</li>-->
-                            <!--</ul>-->                                    <!--</nav>-->
-                            <!--</div>-->                            <!--</li>-->
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
-<!--============================  Navigation End ============================-->
 <div class="grid_3">
-  <div class="container">
-      <!--========================================================-->
-      <div class="container">
-          <div class="panel-success">
-              <h3>Lorem & Ipsum</h3>
-              <img width="98%" src="../../static/images/wed.jpg" th:src="@{/images/wed.jpg}"/>
-          </div>
-      </div>
+    <div class="container">
+        <div class="container-fluid " style="height: auto">
+            <th:block th:utext="${content}"></th:block>
 
-      <div class="terms_1" style="padding: 50px">
-          <h3 style="margin: 30px">我们的恋爱历程</h3>
+        </div>
+        <div class="text-right">
+            <input id="like" th:value="${like}" hidden>
+            <input id="likeCount" th:value="${likeCount}" hidden>
+            <div id="like-story" th:style="${like?'cursor: pointer;color:red':'cursor: pointer'}"
+                 th:text="${'('+likeCount+')'}" class='fa fa-lg glyphicon-thumbs-up fa-thumbs-o-up col-md-11'>
+            </div>
+        </div>
+        <div class="col-md-12 breadcrumb1 text-center">
+            <ul>
+                <span class="divider">&nbsp;<i class="grey-line"></i>&nbsp;</span>
+                <li class="current-page"><h1>用户评论</h1></li>
+                <span class="divider">&nbsp;<i class="grey-line"></i>&nbsp;</span>
 
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为身边有朋友在珍爱网服务过，有成功找到对象的，也有没找到的，不过这种个人因素占很大比重的事情，苛求百分百的成功率也不太现实。所以我觉得这还是不错的方式，试试也不错，就去珍爱网深圳地王店线下服务中心加入了会员，想多给自己一些机会。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我还是有挺多顾虑的，害怕碰到熟人，多少有点尴尬，也怕遇到渣男，被欺骗感情。不过事实证明是我多虑了，他还挺好的，第一次见面就觉得无论是着装还是谈吐都很吸引人，相处了快一年，日久见人心，他是个品质优秀也对我很好的人。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从认识到现在，每次节日，不论东方的西方的，成文的不成文的，除了礼物每次都会送一束玫瑰花，不知道别的女孩子是什么样的，我是很爱花的，觉得谈恋爱一定要有玫瑰的香味氤氲才称得上浪漫。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他送过我很多小礼物，都是生活中用得上的，很贴心也很用心的一个人，会送手机啊，还有一些保健品，其他的还有太多都想不起来了。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在一起不久我们就出国去旅游了一次，当时刚好碰上都有假期，就来了一场说走就走的旅行，感情里充满了惊喜。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在感情很稳定，每周都会见个两三次，每天晚上回家了还都会视频聊天，也都很走心，虽然年纪不大，但是奔着结婚去的，都见过了家长。偶尔也会拌拌嘴，不过一般都是我在闹，他在笑。从来没有什么原则性的事情会争吵，都是女生的小情绪，发点小脾气，哄一哄就好了。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了跟男朋友要磨合，跟红娘之间其实也是有一段时间的磨合期的，真正信任了红娘老师，会对自己的征婚有很大的帮助。我前前后后也见过了几个会员，综合了解之后，发现很多条件并不是像自己制定的那么苛刻，而且红娘老师可能不是在某一个人身上教给了你一些东西，而是在你觉得不满意的时候，帮忙分析原因，这对以后的感情生活也很有帮助，因为两个人不合适往往不是一个人的事情。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们俩年纪都不大，想要再谈几年，双方家庭都比较传统，结了婚就会被催着要小孩，会有各种约束，现在的恋爱状态彼此都很自由很享受，还暂时不想改变。等时间到了，也就会结婚了。</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很感恩珍爱网，愿意分享自己的故事也是基于对珍爱网的信任和感谢，人海茫茫遇到一个合适的人不容易，很多人蹉跎中错过了很多，我庆幸自己迈出了这一步。同时也很感谢红娘朱老师，教给了我很多东西，甚至拿自己跟先生的一些事例来告诉我爱情里和婚姻里的处事之道，真的很贴心。</p>
-      </div>
-    <!--============================ ============================-->
+            </ul>
+            <ul>
+                <li class="current-page"><h4>comments</h4></li>
+            </ul>
+        </div>
+        <div class="col-md-12 profile_left">
+            <div class="col_4">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                            <div class="tab_box tab_box1">
+                                <h1>我也要给这对新人送上我真挚的祝福</h1>
 
-   <div class="col-md-12 breadcrumb1 text-center">
-     <ul>
+                            </div>
+                            <div class="clearfix"></div>
 
-         <span class="divider">&nbsp;<i class="grey-line"></i>&nbsp;</span>
-        <li class="current-page"><h1>用户评论</h1></li>
-         <span class="divider">&nbsp;<i class="grey-line"></i>&nbsp;</span>
+                            <div class="about_middle" style="padding:1em 0 ">
+                                <div class="container">
+                                    <form>
+                                        <div class="row text-center">
+                                            <textarea class="col-md-9 col-sm-offset-1" rows="5" id="Message"
+                                                      th:placeholder="请输入祝福内容"></textarea>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px">
+                                            <div class="col-md-9"></div>
+                                            <input class="col-md-1 btn btn-info text-right" name="submit" id="submit"
+                                                   value="祝福他们">
+                                        </div>
+                                    </form>
 
-     </ul>
-       <ul><li class="current-page"><h4>comments</h4></li></ul>
-   </div>
+                                </div>
+                            </div>
 
-
-   <div class="col-md-12 profile_left">
-     <div class="col_4">
-		    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-			   <div id="myTabContent" class="tab-content">
-				  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-				    <div class="tab_box tab_box1">
-				        <h1>我也要给这对新人送上我真挚的祝福</h1>
-
-				    </div>
-	                <div class="clearfix"> </div>
-
-                  <div class="about_middle" style="padding:1em 0 ">
-                      <div class="container">
-                          <form>
-                          <div class="row text-center">
-                              <textarea class="col-md-9 col-sm-offset-1" rows="5" value="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '请输入祝福内容';}">请输入祝福内容</textarea>
-                          </div>
-                           <div class="row" style="margin-top: 10px">
-                               <div class="col-md-9" ></div>
-                               <input class="col-md-1 btn btn-info text-right" name="submit" type="submit" id="submit" value="祝福他们">
-                           </div>
-                          </form>
-
-                      </div>
-                  </div>
-
-
-	                <div class="jobs-item with-thumb" style="margin-top: 50px">
-	                   <div class="thumb_top">
-				        <div class="thumb"><a href="#"><img src="../../static/images/a8.jpg" class="img-responsive" alt=""/></a></div>
-					    <div class="jobs_right">
-							<h6 class="title"><a href="#">Lorem (2547189)</a></h6>
-							<ul class="top-btns login_details1">
-                                <li>28&nbsp;&nbsp;<a href="#" class="fa fa-2x fa-thumbs-up"></a></li>
-							</ul>
-							<ul class="login_details1">
-							  <li>2017-10-11</li>
-							</ul>
-							<p class="description">
-                                看到RNG的3比0，再看看EDG的0比3，好多网友又要开始喷EDG了，什么0比3我上我也行之类的，行不行你心里没点B数吗？你上万一赢了呢！
-                            </p>
-						</div>
-						<div class="clearfix"> </div>
-					   </div>
+                            <div id="replyDiv">
+                                <input id="storyId" th:value="${successStory.id}" hidden>
+                                <th:block th:each="successStoryReply,iterStat:${reply.list}">
+                                    <div class="jobs-item with-thumb" style="margin-top: 50px">
+                                        <div class="thumb_top">
+                                            <div class="thumb"><a th:href="@{'/profile/'+${successStoryReply.user.id}}"><img
+                                                    th:src="@{/file(path=${successStoryReply.user.photo})}"
+                                                    class="img-responsive" alt=""/></a></div>
+                                            <div class="jobs_right">
+                                                <h6 class="title"><a
+                                                        th:href="@{'/profile/'+${successStoryReply.user.id}}"
+                                                        th:text="${successStoryReply.user.nickname}"></a></h6>
+                                                <ul class="login_details1">
+                                                    <li th:text="${#dates.format(successStoryReply.replyTime,'yyyy-MM-dd')}"></li>
+                                                </ul>
+                                                <p style="font-size: 20px;" class="description"
+                                                   th:text="${successStoryReply.content}"></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                            <div class="col-sm-12" th:if="${reply.total gt 10 }" >
+                                <br/>
+                                 <button id="loadmore" type="button" class="btn btn-success btn-lg btn-block">加载更多...
+                                </button>
+                            </div>
+                        </div>
                     </div>
-
-	                <div class="jobs-item with-thumb" style="margin-top: 50px">
-	                   <div class="thumb_top">
-				        <div class="thumb"><a href="#"><img src="../../static/images/a7.jpg" class="img-responsive" alt=""/></a></div>
-					    <div class="jobs_right">
-							<h6 class="title"><a href="#">Lorem (2547189)</a></h6>
-							<ul class="top-btns login_details1">
-                                <!-- 点赞 -->
-                                <li>28&nbsp;&nbsp;<a href="#" class="fa fa-2x fa-thumbs-up"></a></li>
-							</ul>
-							<ul class="login_details1">
-							  <li>2017-10-11</li>
-							</ul>
-							<p class="description">
-                                看到RNG的3比0，再看看EDG的0比3，好多网友又要开始喷EDG了，什么0比3我上我也行之类的，行不行你心里没点B数吗？你上万一赢了呢！
-                            </p>
-						</div>
-						<div class="clearfix"> </div>
-					   </div>
-                    </div>
-
-	                <div class="jobs-item with-thumb" style="margin-top: 50px">
-	                   <div class="thumb_top">
-				        <div class="thumb"><a href="#"><img src="../../static/images/a6.jpg" class="img-responsive" alt=""/></a></div>
-					    <div class="jobs_right">
-							<h6 class="title"><a href="#">Lorem (2547189)</a></h6>
-							<ul class="top-btns login_details1">
-                                <li>28&nbsp;&nbsp;<a href="#" class="fa fa-2x fa-thumbs-up"></a></li>
-							</ul>
-							<ul class="login_details1">
-							  <li>2017-10-11</li>
-							</ul>
-							<p class="description">
-                                看到RNG的3比0，再看看EDG的0比3，好多网友又要开始喷EDG了，什么0比3我上我也行之类的，行不行你心里没点B数吗？你上万一赢了呢！
-                            </p>
-						</div>
-						<div class="clearfix"> </div>
-					   </div>
-                    </div>
-
-	                <div class="jobs-item with-thumb" style="margin-top: 50px">
-	                   <div class="thumb_top">
-				        <div class="thumb"><a href="#"><img src="../../static/images/a5.jpg" class="img-responsive" alt=""/></a></div>
-					    <div class="jobs_right">
-							<h6 class="title"><a href="#">Lorem (2547189)</a></h6>
-							<ul class="top-btns login_details1">
-                                <li>28&nbsp;&nbsp;<a href="#" class="fa fa-2x fa-thumbs-up"></a></li>
-							</ul>
-							<ul class="login_details1">
-							  <li>2017-10-11</li>
-							</ul>
-							<p class="description">
-                                看到RNG的3比0，再看看EDG的0比3，好多网友又要开始喷EDG了，什么0比3我上我也行之类的，行不行你心里没点B数吗？你上万一赢了呢！
-                            </p>
-						</div>
-						<div class="clearfix"> </div>
-					   </div>
-                    </div>
-
-
-
-                      <ul class="pagination pagination_1">
-                          <li class="active"><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
-                          <li><a href="#">...</a></li>
-                          <li><a href="#">Next</a></li>
-                      </ul>
-				  </div>
-			 </div>
-		  </div>
-	   </div>
-   </div>
-   <div class="clearfix"> </div>
-  </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 
 <!--页面尾部-->

@@ -23,7 +23,7 @@ function niceValidator() {
             'photo': 'required;accept[png|jpg|bmp|gif|jpeg]'
         },
         valid:  function(form){
-            $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,100));
+            $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,50)+"...");
             $("#essays").val(UE.getEditor('editor').getContent());
             form.submit();
         },

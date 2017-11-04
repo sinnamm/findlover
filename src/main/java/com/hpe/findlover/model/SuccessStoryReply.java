@@ -17,9 +17,11 @@ public class SuccessStoryReply {
 
     private String content;
 
-    @Column(name = "reply_id")
-    private Date replyId;
+    @Column(name = "reply_time")
+    private Date replyTime;
 
+    @Transient
+    private UserBasic user;
     /**
      * @return id
      */
@@ -52,7 +54,7 @@ public class SuccessStoryReply {
      * @return user_id
      */
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     /**
@@ -76,17 +78,32 @@ public class SuccessStoryReply {
         this.content = content;
     }
 
-    /**
-     * @return reply_id
-     */
-    public Date getReplyId() {
-        return replyId;
+    public Date getReplyTime() {
+        return replyTime;
     }
 
-    /**
-     * @param replyId
-     */
-    public void setReplyId(Date replyId) {
-        this.replyId = replyId;
+    public void setReplyTime(Date replyTime) {
+        this.replyTime = replyTime;
+    }
+
+
+    public UserBasic getUser() {
+        return user;
+    }
+
+    public void setUser(UserBasic user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "SuccessStoryReply{" +
+                "id=" + id +
+                ", ssId=" + ssId +
+                ", userId=" + userId +
+                ", content='" + content + '\'' +
+                ", replyTime=" + replyTime +
+                ", user=" + user +
+                '}';
     }
 }

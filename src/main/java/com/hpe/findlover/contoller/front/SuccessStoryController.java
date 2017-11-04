@@ -1,22 +1,28 @@
 package com.hpe.findlover.contoller.front;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.SuccessStory;
+import com.hpe.findlover.model.SuccessStoryLike;
+import com.hpe.findlover.model.SuccessStoryReply;
 import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.service.SuccessStoryLikeService;
+import com.hpe.findlover.service.SuccessStoryReplyService;
 import com.hpe.findlover.service.SuccessStoryService;
 import com.hpe.findlover.service.UploadService;
+import com.hpe.findlover.util.SessionUtils;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author sinnamm
@@ -29,6 +35,10 @@ public class SuccessStoryController {
     private SuccessStoryService successStoryService;
     @Autowired
     private UploadService uploadService;
+    @Autowired
+    private SuccessStoryLikeService successStoryLikeService;
+    @Autowired
+    private SuccessStoryReplyService successStoryReplyService;
     Logger logger = LoggerFactory.getLogger(SuccessStoryController.class);
     @PostMapping("write_story")
     public String uploadEssay(HttpSession session, String essays, int otherId, String title,
@@ -55,18 +65,78 @@ public class SuccessStoryController {
     public String writeStory(){
         return "front/write_story";
     }
-    @GetMapping
-    public String successStory(){
-        return "front/success_story";
-    }
 
-    @GetMapping("/success_story_info")
-    public String successStoryInfo(){
+    @GetMapping
+    public String successStory(Model model){
+        PageHelper.startPage(1,8,"success_time desc");
+        List<SuccessStory> list= successStoryService.selectAll();
+        model.addAttribute("list",list);
+        return"front/success_story";
+    }
+    @PostMapping("load_more")
+    @ResponseBody
+    public Object loadMore(int lineSize,int currentPage){
+        PageHelper.startPage(currentPage,lineSize,"success_time desc");
+        PageInfo<SuccessStory> pageInfo= new PageInfo<>(successStoryService.selectAll());
+        return pageInfo;
+    }
+    @PostMapping("story_reply/load_more")
+    @ResponseBody
+    public Object loadMoreReply(int storyId,int currentPage,int lineSize){
+        PageHelper.startPage(currentPage,lineSize,"reply_time desc");
+        PageInfo<SuccessStoryReply> pageInfo=new PageInfo<>(successStoryReplyService.selectByStoryId(storyId));
+        return pageInfo;
+    }
+    @GetMapping("success_story_info/{id}")
+    public String successStoryInfo(@PathVariable int id,HttpSession session,Model model) throws Exception{
+        logger.error("访问success_story_info Controller");
+        SuccessStory successStory=successStoryService.selectByPrimaryKey(id);
+        String filename = successStory.getContent();
+        byte[] bytes = uploadService.downloadFile(filename);
+        String content = new String(bytes, "utf-8");
+        UserBasic userBasic= (UserBasic) session.getAttribute("user");
+        Boolean like=successStoryLikeService.selectByStoryIdAndUserId(id,userBasic.getId());
+        int likeCount=successStoryLikeService.selectCountByStoryId(id);
+        PageHelper.startPage(1,5,"reply_time desc");
+        PageInfo<SuccessStoryReply> pageInfo=new PageInfo<>(successStoryReplyService.selectByStoryId(id));
+        model.addAttribute("successStory",successStory);
+        model.addAttribute("content", content);
+        model.addAttribute("like",like?"true":"false");
+        model.addAttribute("likeCount",likeCount);
+        model.addAttribute("reply",pageInfo);
         return "front/success_story_info";
     }
 
-    @GetMapping("/story_view")
+    @GetMapping("story_view")
     public String successStoryView() {
         return "front/story_view";
     }
+    @PostMapping("reply")
+    @ResponseBody
+    public String reply(String content, int storyId,HttpSession session){
+        UserBasic userBasic= SessionUtils.getSessionAttr("user",UserBasic.class);
+        SuccessStoryReply successStoryReply=new SuccessStoryReply();
+        successStoryReply.setContent(content);
+        successStoryReply.setSsId(storyId);
+        successStoryReply.setUserId(userBasic.getId());
+        successStoryReply.setReplyTime(new Date());
+        if (successStoryReplyService.insert(successStoryReply)){
+            return "true";
+        }
+        return "false";
+    }
+    @PostMapping("like")
+    @ResponseBody
+    public String like(int storyId,HttpSession session){
+        UserBasic userBasic= SessionUtils.getSessionAttr("user",UserBasic.class);
+        SuccessStoryLike successStoryLike=new SuccessStoryLike();
+        successStoryLike.setLikeTime(new Date());
+        successStoryLike.setSuccessStoryId(storyId);
+        successStoryLike.setUserId(userBasic.getId());
+        if (successStoryLikeService.insert(successStoryLike)){
+            return "true";
+        }
+        return "false";
+    }
+
 }
