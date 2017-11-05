@@ -9,6 +9,7 @@
     </th:block>
     <script th:inline="javascript">
         var essayId = /*[[${successStory.id}]]*/'';
+        var left = /*[[${param.left}]]*/'';
     </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
@@ -20,7 +21,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">专栏作家文章详情</h3>
+                            <h3 class="box-title">成功故事审核</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -69,10 +70,11 @@
 <script>
     $(function () {
         $("#checked-essay").click(function () {
+            alert("sid=" + essayId+",lef"+left);
             $.ajax({
                 url: contextPath + "success_story/pass" ,
                 type: "put",
-                data: {"status": 3,"id":essayId},
+                data: {"status": 3,"id":parseInt(essayId),"left":parseInt(left)},
                 dataType: "text",
                 success: function (data) {
                     if (data === "success") {

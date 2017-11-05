@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>FindLover</title>
+  <link th:href="@{/css/404.css}" rel="stylesheet" type="text/css">
+  <script th:src="@{/js/404.js}"></script>
+</head>
+
+<body style="margin: 0">
+  
+<div class="content">
+  <canvas class="snow" id="snow"></canvas>
+  <div class="main-text">
+    <h2>您还没有权限访问该页面</h2><a class="home-link" th:href="@{/admin}">回到首页.</a>
+  </div>
+  <div class="ground">
+    <div class="mound"> 
+      <div class="mound_text">404</div>
+      <div class="mound_spade"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

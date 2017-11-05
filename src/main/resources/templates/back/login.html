@@ -19,6 +19,9 @@
             <form th:action="@{/admin/login}" method="post">
                 <input type="text" name="username" class="username" placeholder="Username">
                 <input type="password" name="password" class="password" placeholder="Password">
+                <div class="connect" style="color: red;font-size: 15px">
+                    <p th:if="${param.message!=null}" th:text="${param.message}"></p>
+                </div>
                 <button type="submit">登录</button>
                 <div class="error"><span>+</span></div>
             </form>

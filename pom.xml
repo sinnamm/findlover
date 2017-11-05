@@ -5,7 +5,7 @@
 
     <groupId>com.hpe</groupId>
     <artifactId>findlover</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>findlover</name>
@@ -214,6 +214,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

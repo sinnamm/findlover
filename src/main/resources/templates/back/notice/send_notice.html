@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:include="/back/common/common_resource :: resources"/>
+    <th:block th:include="back/common/common_resource :: resources"/>
     <title>Title</title>
     <th:block th:remove="all">
         <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
@@ -15,11 +15,11 @@
         <h3>发布通知</h3>
     </div>
     <div class="col-md-offset-1">
-        <form id="notice-form" class="form-horizontal" method="post" action="/admin/notice/send_notice">
+        <form id="notice-form" class="form-horizontal" method="post" th:action="@{/admin/notice/send_notice}">
             <div class="form-group">
                 <label  class="col-sm-2 control-label">标题</label>
                 <div class="col-sm-5">
-                    <input type="text" name="title" class="form-control"  placeholder="标题">
+                    <input type="text" name="title" class="form-control" placeholder="标题">
                 </div>
             </div>
             <div class="form-group">
@@ -58,10 +58,13 @@
 <script>
     $(function () {
         $("#notice-form").validator({
+            rules:{
+                title: [/^([\u4E00-\u9FA5]|\w){2,30}$/, "标题应为2-30位字符"]
+            },
             fields:{
-                title:'required;length[~20]',
+                title:'required;title',
                 content:'required;length[~255]',
-                userId:'remote['+contextPath+'admin/user/check_id, userId]'
+                userId:'digits;remote['+contextPath+'admin/user/check_id, userId]'
             }
         });
         $("#receive").change(function () {

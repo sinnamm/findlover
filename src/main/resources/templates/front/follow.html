@@ -3,7 +3,7 @@
 <head>
     <title>我的关注</title>
     <!--公共css与js文件-->
-    <th:block th:include="/front/common/common_resource::resources"/>
+    <th:block th:include="front/common/common_resource::resources"/>
     <script th:src="@{/js/front/follow.js}"></script>
     <script th:src="@{/js/pagetool.js}"></script>
 
@@ -23,7 +23,7 @@
 
 <body>
 <!-- 导航栏 -->
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 
 <div class="grid_3">
     <div class="container">
@@ -138,7 +138,7 @@
 
 
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 
 </body>
 </html>	

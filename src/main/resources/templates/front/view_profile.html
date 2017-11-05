@@ -3,7 +3,7 @@
 <head>
     <title>个人资料</title>
     <meta charset="utf-8">
-    <th:block th:include="/front/common/common_resource :: resources"/>
+    <th:block th:include="front/common/common_resource :: resources"/>
     <script th:inline="javascript">
         userId = /*[[${session.user.id}]]*/'';
     </script>
@@ -22,7 +22,7 @@
     </th:block>
 </head>
 <body>
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 <div class="grid_3">
     <div class="container" style="width: 90%">
         <div class="breadcrumb1">
@@ -37,12 +37,11 @@
             <div class="col-md-8">
                 <div class="profile-no-auth" th:if="${code==0}">
                     <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
-                    <span>该用户很害羞，个人资料不想被别人看到。。。试着跟Ta<a href="javascript:void(0)">打个招呼</a>？</span>
+                    <span>该用户很害羞，个人资料不想被别人看到。。。</span>
                 </div>
                 <div class="profile-no-auth" th:if="${code==2}">
                     <p><a href="javascript:void(0)" class="com-btn">投诉Ta</a></p>
-                    <span>该用户很高冷，个人资料只想让被自己关注的人看到。。。
-            向Ta<a href="javascript:void(0)">打招呼</a>，让Ta关注你吧！</span>
+                    <span>该用户很高冷，个人资料只想让被自己关注的人看到。。。</span>
                 </div>
             </div>
             <div class="col-md-8 profile_left" th:if="${code==1}">
@@ -479,7 +478,7 @@
             </div>
         </div>
     </div>
-    <th:block th:include="/front/common/footer::foot"/>
+    <th:block th:include="front/common/footer::foot"/>
 </div>
 <div class="modal fade" id="comModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true"
      data-keyboard="true">

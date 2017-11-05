@@ -46,7 +46,7 @@ public final class LoverUtil {
 			try {
 				value = field.get(obj);
 			} catch (IllegalAccessException e) {
-				logger.error("属性" + name + "的值获取失败。");
+				logger.debug("属性" + name + "的值获取失败。");
 				e.printStackTrace();
 			}
 			if("signature".equals(name) && value == null){
@@ -69,20 +69,20 @@ public final class LoverUtil {
 		if(userPick.getWorkplace()!=null) {
 			userPick.setWorkProvince("%" + userPick.getWorkplace().split("-")[0] + "%");
 		}
-		logger.info("userPick:"+userPick);
+		logger.debug("userPick:"+userPick);
 		List<UserBasic> userBasicStarList = userService.selectStarUser(userPick);
 		List<UserBasic> userBasicStarPick = null;
 		//如果用户数大于需要的人数则随机选四个用户显示
 		if(userBasicStarList.size()> number){
 			userBasicStarPick = LoverUtil.getRandomUser(userBasicStarList,number);
-			logger.info("用户条件的星级用户过多，需要随机选择");
+			logger.debug("用户条件的星级用户过多，需要随机选择");
 		}else if (userBasicStarList.size() == 0){
 			userBasicStarPick = LoverUtil.
 					getRandomUser(userService.selectStarUser(new UserPick(userPick.getId(),userPick.getSex())),number);
-			logger.info("用户条件的星级用户没有，从所有星级用户随机选择");
+			logger.debug("用户条件的星级用户没有，从所有星级用户随机选择");
 		}else{
 			userBasicStarPick=userBasicStarList;
-			logger.info("用户条件的星级用户有");
+			logger.debug("用户条件的星级用户有");
 		}
 		for (UserBasic userbasic : userBasicStarPick) {
 			userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
@@ -122,7 +122,7 @@ public final class LoverUtil {
 			if (userBasic.getUserAsset() != null) {
 				userBasic.setVip(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getVipDeadline())>0);
 				userBasic.setStar(LoverUtil.getDiffOfHours(userBasic.getUserAsset().getStarDeadline())>0);
-				logger.info("用户名："+userBasic.getNickname()+"...是否是VIP："+userBasic.getVip()+"...是否是星级用户："+userBasic.getStar());
+				logger.debug("用户名："+userBasic.getNickname()+"...是否是VIP："+userBasic.getVip()+"...是否是星级用户："+userBasic.getStar());
 			}else {
 				UserAsset userAsset = new UserAsset();
 				userBasic.setVip(false);
@@ -133,7 +133,7 @@ public final class LoverUtil {
 				if (userBasic.getUserDetail().getSignature()==null)
 				{
 					userBasic.getUserDetail().setSignature(Constant.INIT_SIGNATURE);
-					logger.info("用户名："+userBasic.getNickname()+"...内心独白："+userBasic.getUserDetail().getSignature());
+					logger.debug("用户名："+userBasic.getNickname()+"...内心独白："+userBasic.getUserDetail().getSignature());
 				}
 			}else {
 				UserDetail userDetail = new UserDetail();
@@ -202,7 +202,7 @@ public final class LoverUtil {
 			age = now.get(Calendar.YEAR) - born.get(Calendar.YEAR);
 			int nowDayOfYear = now.get(Calendar.DAY_OF_YEAR);
 			int bornDayOfYear = born.get(Calendar.DAY_OF_YEAR);
-			logger.info("nowDayOfYear:" + nowDayOfYear + " bornDayOfYear:" + bornDayOfYear);
+			logger.debug("nowDayOfYear:" + nowDayOfYear + " bornDayOfYear:" + bornDayOfYear);
 			if (nowDayOfYear < bornDayOfYear) {
 				age -= 1;
 			}

@@ -1,12 +1,6 @@
 package com.hpe.findlover.contoller.front;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.hpe.findlover.model.Dict;
-import com.hpe.findlover.model.UserAsset;
-import com.hpe.findlover.model.UserBasic;
-import com.hpe.findlover.model.UserPick;
-import com.hpe.findlover.service.*;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.Constant;
@@ -20,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,16 +54,16 @@ public class IndexController {
      **/
     @GetMapping(value = {"","index"})
     public String index(Model model, HttpServletRequest request) throws Exception {
-        logger.error("User Subject: "+ SecurityUtils.getSubject().getPrincipal().toString());
+        logger.debug("User Subject: "+ SecurityUtils.getSubject().getPrincipal().toString());
 
         //获取光荣脱单榜
         Map<UserBasic, Integer> vipNotSingles = successStoryService.selectVipNotSingle();
         //1.用户信息，基本信息可以从session中直接获取，消费信息需要我们查询数据库
         UserBasic user = (UserBasic)request.getSession().getAttribute("user");
         user.setAge(LoverUtil.getAge(user.getBirthday()));
-        logger.info("user:"+user);
+        logger.debug("user:"+user);
         UserAsset userAsset = userAssetService.selectByPrimaryKey(user.getId());
-        logger.info("userAsset:"+userAsset);
+        logger.debug("userAsset:"+userAsset);
         //剩余时间计算
         int vipDate=0, starDate=0,asset=0;
         if (userAsset!=null){
@@ -84,7 +77,7 @@ public class IndexController {
                asset= userAsset.getAsset();
             }
         }
-        logger.info("vipDate="+vipDate+"....starDate="+starDate+".....asset="+asset);
+        logger.debug("vipDate="+vipDate+"....starDate="+starDate+".....asset="+asset);
         model.addAttribute("vipDate",vipDate);
         model.addAttribute("starDate",starDate);
         model.addAttribute("asset",asset);
@@ -97,7 +90,7 @@ public class IndexController {
         model.addAttribute("userPick",userPick);
         model.addAttribute("jobList",jobList);
         model.addAttribute("vipNotSingles",vipNotSingles);
-        logger.error(vipNotSingles);
+        logger.debug(vipNotSingles);
         //  * 5、谁看过我
         PageHelper.startPage(1,5,"visit_time desc");
         List<VisitTrace> visitTraces = visitTraceService.selectIndexVisitTracer(user.getId());
@@ -135,27 +128,27 @@ public class IndexController {
      */
     private List<UserBasic> getDayLovers(UserPick userPick, UserBasic user){
         userPick.setId(user.getId());
-        logger.info("userPick..."+userPick);
+        logger.debug("userPick..."+userPick);
         List<UserBasic> userBasicList = userService.selectUserByUserPick(userPick);
         LoverUtil.formatUserInfo(userBasicList);
 
         if (userBasicList.size()> Constant.INDEX_SHOW_USER_NUMBER){
-            logger.info("根据择偶条件选出来的用户大于16，需要随机选取");
+            logger.debug("根据择偶条件选出来的用户大于16，需要随机选取");
             return LoverUtil.getRandomUser(userBasicList,Constant.INDEX_SHOW_USER_NUMBER);
         }else {
-            logger.info("根据择偶条件选出来的用户小于16，需要从数据库随机获取");
+            logger.debug("根据择偶条件选出来的用户小于16，需要从数据库随机获取");
             int size = Constant.INDEX_SHOW_USER_NUMBER-userBasicList.size();
             List<UserBasic> userBasics = userService.
                     selectUserBySexualAndWorkProvince(user.getId(),userPick.getSex(),user.getWorkplace().substring(0,2));
             if (userBasics==null||userBasics.size()<size){
-                logger.info("根据性取向和工作最地选出来的用户小于16，只选取性取向对应的用户");
+                logger.debug("根据性取向和工作最地选出来的用户小于16，只选取性取向对应的用户");
                 userBasics =userService.
                         selectUserBySexualAndWorkProvince(user.getId(),userPick.getSex(),null);
             }
             LoverUtil.formatUserInfo(userBasics);
             List<UserBasic> allUsers = LoverUtil.getRandomUser(userBasics,size);
             userBasicList.addAll(allUsers);
-            userBasicList.forEach(logger::info);
+            userBasicList.forEach(logger::debug);
             return userBasicList;
         }
     }

@@ -3,12 +3,12 @@
 <head>
     <title>Home</title>
     <!--公共css与js文件-->
-    <th:block th:include="/front/common/common_resource::resources"/>
+    <th:block th:include="front/common/common_resource::resources"/>
     <script th:src="@{/js/front/success_story.js}"></script>
     <script th:src="@{/js/masonry-docs.min.js}"></script>
 </head>
 <body>
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 <div class="grid_2">
     <div class="container">
         <h2 style="margin: 50px">成功故事</h2>
@@ -63,7 +63,7 @@
 
 
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 
 </body>
 </html>	

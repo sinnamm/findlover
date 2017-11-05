@@ -24,7 +24,7 @@ public interface SuccessStoryService extends BaseService<SuccessStory> {
     /**
      * 插入成功故事并发通知
      */
-    boolean insertStory(SuccessStory successStory);
+    boolean insertStory(SuccessStory successStory,int userId);
     List<SuccessStory> selectAllByStatus();
 
     /**
@@ -32,5 +32,5 @@ public interface SuccessStoryService extends BaseService<SuccessStory> {
      * @param userId
      * @return
      */
-    boolean checkUser(int userId);
+    boolean checkUser(int userId,int left);
 }

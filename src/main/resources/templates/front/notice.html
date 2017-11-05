@@ -3,13 +3,13 @@
 <head>
 	<title>系统消息</title>
 	<!--公共css与js文件-->
-	<th:block th:include="/front/common/common_resource::resources"/>
+	<th:block th:include="front/common/common_resource::resources"/>
 	<script th:src="@{js/front/user_notice.js}"></script>
 	<script th:src="@{/js/pagetool.js}"></script>
 </head>
 
 <body>
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 
 <div class="grid_3">
 	<div class="container">
@@ -130,7 +130,7 @@
 </div><!-- /.modal -->
 
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 
 </body>
 </html>	

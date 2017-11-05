@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="/back/common/common_resource :: resources"/>
+    <th:block th:include="back/common/common_resource :: resources"/>
     <title>Title</title>
     <th:block th:remove="all">
         <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
@@ -50,7 +50,9 @@
             var $idInput = $("#id-input");
             if ($idInput.val() == "") {
                 swal("Error", "用户ID不能为空！", "error");
-            } else {
+            }else if(!/^\d+$/.test($idInput.val())){
+                swal("Error", "用户ID只能为数字！", "error");
+            }else {
                 $.get(contextPath + "admin/user/basic/" + $idInput.val(), {}, function (data) {
                     if (data != undefined && data != "") {
                         window.location = contextPath + "admin/user/details/" + $idInput.val();

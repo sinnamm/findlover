@@ -90,24 +90,25 @@ public class WriterController {
         CustomToken token = new CustomToken(writer.getUsername(), writer.getPassword(), Identity.WRITER);
         try {
             SecurityUtils.getSubject().login(token);
+            if (SecurityUtils.getSubject().isAuthenticated()) {
+                ShiroHelper.flushSession();
+                HttpSession session = request.getSession();
+                session.setAttribute("writer", writerService.selectByUserName(writer.getUsername()));
+                return "redirect:index";
+            } else {
+                return "redirect:login";
+            }
         } catch (UnknownAccountException uae) {
-            logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,未知账户");
+            logger.debug("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,未知账户");
             redirectAttributes.addAttribute("message", "用户名不存在!");
         } catch (IncorrectCredentialsException ice) {
-            logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,错误的凭证");
+            logger.debug("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,错误的凭证");
             redirectAttributes.addAttribute("message", "密码不正确!");
         } catch (LockedAccountException ule) {
-            logger.error("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,用户被锁定");
+            logger.debug("对用户[" + writer.getUsername() + "]进行登录验证..验证未通过,用户被锁定");
             redirectAttributes.addAttribute("message", "用户被锁定!");
         }
-        if (SecurityUtils.getSubject().isAuthenticated()) {
-            ShiroHelper.flushSession();
-            HttpSession session = request.getSession();
-            session.setAttribute("writer", writerService.selectByUserName(writer.getUsername()));
-            return "redirect:index";
-        } else {
-            return "redirect:login";
-        }
+        return "redirect:login";
     }
 
     /**

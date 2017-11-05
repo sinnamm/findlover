@@ -81,7 +81,7 @@ public class WriterControllerBack {
         boolean result = writerService.insertUseGeneratedKeys(writer)>0;
         logger.info("接收参数：pageNum=" + page.getPageNum()
                 + ",pageSize=" + page.getPageSize() + ",column=" + column + ",keyword=" + keyword);
-        logger.error(writer);
+        logger.debug(writer);
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<Writer> writers = writerService.selectAllByIdentity(identity,column, "%" + keyword + "%");
         PageInfo<Writer> pageInfo = new PageInfo<>(writers);

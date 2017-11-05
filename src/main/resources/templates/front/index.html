@@ -3,7 +3,7 @@
 <head>
     <title>FindLover</title>
     <!--公共css与js文件-->
-    <th:block th:include="/front/common/common_resource::resources"/>
+    <th:block th:include="front/common/common_resource::resources"/>
 
     <!--VIP和星级用户标识-->
     <link href="../../static/css/jquery.toolbar.css" th:href="@{/css/jquery.toolbar.css}" rel="stylesheet"/>
@@ -19,7 +19,7 @@
 </head>
 <body>
 <!-- 导航栏 -->
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 <!--导航栏（th:remove)-->
 
 <div class="banner">
@@ -62,7 +62,8 @@
                             <select id="job-select" name="job">
                                 <option value="-1">不限</option>
                                 <option th:each="job : ${jobList}" th:text="${job.value}"
-                                        th:value="${job.value}" th:selected="${job.value==userPick.job}">销售</option>
+                                        th:value="${job.value}" th:selected="${job.value==userPick.job}">销售
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -124,20 +125,27 @@
                                  class="col-md-3 biseller-column">
                                 <a th:href="@{'profile/'+${user.id}}">
                                     <div class="profile-image">
-                                        <img th:src="@{'file?path='+${user.photo}}" style="width: 206px;height: 206px"  class="img-responsive" alt="profile image"/>
+                                        <img th:src="@{'file?path='+${user.photo}}" style="width: 206px;height: 206px"
+                                             class="img-responsive" alt="profile image"/>
                                         <div class="agile-overlay">
                                             <h4>
                                                 <span th:text="${user.nickname}"></span>
-                                                <img th:if="${user.vip==true}" th:src="@{/images/vip.png}" class="snap-flag"/>
-                                                <img th:if="${user.vip==false}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+                                                <img th:if="${user.vip==true}" th:src="@{/images/vip.png}"
+                                                     class="snap-flag"/>
+                                                <img th:if="${user.vip==false}" th:src="@{/images/vip-grey.png}"
+                                                     class="snap-flag"/>
 
-                                                <img th:if="${user.star==true}" th:src="@{/images/star-0.png}" class="snap-flag"/>
-                                                <img th:if="${user.star==false}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
+                                                <img th:if="${user.star==true}" th:src="@{/images/star-0.png}"
+                                                     class="snap-flag"/>
+                                                <img th:if="${user.star==false}" th:src="@{/images/star-0-grey.png}"
+                                                     class="snap-flag"/>
 
                                             </h4>
                                             <ul>
-                                                <li><span th:text="${user.age+'岁'}">21岁</span><span th:text="${user.workplace}">山东青岛</span></li>
-                                                <li><span th:text="${user.height+'cm'}">165cm</span><span th:text="${user.salary+'元'}">5000元</span></li>
+                                                <li><span th:text="${user.age+'岁'}">21岁</span><span
+                                                        th:text="${user.workplace}">山东青岛</span></li>
+                                                <li><span th:text="${user.height+'cm'}">165cm</span><span
+                                                        th:text="${user.salary+'元'}">5000元</span></li>
                                                 <li th:text="${user.userDetail.signature}"></li>
                                             </ul>
                                         </div>
@@ -152,19 +160,26 @@
                                 <a th:href="@{'profile/'+${user.id}}">
                                     <div class="profile-image">
                                         <img th:src="@{'file?path='+${user.photo}}"
-                                             class="img-responsive" style="width: 206px;height: 206px" alt="profile image"/>
+                                             class="img-responsive" style="width: 206px;height: 206px"
+                                             alt="profile image"/>
                                         <div class="agile-overlay">
                                             <h4>
                                                 <span th:text="${user.nickname}"></span>
-                                                <img th:if="${user.vip==true}" th:src="@{/images/vip.png}" class="snap-flag"/>
-                                                <img th:if="${user.vip==false}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+                                                <img th:if="${user.vip==true}" th:src="@{/images/vip.png}"
+                                                     class="snap-flag"/>
+                                                <img th:if="${user.vip==false}" th:src="@{/images/vip-grey.png}"
+                                                     class="snap-flag"/>
 
-                                                <img th:if="${user.star==true}" th:src="@{/images/star-0.png}" class="snap-flag"/>
-                                                <img th:if="${user.star==false}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
+                                                <img th:if="${user.star==true}" th:src="@{/images/star-0.png}"
+                                                     class="snap-flag"/>
+                                                <img th:if="${user.star==false}" th:src="@{/images/star-0-grey.png}"
+                                                     class="snap-flag"/>
                                             </h4>
                                             <ul>
-                                                <li><span th:text="${user.age+'岁'}">21岁</span><span th:text="${user.workplace}">山东青岛</span></li>
-                                                <li><span th:text="${user.height+'cm'}">165cm</span><span th:text="${user.salary+'元'}">5000元</span></li>
+                                                <li><span th:text="${user.age+'岁'}">21岁</span><span
+                                                        th:text="${user.workplace}">山东青岛</span></li>
+                                                <li><span th:text="${user.height+'cm'}">165cm</span><span
+                                                        th:text="${user.salary+'元'}">5000元</span></li>
                                                 <li th:text="${user.userDetail.signature}"></li>
                                             </ul>
                                         </div>
@@ -195,11 +210,13 @@
                             </div>
                             <div class="suceess_story-content-container">
                                 <figure class="suceess_story-content-featured-image">
-                                    <img th:src="@{/file(path=${success_story.photo})}" width="75" height="75" class="img-responsive"/>
+                                    <img th:src="@{/file(path=${success_story.photo})}" width="75" height="75"
+                                         class="img-responsive"/>
                                 </figure>
                                 <div class="suceess_story-content-info">
-                                    <h4><a href="@{'/success_story/success_story_info/'+${success_story.id}">[[${success_story.userLeft.nickname}]]&nbsp;&amp;&nbsp;[[${success_story.userRight.nickname}]]</a></h4>
-                                    <p>[[${success_story.brief}]]<a href="#">More...</a></p>
+                                    <h4><a th:href="@{'/success_story/success_story_info/'+${success_story.id}}">[[${success_story.userLeft.nickname}]]&nbsp;&amp;&nbsp;[[${success_story.userRight.nickname}]]</a>
+                                    </h4>
+                                    <p>[[${success_story.brief}]]<a th:href="@{'/success_story/success_story_info/'+${success_story.id}}">More...</a></p>
                                 </div>
                             </div>
                         </li>
@@ -215,8 +232,9 @@
             <div class="snap container-fluid">
                 <div class="snap-1">
                     <div>
-                        <a th:href="@{'profile/'+${session.user.id}}"><img th:src="@{'file?path='+${session.user.photo}}"
-                                         class="snap-photo"/></a>
+                        <a th:href="@{'profile/'+${session.user.id}}"><img
+                                th:src="@{'file?path='+${session.user.photo}}"
+                                class="snap-photo"/></a>
                     </div>
                     <div>
                         <a th:href="@{'profile/'+${session.user.id}}">
@@ -225,20 +243,21 @@
                         <img th:if="${session.user.vip}" th:src="@{/images/vip.png}" src="../../static/images/vip.png"
                              data-toolbar="vip-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:if="${!session.user.vip}" th:src="@{/images/vip-grey.png}" class="snap-flag" />
+                        <img th:if="${!session.user.vip}" th:src="@{/images/vip-grey.png}" class="snap-flag"/>
 
-                        <img th:if="${session.user.star}" th:src="@{/images/star-0.png}" src="../../static/images/star-0.png"
+                        <img th:if="${session.user.star}" th:src="@{/images/star-0.png}"
+                             src="../../static/images/star-0.png"
                              data-toolbar="star-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:if="${!session.user.star}" th:src="@{/images/star-0-grey.png}" class="snap-flag" />
+                        <img th:if="${!session.user.star}" th:src="@{/images/star-0-grey.png}" class="snap-flag"/>
 
                         <img th:if="${asset>0}" th:src="@{/images/coin.jpg}" src="../../static/images/coin.jpg"
                              data-toolbar="asset-toolbar"
                              data-toolbar-animation="grow" class="snap-flag" data-toolbar-style="warning"/>
-                        <img th:if="${asset==0}" th:src="@{/images/coin-grey.png}" class="snap-flag" />
+                        <img th:if="${asset==0}" th:src="@{/images/coin-grey.png}" class="snap-flag"/>
                         <div id="vip-deadline" class="hidden">
                             <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
-                            th:text="${'vip剩余时间：'+ vipDate + '天'}"></a>
+                               th:text="${'vip剩余时间：'+ vipDate + '天'}"></a>
                         </div>
                         <div id="star-deadline" class="hidden">
                             <a href="javascript:void(0)" style="width: auto;height: auto;color: white"
@@ -274,136 +293,45 @@
                 <span class="grey-line"></span>
             </div>
             <div class="container right-1">
-                <div id="ri-grid" class="ri-grid animate-box">
-                    <img th:src="@{/images/loading.gif}" class="ri-loading-image"
-                         src="../../static/images/loading.gif"/>
-                    <ul>
-                        <li th:each="notSingle :${vipNotSingles}">
-                            <a th:href="@{'profile/'+${notSingle.key.id}}">
-                                <img th:src="@{'/file?path='+${notSingle.key.photo}}" src="../../static/images/pic1.jpg"/>
-                                <div class="desc">
-                                    <h3 th:text="${notSingle.key.nickname}">奔跑的小猪</h3>
-                                    <p th:text="${'历时'+notSingle.value+'天'}">历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <!--<li>
-                            <a href="#">
-                                <img th:src="@{/images/pic2.jpg}" src="../../static/images/pic2.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic3.jpg}" src="../../static/images/pic3.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic4.jpg}" src="../../static/images/pic4.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic5.jpg}" src="../../static/images/pic5.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic6.jpg}" src="../../static/images/pic6.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic7.jpg}" src="../../static/images/pic7.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic8.jpg}" src="../../static/images/pic8.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic9.jpg}" src="../../static/images/pic9.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic10.jpg}" src="../../static/images/pic10.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic11.jpg}" src="../../static/images/pic11.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img th:src="@{/images/pic12.jpg}" src="../../static/images/pic12.jpg"/>
-                                <div class="desc">
-                                    <h3>奔跑的小猪</h3>
-                                    <p>历时1个月</p>
-                                    <p>找到真爱</p>
-                                </div>
-                            </a>
-                        </li>-->
-
-                    </ul>
+                <div th:each="notSingle :${vipNotSingles}"
+                     class="col-md-3 biseller-column">
+                    <a th:href="@{'profile/'+${notSingle.key.id}}">
+                        <div class="profile-image">
+                            <img th:src="@{'file?path='+${notSingle.key.photo}}" style="width: 100px;height: 85px"
+                                 class="img-responsive" alt="profile image"/>
+                            <div class="agile-overlay">
+                                <h4 style="margin-top: 3px;margin-bottom: 3px">
+                                    <span style="font-size: 13px" th:text="${notSingle.key.nickname}"></span>
+                                </h4>
+                                <ul>
+                                    <li><span th:text="${'历时'+notSingle.value+'天找到真爱'}" style="width: 100%;">21岁</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
-
-
+            <!--<div class="container right-1">-->
+            <!--<div id="ri-grid" class="ri-grid animate-box">-->
+            <!--<img th:src="@{/images/loading.gif}" class="ri-loading-image"-->
+            <!--src="../../static/images/loading.gif"/>-->
+            <!--<ul>-->
+            <!--<li th:each="notSingle :${vipNotSingles}">-->
+            <!--<a th:id="'li-'+${notSingle.key.id}">-->
+            <!--<img th:src="@{'/file?path='+${notSingle.key.photo}}"-->
+            <!--style="width:100px !important;height: 100px;"-->
+            <!--src="../../static/images/pic1.jpg"/>-->
+            <!--<div class="desc">-->
+            <!--<h3 th:text="${notSingle.key.nickname}">奔跑的小猪</h3>-->
+            <!--<p th:text="${'历时'+notSingle.value+'天'}">历时1个月</p>-->
+            <!--<p>找到真爱</p>-->
+            <!--</div>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
             <div class="clearfix"></div>
 
 
@@ -423,7 +351,8 @@
                 <ul>
                     <li th:each="visitor:${visitTraces}">
                         <a th:href="@{'/profile/'+${visitor.userBasic.id}}">
-                            <img th:src="@{'/file?path='+${visitor.userBasic.photo}}" src="../../static/images/pic1.jpg"/>
+                            <img th:src="@{'/file?path='+${visitor.userBasic.photo}}"
+                                 src="../../static/images/pic1.jpg"/>
                             <span th:text="${visitor.userBasic.nickname}">奔跑的小猪</span>
                         </a>
                     </li>
@@ -455,7 +384,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <a th:href="@{/vip}"><img th:src="@{/images/star-s.gif}" src="../../static/images/star-s.gif"/></a>
+                            <a th:href="@{/vip}"><img th:src="@{/images/star-s.gif}"
+                                                      src="../../static/images/star-s.gif"/></a>
                         </div>
                         <div class="col-md-9">
                             <a th:href="@{/vip}"><h3>星级用户</h3></a>
@@ -502,6 +432,6 @@
     </div>
 </div>
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 </body>
 </html>	

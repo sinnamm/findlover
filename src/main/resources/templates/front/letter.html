@@ -3,7 +3,7 @@
 <head>
     <title>私信</title>
     <!--公共css与js文件-->
-    <th:block th:include="/front/common/common_resource::resources"/>
+    <th:block th:include="front/common/common_resource::resources"/>
     <link th:href="@{/css/chat-style.css}" href="../../static/css/chat-style.css"/>
     <script src="../../static/js/front/letter.js" th:src="@{/js/front/letter.js}"></script>
     <script th:inline="javascript">
@@ -26,7 +26,7 @@
 </head>
 
 <body>
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 <div class="grid_3">
     <div class="container">
         <div class="row">
@@ -181,7 +181,7 @@
 </div>
 
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 
 </body>
 </html>	

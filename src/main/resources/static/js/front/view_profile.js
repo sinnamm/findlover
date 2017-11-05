@@ -176,7 +176,7 @@ function initLetterBtn() {
                         }
                     });
                 }else{
-                    window.open(contextPath + "profile/" + id);
+                    window.location = contextPath + "letter?id=" + id;
                 }
             }, "json");
         }

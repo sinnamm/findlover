@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -54,7 +55,7 @@ public class SuccessStoryController {
         successStory.setLikeCount(0);
         successStory.setReplyCount(0);
         model.addAttribute("msg", essays);
-        if (successStoryService.insertStory(successStory)){
+        if (successStoryService.insertStory(successStory,user.getId())){
             return "front/story_view";
         }
         return "front/error";
@@ -87,7 +88,7 @@ public class SuccessStoryController {
     }
     @GetMapping("success_story_info/{id}")
     public String successStoryInfo(@PathVariable int id,HttpSession session,Model model) throws Exception{
-        logger.error("访问success_story_info Controller");
+        logger.debug("访问success_story_info Controller");
         SuccessStory successStory=successStoryService.selectByPrimaryKey(id);
         String filename = successStory.getContent();
         byte[] bytes = uploadService.downloadFile(filename);
@@ -139,7 +140,7 @@ public class SuccessStoryController {
 
     @GetMapping("confirmSuccessStory/{id}")
     public String confirm(@PathVariable int id, Model model){
-        logger.info("需要确认的id:"+id);
+        logger.debug("需要确认的id:"+id);
         SuccessStory successStory = successStoryService.selectByPrimaryKey(id);
         String filename = successStory.getContent();
         byte[] bytes = uploadService.downloadFile(filename);
@@ -154,12 +155,12 @@ public class SuccessStoryController {
         return "front/confirm_success_story";
     }
 
-    @GetMapping("pass")
+    @PutMapping("pass")
     @ResponseBody
-    public String pass(SuccessStory successStory){
+    public String pass(SuccessStory successStory,@RequestParam int left){
         logger.info("通过的成功故事："+successStory);
         UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
-        if (successStoryService.checkUser(userBasic.getId())){
+        if (successStoryService.checkUser(userBasic.getId(),left)){
             boolean result = successStoryService.updateByPrimaryKeySelective(successStory);
             if (result){
                 return "success";

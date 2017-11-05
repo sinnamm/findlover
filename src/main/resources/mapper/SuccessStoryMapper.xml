@@ -67,8 +67,7 @@
 
   <select id="checkUser" resultType="successStory">
     SELECT * FROM  findlover.success_story
-    WHERE left_user = #{userId}
-    OR right_user = #{userId}
+    WHERE left_user = #{right}
+    OR (right_user = #{right} AND left_user!=#{left} AND status !=2)
   </select>
-
 </mapper>

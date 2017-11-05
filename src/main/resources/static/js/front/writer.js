@@ -6,12 +6,12 @@ $(function () {
 
 function initEssayForm() {
     $('#essay-form').validator({
-        /*rules:{
-            photo:[/^.*[^a][^b][^c]\.(?:png|jpg|bmp|gif|jpeg)$/,'请正确上传图片格式！']
-        },*/
+        rules:{
+            title: [/^([\u4E00-\u9FA5]|\w){2,30}$/, "标题应为2-30位字符"]
+        },
         fields: {
             'photo': 'required;accept[png|jpg|bmp|gif|jpeg]',
-            'title': 'required;chinese',
+            'title': 'required;title',
             'essays': 'required'
         },
         theme: 'bootstrap',

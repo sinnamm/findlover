@@ -173,35 +173,36 @@ public class UserController {
 		token.setRememberMe(rememberMe);
 		try {
 			SecurityUtils.getSubject().login(token);
+			if (SecurityUtils.getSubject().isAuthenticated()) {
+				ShiroHelper.flushSession();
+				HttpSession session = request.getSession();
+				UserBasic userBasic = userService.selectByEmail(user.getEmail());
+				userService.userAttrHandler(userBasic);
+				session.setAttribute("user", userBasic);
+				return "redirect:index";
+			}
+			else{
+				return "redirect:login";
+			}
 		} catch (UnknownAccountException uae) {
-			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,未知账户");
+			logger.debug("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,未知账户");
 			redirectAttributes.addAttribute("message", "用户名不存在");
 		} catch (IncorrectCredentialsException ice) {
-			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,错误的凭证");
+			logger.debug("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,错误的凭证");
 			redirectAttributes.addAttribute("message", "密码不正确");
 		} catch (LockedAccountException ule){
-			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,用户被锁定");
+			logger.debug("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,用户被锁定");
 			redirectAttributes.addAttribute("message", "用户被锁定");
 		}catch (DisabledAccountException dae){
-			logger.error("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,用户未激活");
+			logger.debug("对用户[" + user.getEmail() + "]进行登录验证..验证未通过,用户未激活");
 			redirectAttributes.addAttribute("message", "用户未激活");
 		}
-		if (SecurityUtils.getSubject().isAuthenticated()) {
-			ShiroHelper.flushSession();
-			HttpSession session = request.getSession();
-			UserBasic userBasic = userService.selectByEmail(user.getEmail());
-			userService.userAttrHandler(userBasic);
-			session.setAttribute("user", userBasic);
-			return "redirect:index";
-		}
-		else{
-			return "redirect:login";
-		}
+		return "redirect:login";
 	}
 	@PostMapping("getUserById")
 	@ResponseBody
 	public UserBasic getById(int otherUserId){
-		logger.error("otherUserId=="+otherUserId);
+		logger.debug("otherUserId=="+otherUserId);
 		return userService.selectByPrimaryKey(otherUserId);
 	}
 	@GetMapping("session/user")

@@ -70,7 +70,7 @@ function loadMessage(div_id,data){
                 var user = reply_list[j].userBasic;
                 $("#collapse-div-"+i).append("<li class='media'>" +
                     "                <div class='thumb1'>" +
-                    "                    <a href='#'>" +
+                    "                    <a href='"+contextPath+"profile/"+user.id+"'>" +
                     "                        <img class='media-object img-circle' width='30px' " +
                     "src='" + contextPath + "file?path= "+user.photo+"' alt='菜鸟'>" +
                     "                    </a>" +

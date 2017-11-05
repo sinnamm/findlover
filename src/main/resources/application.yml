@@ -9,23 +9,15 @@ spring:
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://172.17.46.180:3306/findlover?useSSL=false
+      #url: jdbc:mysql://your ip addr:3306/findlover?useSSL=false
       username: root
+      #username: your database username
       password: gss991
+      #password: your database password
       initial-size: 1
       min-idle: 1
       max-total: 2
       max-wait-millis: 6000
-  mail:
-    host: smtp.qq.com
-    port: 465
-    username: 383196019@qq.com
-    password: djjfuajqwdvbbghb
-    properties:
-      mail:
-        smtp:
-          auth: true
-          timeout: 30000
-          connectiontimeout: 30000
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
   http:
@@ -69,3 +61,4 @@ fdfs:
     width: 150
     height: 150
   trackerList: 172.17.46.190:22122
+  #trackerList: fastdfs ip addr:22122

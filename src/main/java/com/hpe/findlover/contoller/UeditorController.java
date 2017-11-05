@@ -79,12 +79,12 @@ public class UeditorController {
             logger.debug("文件类型" + upfile.getContentType());
             logger.debug("文件大小" + upfile.getSize());
             logger.debug("源文件名称" + upfile.getOriginalFilename());
-            logger.error("上传路径" + uploadPhotoPath);
+            logger.debug("上传路径" + uploadPhotoPath);
             EssayPhoto essayPhoto = new EssayPhoto();
             essayPhoto.setPhoto(uploadPhotoPath);
             essayPhotoService.insert(essayPhoto);
         }
-        logger.error("上传路径" + uploadPhotoPath);
+        logger.debug("上传路径" + uploadPhotoPath);
         Map<String, Object> map = new HashMap<>();
         //uedit要求返回格式
         if(uploadPhotoPath!=null) {

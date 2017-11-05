@@ -51,11 +51,11 @@ public class ProfileController {
 	}
 
 	@GetMapping("{id}")
-	public String getProfileById(@PathVariable("id") int userId, Model model,HttpServletRequest request) {
+	public String getProfileById(@PathVariable("id") int userId, Model model) {
 		Integer sessionUserId = SessionUtils.getSessionAttr( "user", UserBasic.class).getId();
 		//增加访问记录
 		if (sessionUserId!=userId) {
-			visitTraceService.insert(new VisitTrace(null,sessionUserId, userId, new Date(),0));
+			visitTraceService.insertSelective(new VisitTrace(null,sessionUserId, userId, new Date(),0));
 		}
 
 		UserBasic basic = userBasicService.selectByPrimaryKey(userId);
@@ -81,7 +81,6 @@ public class ProfileController {
 		//随机推荐星级会员
 		List<UserBasic> stars = LoverUtil.getRandomStarUser(userPickService.selectByPrimaryKey(sessionUserId), 4, userBasicService);
 		userBasicService.userAttrHandler(stars);
-		logger.debug("stars: "+stars);
 		model.addAttribute("stars", stars);
 		return "front/view_profile";
 	}

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>用户中心</title>
-    <th:block th:include="/front/common/common_resource :: resources"/>
+    <th:block th:include="front/common/common_resource :: resources"/>
 
     <!-- 动态泡泡 -->
     <link th:href="@{/css/jquery.toolbar.css}" href="../../static/css/jquery.toolbar.css" rel="stylesheet"/>
@@ -25,7 +25,7 @@
 
 </head>
 <body>
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 <div class="grid_3">
     <div class="container">
         <div class="breadcrumb1">
@@ -934,7 +934,7 @@
 </div>
 
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 
 <!-- 图片上传 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

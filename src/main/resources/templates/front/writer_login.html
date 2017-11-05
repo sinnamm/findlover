@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>FindLover-Login</title>
-    <th:block th:include="/front/common/common_resource :: resources"/>
+    <th:block th:include="front/common/common_resource :: resources"/>
     <script th:src="@{/js/front/login.js}" src="../../static/js/front/login.js"></script>
 </head>
 <body>
@@ -37,7 +37,7 @@
                 <ul>
                     <a href="#"><i class="fa fa-sign-in home_1"></i></a>
                     <span class="divider">&nbsp;|&nbsp;</span>
-                    <li class="current-page" style="color: #f0f0f0">登录</li>
+                    <li class="current-page" style="color: #f0f0f0">作家登录</li>
                 </ul>
             </div>
             <div class="col-md-8 login_left">
@@ -76,6 +76,6 @@
         </div>
     </div>
 </div>
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 </body>
 </html>	

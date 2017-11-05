@@ -123,8 +123,8 @@ public class UserCenterController {
 		if (request instanceof MultipartHttpServletRequest) {
 			MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
 			List<MultipartFile> photos = mrequest.getFiles("photos");
-			logger.error("上传总数====>" + photos.size());
-			logger.error("上传总数====>" + (validatPhotos.size() + photos.size()));
+			logger.debug("上传总数====>" + photos.size());
+			logger.debug("上传总数====>" + (validatPhotos.size() + photos.size()));
 			if ((validatPhotos.size() + photos.size()) > 8) {
 				return "{\"result\":\"false\"}";
 			}
@@ -134,17 +134,17 @@ public class UserCenterController {
 			while (iterator.hasNext()) {
 				MultipartFile photo = iterator.next();
 				if (photo != null) {
-					logger.error("文件名称====>" + photo.getName());
-					logger.error("文件类型====>" + photo.getContentType());
-					logger.error("文件大小====>" + photo.getSize());
+					logger.debug("文件名称====>" + photo.getName());
+					logger.debug("文件类型====>" + photo.getContentType());
+					logger.debug("文件大小====>" + photo.getSize());
 					String photoPath = uploadService.uploadFile(photo);
 					UserPhoto userPhoto = new UserPhoto();
 					userPhoto.setUserId(userBasic.getId());
 					userPhoto.setPhoto(photoPath);
 					userPhotoService.insertUseGeneratedKeys(userPhoto);
 					paths.add(userPhoto);
-					logger.error("上传完成!");
-					logger.error("==================================");
+					logger.debug("上传完成!");
+					logger.debug("==================================");
 				}
 			}
 			//查询出所有的照片
@@ -216,17 +216,17 @@ public class UserCenterController {
 				uploadService.deleteFile(userBasic.getPhoto());
 			}
 			//获取用户头像
-			logger.error("文件名称====>" + photo.getName());
-			logger.error("文件类型====>" + photo.getContentType());
-			logger.error("文件大小====>" + photo.getSize());
+			logger.debug("文件名称====>" + photo.getName());
+			logger.debug("文件类型====>" + photo.getContentType());
+			logger.debug("文件大小====>" + photo.getSize());
 			uploadPhotoPath = uploadService.uploadFile(photo);
 			userBasic.setPhoto(uploadPhotoPath);
 			logger.debug(uploadPhotoPath);
 			//更新sesion中图片路径
 			session.setAttribute("user", userBasic);
 			userService.updateByPrimaryKeySelective(userBasic);
-			logger.error("上传完成!");
-			logger.error("==================================");
+			logger.debug("上传完成!");
+			logger.debug("==================================");
 
 			userPhoto = new UserPhoto();
 			userPhoto.setId(0);
@@ -378,7 +378,7 @@ public class UserCenterController {
 			if (userBasic.getPassword() != null) {
 				userBasic.setPassword(new Md5Hash(userBasic.getPassword(),userBasic.getEmail()).toString());
 			}
-			logger.error(userBasic);
+			logger.debug(userBasic);
 			if(userBasic.getSexual()!=null) {
 				UserPick userPick = new UserPick();
 				userPick.setId(userBasic.getId());
@@ -414,7 +414,7 @@ public class UserCenterController {
 		} else {
 			userDetail.setBirthplace(birthplace_province);
 		}
-		logger.error(userDetail);
+		logger.debug(userDetail);
 		if (userDetailService.selectByPrimaryKey(userDetail) != null) {
 			result = userDetailService.updateByPrimaryKey(userDetail);
 		} else {
@@ -450,7 +450,7 @@ public class UserCenterController {
 	@CachePut(key = "'life-'+#userLife.id")
 	public Object updateUserLife(UserLife userLife) {
 		boolean result = false;
-		logger.error(userLife);
+		logger.debug(userLife);
 		if (userLife != null) {
 			result = userLifeService.insertUserLifeAndUserLabel(userLife);
 		}
@@ -467,7 +467,7 @@ public class UserCenterController {
 	@CachePut(key = "'status-'+#userStatus.id")
 	public Object updateUserStatus(UserStatus userStatus) {
 		boolean result = false;
-		logger.error(userStatus);
+		logger.debug(userStatus);
 		if (userStatusService.selectByPrimaryKey(userStatus) != null) {
 			result = userStatusService.updateByPrimaryKey(userStatus);
 		} else {
@@ -497,7 +497,7 @@ public class UserCenterController {
 		} else {
 			userPick.setWorkplace(birthplace_province1);
 		}
-		logger.error(userPick);
+		logger.debug(userPick);
 		if (userPickService.selectByPrimaryKey(userPick) != null) {
 			result = userPickService.updateByPrimaryKey(userPick);
 		} else {

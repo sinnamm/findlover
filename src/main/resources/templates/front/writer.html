@@ -3,7 +3,7 @@
 <head>
     <title>FindLover</title>
     <!--公共css与js文件-->
-    <th:block th:include="/front/common/common_resource::resources"/>
+    <th:block th:include="front/common/common_resource::resources"/>
     <!--ueditor引入-->
     <script th:src="@{/plugins/ueditor/ueditor.config.js}" type="text/javascript" charset="utf-8"
             src="../../static/plugins/ueditor/ueditor.config.js"></script>
@@ -72,6 +72,6 @@
     </form>
 </div>
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 </body>
 </html>	

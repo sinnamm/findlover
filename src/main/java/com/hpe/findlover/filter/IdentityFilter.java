@@ -34,7 +34,6 @@ public class IdentityFilter extends UserFilter {
 
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-		logger.info("Session中身份：" + identity.getValue() + "=" + getSubject(request, response).getSession().getAttribute(identity.getValue()));
 		if (isLoginRequest(request, response)) {
 			if(getSubject(request, response).getSession().getAttribute(identity.getValue()) != null){
 				try {
@@ -45,7 +44,6 @@ public class IdentityFilter extends UserFilter {
 			}
 			return true;
 		}else {
-			logger.info("Is not loginRequest!");
 			return getSubject(request, response).getSession().getAttribute(identity.getValue()) != null;
 		}
 	}

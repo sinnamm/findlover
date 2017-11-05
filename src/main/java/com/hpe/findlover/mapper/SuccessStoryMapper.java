@@ -3,6 +3,7 @@ package com.hpe.findlover.mapper;
 import com.hpe.findlover.model.SuccessStory;
 import com.hpe.util.BaseTkMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface SuccessStoryMapper extends BaseTkMapper<SuccessStory> {
     List<SuccessStory> selectNotSingle();
     List<SuccessStory> selectAllByStatus();
 
-    SuccessStory checkUser(int userId);
+    SuccessStory checkUser(@Param("right") int right,@Param("left") int left);
 }

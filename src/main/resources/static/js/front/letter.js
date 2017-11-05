@@ -47,7 +47,11 @@ function addNewWindow(myurl) {
             dataType: "json",
             async:false,
             success: function (data) {
-                if (data!==null){
+                if (data==null){
+                    swal("错误","该用户不存在","error");
+                }else if(data.authority != 1){
+                    swal("提示","该用户已隐藏资料，不能发起互动","warning");
+                }else{
                     $("#hiddenInput").after(" <li>\n" +
                         "                                    <div style=\"cursor:pointer; height: 50px;\" name=\"newWindow\"\n" +
                         "                                         class=\"jobs-item with-thumb userLetter\" id='newWindow'>\n" +
@@ -66,12 +70,10 @@ function addNewWindow(myurl) {
                         "                                    </div>\n" +
                         "                                </li>\n" +
                         " <hr/>");
-                }else{
-                    swal("警告","该用户不存在","error");
                 }
             },
             error:function () {
-                swal("错误","遇到未知错误..","error");
+                swal("错误","该用户不存在..","error");
             }
         });
     }

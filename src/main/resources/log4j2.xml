@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 设置log4j2的自身log级别为warn -->
 <!-- OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
-<configuration status="ERROR">
+<configuration status="WARN">
     <appenders>
         <console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{HH:mm:ss}] %-5level %logger{36} - %msg%n"/>
@@ -47,12 +46,10 @@
     </appenders>
 
     <loggers>
-        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
         <!--<logger name="org.springframework" level="INFO"/>-->
         <!--<logger name="org.mybatis" level="INFO"/>-->
         <!--<logger name="org.apache.shiro" level="INFO"/>-->
-        <logger name="com.hpe.findlover" level="ALL"/>
-        <!--<logger name="org.apache.ibatis" level="TRACE"/>-->
+        <logger name="com.hpe.findlover" level="INFO"/>
         <root level="info">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>

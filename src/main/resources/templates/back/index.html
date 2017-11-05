@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="/back/common/common_resource :: resources"/>
+    <th:block th:include="back/common/common_resource :: resources"/>
     <title>findlover后台管理系统</title>
     <script th:src="@{/js/back/top.js}"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
 <div class="wrapper">
-    <th:block th:include="/back/common/top :: top"/>
-    <th:block th:include="/back/common/left :: left"/>
+    <th:block th:include="back/common/top :: top"/>
+    <th:block th:include="back/common/left :: left"/>
     <div class="content-wrapper" style="min-height: 100% !important">
 
-        <iframe th:src="@{/admin/user/list}" name="content" frameborder="0" style="min-height: 560px"
+        <iframe th:src="@{/admin/right}" name="content" frameborder="0" style="min-height: 560px"
                 width="100%"></iframe>
     </div>
 </div>

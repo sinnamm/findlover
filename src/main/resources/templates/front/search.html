@@ -3,13 +3,13 @@
 <head>
     <title>FindLover-搜索</title>
     <!--公共css与js文件-->
-    <th:block th:include="/front/common/common_resource::resources"/>
+    <th:block th:include="front/common/common_resource::resources"/>
     <script src="../../static/js/front/search.js" th:src="@{/js/front/search.js}"></script>
     <script th:src="@{/js/masonry-docs.min.js}"></script>
 </head>
 <body>
 <!-- 导航栏 -->
-<th:block th:include="/front/common/header::nav"/>
+<th:block th:include="front/common/header::nav"/>
 
 <div class="grid_3" style="padding: 30px 0">
     <div class="container">
@@ -366,6 +366,6 @@
 </div>
 
 <!--页面尾部-->
-<th:block th:include="/front/common/footer::foot"/>
+<th:block th:include="front/common/footer::foot"/>
 </body>
 </html>	

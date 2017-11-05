@@ -69,22 +69,23 @@ public class AdminController {
 		CustomToken token = new CustomToken(username, password, Identity.ADMIN);
 		try {
 			SecurityUtils.getSubject().login(token);
+			if (SecurityUtils.getSubject().isAuthenticated()) {
+				Admin admin = new Admin();
+				admin.setUsername(token.getUsername());
+				admin = adminService.selectOne(admin);
+				admin.setLastLogin(new Date());
+				adminService.updateByPrimaryKey(admin);
+				session.setAttribute("admin", admin);
+				return "redirect:index";
+			} else {
+				return "redirect:login";
+			}
 		} catch (UnknownAccountException uae) {
 			redirectAttributes.addAttribute("message", "用户名不存在");
 		} catch (IncorrectCredentialsException ice) {
 			redirectAttributes.addAttribute("message", "密码不正确");
 		}
-		if (SecurityUtils.getSubject().isAuthenticated()) {
-			Admin admin = new Admin();
-			admin.setUsername(token.getUsername());
-			admin = adminService.selectOne(admin);
-			admin.setLastLogin(new Date());
-			adminService.updateByPrimaryKey(admin);
-			session.setAttribute("admin", admin);
-			return "redirect:index";
-		} else {
-			return "redirect:login";
-		}
+		return "redirect:login";
 	}
 
 	@GetMapping("admins/page")
@@ -166,6 +167,11 @@ public class AdminController {
 		admin.setId(SessionUtils.getSessionAttr("admin", Admin.class).getId());
 		admin.setPassword(LoverUtil.getMd5Password(admin.getPassword(), SessionUtils.getSessionAttr("admin", Admin.class).getUsername()));
 		return adminService.updateByPrimaryKeySelective(admin);
+	}
+
+	@GetMapping("right")
+	public String right(){
+		return "back/common/right";
 	}
 
 }

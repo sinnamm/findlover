@@ -12,6 +12,10 @@ $(function () {
     contentWayPoint();
     //搜索事件
     searchUser();
+
+    $(".animate-box a").each(function () {
+        this.href = contextPath+"profile/"+this.id.split("-")[1];
+    })
 });
 
 // 每日情缘
@@ -80,6 +84,7 @@ function contentWayPoint() {
             }, 100);
         }
     } , { offset: '85%' } );
+
 }
 
 //初始化首页搜索条件
