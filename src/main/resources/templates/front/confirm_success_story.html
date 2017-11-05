@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/back/common/common_resource :: resources"/>
+    <title>Title</title>
+    <th:block th:remove="all">
+        <link rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.css">
+    </th:block>
+    <script th:inline="javascript">
+        var essayId = /*[[${successStory.id}]]*/'';
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+<div class="wrapper">
+    <div class="content-wrapper" style="margin-left: 0;padding-top: 0">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">专栏作家文章详情</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid">
+                                <ul id="essay-tab" class="nav nav-tabs">
+                                    <li class="active">
+                                        <a id="info" href="#info-pane" data-toggle="tab">文章详情</a>
+                                    </li>
+                                    <li><a id="photo" href="#photo-pane" data-toggle="tab">配图详情</a></li>
+                                </ul>
+                                <div id="essay-tab-content" class="tab-content">
+
+                                    <div class="tab-pane fade in active" id="info-pane">
+                                        <div class="f-content" >
+                                            <div class="container-fluid" style="height: auto">
+                                                <th:block th:utext="${essay}"></th:block>
+                                                <div id="operator" class="row">
+                                                    <div th:if="${successStory.status==2}" class="col-md-6 text-right">
+                                                        <a id="checked-essay" class="btn btn-warning">开心同意</a>
+                                                    </div>
+                                                    <div th:if="${successStory.status==2}" class="col-md-6 ">
+                                                        <a th:href="@{/notice}" id="un-checked-essay" class="btn btn-danger">残忍拒绝</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="photo-pane">
+                                        <div class="f-content">
+                                            <div class="container-fluid">
+                                                <img th:src="@{/file(path=${successStory.photo})}" style="width: auto;height: 400px">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#checked-essay").click(function () {
+            $.ajax({
+                url: contextPath + "success_story/pass" ,
+                type: "put",
+                data: {"status": 3,"id":essayId},
+                dataType: "text",
+                success: function (data) {
+                    if (data === "success") {
+                        $("#operator").hide();
+                        swal("发布成功！", "", "success");
+                    } else {
+                        swal("发布失败！", "", "error");
+                    }
+                },
+                error: errorAlert
+            });
+        });
+    })
+</script>
+</body>
+</html>

@@ -198,7 +198,7 @@
                                     <img th:src="@{/file(path=${success_story.photo})}" width="75" height="75" class="img-responsive"/>
                                 </figure>
                                 <div class="suceess_story-content-info">
-                                    <h4><a href="#">[[${success_story.userLeft.nickname}]]&nbsp;&amp;&nbsp;[[${success_story.userRight.nickname}]]</a></h4>
+                                    <h4><a href="@{'/success_story/success_story_info/'+${success_story.id}">[[${success_story.userLeft.nickname}]]&nbsp;&amp;&nbsp;[[${success_story.userRight.nickname}]]</a></h4>
                                     <p>[[${success_story.brief}]]<a href="#">More...</a></p>
                                 </div>
                             </div>
@@ -478,30 +478,24 @@
         </div>
         <div class="col-sm-6">
             <div class="bg_left">
-                <h4>But I must explain</h4>
-                <h5>Friend of Bride</h5>
-                <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.</p>
-                <ul class="team-socials">
-                    <li><a href="#"><span class="icon-social "><i class="fa fa-facebook"></i></span></a></li>
-                    <li><a href="#"><span class="icon-social "><i class="fa fa-twitter"></i></span></a></li>
-                    <li><a href="#"><span class="icon-social"><i class="fa fa-google-plus"></i></span></a></li>
-                </ul>
+                <h4>寻爱网</h4>
+                <h5>网站简介</h5>
+                <p>寻爱网是一个大型婚恋交友网站，旨在帮助会员通过网站提供的资料信息找到心仪对象。
+                    寻爱网服务于真诚征友的单身人群，并建立严格的身份认证机制和会员投诉机制，
+                    通过客服人工审核、技术屏蔽以及会员投诉等方式屏蔽不良会员，
+                    保证征友会员的质量、征友过程的安全，和征友的效果。
+                希望每一位用户都能在这里找到自己的真爱</p>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="bg_left">
-                <h4>But I must explain</h4>
-                <h5>Friend of Groom</h5>
-                <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.</p>
-                <ul class="team-socials">
-                    <li><a href="#"><span class="icon-social "><i class="fa fa-facebook"></i></span></a></li>
-                    <li><a href="#"><span class="icon-social "><i class="fa fa-twitter"></i></span></a></li>
-                    <li><a href="#"><span class="icon-social"><i class="fa fa-google-plus"></i></span></a></li>
-                </ul>
+                <h4>About us</h4>
+                <h5>bao jing da tui</h5>
+                <p>
+                    There are some things we have to say about this project. From the beginning of the demand analysis stage, we think this project is difficult to complete,
+                    Until now, all the functions of the project are basically realized,
+                    we have to say that our group is very strong!
+                    Thank you for this month each member of mutual assistance,we are the best!</p>
             </div>
         </div>
         <div class="clearfix"></div>

@@ -2,10 +2,7 @@ package com.hpe.findlover.contoller.front;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hpe.findlover.model.SuccessStory;
-import com.hpe.findlover.model.SuccessStoryLike;
-import com.hpe.findlover.model.SuccessStoryReply;
-import com.hpe.findlover.model.UserBasic;
+import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.SuccessStoryLikeService;
 import com.hpe.findlover.service.SuccessStoryReplyService;
 import com.hpe.findlover.service.SuccessStoryService;
@@ -21,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
@@ -137,6 +135,41 @@ public class SuccessStoryController {
             return "true";
         }
         return "false";
+    }
+
+    @GetMapping("confirmSuccessStory/{id}")
+    public String confirm(@PathVariable int id, Model model){
+        logger.info("需要确认的id:"+id);
+        SuccessStory successStory = successStoryService.selectByPrimaryKey(id);
+        String filename = successStory.getContent();
+        byte[] bytes = uploadService.downloadFile(filename);
+        try {
+            String content = new String(bytes, "utf-8");
+            model.addAttribute("essay", content);
+            model.addAttribute("successStory", successStory);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "front/confirm_success_story";
+    }
+
+    @GetMapping("pass")
+    @ResponseBody
+    public String pass(SuccessStory successStory){
+        logger.info("通过的成功故事："+successStory);
+        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
+        if (successStoryService.checkUser(userBasic.getId())){
+            boolean result = successStoryService.updateByPrimaryKeySelective(successStory);
+            if (result){
+                return "success";
+            }else {
+                return "error";
+            }
+        }else {
+            return "error";
+        }
+
     }
 
 }

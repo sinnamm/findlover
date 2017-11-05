@@ -134,6 +134,9 @@ function btnClick() {
         if ($("#content").val().length>255){
             swal("发布失败！内容超过250个字符", "error");
             return;
+        }else if ($("#content").val().trim().length==0){
+            swal("发布失败！内容不能为空", "error");
+            return;
         }
         $.post(contextPath + "other_says/message", {content: $("#content").val()}, function (data) {
             if (data == "true") {
@@ -152,6 +155,9 @@ function btnClick() {
         var reply = $("#reply-content").val();
         if (reply.length>255){
             swal("发布失败！内容超过250个字符", "error");
+            return;
+        }else if (reply.trim().length==0){
+            swal("发布失败！内容不能为空", "error");
             return;
         }
         var data = {"reply":reply,"messageId":msgId};

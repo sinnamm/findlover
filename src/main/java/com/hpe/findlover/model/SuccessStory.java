@@ -46,6 +46,17 @@ public class SuccessStory {
     @Transient
     private UserBasic userRight;
 
+    public SuccessStory() {
+    }
+
+    public SuccessStory(Integer leftUser,Integer rightUser){this.leftUser = leftUser;
+    this.rightUser = rightUser;}
+
+
+    public SuccessStory(Integer status) {
+        this.status = status;
+    }
+
     public UserBasic getUserLeft() {
         return userLeft;
     }

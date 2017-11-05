@@ -26,4 +26,11 @@ public interface SuccessStoryService extends BaseService<SuccessStory> {
      */
     boolean insertStory(SuccessStory successStory);
     List<SuccessStory> selectAllByStatus();
+
+    /**
+     * 判断是否已经发布成功故事
+     * @param userId
+     * @return
+     */
+    boolean checkUser(int userId);
 }

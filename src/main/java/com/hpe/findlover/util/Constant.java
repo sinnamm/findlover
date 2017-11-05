@@ -14,8 +14,6 @@ public class Constant {
 
 
     public static final String INIT_SIGNATURE="哇哦，该用户很懒，没有留下任何东西";
-
-    public static final String CONFIRM_SUCCESS_STORY="尊敬的用户，您的爱人发布了一条成功故事等待您审核呢，快来看看吧";
     /**
      * 广告位固定显示星级用户个数
      */

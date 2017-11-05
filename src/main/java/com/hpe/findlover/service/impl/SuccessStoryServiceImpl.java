@@ -71,13 +71,26 @@ public class SuccessStoryServiceImpl extends BaseServiceImpl<SuccessStory> imple
     @Override
     public boolean insertStory(SuccessStory successStory) {
        int result1 =  successStoryMapper.insert(successStory);
-        Notice notice = new Notice(null,"成功故事审核", Constant.CONFIRM_SUCCESS_STORY,new Date(),successStory.getLeftUser());
+       Notice notice = new Notice(null,"成功故事审核",
+               "尊敬的用户，您的爱人发布了一条成功故事等待您审核呢，快来看看吧<a href =http://localhost/success_story/confirmSuccessStory/"+successStory.getId()+">http://localhost/success_story/confirmSuccessStory/"+successStory.getId()+"</a>",
+               new Date(),successStory.getRightUser());
        int result2 =  noticeMapper.insert(notice);
        if (result1>0&&result2>0){
            return true;
        }else {
            return false;
        }
+    }
+
+    @Override
+    public boolean checkUser(int userId) {
+        SuccessStory successStory1 = successStoryMapper.checkUser(userId);
+        if (successStory1==null){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override

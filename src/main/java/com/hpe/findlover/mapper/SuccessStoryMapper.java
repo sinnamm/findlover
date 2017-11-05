@@ -17,4 +17,6 @@ public interface SuccessStoryMapper extends BaseTkMapper<SuccessStory> {
      */
     List<SuccessStory> selectNotSingle();
     List<SuccessStory> selectAllByStatus();
+
+    SuccessStory checkUser(int userId);
 }

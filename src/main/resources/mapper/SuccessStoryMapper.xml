@@ -65,4 +65,10 @@
     ON st.left_user = ub.id WHERE st.status=1 ORDER BY st.success_time DESC LIMIT 32
   </select>
 
+  <select id="checkUser" resultType="successStory">
+    SELECT * FROM  findlover.success_story
+    WHERE left_user = #{userId}
+    OR right_user = #{userId}
+  </select>
+
 </mapper>
