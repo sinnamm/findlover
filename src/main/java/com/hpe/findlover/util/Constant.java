@@ -57,7 +57,7 @@ public class Constant {
     /**
      * 默认用户那女头像
      */
-    public static final String MALE_PHOTO = "group1/M00/00/00/rBEuvlnxjMuAQiedAABzD4s1V58372.png";
-    public static final String FEMALE_PHOTO = "group1/M00/00/00/rBEuvlnxjQqAIjfAAAB54pr6RHc334.png";
+    public static final String MALE_PHOTO = "group1/M00/00/00/wKifgFoAKROAV5F9AABzD4s1V58526.png";
+    public static final String FEMALE_PHOTO = "group1/M00/00/00/wKifgFoAKEyACX3lAAB54pr6RHc521.png";
 
 }
