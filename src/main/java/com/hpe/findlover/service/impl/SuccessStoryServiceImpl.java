@@ -89,8 +89,8 @@ public class SuccessStoryServiceImpl extends BaseServiceImpl<SuccessStory> imple
 
 	@Override
 	public boolean checkUser(int userId,int left) {
-		SuccessStory successStory1 = successStoryMapper.checkUser(userId,left);
-		return successStory1 == null;
+//		SuccessStory successStory1 = successStoryMapper.checkUser(userId,left);
+		return successStoryMapper.checkUser(userId,left) == null;
 
 	}
 
