@@ -104,7 +104,9 @@ function sendLetter(vip) {
                 dataType: "text",
                 success: function (data) {
                     if (data=="ok"){
-                        $("#hiddenLi1").before("<li class = 'chat-right right-photo' >" + content + "</li>");
+                        var $li = $("<li class = 'chat-right right-photo' ></li>");
+                        $li.text(content);
+                        $("#hiddenLi1").before($li);
                         $("#notVipInput").val("");
                         $("#vipInput").val("");
                         $('#letterUl').scrollTop(100000);
@@ -145,10 +147,18 @@ function addLetter( userid, vip) {
                 }
                 for (var x = 0; x < data.length; x++) {
                     if (vip == "false" && data[x].status == "0") {
-                        userid == data[x].sendId ? $("#hiddenLi").after("<li  class = 'chat-right right-photo' ></li>") : $("#hiddenLi").after("<li class = 'chat-left'><a id='letter-" + x + "' href='javascript:void(0)'>点击查看对方消息，每条信息将收费五个牵手币</a></li>");
+                        if(userid == data[x].sendId){
+                           var $li = $("<li  class = 'chat-right right-photo' ></li>");
+                            $li.text(data[x].content);
+                           $("#hiddenLi").after($li)
+                        }else {
+                            $("#hiddenLi").after("<li class = 'chat-left'><a id='letter-" + x + "' href='javascript:void(0)'>点击查看对方消息，每条信息将收费五个牵手币</a></li>");
+                        }
 
                     } else {
-                        $("#hiddenLi").after("<li class = 'chat-" + (userid == data[x].sendId ? "right" : "left") + "'>" + data[x].content + "</li>");
+                        var $li = $("<li class = 'chat-" + (userid == data[x].sendId ? "right" : "left") + "'></li>");
+                        $li.text( data[x].content);
+                        $("#hiddenLi").after($li);
                     }
                 }
                 $("a[id^='letter-']").click(function () {
@@ -194,7 +204,7 @@ function readLetter(arg, letter) {
             if (data === "ok") {
                 var par = $(arg).parent();
                 $(arg).remove();
-                par.html(letter.content);
+                par.text(letter.content);
 
             } else {
                 swal("警告", data, "error");
