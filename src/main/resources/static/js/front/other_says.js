@@ -41,7 +41,7 @@ function loadMessage(div_id,data){
             "                                    <div class='clearfix'></div>" +
             "                                </div>" +
             "                                <div class='message_content' style='padding: 0px 10px 0 10px'>" +
-            "                                    <p style='margin-bottom: 0px; font-size: medium '>" + list[i].content + "</p>" +
+            "                                    <p id='content-p-"+i+"' style='margin-bottom: 0px; font-size: medium '></p>" +
             "                                </div>" +
             "                                <div class='row text-right'>" +
             "                                    <div class='col-sm-7'></div>" +
@@ -64,6 +64,7 @@ function loadMessage(div_id,data){
             "                                </div>"+
             "                            </div><hr/>"
         );
+        $("#content-p-"+i).text(list[i].content);
         var reply_list = list[i].replies;
         if (reply_list!=""&&reply_list!=undefined&&reply_list!=null&&reply_list.length>0){
             for (var j=0;j<reply_list.length;j++){
