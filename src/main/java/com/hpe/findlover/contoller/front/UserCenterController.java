@@ -1,6 +1,7 @@
 package com.hpe.findlover.contoller.front;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hpe.findlover.anno.MyParam;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.*;
 import com.hpe.findlover.util.Constant;
@@ -367,7 +368,7 @@ public class UserCenterController {
 	@PutMapping("basic")
 	@ResponseBody
 	@CachePut(key = "'basic-'+#userBasic.id")
-	public Object updateUserBasic(UserBasic userBasic, String work_province, String work_city, HttpSession session) {
+	public Object updateUserBasic(@MyParam UserBasic userBasic, @MyParam String work_province,@MyParam String work_city, HttpSession session) {
 		boolean result = false;
 		if (userBasic != null) {
 			if (work_city != null) {
@@ -401,8 +402,8 @@ public class UserCenterController {
 	@PutMapping("detail")
 	@ResponseBody
 	@CachePut(key = "'detail-'+#userDetail.id")
-	public Object updateUserDetail(UserDetail userDetail, String graduation0, String graduation1,
-	                               String birthplace_province, String birthplace_city) {
+	public Object updateUserDetail(@MyParam UserDetail userDetail,@MyParam String graduation0,@MyParam String graduation1,
+								   @MyParam  String birthplace_province,@MyParam String birthplace_city) {
 		boolean result = false;
 		if (graduation1 != null) {
 			userDetail.setGraduation(graduation0 + "-" + graduation1);
@@ -431,7 +432,7 @@ public class UserCenterController {
 	@PutMapping("confirm")
 	@ResponseBody
 	@CachePut(key = "'detail-'+#userDetail.id")
-	public Object UserConfirm(UserDetail userDetail, HttpSession session) {
+	public Object UserConfirm(@MyParam UserDetail userDetail, HttpSession session) {
 		boolean result = false;
 		result = userDetailService.updateByPrimaryKeySelective(userDetail);
 		UserBasic user = (UserBasic) session.getAttribute("user");
@@ -448,7 +449,7 @@ public class UserCenterController {
 	@PutMapping("life")
 	@ResponseBody
 	@CachePut(key = "'life-'+#userLife.id")
-	public Object updateUserLife(UserLife userLife) {
+	public Object updateUserLife(@MyParam UserLife userLife) {
 		boolean result = false;
 		logger.debug(userLife);
 		if (userLife != null) {
@@ -465,7 +466,7 @@ public class UserCenterController {
 	@PutMapping("status")
 	@ResponseBody
 	@CachePut(key = "'status-'+#userStatus.id")
-	public Object updateUserStatus(UserStatus userStatus) {
+	public Object updateUserStatus(@MyParam UserStatus userStatus) {
 		boolean result = false;
 		logger.debug(userStatus);
 		if (userStatusService.selectByPrimaryKey(userStatus) != null) {
@@ -484,8 +485,8 @@ public class UserCenterController {
 	@PutMapping("pick")
 	@ResponseBody
 	@CachePut(key = "'pick-'+#userPick.id")
-	public Object updateUserPick(UserPick userPick, String workplace_province1, String workplace_city1
-			, String birthplace_province1, String birthplace_city1) {
+	public Object updateUserPick(@MyParam UserPick userPick,@MyParam String workplace_province1,@MyParam String workplace_city1
+			,@MyParam String birthplace_province1,@MyParam String birthplace_city1) {
 		boolean result = false;
 		if (workplace_city1 != null) {
 			userPick.setWorkplace(workplace_province1 + "-" + workplace_city1);
@@ -493,9 +494,9 @@ public class UserCenterController {
 			userPick.setWorkplace(workplace_province1);
 		}
 		if (birthplace_city1 != null) {
-			userPick.setWorkplace(birthplace_province1 + "-" + birthplace_city1);
+			userPick.setBirthplace(birthplace_province1 + "-" + birthplace_city1);
 		} else {
-			userPick.setWorkplace(birthplace_province1);
+			userPick.setBirthplace(birthplace_province1);
 		}
 		logger.debug(userPick);
 		if (userPickService.selectByPrimaryKey(userPick) != null) {

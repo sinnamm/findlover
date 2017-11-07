@@ -8,12 +8,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/findlover?useSSL=false
-      #url: jdbc:mysql://your ip addr:3306/findlover?useSSL=false
+      url: jdbc:mysql:///findlover?useSSL=false
+      # url: jdbc:mysql://172.17.46.180:3306/findlover?useSSL=false
       username: root
-      #username: your database username
-      password: 12345
-      #password: your database password
+      password: 123456
       initial-size: 1
       min-idle: 1
       max-total: 2
@@ -60,6 +58,5 @@ fdfs:
   thumbImage:             #缩略图生成参数
     width: 150
     height: 150
-#  trackerList: 172.17.46.190:22122
-  trackerList: 192.168.159.128:22122
-  #trackerList: fastdfs ip addr:22122
+  trackerList: 192.168.91.132:22122
+  # trackerList: 172.17.46.190:22122

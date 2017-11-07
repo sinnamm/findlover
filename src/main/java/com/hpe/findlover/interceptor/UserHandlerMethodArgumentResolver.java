@@ -1,5 +1,6 @@
 package com.hpe.findlover.interceptor;
 
+import com.hpe.findlover.anno.MyParam;
 import com.hpe.findlover.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,24 +30,7 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        Class<?> parameterType = methodParameter.getParameterType();
-        //如果Controller类中自定义的方法的参数类型是用户的信息类都进行过滤处理，即调用resolveArgument()函数
-        if (parameterType.equals(UserBasic.class)
-                || parameterType.equals(UserDetail.class)
-                || parameterType.equals(UserLife.class)
-                || parameterType.equals(UserStatus.class)
-                || parameterType.equals(UserPick.class)) {
-            return true;
-        }
-        //如果Controller类中自定义的方法的参数类型是String类都进行过滤处理，即调用resolveArgument()函数
-        if (parameterType.equals(String.class)) {
-            return true;
-        }
-        //如果Controller类中自定义的方法的参数类型是Integer类都进行过滤处理，即调用resolveArgument()函数
-        if (parameterType.equals(Integer.class)) {
-            return true;
-        }
-        return false;
+        return methodParameter.hasParameterAnnotation(MyParam.class);
     }
 
     @Override
