@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <label for="nickname" class="col-md-3 control-label">昵称</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="昵称">
+                            <input  type="text" class="form-control" id="nickname" name="nickname" placeholder="昵称">
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,12 +83,12 @@
                         <label class="col-md-3 control-label">所在地区</label>
                         <div class="col-md-4">
                             <select name="province" id="province" class="form-control">
-                                <option value="-1">请选择</option>
+                                <option value="">请选择</option>
                             </select>
                         </div>
                         <div class="col-md-offset-1 col-md-4">
                             <select name="city" id="city" class="form-control">
-                                <option value="-1">请选择</option>
+                                <option value="">请选择</option>
                             </select>
                         </div>
                     </div>
@@ -96,7 +96,6 @@
                         <label class="col-md-3 control-label">婚姻状态</label>
                         <div class="col-md-9">
                             <select name="marryStatus" id="marryStatus" class="form-control">
-                                <option value="-1">请选择</option>
                                 <option value="未婚">未婚</option>
                                 <option value="离异">离异</option>
                                 <option value="丧偶">丧偶</option>
@@ -107,7 +106,7 @@
                         <label for="height" class="col-md-3 control-label">身高</label>
                         <div class="col-md-9">
                             <select name="height" id="height" class="form-control">
-                                <option value="-1">请选择</option>
+                                <option value="">请选择</option>
                             </select>
                         </div>
 
@@ -116,7 +115,7 @@
                         <label for="education" class="col-md-3 control-label">学历</label>
                         <div class="col-md-9">
                             <select name="education" id="education" class="form-control">
-                                <option value="-1">请选择</option>
+                                <option value="">请选择</option>
                             </select>
                         </div>
                     </div>
@@ -124,7 +123,7 @@
                         <label for="salary" class="col-md-3 control-label">月薪</label>
                         <div class="col-md-9">
                             <select name="salary" id="salary" class="form-control">
-                                <option value="-1">请选择</option>
+                                <option value="">请选择</option>
                             </select>
                             <!--<input type="text" class="form-control" id="salary" name="salary" placeholder="月薪（元）">-->
                         </div>
@@ -164,46 +163,7 @@
         </div>
     </div>
 </div>
-<div class="footer">
-    <div class="container">
-        <div class="col-md-4 col_2">
-            <h4>About Us</h4>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."</p>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Help & Support</h4>
-            <ul class="footer_links">
-                <li><a href="#">24x7 Live help</a></li>
-                <li><a href="contact.html">Contact us</a></li>
-                <li><a href="#">Feedback</a></li>
-                <li><a href="faq.html">FAQs</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Quick Links</h4>
-            <ul class="footer_links">
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms and Conditions</a></li>
-                <li><a href="services.html">Services</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 col_2">
-            <h4>Social</h4>
-            <ul class="footer_social">
-                <li><a href="#"><i class="fa fa-facebook fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-twitter fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus fa1"> </i></a></li>
-                <li><a href="#"><i class="fa fa-youtube fa1"> </i></a></li>
-            </ul>
-        </div>
-        <div class="clearfix"></div>
-        <div class="copy">
-            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank"
-                                    href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-            </p>
-        </div>
-    </div>
-</div>
+
+<th:block th:include="front/common/footer::foot"/>
 </body>
 </html>	

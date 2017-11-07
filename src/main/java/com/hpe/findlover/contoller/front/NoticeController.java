@@ -58,7 +58,6 @@ public class NoticeController {
         model.addAttribute("followCount", followService.selectFollowCount(userId));
         model.addAttribute("visitTraceCount",visitTraceService.selectUnreadCount(userId));
         model.addAttribute("noticeCount", notices.size());
-        model.addAttribute("readNotice",notices1.size());
         //广告位
         model.addAttribute("users",userBasics);
         return "front/notice";

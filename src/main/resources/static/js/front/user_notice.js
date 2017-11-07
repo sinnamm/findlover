@@ -14,6 +14,10 @@ function loadNotice() {
         success:function (data) {
             $("#notice_div").empty();
             var list = data.list;
+            if (tab=="unReadNotice"){
+                $("#un_read_notice_a").text("未读("+list.length+")");
+                $("#notice-count").text("("+list.length+")");
+            }
             if (list.length==0){
                 $("#pagetool").hide();
                 return;
